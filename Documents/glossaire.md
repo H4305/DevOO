@@ -1,15 +1,20 @@
 ### Glossaire
 
-
+#### Point
+Le dépôt ou un point de livraison.
 
 ####Point de livraison :
 L'adresse du client où il se fera livrer toutes les livraisons.
 
-#### dépôt : 
+#### Dépôt : 
 Point de départ et d'arrivée de l'itinéraire.
 
+
+#### Tournée
+Itinéraire d'un livreur dans une zone donnée pendant une plage horaire.
+
 #### Itinéraire
-Liste ordonée des points de livraison avec comme point de départ et d'arrivée le dépôt. L'itinéraire précise l'heure de passage à chaque point de livraison.
+Liste ordonée des points avec comme point de départ et d'arrivée le dépôt. L'itinéraire précise les heures de départ et d'arrivée de chaque point.
 
 #### Plage horaire
 Interval de temps défini par une heure de début et une heure de fin pendant laquelle le client peut se faire livrer.
