@@ -47,7 +47,7 @@ Dépot du colis dans un point de livraison. La livraison s'effectue dans une pla
 La livraison est effectuée quand le livreur a donné le colis au cliente et a précisé l'heure de livraison.
 
 #### Livraison non effectuée
-Le livreur est passé au point de livraison mais il n'a pas pu délivré le colis.
+Le livreur est passé au point de livraison mais il n'a pas pu délivré le colis. Il précise l'heure de d'arrivée effective et la cause l'echec de la livraison.
 
 #### Livraison restante
 Livraison indiquée sur la feuille de route dont l'heure d'arrivée n'est pas encore dépassée.
