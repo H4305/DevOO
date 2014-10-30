@@ -36,10 +36,41 @@ public class Useful {
         return null;
 	}
 	
-	// Need to make a generic method
-	//
-	public static void getPlanXML(Element racine){
-    	                            
+	// Il faudrait passer en parametre un tableau des attributs pour rendre la methode generic pour chaque enfants !
+	// La genericité se prete mal pour vérifier les valeurs
+	// Car on pourrait faire un map (attribut, contraintes) .. Mais après il faut se parser les contraintes etc (à voir) ..
+	public static Boolean getTronconSortant (Element racine, String node, int nbAttributs) {
+        final NodeList racineNoeuds = racine.getChildNodes();
+        final int nbRacineNoeuds = racineNoeuds.getLength();
+                
+        for (int i = 0; i<nbRacineNoeuds; i++) {
+            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                final Element noeud = (Element) racineNoeuds.item(i);
+                if (noeud.getNodeName().equals(node)) {
+                	                	
+                	// Check the attributs number
+                	//
+                	if(noeud.getAttributes().getLength() == nbAttributs) {
+                		
+                		// Just print attributes
+                		//
+                        System.out.print(noeud.getNodeName() + "(nomRue : " + noeud.getAttribute("nomRue"));
+                        System.out.print( ", vitesse : " + noeud.getAttribute("vitesse"));
+                        System.out.print( ", longueur : " + noeud.getAttribute("longueur"));
+                        System.out.println(", idNoeudDestination : " + noeud.getAttribute("idNoeudDestination") +");");
+                	}
+                	else {
+            			System.out.println("Il faut refuser le Fichier");
+                		return false;
+                	}
+                }
+            }				
+        }
+        return true;
+	}
+	
+	public static Boolean getPlanXML(Element racine){
+    	                           	
         final NodeList racineNoeuds = racine.getChildNodes();
         final int nbRacineNoeuds = racineNoeuds.getLength();
                 
@@ -54,42 +85,26 @@ public class Useful {
                 		
                 		// Just print attributes
                 		//
-                        System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
+                		// Need to check all the attributs
+                        System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id")); // Need to check all the attributs
                         System.out.print( ", x : " + noeud.getAttribute("x"));
                         System.out.println(", y : " + noeud.getAttribute("y") +");");
                         
                         // Get children
-                        //
-                        final NodeList racineNoeudsEnfants = noeud.getChildNodes();
-                        final int nbRacineNoeudsEnfants = racineNoeudsEnfants.getLength();
-                        for (int ii = 0; ii<nbRacineNoeudsEnfants; ii++) {
-                            if(racineNoeudsEnfants.item(ii).getNodeType() == Node.ELEMENT_NODE) {
-                                final Element noeudEnfants = (Element) racineNoeudsEnfants.item(ii);
-                                if (noeudEnfants.getNodeName().equals("LeTronconSortant")) {
-                                	
-                                	// Check the attributs number
-                                	//
-                                	if(noeudEnfants.getAttributes().getLength() == 4) {
-                                		// Just print attributes
-                                		//
-                                        System.out.print(noeudEnfants.getNodeName() + "(nomRue : " + noeudEnfants.getAttribute("nomRue"));
-                                        System.out.print( ", vitesse : " + noeudEnfants.getAttribute("vitesse"));
-                                        System.out.print( ", longueur : " + noeudEnfants.getAttribute("longueur"));
-                                        System.out.println(", idNoeudDestination : " + noeudEnfants.getAttribute("idNoeudDestination") +");");
-                                	}
-                                	else {
-                                		System.out.println("Il faut refuser le troncon");
-                                	}
-                                }
-                            }
-                        }
+                        //                        
+                		if (getTronconSortant(noeud, "LeTronconSortant", 4) == false) {
+                			System.out.println("Il faut refuser le Fichier");
+                			return false;
+                		}
                 	}
                 	else {
-                		System.out.println("Il faut refuser le Noeud");
+                		System.out.println("Il faut refuser le Fichier");
+                		return false;
                 	}
                 }
             }				
         }
+        return true;
 	}
 	
 	public static void lireDepuisFichierXML(){
@@ -108,7 +123,7 @@ public class Useful {
                 	getPlanXML(racine);
                 }
                 else if (racine.getNodeName().equals("JourneeType")) {
-                	
+                	System.out.println("Livraison not available for the moment");
                 }
                 
             // todo : traiter les erreurs
