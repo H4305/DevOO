@@ -43,7 +43,11 @@ public class Useful {
 	public static boolean isFloatWithSixDecimalPlaces(String inputData) {
 		  return inputData.matches("[0-9]+\\,[0-9]{6}");
 	}
-			
+		  
+	public static boolean isHour(String inputData) {
+		  return inputData.matches("[0-2]?[0-9]?:[0-5]?[0-9]?:[0-5]?[0-9]");
+	}
+		
 	public static Boolean getPlanXML(Element racine){
     	            
         NodeList listNodes = racine.getElementsByTagName("Noeud");
@@ -151,14 +155,13 @@ public class Useful {
 	                String heureDebut = noeud.getAttribute("heureDebut");
 	                String heureFin = noeud.getAttribute("heureFin");
 	                
-	                /// TODO 
-	                /*
+
 	                // Check if the attributes are numerics and greater than zero
-	            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
+	            	if (!isHour(heureDebut) && !isHour(heureFin)){
 	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
 	            		return false;
 	            	}
-	                */
+	                
 	       		
 	            	// Just print them
 	                System.out.println(" ---- " + noeud.getNodeName());
@@ -239,5 +242,6 @@ public class Useful {
 	}
 	public static void main(String[] args) {
 		lireDepuisFichierXML();
+		
 	}		
 }
