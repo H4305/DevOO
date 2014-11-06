@@ -36,39 +36,61 @@ public class Useful {
         return null;
 	}
 	
-	// Il faudrait passer en parametre un tableau des attributs pour rendre la methode generic pour chaque enfants !
-	// La genericité se prete mal pour vérifier les valeurs
-	// Car on pourrait faire un map (attribut, contraintes) .. Mais après il faut se parser les contraintes etc (à voir) ..
-	public static Boolean getTronconSortant (Element racine, String node, int nbAttributs) {
+	public static Boolean getTronconSortant (Element racine) {
         final NodeList racineNoeuds = racine.getChildNodes();
         final int nbRacineNoeuds = racineNoeuds.getLength();
                 
         for (int i = 0; i<nbRacineNoeuds; i++) {
+        	
             if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 final Element noeud = (Element) racineNoeuds.item(i);
-                if (noeud.getNodeName().equals(node)) {
-                	                	
-                	// Check the attributs number
-                	//
-                	if(noeud.getAttributes().getLength() == nbAttributs) {
-                		
-                		// Just print attributes
-                		//
-                        System.out.print(noeud.getNodeName() + "(nomRue : " + noeud.getAttribute("nomRue"));
-                        System.out.print( ", vitesse : " + noeud.getAttribute("vitesse"));
-                        System.out.print( ", longueur : " + noeud.getAttribute("longueur"));
-                        System.out.println(", idNoeudDestination : " + noeud.getAttribute("idNoeudDestination") +");");
-                	}
-                	else {
-            			System.out.println("Il faut refuser le Fichier");
-                		return false;
-                	}
-                }
-            }				
+                
+                // Check the Node name
+                if (!noeud.getNodeName().equals("LeTronconSortant")) {
+        			System.out.println("Something wrong with the name of the node needed");
+                	return false;
+                }          	
+            	// Check the attributes number
+                else if(noeud.getAttributes().getLength() != 4) {
+        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	// Check the attributes name
+            	else if (!noeud.hasAttribute("nomRue") && !noeud.hasAttribute("vitesse") && !noeud.hasAttribute("longueur") && !noeud.hasAttribute("idNoeudDestination")) {
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	
+                // Get the value of the attributes
+                String nomRue = noeud.getAttribute("nomRue");
+                String vitesse = noeud.getAttribute("vitesse");
+                String longueur = noeud.getAttribute("longueur");
+                String idNoeudDestination = noeud.getAttribute("idNoeudDestination");
+                
+                // Check if the attributes are numerics and greater than zero
+            	if (nomRue.length() < 1 && !isNumericAndGreaterThanZero(idNoeudDestination) && !isFloatWithSixDecimalPlaces(vitesse) && !isFloatWithSixDecimalPlaces(longueur)){
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	
+            	// Just print them
+                System.out.print(noeud.getNodeName() + "(nomRue : " + noeud.getAttribute("nomRue"));
+                System.out.print( ", vitesse : " + noeud.getAttribute("vitesse"));
+                System.out.print( ", longueur : " + noeud.getAttribute("longueur"));
+                System.out.println(", idNoeudDestination : " + noeud.getAttribute("idNoeudDestination") +");");
+            }	      		
         }
         return true;
 	}
-	
+		
+	public static boolean isNumericAndGreaterThanZero(String inputData) {
+		  return inputData.matches("[0-9]+");
+	}
+		
+	public static boolean isFloatWithSixDecimalPlaces(String inputData) {
+		  return inputData.matches("[0-9]+\\,[0-9]{6}");
+	}
+			
 	public static Boolean getPlanXML(Element racine){
     	                           	
         final NodeList racineNoeuds = racine.getChildNodes();
@@ -77,31 +99,127 @@ public class Useful {
         for (int i = 0; i<nbRacineNoeuds; i++) {
             if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 final Element noeud = (Element) racineNoeuds.item(i);
-                if (noeud.getNodeName().equals("Noeud")) {
-                	                	
-                	// Check the attributs number
-                	//
-                	if(noeud.getAttributes().getLength() == 3) {
-                		
-                		// Just print attributes
-                		//
-                		// Need to check all the attributs
-                        System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id")); // Need to check all the attributs
-                        System.out.print( ", x : " + noeud.getAttribute("x"));
-                        System.out.println(", y : " + noeud.getAttribute("y") +");");
-                        
-                        // Get children
-                        //                        
-                		if (getTronconSortant(noeud, "LeTronconSortant", 4) == false) {
-                			System.out.println("Il faut refuser le Fichier");
-                			return false;
-                		}
-                	}
-                	else {
-                		System.out.println("Il faut refuser le Fichier");
-                		return false;
-                	}
-                }
+                
+                // Check the Node name
+                if (!noeud.getNodeName().equals("Noeud")) {
+        			System.out.println("Something wrong with the name of the node needed");
+                	return false;
+                }          	
+            	// Check the attributes number
+                else if(noeud.getAttributes().getLength() != 3) {
+        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	// Check the attributes name
+            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("x") && !noeud.hasAttribute("y")) {
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+                // Check if the node contains at least one child
+            	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
+            		return false;
+            	}
+            	
+                // Get the value of the attributes
+                String id = noeud.getAttribute("id");
+                String x = noeud.getAttribute("x");
+                String y = noeud.getAttribute("y");
+                
+                // Check if the attributes are numerics and greater than zero
+            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+                
+                // Check the children node                 
+        		if (!getTronconSortant(noeud)) {
+        			System.out.println("Something wrong with the children of the node " + noeud.getNodeName());
+        			return false;
+        		}
+            	
+            	// Just print them
+                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
+                System.out.print( ", x : " + noeud.getAttribute("x"));
+                System.out.println(", y : " + noeud.getAttribute("y") +");");
+            }				
+        }
+        return true;
+	}
+	
+	
+	
+	// -----------------------------------------------------------------------------------------
+	
+	public static Boolean getPlagesHoraires(Element racine) {
+        final NodeList racineNoeuds = racine.getChildNodes();
+        final int nbRacineNoeuds = racineNoeuds.getLength();
+                
+        for (int i = 0; i<nbRacineNoeuds; i++) {
+        	
+            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                final Element noeud = (Element) racineNoeuds.item(i);
+            }
+        }
+        return true;
+	}
+	
+	public static Boolean getLivraisonXML(Element racine){
+       	
+        final NodeList racineNoeuds = racine.getChildNodes();
+        final int nbRacineNoeuds = racineNoeuds.getLength();
+        
+        if(racineNoeuds.item(1).getNodeType() == Node.ELEMENT_NODE) {
+        	System.out.println("ic " + ((Element) racineNoeuds.item(1)).getNodeName());
+        }
+        System.out.println(nbRacineNoeuds);
+        for (int i = 2; i<nbRacineNoeuds; i++) {
+            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                final Element noeud = (Element) racineNoeuds.item(i);
+                System.out.println(noeud.getNodeName());
+                
+
+                /*
+                // Check the Node name
+                if (!noeud.getNodeName().equals("Noeud")) {
+        			System.out.println("Something wrong with the name of the node needed");
+                	return false;
+                }          	
+            	// Check the attributes number
+                else if(noeud.getAttributes().getLength() != 3) {
+        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	// Check the attributes name
+            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("x") && !noeud.hasAttribute("y")) {
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+                // Check if the node contains at least one child
+            	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
+            		return false;
+            	}
+            	
+                // Get the value of the attributes
+                String id = noeud.getAttribute("id");
+                String x = noeud.getAttribute("x");
+                String y = noeud.getAttribute("y");
+                
+                // Check if the attributes are numerics and greater than zero
+            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+                
+                // Check the children node                 
+        		if (!getTronconSortant(noeud)) {
+        			System.out.println("Something wrong with the children of the node " + noeud.getNodeName());
+        			return false;
+        		}
+            	
+            	// Just print them
+                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
+                System.out.print( ", x : " + noeud.getAttribute("x"));
+                System.out.println(", y : " + noeud.getAttribute("y") +");");*/
             }				
         }
         return true;
@@ -123,7 +241,8 @@ public class Useful {
                 	getPlanXML(racine);
                 }
                 else if (racine.getNodeName().equals("JourneeType")) {
-                	System.out.println("Livraison not available for the moment");
+                	getLivraisonXML(racine);
+                	//System.out.println("Livraison not available for the moment");
                 }
                 
             // todo : traiter les erreurs
@@ -141,6 +260,6 @@ public class Useful {
 	}
 	public static void main(String[] args) {
 		lireDepuisFichierXML();
-	}
-		
+		//System.out.println(isNumericAndGreaterThanZero("1,0"));
+	}		
 }
