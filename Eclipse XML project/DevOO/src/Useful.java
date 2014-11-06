@@ -35,23 +35,62 @@ public class Useful {
                 return new File(jFileChooserXML.getSelectedFile().getAbsolutePath());
         return null;
 	}
-	
-	public static Boolean getTronconSortant (Element racine) {
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
-                
-        for (int i = 0; i<nbRacineNoeuds; i++) {
-        	
-            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element noeud = (Element) racineNoeuds.item(i);
-                
-                // Check the Node name
-                if (!noeud.getNodeName().equals("LeTronconSortant")) {
-        			System.out.println("Something wrong with the name of the node needed");
-                	return false;
-                }          	
+		
+	public static boolean isNumericAndGreaterThanZero(String inputData) {
+		  return inputData.matches("[0-9]+");
+	}
+		
+	public static boolean isFloatWithSixDecimalPlaces(String inputData) {
+		  return inputData.matches("[0-9]+\\,[0-9]{6}");
+	}
+			
+	public static Boolean getPlanXML(Element racine){
+    	            
+        NodeList listNodes = racine.getElementsByTagName("Noeud");
+
+        for (int i = 0; i < listNodes.getLength(); i++) {
+        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+            	final Element noeud = (Element) listNodes.item(i); 
+            
             	// Check the attributes number
-                else if(noeud.getAttributes().getLength() != 4) {
+                if(noeud.getAttributes().getLength() != 3) {
+        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	// Check the attributes name
+            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("x") && !noeud.hasAttribute("y")) {
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+                // Check if the node contains at least one child
+            	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
+            		return false;
+            	}
+            	
+                // Get the value of the attributes
+                String id = noeud.getAttribute("id");
+                String x = noeud.getAttribute("x");
+                String y = noeud.getAttribute("y");
+                
+                // Check if the attributes are numerics and greater than zero
+            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
+        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+            		return false;
+            	}
+            	// Just print them
+                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
+                System.out.print( ", x : " + noeud.getAttribute("x"));
+                System.out.println(", y : " + noeud.getAttribute("y") +");");
+            	
+        	}
+        }
+                
+        listNodes = racine.getElementsByTagName("LeTronconSortant");       
+        
+        for (int i = 0; i < listNodes.getLength(); i++) {
+        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+            	final Element noeud = (Element) listNodes.item(i); 
+            	if(noeud.getAttributes().getLength() != 4) {
         			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
             		return false;
             	}
@@ -78,151 +117,91 @@ public class Useful {
                 System.out.print( ", vitesse : " + noeud.getAttribute("vitesse"));
                 System.out.print( ", longueur : " + noeud.getAttribute("longueur"));
                 System.out.println(", idNoeudDestination : " + noeud.getAttribute("idNoeudDestination") +");");
-            }	      		
+        	}
         }
-        return true;
+		return true;
 	}
 		
-	public static boolean isNumericAndGreaterThanZero(String inputData) {
-		  return inputData.matches("[0-9]+");
-	}
-		
-	public static boolean isFloatWithSixDecimalPlaces(String inputData) {
-		  return inputData.matches("[0-9]+\\,[0-9]{6}");
-	}
-			
-	public static Boolean getPlanXML(Element racine){
-    	                           	
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
-                
-        for (int i = 0; i<nbRacineNoeuds; i++) {
-            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element noeud = (Element) racineNoeuds.item(i);
-                
-                // Check the Node name
-                if (!noeud.getNodeName().equals("Noeud")) {
-        			System.out.println("Something wrong with the name of the node needed");
-                	return false;
-                }          	
-            	// Check the attributes number
-                else if(noeud.getAttributes().getLength() != 3) {
-        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-            	// Check the attributes name
-            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("x") && !noeud.hasAttribute("y")) {
-        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-                // Check if the node contains at least one child
-            	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
-            		return false;
-            	}
-            	
-                // Get the value of the attributes
-                String id = noeud.getAttribute("id");
-                String x = noeud.getAttribute("x");
-                String y = noeud.getAttribute("y");
-                
-                // Check if the attributes are numerics and greater than zero
-            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
-        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-                
-                // Check the children node                 
-        		if (!getTronconSortant(noeud)) {
-        			System.out.println("Something wrong with the children of the node " + noeud.getNodeName());
-        			return false;
-        		}
-            	
-            	// Just print them
-                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
-                System.out.print( ", x : " + noeud.getAttribute("x"));
-                System.out.println(", y : " + noeud.getAttribute("y") +");");
-            }				
-        }
-        return true;
-	}
-	
-	
-	
 	// -----------------------------------------------------------------------------------------
-	
-	public static Boolean getPlagesHoraires(Element racine) {
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
-                
-        for (int i = 0; i<nbRacineNoeuds; i++) {
-        	
-            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element noeud = (Element) racineNoeuds.item(i);
-            }
-        }
-        return true;
-	}
-	
+		
 	public static Boolean getLivraisonXML(Element racine){
-       	
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
-        
-        if(racineNoeuds.item(1).getNodeType() == Node.ELEMENT_NODE) {
-        	System.out.println("ic " + ((Element) racineNoeuds.item(1)).getNodeName());
-        }
-        System.out.println(nbRacineNoeuds);
-        for (int i = 2; i<nbRacineNoeuds; i++) {
-            if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element noeud = (Element) racineNoeuds.item(i);
-                System.out.println(noeud.getNodeName());
-                
 
-                /*
-                // Check the Node name
-                if (!noeud.getNodeName().equals("Noeud")) {
-        			System.out.println("Something wrong with the name of the node needed");
-                	return false;
-                }          	
-            	// Check the attributes number
-                else if(noeud.getAttributes().getLength() != 3) {
-        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-            	// Check the attributes name
-            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("x") && !noeud.hasAttribute("y")) {
-        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-                // Check if the node contains at least one child
-            	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
-            		return false;
-            	}
-            	
-                // Get the value of the attributes
-                String id = noeud.getAttribute("id");
-                String x = noeud.getAttribute("x");
-                String y = noeud.getAttribute("y");
-                
-                // Check if the attributes are numerics and greater than zero
-            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
-        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
-            		return false;
-            	}
-                
-                // Check the children node                 
-        		if (!getTronconSortant(noeud)) {
-        			System.out.println("Something wrong with the children of the node " + noeud.getNodeName());
-        			return false;
-        		}
-            	
-            	// Just print them
-                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
-                System.out.print( ", x : " + noeud.getAttribute("x"));
-                System.out.println(", y : " + noeud.getAttribute("y") +");");*/
-            }				
-        }
-        return true;
+		 NodeList listNodes = racine.getElementsByTagName("Plage");
+
+	        for (int i = 0; i < listNodes.getLength(); i++) {
+	        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+	            	final Element noeud = (Element) listNodes.item(i); 
+	            
+	            	// Check the attributes number
+	                if(noeud.getAttributes().getLength() != 2) {
+	        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+	            	// Check the attributes name
+	            	else if (!noeud.hasAttribute("heureDebut") && !noeud.hasAttribute("heureFin")) {
+	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+	                // Check if the node contains at least one child
+	            	else if (noeud.getElementsByTagName("Livraisons").getLength() < 1){
+	            		return false;
+	            	}
+	            	
+	                // Get the value of the attributes
+	                String heureDebut = noeud.getAttribute("heureDebut");
+	                String heureFin = noeud.getAttribute("heureFin");
+	                
+	                /// TODO 
+	                /*
+	                // Check if the attributes are numerics and greater than zero
+	            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(x) && !isNumericAndGreaterThanZero(y)){
+	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+	                */
+	       		
+	            	// Just print them
+	                System.out.println(" ---- " + noeud.getNodeName());
+	                System.out.print(noeud.getNodeName() + "(heureDebut : " + noeud.getAttribute("heureDebut"));
+	                System.out.println(", heureFin : " + noeud.getAttribute("heureFin") +");");
+	            	
+	        	}
+	        }
+	                
+	        listNodes = racine.getElementsByTagName("Livraison");       
+	        
+	        for (int i = 0; i < listNodes.getLength(); i++) {
+	        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+	            	final Element noeud = (Element) listNodes.item(i); 
+	            	// Check the attributes number
+	                if(noeud.getAttributes().getLength() != 3) {
+	        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+	            	// Check the attributes name
+	            	else if (!noeud.hasAttribute("id") && !noeud.hasAttribute("client") && !noeud.hasAttribute("adresse")) {
+	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+
+	                // Get the value of the attributes
+	                String id = noeud.getAttribute("id");
+	                String client = noeud.getAttribute("client");
+	                String adresse = noeud.getAttribute("adresse");
+	                
+	                // Check if the attributes are numerics and greater than zero
+	            	if (!isNumericAndGreaterThanZero(id) && !isNumericAndGreaterThanZero(client) && !isNumericAndGreaterThanZero(adresse)){
+	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
+	            		return false;
+	            	}
+
+	            	// Just print them
+	                System.out.print(noeud.getNodeName() + "(id : " + noeud.getAttribute("id"));
+	                System.out.print(", client : " + noeud.getAttribute("client"));
+	                System.out.println(", adresse : " + noeud.getAttribute("adresse") +");");
+	        	}
+	        }
+			return true;
 	}
 	
 	public static void lireDepuisFichierXML(){
@@ -260,6 +239,5 @@ public class Useful {
 	}
 	public static void main(String[] args) {
 		lireDepuisFichierXML();
-		//System.out.println(isNumericAndGreaterThanZero("1,0"));
 	}		
 }
