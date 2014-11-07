@@ -47,10 +47,10 @@ public class Useful {
                 // Get the plan
                 //
                 if (racine.getNodeName().equals("Reseau")) {
-                	XMLLoader.getPlanXML(racine);
+                	XMLVerification.getPlanXML(racine);
                 }
                 else if (racine.getNodeName().equals("JourneeType")) {
-                	XMLLoader.getLivraisonXML(racine);
+                	XMLVerification.getLivraisonXML(racine);
                 }
                
             } catch (ParserConfigurationException pce) {
