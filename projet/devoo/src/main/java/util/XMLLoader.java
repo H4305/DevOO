@@ -7,6 +7,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import model.data.Livraison;
+import model.data.PlageHoraire;
 import model.data.Point;
 import model.data.Troncon;
 
@@ -68,98 +70,36 @@ public class XMLLoader {
 	// -----------------------------------------------------------------------------------------
 
 	public static Boolean getLivraisonXML(Element racine) {
-
+		List<PlageHoraire> nodeListTronconSortant = new ArrayList<PlageHoraire>();
 		NodeList listNodes = racine.getElementsByTagName("Plage");
 
 		for (int i = 0; i < listNodes.getLength(); i++) {
 			if (listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				final Element noeud = (Element) listNodes.item(i);
 
-				// Check the attributes number
-				if (noeud.getAttributes().getLength() != 2) {
-					System.out
-							.println("Something wrong with the number of attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
-				// Check the attributes name
-				else if (!noeud.hasAttribute("heureDebut")
-						&& !noeud.hasAttribute("heureFin")) {
-					System.out
-							.println("Something wrong with the attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
-				// Check if the node contains at least one child
-				else if (noeud.getElementsByTagName("Livraisons").getLength() < 1) {
-					return false;
-				}
 
 				// Get the value of the attributes
 				String heureDebut = noeud.getAttribute("heureDebut");
 				String heureFin = noeud.getAttribute("heureFin");
 
-				// Check if the attributes are numerics and greater than zero
-				if (!isHour(heureDebut) && !isHour(heureFin)) {
-					System.out
-							.println("Something wrong with the attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
-
-				// Just print them
-				System.out.println(" ---- " + noeud.getNodeName());
-				System.out.print(noeud.getNodeName() + "(heureDebut : "
-						+ noeud.getAttribute("heureDebut"));
-				System.out.println(", heureFin : "
-						+ noeud.getAttribute("heureFin") + ");");
-
+				nodeListTronconSortant.add(new PlageHoraire(heureDebut, heureFin));
 			}
 		}
-
+		
+		List<Livraison> nodeListLivraison= new ArrayList<Livraison>();
 		listNodes = racine.getElementsByTagName("Livraison");
 
 		for (int i = 0; i < listNodes.getLength(); i++) {
 			if (listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				final Element noeud = (Element) listNodes.item(i);
-				// Check the attributes number
-				if (noeud.getAttributes().getLength() != 3) {
-					System.out
-							.println("Something wrong with the number of attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
-				// Check the attributes name
-				else if (!noeud.hasAttribute("id")
-						&& !noeud.hasAttribute("client")
-						&& !noeud.hasAttribute("adresse")) {
-					System.out
-							.println("Something wrong with the attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
 
 				// Get the value of the attributes
-				String id = noeud.getAttribute("id");
-				String client = noeud.getAttribute("client");
+				int id = Integer.parseInt(noeud.getAttribute("id"));
+				int client = Integer.parseInt(noeud.getAttribute("client"));
 				String adresse = noeud.getAttribute("adresse");
+				
+				nodeListLivraison.add(new Livraison(id, adresse, client));
 
-				// Check if the attributes are numerics and greater than zero
-				if (!isNumericAndGreaterThanZero(id)
-						&& !isNumericAndGreaterThanZero(client)
-						&& !isNumericAndGreaterThanZero(adresse)) {
-					System.out
-							.println("Something wrong with the attributes of the node "
-									+ noeud.getNodeName());
-					return false;
-				}
-
-				// Just print them
-				System.out.print(noeud.getNodeName() + "(id : "
-						+ noeud.getAttribute("id"));
-				System.out.print(", client : " + noeud.getAttribute("client"));
-				System.out.println(", adresse : "
-						+ noeud.getAttribute("adresse") + ");");
 			}
 		}
 		return true;
