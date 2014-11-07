@@ -1,0 +1,27 @@
+package model.data;
+
+import java.util.*;
+
+/**
+ * 
+ */
+public class Chemin {
+
+    /**
+     * 
+     */
+    public Chemin() {
+    }
+
+    /**
+     * 
+     */
+    private Point[] arrivee;
+
+
+    /**
+     * 
+     */
+    private Point[] depart;
+
+}
