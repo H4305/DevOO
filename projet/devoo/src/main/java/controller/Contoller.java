@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 
+import vue.VueGestionLivraison;
 import model.data.Troncon;
 
 /**
@@ -22,6 +23,10 @@ public class Contoller {
      */
     public void calculItineraire() {
         // TODO implement here
+    }
+    
+    public void start() {
+    	new VueGestionLivraison().afficherFenetrePrincipale();
     }
 
     /**
