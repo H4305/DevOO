@@ -33,7 +33,6 @@ public class VueGestionLivraison {
     	mainFrame.add(mainPanel);
     	mainFrame.pack();
     	mainFrame.setVisible(true);
-    	
     }
     
 
