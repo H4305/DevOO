@@ -15,13 +15,25 @@ public class Livraison {
 
     /**
      * 
+     * @param id
+     * @param heureLivraison
+     * @param id_client
+     */
+    public Livraison(int id, String heureLivraison, int id_client) {
+    	this.id = id;
+    	this.heureLivraison = heureLivraison;
+    	this.id_client = id_client;
+    }
+    
+    /**
+     * 
      */
     private int id;
 
     /**
      * 
      */
-    private Date heureLivraison;
+    private String heureLivraison;
 
     /**
      * 
