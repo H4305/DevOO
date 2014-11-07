@@ -2,21 +2,32 @@ package controller;
 
 import java.util.*;
 
+/*
+ * vue import
+ */
 import vue.VueGestionLivraison;
+
+/*
+ * model import
+ */
 import model.data.Troncon;
+import model.manager.*;
 
 /**
  * 
  */
 public class Contoller {
-
+	
+	private LivraisonManager livraisonManager;
+	private PlanManager planManager;
+	
     /**
      * 
      */
-    public Contoller() {
+    public Contoller() { 	
+    	livraisonManager = new LivraisonManager();
+    	planManager = new PlanManager();
     }
-
-
 
     /**
      * 
@@ -34,6 +45,13 @@ public class Contoller {
      */
     public void afficherItineraire(Set<Troncon> circuit) {
         // TODO implement here
+    }
+    
+    /**
+     * @param nomFichier : nom du fichier XML à charger
+     */
+    public void getDemandeLivraisonsFromXML(String nomFichier) {
+    	livraisonManager.loadDemandeLivraisonsXML(nomFichier);
     }
 
 }
