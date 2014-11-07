@@ -18,9 +18,19 @@
 	          <source>1.7</source>
 	          <target>1.7</target>
 	        </configuration>
+	        <version>3.2</version>
 	      </plugin>
 	    </plugins>
     </build>
+    
+    <repositories>
+    <!--other repositories if any-->
+    <repository>
+        <id>project.local</id>
+        <name>project</name>
+        <url>file:${project.basedir}/repo</url>
+    </repository>
+	</repositories>
     
 
 
@@ -31,6 +41,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>choco</artifactId>
+			<version>1.0</version>
 		</dependency>
 		
 

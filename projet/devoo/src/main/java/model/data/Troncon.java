@@ -1,7 +1,5 @@
 package model.data;
 
-import java.util.*;
-
 /**
  * 
  */
@@ -13,6 +11,13 @@ public class Troncon {
     public Troncon() {
     }
 
+    public Troncon(String nomRue, float vitesse, float longueur, Point pointDestination) {
+    	this.nomRue = nomRue;
+    	this.vitesse = vitesse;
+    	this.longueur = longueur;
+    	this.pointDestination = pointDestination;
+    }
+    
     /**
      * 
      */
@@ -28,6 +33,11 @@ public class Troncon {
      */
     private float longueur;
 
+    /**
+     * 
+     */
+    private Point pointDestination;
+    
     /**
      * 
      */
