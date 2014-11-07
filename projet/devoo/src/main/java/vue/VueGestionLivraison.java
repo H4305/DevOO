@@ -28,7 +28,7 @@ public class VueGestionLivraison {
     	mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     	JPanel mainPanel = new JPanel();
     	JLabel helloWorldLabel = new JLabel();
-    	helloWorldLabel.setText("Hello world");
+    	helloWorldLabel.setText("Atho é gay");
     	mainPanel.add(helloWorldLabel);
     	mainFrame.add(mainPanel);
     	mainFrame.pack();

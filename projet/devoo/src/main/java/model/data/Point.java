@@ -12,6 +12,18 @@ public class Point {
      */
     public Point() {
     }
+    
+    /**
+     * 
+     * @param id
+     * @param x
+     * @param y
+     */
+    public Point (int id, int x, int y){
+    	this.id = id;
+    	this.x = x;
+    	this.y = y;
+    }
 
     /**
      * 
@@ -27,6 +39,14 @@ public class Point {
      * 
      */
     private int y;
+
+    /**
+     * 
+     * @return
+     */
+	public int getId() {
+		return id;
+	}
 
 
 }
