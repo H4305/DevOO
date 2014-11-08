@@ -2,6 +2,7 @@ package util;
 import java.io.File;
 import java.io.IOException;
 
+import javax.print.DocFlavor.URL;
 import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,6 +14,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.*;
 
 public class Useful {
 
@@ -68,20 +74,37 @@ public class Useful {
             }
         }  
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, SAXException {
 		//lireDepuisFichierXML();
-		System.out.println("lol");
+		/*System.out.println("lol");
 		  String nf ;
 		  nf = "C:\\Users\\Anthony\\Documents\\try JAVA\\plan20x20.xml" ;
 		
 		  DefaultHandler handler = new DefaultHandler();
-		  SAXParserFactory factory = SAXParserFactory.newInstance();
+		  SAXParserFactory factory = SAXParserFactory.newInstance();)
 		  try { SAXParser saxParser = factory.newSAXParser();
 		        saxParser.parse( new File( nf ), handler );
+		        System.out.println("Document bien formé ");
 		  } catch (Throwable t) {
 		       System.out.println(" Document mal formé :") ;
 		       t.printStackTrace ();
-		  }
+		  }*/
+		
+		
+		Source xmlFile = new StreamSource(new File("C:\\Users\\Anthony\\Documents\\try JAVA\\XML_ERROR\\plan20x20.xml"));
+		SchemaFactory schemaFactory = SchemaFactory
+		    .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Source xmlFileXSD = new StreamSource(new File("C:\\Users\\Anthony\\Documents\\try JAVA\\plan.xsd"));
+		Schema schema = schemaFactory.newSchema(xmlFileXSD);
+		Validator validator = schema.newValidator();
+		try {
+		  validator.validate(xmlFile);
+		  System.out.println(xmlFile.getSystemId() + " is valid");
+		} catch (SAXException e) {
+		  System.out.println(xmlFile.getSystemId() + " is NOT valid");
+		  System.out.println("Reason: " + e.getLocalizedMessage());
+		}
+		
 	}		
 	
 }
