@@ -35,9 +35,9 @@ public class XMLLoader {
         	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
         		final Element noeud = (Element) listNodes.item(i); 
             	
-				Integer id = Integer.parseInt(noeud.getAttribute("id"));
-				Integer x = Integer.parseInt(noeud.getAttribute("x"));
-				Integer y = Integer.parseInt(noeud.getAttribute("y"));
+				int id = Integer.parseInt(noeud.getAttribute("id"));
+				int x = Integer.parseInt(noeud.getAttribute("x"));
+				int y = Integer.parseInt(noeud.getAttribute("y"));
          	
 				nodeListNoeud.add(new Point(id, x, y));	
         	}
