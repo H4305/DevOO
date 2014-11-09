@@ -63,6 +63,10 @@ public class Troncon {
 		return longueur;
 	}
 
+	public float getDuree(){
+		return (float)longueur/vitesse;
+	}
+	
 	/**
      * 
      */

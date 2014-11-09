@@ -33,6 +33,11 @@ public class Point {
     /**
      * 
      */
+    private Troncon[] tronconsSortants;
+    
+    /**
+     * 
+     */
     public int x;
 
     /**
@@ -43,9 +48,13 @@ public class Point {
     /**
      * 
      * @return
-     */
+     */    
 	public int getId() {
 		return id;
+	}
+	
+	public Troncon[] getTronconsSortants(){
+		return tronconsSortants;
 	}
 	
 	@Override
