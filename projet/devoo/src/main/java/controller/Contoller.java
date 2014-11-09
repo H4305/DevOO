@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.util.*;
 
 /*
@@ -11,19 +12,19 @@ import vue.VueGestionLivraison;
  * model import
  */
 import model.data.Troncon;
-
 import model.manager.*;
-
-import model.manager.LivraisonManager;
-import model.manager.PlanManager;
 
 /**
  * 
  */
 public class Contoller {
 	
+	//model attributes
 	private LivraisonManager mLivraisonManager;
 	private PlanManager mPlanManager;
+	
+	//vue attributes
+	private VueGestionLivraison mVueGestionLivraison;
 
 	/**
 	 * Classe controller principale
@@ -35,6 +36,7 @@ public class Contoller {
 		super();
 		this.mLivraisonManager = new LivraisonManager();
 		this.mPlanManager = new PlanManager();
+		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager);
 	}
 
     /**
@@ -48,7 +50,7 @@ public class Contoller {
      * Initialisation de l'applicatione et affichage de l'�cran d'accueil.
      */
     public void start() {
-    	new VueGestionLivraison(mPlanManager, mLivraisonManager).afficherFenetrePrincipale();
+    	this.mVueGestionLivraison.afficherFenetrePrincipale();
     }
 
     /**
@@ -61,8 +63,12 @@ public class Contoller {
     /**
      * @param nomFichier : nom du fichier XML à charger
      */
-    public void getDemandeLivraisonsFromXML(String nomFichier) {
-    	mLivraisonManager.loadDemandeLivraisonsXML(nomFichier);
+    public void getDemandeLivraisons() {
+    	File fichierXML = this.getFichierXMLDemandeLivraison();
+    	mLivraisonManager.loadDemandeLivraisonsXML(fichierXML);
     }
-
+    
+    public File getFichierXMLDemandeLivraison() {
+    	return this.mVueGestionLivraison.getFichierXMLDemandeLivraison();   	
+    }
 }

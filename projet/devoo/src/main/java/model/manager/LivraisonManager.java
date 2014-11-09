@@ -8,6 +8,11 @@ import java.util.*;
  */
 import model.data.Itineraire;
 
+/*
+ * util import
+ */
+import util.XMLLoader;
+
 /**
  * 
  */
@@ -32,9 +37,9 @@ public class LivraisonManager {
     /*
      * 
      */
-    public void loadDemandeLivraisonsXML(String nomFichier) {
+    public void loadDemandeLivraisonsXML(File fileXML) {
     	
-    	//static File DemandesLivraisonsXML = Useful.
+    	//XMLLoader.getLivraisonXML(fileXML);
     	
     }
 }

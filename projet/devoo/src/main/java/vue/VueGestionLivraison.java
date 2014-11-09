@@ -1,18 +1,35 @@
 package vue;
 
+import java.io.File;
+
 import java.awt.BorderLayout;
 import java.util.Collection;
 import java.util.List;
 
+/*
+ * swing import
+ */
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import vue.widget.VuePlan;
+/*
+ * model import
+ */
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
+
+/*
+ * util import
+ */
+import util.Useful;
+
+/*
+ * vue import
+ */
+import vue.widget.VuePlan;
 
 /**
  * 
@@ -47,6 +64,7 @@ public class VueGestionLivraison {
     	mainFrame.add(mainPanel);
     	mainFrame.pack();
     	mainFrame.setVisible(true);
+    	File f = this.getFichierXMLDemandeLivraison();
     }
     
 
@@ -64,5 +82,10 @@ public class VueGestionLivraison {
     	mainPanel.add(vuePlan);
     	mainFrame.pack();
     }
+
+	public File getFichierXMLDemandeLivraison() {
+		// TODO Auto-generated method stub
+		return Useful.ouvrirFichier('o');
+	}
 
 }
