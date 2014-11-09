@@ -49,6 +49,7 @@ public class VueChemin extends Vue {
 				displayedTroncon.get(troncon.getArrivee(), troncon.getDepart()).number++;
 			} else {
 				TronconCounter tronconCounter = new TronconCounter();
+				tronconCounter.number++;
 				tronconCounter.troncon = troncon;
 				displayedTroncon.put(troncon.getDepart(), troncon.getArrivee(),
 						tronconCounter);
@@ -102,6 +103,9 @@ public class VueChemin extends Vue {
 				ComplexDrawing.drawArrow(g, nx1, ny1, nx2, ny2,
 						LINE_WIDTH, g.getColor());
 				counter.displayed++;
+				if(counter.displayed == counter.number) {
+					counter.displayed = 0;
+				}
 			} else {
 				LOGGER.log(Level.WARNING,
 						"Troncon de l'tineraire introuvable dans le plan");

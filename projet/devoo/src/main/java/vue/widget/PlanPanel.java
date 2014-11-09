@@ -56,6 +56,20 @@ public class PlanPanel extends JPanel {
 		setBackground(Color.GREEN);
 		addMouseListener(new MouseActionListener());
 
+		setPlan(new HashSet<Troncon>(troncons));
+
+	}
+	
+	public void setPlan(Set<Troncon> troncons) {
+		mTronconsPlan = troncons;
+		vuesPoints.clear();
+		vuesTroncon.clear();
+		
+		maxX = Integer.MIN_VALUE;
+		maxY = Integer.MIN_VALUE;
+		minX = Integer.MAX_VALUE;
+		minY = Integer.MAX_VALUE;
+		
 		// Find max and min for scale
 		for (Troncon troncon : mTronconsPlan) {
 			Point arrivee = troncon.getArrivee();
@@ -75,8 +89,6 @@ public class PlanPanel extends JPanel {
 			vuesPoints.add(new VuePoint(arrivee));
 			vuesTroncon.add(new VueTroncon(troncon));
 		}
-
-
 	}
 
 	public void setChemin(Chemin itineraire) {

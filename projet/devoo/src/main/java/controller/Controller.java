@@ -75,6 +75,8 @@ public class Controller {
         // TODO implement here
     }
        
+    
+    //TODO Delete
     public File getFichierXMLDemandeLivraison() {
     	return this.mVueGestionLivraison.getFichierXMLDemandeLivraison();   	
     }
@@ -85,7 +87,7 @@ public class Controller {
     public void getDemandeLivraisons() {
     	System.out.println("Controller :: getDemandeLivraison :: BEGIN");
     	
-    	File fichierXML = this.getFichierXMLDemandeLivraison();
+    	File fichierXML = this.mVueGestionLivraison.getFichierXMLDemandeLivraison();
     	mLivraisonManager.loadDemandeLivraisonsXML(fichierXML);
     	
     	System.out.println("Controller :: getDemandeLivraison :: END");

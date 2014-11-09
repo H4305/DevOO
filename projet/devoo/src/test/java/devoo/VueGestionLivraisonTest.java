@@ -48,9 +48,11 @@ public class VueGestionLivraisonTest {
 		        new Troncon("rue", 50.0f, 50, p4, p5),
 		        new Troncon("rue", 50.0f, 50, p5, p1)));
 		Controller controller = new Controller();
-		VueGestionLivraison gestionLivraison = new VueGestionLivraison(new PlanManager(), new LivraisonManager(), controller);
+		PlanManager manager = new PlanManager();
+		
+		VueGestionLivraison gestionLivraison = new VueGestionLivraison(manager, new LivraisonManager(), controller);
 		gestionLivraison.afficherFenetrePrincipale();
-		gestionLivraison.afficherPlan(troncons);
+		gestionLivraison.afficherPlan();
 		for(long i=0; i<999999999; i++ );
 		
 	}

@@ -81,11 +81,12 @@ public class VueGestionLivraison {
     public void afficherItineraire(List<Troncon> circuit) {
         // TODO implement here
     }
+    
 
-	public void afficherPlan(Collection<Troncon> troncons) {
-    	vuePlan = new PlanPanel(troncons);
+	public void afficherPlan() {
+    	vuePlan = new PlanPanel(mPlanManager.getAllTroncons());
     	vuePlan.setPointClickedListener(pointClickedListener);
-    	mainPanel.add(vuePlan);
+    	mainPanel.add(vuePlan, BorderLayout.EAST);
     	mainFrame.pack();
     }
 
@@ -98,5 +99,11 @@ public class VueGestionLivraison {
 			PlanPanel.PointClickedListener pointClickedListener) {
 		this.pointClickedListener = pointClickedListener;
 	}
+	
+	public void chargerPlan() {
+		//TODO mController.
+	}
+	
+
 
 }
