@@ -31,6 +31,8 @@ public class XMLLoader {
         	}
         }
         
+        // Return a Troncon' set
+        
         List<Troncon> nodeListTronconSortant = new ArrayList<Troncon>();
         listNodes = racine.getElementsByTagName("LeTronconSortant");       
         

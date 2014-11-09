@@ -10,25 +10,25 @@
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
-                      <xs:attribute type="xs:string" name="nomRue" use="required"/>
-                      <xs:attribute type="xs:string" name="vitesse" use="required"/>
-                      <xs:attribute type="xs:string" name="longueur" use="required"/>
+                      <xs:attribute type="regex_adresse" name="nomRue" use="required"/>
+                      <xs:attribute type="regex_float" name="vitesse" use="required"/>
+                      <xs:attribute type="regex_float" name="longueur" use="required"/>
                       <xs:attribute type="xs:short" name="idNoeudDestination" use="required"/>
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute type="xs:short" name="id" use="required"/>
-            <xs:attribute type="xs:short" name="x" use="required"/>
-            <xs:attribute type="xs:short" name="y" use="required"/>
+            <xs:attribute type="regex_NumericGreaterThanZero" name="id" use="required"/>
+            <xs:attribute type="regex_coord" name="x" use="required"/>
+            <xs:attribute type="regex_coord" name="y" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
 
 
-     <xs:key name="key_Noeud">
+    <xs:key name="key_Noeud">
       <xs:selector xpath="Noeud"/>
       <xs:field xpath="@id"/>
     </xs:key>
@@ -37,7 +37,30 @@
       <xs:field xpath="@idNoeudDestination"/>
     </xs:keyref>
 
-
-
   </xs:element>
+
+  <xs:simpleType name="regex_coord">
+    <xs:restriction base="xs:short">
+      <xs:pattern value="[-+]?[0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="regex_NumericGreaterThanZero">
+    <xs:restriction base="xs:short">
+      <xs:pattern value="[0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="regex_float">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]+,[0-9]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="regex_adresse">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
 </xs:schema>

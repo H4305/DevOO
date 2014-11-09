@@ -7,6 +7,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import model.exceptions.LivraisonXMLException;
+import model.exceptions.PlanXMLException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -43,19 +46,35 @@ public class Useful {
         File xml = ouvrirFichier('o');
         if (xml != null) {
              try {
-                 // creation d'un constructeur de documents a l'aide d'une fabrique
+                // Creation d'un constructeur de documents a l'aide d'une fabrique
                 DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
-                // lecture du contenu d'un fichier XML avec DOM
+                // Lecture du contenu d'un fichier XML avec DOM
                 Document document = constructeur.parse(xml);
                 Element racine = document.getDocumentElement();
                 
                 // Get the plan
-                //
                 if (racine.getNodeName().equals("Reseau")) {
-                	XMLVerification.getPlanXML(racine);
+
+                	try {
+						XMLVerification.getPlanXML(xml, racine);
+					} catch (PlanXMLException e) {
+						System.out.println("----");
+						//e.printStackTrace();
+						
+						// On affichera ca dans la vue
+						System.out.println(e.getMessage());
+					}
                 }
                 else if (racine.getNodeName().equals("JourneeType")) {
-                	XMLVerification.getLivraisonXML(racine);
+                	try {
+						XMLVerification.getLivraisonXML(xml, racine);
+					} catch (LivraisonXMLException e) {
+						System.out.println("----");
+						//e.printStackTrace();
+						
+						// On affichera ca dans la vue
+						System.out.println(e.getMessage());
+					}
                 }
                
             } catch (ParserConfigurationException pce) {
@@ -73,10 +92,14 @@ public class Useful {
 	public static void main(String[] args) throws IOException, SAXException {
 		//lireDepuisFichierXML();
 		
-		Source xmlFile = new StreamSource(new File("C:\\Users\\Anthony\\Documents\\try JAVA\\XML_ERROR\\plan20x20.xml"));
-		Source xmlFileXSD = new StreamSource(new File("C:\\Users\\Anthony\\Documents\\try JAVA\\plan.xsd"));
+		//Source xmlFile = new StreamSource(new File("src/test/resources/xml/plan20x20.xml"));
+		Source xmlFile = new StreamSource(new File("src/main/resources/xml/livraison20x20-2.xml"));
+		
+		//Source xsdPlan = new StreamSource(new File("src/main/resources/plan.xsd"));
+		Source xsdLivraison = new StreamSource(new File("src/main/resources/livraison.xsd"));
+		
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		Schema schema = schemaFactory.newSchema(xmlFileXSD);
+		Schema schema = schemaFactory.newSchema(xsdLivraison);
 		Validator validator = schema.newValidator();
 		
 		try {
