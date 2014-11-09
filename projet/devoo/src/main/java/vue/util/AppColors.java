@@ -4,13 +4,14 @@ import java.awt.Color;
 
 public class AppColors {
 
-	public static final Color primary0 = new Color(0xB9893E);
-	public static final Color primary1 = new Color(0xFFDCA5);
-	public static final Color primary2 = new Color(0xE0B26B);
-	public static final Color primary3 = new Color(0x99691F);
-	public static final Color primary4 = new Color(0x6D4404);
-                        
-	public static final Color secondary0 = new Color(0x95B13B);
+	public static final Color planBackground = new Color(0x3498db);
+	public static final Color normalPoint = new Color(0x8e44ad);
+	public static final Color troncon = new Color(0x34495e);
+	public static final Color itineraire1 = new Color(0x2ecc71);
+	public static final Color itineraire2 = new Color(0xe67e22);
+	public static final Color itineraire3 = new Color(0x16a085);
+	public static final Color itineraire4 = new Color(0xc0392b);
+	
 	public static final Color secondary1 = new Color(0xE0F49E);
 	public static final Color secondary2 = new Color(0xBBD566);
 	public static final Color secondary3 = new Color(0x76921D);
