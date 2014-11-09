@@ -6128,7 +6128,7 @@
 										"$ref": "AAAAAAFJMcJuQ0bpf0c="
 									},
 									"edgePosition": 0,
-									"text": "0..*",
+									"text": "1..*",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -14673,7 +14673,7 @@
 									"model": {
 										"$ref": "AAAAAAFJibGlCPkercc="
 									},
-									"visible": false,
+									"visible": true,
 									"enabled": true,
 									"lineColor": "#000000",
 									"fillColor": "#ffffff",
@@ -14682,17 +14682,18 @@
 									"parentStyle": false,
 									"containerChangeable": false,
 									"containerExtending": true,
-									"left": 1697,
-									"top": 616,
-									"width": 0,
+									"left": 1678,
+									"top": 611,
+									"width": 103,
 									"height": 13,
 									"autoResize": false,
-									"alpha": -0.5235987755982988,
-									"distance": 30,
+									"alpha": -0.1736711684819193,
+									"distance": 57.87054518492115,
 									"hostEdge": {
 										"$ref": "AAAAAAFJibGlCfkgH84="
 									},
 									"edgePosition": 0,
+									"text": "-tronconsSortants",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -15649,10 +15650,11 @@
 												"_parent": {
 													"$ref": "AAAAAAFJibGlB/kc14c="
 												},
+												"name": "tronconsSortants",
 												"reference": {
 													"$ref": "AAAAAAFJMZ2hkdvltTo="
 												},
-												"visibility": "public",
+												"visibility": "private",
 												"navigable": true,
 												"aggregation": "none",
 												"multiplicity": "0..*",
@@ -16273,7 +16275,7 @@
 												"visibility": "public",
 												"navigable": true,
 												"aggregation": "none",
-												"multiplicity": "0..*",
+												"multiplicity": "1..*",
 												"isReadOnly": false,
 												"isOrdered": true,
 												"isUnique": false,

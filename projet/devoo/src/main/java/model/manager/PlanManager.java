@@ -27,7 +27,7 @@ public class PlanManager {
      * @param PointB 
      * @return
      */
-    public Set<Troncon> plusCourtChemin(Point PointA, Point PointB) {
+    public Chemin plusCourtChemin(Point PointA, Point PointB) {
         // TODO implement here
         return null;
     }
