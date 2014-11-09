@@ -6,10 +6,13 @@ import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class Useful {
 
@@ -66,6 +69,19 @@ public class Useful {
         }  
 	}
 	public static void main(String[] args) {
-		lireDepuisFichierXML();
+		//lireDepuisFichierXML();
+		System.out.println("lol");
+		  String nf ;
+		  nf = "C:\\Users\\Anthony\\Documents\\try JAVA\\plan20x20.xml" ;
+		
+		  DefaultHandler handler = new DefaultHandler();
+		  SAXParserFactory factory = SAXParserFactory.newInstance();
+		  try { SAXParser saxParser = factory.newSAXParser();
+		        saxParser.parse( new File( nf ), handler );
+		  } catch (Throwable t) {
+		       System.out.println(" Document mal formé :") ;
+		       t.printStackTrace ();
+		  }
 	}		
+	
 }

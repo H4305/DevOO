@@ -33,12 +33,12 @@ public class Point {
     /**
      * 
      */
-    private int x;
+    public int x;
 
     /**
      * 
      */
-    private int y;
+    public int y;
 
     /**
      * 

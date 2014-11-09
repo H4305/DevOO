@@ -5,18 +5,6 @@ package model.data;
  */
 public class Troncon {
 
-    /**
-     * 
-     */
-    public Troncon() {
-    }
-
-    public Troncon(String nomRue, float vitesse, float longueur, Point pointDestination) {
-    	this.nomRue = nomRue;
-    	this.vitesse = vitesse;
-    	this.longueur = longueur;
-    	this.pointDestination = pointDestination;
-    }
     
     /**
      * 
@@ -33,33 +21,60 @@ public class Troncon {
      */
     private float longueur;
 
-    /**
-     * 
-     */
-    private Point pointDestination;
     
     /**
      * 
      */
-    private Point[] depart;
+    private Point depart;
 
     /**
      * 
      */
-    private Point[] arrivee;
+    private Point arrivee;
 
-    /**
+	/**
      * 
      */
-    public void getDepart() {
-        // TODO implement here
+    public Troncon() {
+    }
+
+    public Troncon(String nomRue, float vitesse, float longueur, Point pointDepart) {
+    	this.nomRue = nomRue;
+    	this.vitesse = vitesse;
+    	this.longueur = longueur;
+    	this.depart = pointDepart;
+    }
+    
+   
+
+    public String getNomRue() {
+		return nomRue;
+	}
+
+	public float getVitesse() {
+		return vitesse;
+	}
+
+	public float getLongueur() {
+		return longueur;
+	}
+
+	/**
+     * 
+     */
+    public Point getDepart() {
+        return depart;
     }
 
     /**
      * 
      */
-    public void getArrivee() {
-        // TODO implement here
+    public Point getArrivee() {
+       return arrivee;
+    }
+    
+    public void setArrivee(Point pointArrivee) {
+    	this.arrivee = pointArrivee;
     }
 
 }

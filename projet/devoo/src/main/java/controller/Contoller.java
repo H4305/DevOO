@@ -11,23 +11,31 @@ import vue.VueGestionLivraison;
  * model import
  */
 import model.data.Troncon;
+
 import model.manager.*;
+
+import model.manager.LivraisonManager;
+import model.manager.PlanManager;
 
 /**
  * 
  */
 public class Contoller {
 	
-	private LivraisonManager livraisonManager;
-	private PlanManager planManager;
-	
-    /**
-     * 
-     */
-    public Contoller() { 	
-    	livraisonManager = new LivraisonManager();
-    	planManager = new PlanManager();
-    }
+	private LivraisonManager mLivraisonManager;
+	private PlanManager mPlanManager;
+
+	/**
+	 * Classe controller principale
+	 * 
+	 * @param mLivraisonManager
+	 * @param mPlanManager
+	 */
+    public Contoller() {
+		super();
+		this.mLivraisonManager = new LivraisonManager();
+		this.mPlanManager = new PlanManager();
+	}
 
     /**
      * 
@@ -36,8 +44,11 @@ public class Contoller {
         // TODO implement here
     }
     
+    /**
+     * Initialisation de l'applicatione et affichage de l'�cran d'accueil.
+     */
     public void start() {
-    	new VueGestionLivraison().afficherFenetrePrincipale();
+    	new VueGestionLivraison(mPlanManager, mLivraisonManager).afficherFenetrePrincipale();
     }
 
     /**
@@ -51,7 +62,7 @@ public class Contoller {
      * @param nomFichier : nom du fichier XML à charger
      */
     public void getDemandeLivraisonsFromXML(String nomFichier) {
-    	livraisonManager.loadDemandeLivraisonsXML(nomFichier);
+    	mLivraisonManager.loadDemandeLivraisonsXML(nomFichier);
     }
 
 }

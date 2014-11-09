@@ -4,11 +4,6 @@ import java.io.File;
 import java.util.*;
 
 /*
- * util import
- */
-import util.Useful;
-
-/*
  * model import
  */
 import model.data.Itineraire;
