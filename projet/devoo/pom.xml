@@ -5,34 +5,32 @@
 	<artifactId>devoo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Devoo</name>
-	
-	
-	
+
+
+
 	<build>
 		<plugins>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <configuration>
-	          <!-- or whatever version you use -->
-	          <source>1.7</source>
-	          <target>1.7</target>
-	        </configuration>
-	        <version>3.2</version>
-	      </plugin>
-	    </plugins>
-    </build>
-    
-    <repositories>
-    <!--other repositories if any-->
-    <repository>
-        <id>project.local</id>
-        <name>project</name>
-        <url>file:${project.basedir}/repo</url>
-    </repository>
-	</repositories>
-    
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!-- or whatever version you use -->
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+				<version>3.2</version>
+			</plugin>
+		</plugins>
+	</build>
 
+	<repositories>
+		<!--other repositories if any -->
+		<repository>
+			<id>project.local</id>
+			<name>project</name>
+			<url>file:${project.basedir}/repo</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 
@@ -42,13 +40,16 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>choco</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
+
 
 	</dependencies>
+
+
+
 </project>
