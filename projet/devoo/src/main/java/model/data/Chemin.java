@@ -1,22 +1,17 @@
 package model.data;
 
 import java.util.List;
-
+import java.util.Set;
 
 /**
  * 
  */
 public class Chemin {
-	
-	   /**
-     * 
-     */
-    private Point arrivee;
 
-    /**
+	/**
      * 
      */
-    private Point arrivee;
+	private Point arrivee;
 
 	private List<Troncon> troncon;
 
@@ -26,47 +21,32 @@ public class Chemin {
 		this.depart = depart;
 		this.troncon = troncon;
 	}
+
+	private Point depart;
+
+	/**
+     * 
+     */
+	public Point getDepart() {
+		return depart;
+	}
+
+	/**
+     * 
+     */
+	public Point getArrivee() {
+		return arrivee;
+	}
+
+	/**
+     * 
+     */
+	public void setArrivee(Point pointArrivee) {
+		this.arrivee = pointArrivee;
+	}
 	
-	
-	public List<Troncon> getTroncons() { return troncon; };
-
-  
-
- 
-    private Point depart;
-    
-    /**
-     * 
-     */
-    private Set<Troncon> troncons;
-    
-    
-    /**
-     * 
-     */
-    public Point getDepart() {
-        return depart;
-    }
-
-    /**
-     * 
-     */
-    public Point getArrivee() {
-       return arrivee;
-    }
-    
-    /**
-     * 
-     */
-    public Set<Troncon> getTroncons() {
-       return troncons;
-    }
-    
-    /**
-     * 
-     */
-    public void setArrivee(Point pointArrivee) {
-    	this.arrivee = pointArrivee;
-    }
+	public List<Troncon> getTroncons() {
+		return troncon;
+	}
 
 }
