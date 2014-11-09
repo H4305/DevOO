@@ -16,7 +16,7 @@ public class Chemin {
     /**
      * 
      */
-    private Point depart;
+    private Point arrivee;
 
 	private List<Troncon> troncon;
 
@@ -33,5 +33,40 @@ public class Chemin {
   
 
  
+    private Point depart;
+    
+    /**
+     * 
+     */
+    private Set<Troncon> troncons;
+    
+    
+    /**
+     * 
+     */
+    public Point getDepart() {
+        return depart;
+    }
+
+    /**
+     * 
+     */
+    public Point getArrivee() {
+       return arrivee;
+    }
+    
+    /**
+     * 
+     */
+    public Set<Troncon> getTroncons() {
+       return troncons;
+    }
+    
+    /**
+     * 
+     */
+    public void setArrivee(Point pointArrivee) {
+    	this.arrivee = pointArrivee;
+    }
 
 }

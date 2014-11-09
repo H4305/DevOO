@@ -22,13 +22,13 @@ public class ZoneGeographique {
     /**
      * 
      */
-    private Point[] depot;
+    private Point depot;
 
     /**
      * 
      */
-    public void getDepot() {
-        // TODO implement here
+    public Point getDepot() {
+        return depot;
     }
 
     /**
