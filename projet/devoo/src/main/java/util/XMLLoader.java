@@ -107,7 +107,7 @@ public class XMLLoader {
 
 	public static DemandeLivraisons getLivraisonXML(File file, Element racine, HashMap<Integer, Point> plan) throws LivraisonXMLException {
 		
-		if (!XMLVerification.checkLivraisonXML(file, racine)) {
+		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 			
