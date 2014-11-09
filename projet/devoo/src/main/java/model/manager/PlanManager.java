@@ -27,7 +27,7 @@ public class PlanManager {
      * @param PointB 
      * @return
      */
-    public Set<Troncon> plusCourtChemin(Point PointA, Point PointB) {
+    public Chemin plusCourtChemin(Point PointA, Point PointB) {
         // TODO implement here
         return null;
     }
@@ -68,8 +68,20 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demandé n'existe pas";
+    		return "Le troncon demandï¿½ n'existe pas";
     	}
     }
+
+	public HashMap<Integer, Point> getHashMapPlan() {
+		
+		HashMap<Integer, Point> planPoints = new HashMap<Integer, Point>();
+		
+		for(Point point: points)
+		{
+			planPoints.put(point.getId(), point);
+		}
+		
+		return planPoints;
+	}
 
 }

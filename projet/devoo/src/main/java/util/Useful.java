@@ -20,7 +20,7 @@ public class Useful {
 
 	private static JFileChooser jFileChooserXML;
 	
-	private static File ouvrirFichier(char mode){
+	public static File ouvrirFichier(char mode){
         jFileChooserXML = new JFileChooser();
         // Note: source for ExampleFileFilter can be found in FileChooserDemo,
         // under the demo/jfc directory in the JDK.
