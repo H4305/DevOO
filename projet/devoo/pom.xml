@@ -40,16 +40,13 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
+
 
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>choco</artifactId>
 			<version>1.0</version>
 		</dependency>
-
->>>>>>> 4715a429a671c61bafdb898a112b901c005cabd1
 
 	</dependencies>
 
