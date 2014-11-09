@@ -15,7 +15,7 @@ public class DemandeLivraisons {
     /**
      * 
      */
-    public DemandesLivraisons() {
+    public DemandeLivraisons() {
     	plagesHoraires = new ArrayList<PlageHoraire>();
     }
 
