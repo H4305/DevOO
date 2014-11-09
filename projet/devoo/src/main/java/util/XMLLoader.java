@@ -110,8 +110,28 @@ public class XMLLoader {
 		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
-			
-		List<PlageHoraire> nodeListTronconSortant = new ArrayList<PlageHoraire>();
+		
+		Point entrepot = new Point();
+		
+		NodeList listEntrepot = racine.getElementsByTagName("Entrepot");
+		
+		for (int i = 0; i < listEntrepot.getLength(); i++) {
+			if (listEntrepot.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				final Element noeud = (Element) listEntrepot.item(i);
+				
+				// Get the entrepot id
+				int id_entrepot = Integer.parseInt(noeud.getAttribute("adresse"));
+						
+				if (!plan.containsKey(id_entrepot)){
+					throw new LivraisonXMLException("LivraisonXMLException - The adress of this warehouse doesn't exists");
+				}
+				
+				entrepot = plan.get(id_entrepot);			
+				
+			}
+		}
+		
+		List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
 		NodeList listNodes = racine.getElementsByTagName("Plage");
 
 		for (int i = 0; i < listNodes.getLength(); i++) {
@@ -122,7 +142,7 @@ public class XMLLoader {
 				String heureDebut = noeud.getAttribute("heureDebut");
 				String heureFin = noeud.getAttribute("heureFin");
 				
-				List<Livraison> nodeListLivraison = new ArrayList<Livraison>();
+				List<Livraison> listLivraisons = new ArrayList<Livraison>();
 				listNodes = noeud.getElementsByTagName("Livraison");
 
 				for (int j = 0; j < listNodes.getLength(); j++) {
@@ -132,18 +152,24 @@ public class XMLLoader {
 						// Get the value of the attributes
 						int id = Integer.parseInt(noeudFils.getAttribute("id"));
 						int client = Integer.parseInt(noeudFils.getAttribute("client"));
-						int id_point = Integer.parseInt(noeudFils.getAttribute("adresse"));
+						int id_adresse = Integer.parseInt(noeudFils.getAttribute("adresse"));
 						
-						if (!plan.containsKey(id_point)){
-							throw new LivraisonXMLException("LivraisonXMLException - The adresse needed is not available");
+						if (!plan.containsKey(id_adresse)){
+							throw new LivraisonXMLException("LivraisonXMLException - The adress needed is not available");
 						}
-						Point p  = plan.get(id_point);
-						nodeListLivraison.add(new Livraison(id, client, p));
+						
+						Point adresse  = plan.get(id_adresse);
+						
+						if(adresse == entrepot){
+							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");
+						}
+						
+						listLivraisons.add(new Livraison(id, client, adresse));
 					}
 				}
-				nodeListTronconSortant.add(new PlageHoraire(heureDebut, heureFin, nodeListLivraison));
+				plagesHoraires.add(new PlageHoraire(heureDebut, heureFin, listLivraisons));
 			}
 		}
-		return new DemandeLivraisons(nodeListTronconSortant);
+		return new DemandeLivraisons(entrepot, plagesHoraires);
 	}
 }

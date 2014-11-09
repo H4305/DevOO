@@ -35,8 +35,8 @@ public class Controller {
     public Controller() {
 		super();
 		this.mPlanManager = new PlanManager();
-		this.mLivraisonManager = new LivraisonManager(this.mPlanManager);
-		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager);
+		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
+		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
 	}
 
     /**
@@ -68,12 +68,20 @@ public class Controller {
      * 
      */
     public void getDemandeLivraisons() {
+    	System.out.println("Controller :: getDemandeLivraison :: BEGIN");
+    	
     	File fichierXML = this.getFichierXMLDemandeLivraison();
     	mLivraisonManager.loadDemandeLivraisonsXML(fichierXML);
+    	
+    	System.out.println("Controller :: getDemandeLivraison :: END");
     }
 
 	public void exceptionOpenFileXML(String message) {
 		this.mVueGestionLivraison.afficherExceptionOuvertureXML(message);
 		
+	}
+
+	public void afficherDemandeLivraisons() {
+		mVueGestionLivraison.afficherDemandeLivraisons();
 	}
 }

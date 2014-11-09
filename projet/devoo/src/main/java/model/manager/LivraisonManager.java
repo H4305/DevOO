@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+
 /*
  * controller import
  */
@@ -20,6 +21,7 @@ import controller.Controller;
 /*
  * model import
  */
+import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.manager.PlanManager;
 import model.data.Point;
@@ -38,6 +40,7 @@ public class LivraisonManager {
 	
 	private Controller mController;
 	private PlanManager mPlanManager;
+	private DemandeLivraisons mDemandeLivraisons;
 
     /**
      * 
@@ -45,9 +48,9 @@ public class LivraisonManager {
     public LivraisonManager() {
     }
     
-    public LivraisonManager(PlanManager planManager) {
+    public LivraisonManager(PlanManager planManager, Controller controller) {
     	this.mPlanManager = planManager;
-    	mController = new Controller();
+    	this.mController = controller;
     }
 
     
@@ -79,7 +82,9 @@ public class LivraisonManager {
                		
                		HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
                		
-               		XMLLoader.getLivraisonXML(fileXML, racine, planPoints);
+               		this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, racine, planPoints);
+               		
+               		mController.afficherDemandeLivraisons();
                		
 					} catch (LivraisonXMLException e) {
 						// On affichera ca dans la vue
@@ -92,13 +97,13 @@ public class LivraisonManager {
               
            } catch (ParserConfigurationException pce) {
         	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
-        	   mController.exceptionOpenFileXML("Erreur lors de l'appel a fabrique.newDocumentBuilder();");
+        	   mController.exceptionOpenFileXML("lors de l'appel a fabrique.newDocumentBuilder();");
            } catch (SAXException se) {
         	   mController.exceptionOpenFileXML("Erreur lors du parsing du document");
-        	   mController.exceptionOpenFileXML("Erreur lors de l'appel a construteur.parse(xml)");
+        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
            } catch (IOException ioe) {
         	   mController.exceptionOpenFileXML("Erreur d'entree/sortie");
-        	   mController.exceptionOpenFileXML("Erreur lors de l'appel a construteur.parse(xml)");
+        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
            }
        }     	
     }
