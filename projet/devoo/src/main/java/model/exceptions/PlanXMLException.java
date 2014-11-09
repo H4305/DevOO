@@ -6,6 +6,10 @@ public class PlanXMLException extends Exception {
 		super(message, cause); 
 	}
 	
+	public PlanXMLException(String message) {
+		super(message);
+	}
+
 	@Override
 	public String getMessage() {
 		return super.getMessage();

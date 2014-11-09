@@ -12,9 +12,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import model.exceptions.LivraisonXMLException;
-import model.exceptions.PlanXMLException;
-
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
@@ -24,7 +21,7 @@ public class XMLVerification {
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
 	private static final Logger LOGGER = Logger.getLogger(XMLVerification.class.getName());
 	
-	public static Boolean checkPlanXML(File file, Element racine) throws PlanXMLException {
+	public static Boolean checkPlanXML(File file, Element racine) {
 		
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -34,19 +31,17 @@ public class XMLVerification {
 			Validator validator = schema.newValidator();
 			validator.validate(xmlFile);
 			LOGGER.log(Level.FINE, "The " + xmlFile.getSystemId() + " is valid - XML complies with XSD");
+			return true;
 		} catch (SAXException | IOException e1) {
 			LOGGER.log(Level.SEVERE, "The " + xmlFile.getSystemId() + " is NOT valid");
 			LOGGER.log(Level.SEVERE, "Reason: " + e1.getLocalizedMessage());
-			
-			throw new PlanXMLException("The " + xmlFile.getSystemId() + " is NOT valid", e1);
+			return false;
 		}
-		return true;
 	}
 
 	// -----------------------------------------------------------------------------------------
 
-	// Return object demandeDeLivraison
-	public static Boolean checkLivraisonXML(File file, Element racine) throws LivraisonXMLException {
+	public static Boolean checkLivraisonXML(File file, Element racine) {
 
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -56,12 +51,11 @@ public class XMLVerification {
 			Validator validator = schema.newValidator();
 			validator.validate(xmlFile);
 			LOGGER.log(Level.FINE, "The " + xmlFile.getSystemId() + " is valid - XML complies with XSD");
+			return true;
 		} catch (SAXException | IOException e1) {
 			LOGGER.log(Level.SEVERE, "The " + xmlFile.getSystemId() + " is NOT valid");
 			LOGGER.log(Level.SEVERE, "Reason: " + e1.getLocalizedMessage());
-			
-			throw new LivraisonXMLException("The " + xmlFile.getSystemId() + " is NOT valid", e1);
+			return false;
 		}
-		return true;
 	}
 }
