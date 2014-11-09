@@ -48,7 +48,7 @@ public class Livraison {
     /**
      * @param La nouvelle heure l'heure de la livraison
      */
-    public void setHeureLivraison(Date heure) {
+    public void setHeureLivraison(String heure) {
         heureLivraison = heure;
     }
 
