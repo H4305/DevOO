@@ -46,8 +46,11 @@ public class Troncon {
     }
     
     public Troncon(String nomRue, float vitesse, float longueur, Point pointDepart, Point pointArrivee) {
-    	this(nomRue, vitesse, longueur, pointDepart);
-    	this.setArrivee(pointArrivee);
+    	this.nomRue = nomRue;
+    	this.vitesse = vitesse;
+    	this.longueur = longueur;
+    	this.depart = pointDepart;
+    	this.arrivee = pointArrivee;
     }
    
 
@@ -81,8 +84,8 @@ public class Troncon {
        return arrivee;
     }
     
-    public void setArrivee(Point pointArrivee) {
+ /*   public void setArrivee(Point pointArrivee) {
     	this.arrivee = pointArrivee;
-    }
+    }*/
 
 }

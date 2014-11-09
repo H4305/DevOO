@@ -58,6 +58,14 @@ public class Point {
 		return tronconsSortants;
 	}
 	
+	public void addTronconSortant(Troncon troncon) {
+		tronconsSortants.add(troncon);
+	}
+	
+	public void addTronconSortants(ArrayList<Troncon> troncons) {
+		tronconsSortants = troncons;
+	}
+	
 	@Override
 	public boolean equals(Object arg0) {
 		if(!(arg0 instanceof Point)) return false;

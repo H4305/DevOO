@@ -28,8 +28,8 @@ public class XMLLoader {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 			
-    	List<Point> nodeListNoeud = new ArrayList<Point>();
-    	
+		HashMap<Integer, Point> noeuds = new HashMap<Integer, Point>();
+    	Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
         NodeList listNodes = racine.getElementsByTagName("Noeud");
 
         for (int i = 0; i < listNodes.getLength(); i++) {
@@ -39,12 +39,45 @@ public class XMLLoader {
 				int id = Integer.parseInt(noeud.getAttribute("id"));
 				int x = Integer.parseInt(noeud.getAttribute("x"));
 				int y = Integer.parseInt(noeud.getAttribute("y"));
-         	
-				nodeListNoeud.add(new Point(id, x, y));	
+
+				noeuds.put(id, new Point(id, x, y));	
         	}
         }
-     
-        Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
+        
+        
+        ArrayList<Troncon> listTroncon = new ArrayList<Troncon>();
+        
+        for (int i = 0; i < listNodes.getLength(); i++) {
+        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+        		final Element noeud = (Element) listNodes.item(i); 
+            	
+				int id = Integer.parseInt(noeud.getAttribute("id"));
+				Point pointDepart = noeuds.get(id);
+				NodeList listNodesFils = noeud.getElementsByTagName("LeTronconSortant");       
+		        
+		        for (int j = 0; j < listNodesFils.getLength(); j++) {
+		        	if(listNodesFils.item(j).getNodeType() == Node.ELEMENT_NODE) {
+		            	final Element noeudFils = (Element) listNodesFils.item(j); 
+		            	
+		                // Get the value of the attributes
+		                String nomRue = noeudFils.getAttribute("nomRue");
+		                float vitesse = Float.parseFloat(noeudFils.getAttribute("vitesse"));
+		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur"));
+		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
+		                
+		                Point pointArrivee = noeuds.get(idNoeudDestination);
+		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
+ 
+		        	}
+		        } 
+		        pointDepart.addTronconSortants(listTroncon);
+		        for (Troncon troncon : listTroncon){
+		        	nodeListTronconSortant.add(troncon);
+		        }
+        	}
+        }
+        
+        /*Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
         listNodes = racine.getElementsByTagName("LeTronconSortant");       
         
         for (int i = 0; i < listNodes.getLength(); i++) {
@@ -66,7 +99,7 @@ public class XMLLoader {
                 	}
                 }
         	}
-        }
+        }*/
 		return nodeListTronconSortant;
 	}
 
