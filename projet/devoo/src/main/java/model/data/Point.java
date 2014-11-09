@@ -23,6 +23,7 @@ public class Point {
     	this.id = id;
     	this.x = x;
     	this.y = y;
+    	tronconsSortants = new ArrayList<Troncon>();
     }
 
     /**
@@ -33,7 +34,7 @@ public class Point {
     /**
      * 
      */
-    private Troncon[] tronconsSortants;
+    private ArrayList<Troncon> tronconsSortants;
     
     /**
      * 
@@ -53,7 +54,7 @@ public class Point {
 		return id;
 	}
 	
-	public Troncon[] getTronconsSortants(){
+	public ArrayList<Troncon> getTronconsSortants(){
 		return tronconsSortants;
 	}
 	
