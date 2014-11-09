@@ -45,7 +45,7 @@ public class XMLVerification {
 
 	// -----------------------------------------------------------------------------------------
 
-	// Return object demandeDeLivraison
+	// Return Boolean 
 	public static Boolean checkLivraisonXML(File file, Element racine) throws LivraisonXMLException {
 
 		Source xmlFile = new StreamSource(file);

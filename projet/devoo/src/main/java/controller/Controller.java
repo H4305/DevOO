@@ -17,7 +17,7 @@ import model.manager.*;
 /**
  * 
  */
-public class Contoller {
+public class Controller {
 	
 	//model attributes
 	private LivraisonManager mLivraisonManager;
@@ -32,10 +32,10 @@ public class Contoller {
 	 * @param mLivraisonManager
 	 * @param mPlanManager
 	 */
-    public Contoller() {
+    public Controller() {
 		super();
-		this.mLivraisonManager = new LivraisonManager();
 		this.mPlanManager = new PlanManager();
+		this.mLivraisonManager = new LivraisonManager(this.mPlanManager);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager);
 	}
 
@@ -59,16 +59,21 @@ public class Contoller {
     public void afficherItineraire(Set<Troncon> circuit) {
         // TODO implement here
     }
+       
+    public File getFichierXMLDemandeLivraison() {
+    	return this.mVueGestionLivraison.getFichierXMLDemandeLivraison();   	
+    }
     
     /**
-     * @param nomFichier : nom du fichier XML à charger
+     * 
      */
     public void getDemandeLivraisons() {
     	File fichierXML = this.getFichierXMLDemandeLivraison();
     	mLivraisonManager.loadDemandeLivraisonsXML(fichierXML);
     }
-    
-    public File getFichierXMLDemandeLivraison() {
-    	return this.mVueGestionLivraison.getFichierXMLDemandeLivraison();   	
-    }
+
+	public void exceptionOpenFileXML(String message) {
+		this.mVueGestionLivraison.afficherExceptionOuvertureXML(message);
+		
+	}
 }

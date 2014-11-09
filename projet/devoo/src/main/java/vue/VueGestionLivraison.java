@@ -88,4 +88,8 @@ public class VueGestionLivraison {
 		return Useful.ouvrirFichier('o');
 	}
 
+	public void afficherExceptionOuvertureXML(String message) {
+		//AFFICHER EXCEPTION OUVERTURE XML
+	}
+
 }
