@@ -27,7 +27,7 @@ public class Chemin {
     /**
      * 
      */
-    private Troncon[] troncons;
+    private Set<Troncon> troncons;
     
     
     /**
@@ -47,7 +47,7 @@ public class Chemin {
     /**
      * 
      */
-    public Troncon[] getTroncons() {
+    public Set<Troncon> getTroncons() {
        return troncons;
     }
     
