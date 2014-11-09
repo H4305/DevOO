@@ -4,9 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,15 +17,13 @@ import javax.swing.JPanel;
 import model.data.Chemin;
 import model.data.Point;
 import model.data.Troncon;
-import util.TwoKeyMap;
 import vue.VueChemin;
 import vue.VuePoint;
 import vue.VueTroncon;
 import vue.util.AppColors;
-import vue.util.ComplexDrawing;
 import vue.util.CoordinateConverter;
 
-public class VuePlan extends JPanel {
+public class PlanPanel extends JPanel {
 ;
 
 	private static final long serialVersionUID = 5098859015968622126L;
@@ -33,7 +32,7 @@ public class VuePlan extends JPanel {
 	private static final int DEFAULT_HEIGHT = 500;
 	private static final int MARGIN = 20;
 
-	private final static Logger LOGGER = Logger.getLogger(VuePlan.class
+	private final static Logger LOGGER = Logger.getLogger(PlanPanel.class
 			.getName());
 
 
@@ -44,16 +43,18 @@ public class VuePlan extends JPanel {
 	
 	Set<VuePoint> vuesPoints = new HashSet<VuePoint>();
 	Set<VueTroncon> vuesTroncon = new HashSet<VueTroncon>();
+	PointClickedListener pointClickedListener;
 
 	boolean displayItineraire = false;
 
-	public VuePlan(Collection<Troncon> troncons) {
+	public PlanPanel(Collection<Troncon> troncons) {
 		mTronconsPlan = troncons;
 
 		setLayout(new BorderLayout());
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setBackground(Color.GREEN);
+		addMouseListener(new MouseActionListener());
 
 		// Find max and min for scale
 		for (Troncon troncon : mTronconsPlan) {
@@ -81,6 +82,11 @@ public class VuePlan extends JPanel {
 	public void setChemin(Chemin itineraire) {
 		if (itineraire == null) return;
 		mChemin = new VueChemin(itineraire);
+	}
+	
+	public void setPointClickedListener(
+			PointClickedListener pointClickedListener) {
+		this.pointClickedListener = pointClickedListener;
 	}
 
 	public void afficherItineraire() {
@@ -132,6 +138,57 @@ public class VuePlan extends JPanel {
 					.intValue();
 			return new java.awt.Point(convertedX, convertedY);
 		}
+	}
+	
+	public interface PointClickedListener {
+		public void pointClicked(Point point);
+	}
+	
+	private class MouseActionListener implements MouseListener {
+		
+		VuePoint lastPoint;
+
+		@Override
+		public void mouseClicked(MouseEvent arg0){
+			LOGGER.log(Level.INFO, "Plan clicked");
+			if(pointClickedListener != null) {
+				for(VuePoint vuePoint : vuesPoints) {
+					lastPoint = vuePoint;
+					if(vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
+						vuePoint.mouseDown(arg0);
+						pointClickedListener.pointClicked(vuePoint.getPoint());
+					}
+				}
+			}
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			if(lastPoint != null) {
+				lastPoint.mouseUp(arg0);
+			}
+			
+		}
 		
 	}
+	
 }

@@ -14,8 +14,6 @@ public class VueTroncon {
 	private static final float LINE_WIDTH = 5;
 
 	Troncon troncon;
-	private Point pointA;
-	private Point pointB;
 
 	/**
 	 * Construct a new representation of troncon at the given coordinates

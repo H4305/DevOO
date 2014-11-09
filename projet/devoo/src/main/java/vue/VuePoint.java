@@ -1,13 +1,14 @@
 package vue;
 
 import java.awt.Graphics;
-import java.awt.geom.Point2D;
 
+import model.data.Point;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
-import model.data.Point;
+import vue.util.Vue;
 
-public class VuePoint {
+public class VuePoint extends Vue{
+	
 	
 	private static final int POINT_RADIUS = 10;
 	
@@ -52,6 +53,9 @@ public class VuePoint {
 	public int hashCode() {
 		return pointModel.hashCode() * 89;
 	}
+	
+
+	
 
 
 	
