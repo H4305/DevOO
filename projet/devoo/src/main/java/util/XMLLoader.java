@@ -23,7 +23,6 @@ public class XMLLoader {
 
 	public static Set<Troncon> getPlanXML(File file, Element racine) throws PlanXMLException {
 		
-		
 		if (!XMLVerification.checkPlanXML(file, racine)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
@@ -43,7 +42,6 @@ public class XMLLoader {
 				noeuds.put(id, new Point(id, x, y));	
         	}
         }
-        
         
         ArrayList<Troncon> listTroncon = new ArrayList<Troncon>();
         
