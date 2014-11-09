@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import javax.swing.JFrame;
 
+import model.data.Chemin;
 import model.data.Point;
 import model.data.Troncon;
 
@@ -64,7 +65,7 @@ public class VuePlanTest {
 		        new Troncon("rue", 50.0f, 50, p2, p3),
 		        new Troncon("rue", 50.0f, 50, p2, p6),
 		        new Troncon("rue", 50.0f, 50, p6, p2),
-		        new Troncon("rue", 50.0f, 50, p6, p2),
+		        new Troncon("rue", 50.0f, 50, p2, p6),
 		        new Troncon("rue", 50.0f, 50, p3, p2)));
 		
 		JFrame jFrame = new JFrame();
@@ -78,7 +79,8 @@ public class VuePlanTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		vuePlan.addItineraire(itineraire);
+		Chemin chemin = new Chemin(p1, p6, itineraire);
+		vuePlan.setChemin(chemin);
 		vuePlan.afficherItineraire();
 		try {
 			Thread.sleep(500000);
