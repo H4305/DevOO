@@ -142,12 +142,12 @@ public class PlanPanel extends JPanel {
 		@Override
 		public java.awt.Point convert(int x, int y) {
 			int convertedX, convertedY;
-			convertedX = new Float((x - minX + MARGIN)
-					* (float) (getWidth() - MARGIN * 2) / (float) (maxX - minX))
-					.intValue();
-			convertedY = new Float((y - minY + MARGIN)
+			convertedX = new Float((x - minX)
+					* (float) (getWidth() - MARGIN * 2) / (float) (maxX - minX)) 
+					.intValue() + MARGIN;
+			convertedY = new Float((y - minY)
 					* (float) (getHeight() - MARGIN * 2) / (float) (maxY - minY))
-					.intValue();
+					.intValue() + + MARGIN;
 			return new java.awt.Point(convertedX, convertedY);
 		}
 	}

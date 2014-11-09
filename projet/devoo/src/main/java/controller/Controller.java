@@ -1,30 +1,23 @@
 package controller;
 
 import java.io.File;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 
-import model.data.Point;
-/*
- * model import
- */
-import model.data.Troncon;
-import model.manager.LivraisonManager;
-import model.manager.PlanManager;
 /*
  * vue import
  */
 import vue.VueGestionLivraison;
-import vue.widget.PlanPanel.PointClickedListener;
+
+/*
+ * model import
+ */
+import model.data.Troncon;
+import model.manager.*;
 
 /**
  * 
  */
 public class Controller {
-	
-	private static final Logger LOG = Logger.getLogger(Controller.class
-			.getName());
 	
 	//model attributes
 	private LivraisonManager mLivraisonManager;
@@ -41,17 +34,9 @@ public class Controller {
 	 */
     public Controller() {
 		super();
-		this.mPlanManager = new PlanManager();
+		this.mPlanManager = new PlanManager(this);
 		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
-		
-		mVueGestionLivraison.setPointClickedListener(new PointClickedListener() {
-			
-			@Override
-			public void pointClicked(Point point) {
-				LOG.log(Level.INFO, "Point clicked : " + point.x + " " + point.y);
-			}
-		});
 	}
 
     /**
@@ -74,23 +59,27 @@ public class Controller {
     public void afficherItineraire(Set<Troncon> circuit) {
         // TODO implement here
     }
-       
     
-    //TODO Delete
-    public File getFichierXMLDemandeLivraison() {
-    	return this.mVueGestionLivraison.getFichierXMLDemandeLivraison();   	
+    /**
+     * 
+     */
+    public void loadDemandeLivrasonsXML() {
+    	System.out.println("Controller :: loadDemandeLivrasonsXML :: BEGIN");
+
+    	mLivraisonManager.loadDemandeLivraisonsXML(this.mVueGestionLivraison.getFichierXML());
+    	
+    	System.out.println("Controller :: loadDemandeLivrasonsXML :: END");
     }
     
     /**
      * 
      */
-    public void getDemandeLivraisons() {
-    	System.out.println("Controller :: getDemandeLivraison :: BEGIN");
+    public void loadPlanXML() {
+    	System.out.println("Controller :: loadPlanXML :: BEGIN");
+
+    	mPlanManager.loadPlanXML(this.mVueGestionLivraison.getFichierXML());
     	
-    	File fichierXML = this.mVueGestionLivraison.getFichierXMLDemandeLivraison();
-    	mLivraisonManager.loadDemandeLivraisonsXML(fichierXML);
-    	
-    	System.out.println("Controller :: getDemandeLivraison :: END");
+    	System.out.println("Controller :: loadPlanXML :: END");
     }
 
 	public void exceptionOpenFileXML(String message) {
@@ -100,5 +89,10 @@ public class Controller {
 
 	public void afficherDemandeLivraisons() {
 		mVueGestionLivraison.afficherDemandeLivraisons();
+	}
+
+	public void afficherPlan() {
+		//mVueGestionLivraison.afficherPlan();
+		
 	}
 }

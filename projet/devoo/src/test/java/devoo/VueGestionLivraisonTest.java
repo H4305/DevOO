@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import model.data.Point;
 import model.data.Troncon;
@@ -24,7 +26,17 @@ public class VueGestionLivraisonTest {
 
 	@Test
 	public void testAfficherFenetrePrincipale() {
-		fail("Not yet implemented");
+		Controller controller = new Controller();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager  livraisonManager = new LivraisonManager(planManager, controller);
+		VueGestionLivraison gestionLivraison = new VueGestionLivraison(planManager, livraisonManager, controller);
+		gestionLivraison.afficherFenetrePrincipale();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -48,12 +60,19 @@ public class VueGestionLivraisonTest {
 		        new Troncon("rue", 50.0f, 50, p4, p5),
 		        new Troncon("rue", 50.0f, 50, p5, p1)));
 		Controller controller = new Controller();
-		PlanManager manager = new PlanManager();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager  livraisonManager = new LivraisonManager(planManager, controller);
+		VueGestionLivraison gestionLivraison = new VueGestionLivraison(planManager, livraisonManager, controller);
 		
-		VueGestionLivraison gestionLivraison = new VueGestionLivraison(manager, new LivraisonManager(), controller);
+		planManager.setPlan(new HashSet<Troncon>(troncons));
 		gestionLivraison.afficherFenetrePrincipale();
 		gestionLivraison.afficherPlan();
-		for(long i=0; i<999999999; i++ );
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -4,15 +4,18 @@ import java.io.File;
 import java.awt.BorderLayout;
 import java.util.Collection;
 import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
 import controller.Controller;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import util.Useful;
+import vue.widget.MainPanel;
 import vue.widget.PlanPanel;
 
 /**
@@ -26,7 +29,7 @@ public class VueGestionLivraison {
 	private Controller mController;
 	
 	private JFrame mainFrame;
-	private JPanel mainPanel;
+	private MainPanel mainPanel;
 	private PlanPanel vuePlan;
 	
 	PlanPanel.PointClickedListener pointClickedListener;
@@ -42,7 +45,7 @@ public class VueGestionLivraison {
     	mainFrame = new JFrame();
     	mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     	
-    	mainPanel = new JPanel();
+    	mainPanel = new MainPanel(this);
     	mainFrame.setLayout(new BorderLayout(2, 2));
     }
 
@@ -69,10 +72,10 @@ public class VueGestionLivraison {
      * Affiche la fenetre principale du programme
      */
     public void afficherFenetrePrincipale() {
-    	JPanel mainPanel = new JPanel();
     	mainFrame.add(mainPanel);
     	mainFrame.pack();
     	mainFrame.setVisible(true);
+    	afficherPlan();
     }
     
     /**
@@ -84,14 +87,13 @@ public class VueGestionLivraison {
     
 
 	public void afficherPlan() {
-    	vuePlan = new PlanPanel(mPlanManager.getAllTroncons());
+    	vuePlan = new PlanPanel(mPlanManager.getPlan());
     	vuePlan.setPointClickedListener(pointClickedListener);
-    	mainPanel.add(vuePlan, BorderLayout.EAST);
+    	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();
     }
 
-	public File getFichierXMLDemandeLivraison() {
-		// TODO Auto-generated method stub
+	public File getFichierXML() {
 		return Useful.ouvrirFichier('o');
 	}
 

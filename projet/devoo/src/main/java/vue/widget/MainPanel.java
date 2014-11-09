@@ -25,7 +25,7 @@ public class MainPanel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		planWrapper = new JPanel();
-		add(planWrapper, BorderLayout.EAST);
+		add(planWrapper, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.WEST);
@@ -40,7 +40,7 @@ public class MainPanel extends JPanel {
 		JButton btnChargerPlan = new JButton("Charger Plan");
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO mGestionLivraison.
+				mGestionLivraison.chargerPlan();
 			}
 		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

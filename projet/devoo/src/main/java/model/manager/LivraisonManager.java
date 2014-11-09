@@ -42,11 +42,6 @@ public class LivraisonManager {
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
 
-    /**
-     * 
-     */
-    public LivraisonManager() {
-    }
     
     public LivraisonManager(PlanManager planManager, Controller controller) {
     	this.mPlanManager = planManager;
@@ -63,7 +58,7 @@ public class LivraisonManager {
         return null;
     }
     
-    /*
+    /**
      * 
      */
     public void loadDemandeLivraisonsXML(File fileXML) {
