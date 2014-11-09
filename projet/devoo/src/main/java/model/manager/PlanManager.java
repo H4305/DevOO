@@ -1,7 +1,8 @@
 package model.manager;
-
 import java.util.*;
 
+import util.Dijkstra;
+import util.Vertex;
 import model.data.Chemin;
 import model.data.Point;
 import model.data.Troncon;
@@ -27,8 +28,20 @@ public class PlanManager {
      * @param PointB 
      * @return
      */
-    public Chemin plusCourtChemin(Point PointA, Point PointB) {
-        // TODO implement here
+    public Chemin plusCourtChemin(Point source, Point cible) {
+        
+    	Dijkstra dijkstra = new Dijkstra();
+    	Vertex vSource = new Vertex (source);
+    	Vertex vCible = new Vertex (cible);
+    	dijkstra.computePaths(vSource);
+    	
+    	List<Vertex> vertexCourtChemin = dijkstra.getShortestPathTo(vCible);
+    	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	for(Vertex v : vertexCourtChemin)
+    	{
+    		points.add(v.point);
+    	}
+    	// TODO recuperer la liste des troncons correspondate	
         return null;
     }
 
