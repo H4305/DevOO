@@ -7,25 +7,36 @@ import java.util.*;
  */
 public class DemandesLivraisons {
 
+	/**
+	 * 
+	 */
+	private List<PlageHoraire> plagesHoraires;
+	
     /**
      * 
      */
     public DemandesLivraisons() {
+    	plagesHoraires = new ArrayList<PlageHoraire>();
     }
 
 
     /**
      * 
      */
-    public void getPlagesHoraire() {
-        // TODO implement here
+    public List<PlageHoraire> getPlagesHoraire() {
+        return plagesHoraires;
     }
 
     /**
      * @param dateDebut
      */
-    public void getPlageHoraire(Date dateDebut) {
-        // TODO implement here
+    public PlageHoraire getPlageHoraire(Date dateDebut) {
+    	for (PlageHoraire pH : plagesHoraires) {
+    		if(pH.getDateDebut().equals(dateDebut)) {
+    			return pH;
+    		}
+    	}
+    	return null;
     }
 
 }
