@@ -86,7 +86,7 @@ public class Useful {
 	}
 	public static void main(String[] args) throws IOException, SAXException {
 		lireDepuisFichierXML();
-		
+				
 		//Source xmlFile = new StreamSource(new File("src/test/resources/xml/plan20x20.xml"));
 		/*Source xmlFile = new StreamSource(new File("src/main/resources/xml/livraison20x20-2.xml"));
 		
