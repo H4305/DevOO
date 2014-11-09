@@ -89,8 +89,7 @@ public class VueGestionLivraison {
     	mainFrame.pack();
     }
 
-	public File getFichierXMLDemandeLivraison() {
-		// TODO Auto-generated method stub
+	public File getFichierXML() {
 		return Useful.ouvrirFichier('o');
 	}
 

@@ -63,7 +63,7 @@ public class LivraisonManager {
         return null;
     }
     
-    /*
+    /**
      * 
      */
     public void loadDemandeLivraisonsXML(File fileXML) {
