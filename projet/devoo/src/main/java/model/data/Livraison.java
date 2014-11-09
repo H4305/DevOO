@@ -14,14 +14,26 @@ public class Livraison {
     }
 
     /**
-     * L'identifiant de la livraison
+     * 
+     * @param id
+     * @param heureLivraison
+     * @param id_client
+     */
+    public Livraison(int id, String heureLivraison, int id_client) {
+    	this.id = id;
+    	this.heureLivraison = heureLivraison;
+    	this.id_client = id_client;
+    }
+    
+    /**
+     * 
      */
     private int id;
 
     /**
      * L'heure prévue de la livraison
      */
-    private Date heureLivraison;
+    private String heureLivraison;
 
     /**
      * L'id du client

@@ -1,19 +1,54 @@
 package vue;
 
-import java.util.*;
+import java.awt.BorderLayout;
+import java.util.Collection;
+import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
+import vue.widget.VuePlan;
 import model.data.Troncon;
+import model.manager.LivraisonManager;
+import model.manager.PlanManager;
 
 /**
  * 
  */
 public class VueGestionLivraison {
+	
+	private PlanManager mPlanManager;
+	private LivraisonManager mLivraisonManager;
+	
+	private JFrame mainFrame;
+	private JPanel mainPanel;
 
     /**
      * 
      */
-    public VueGestionLivraison() {
+    public VueGestionLivraison(PlanManager planManager, LivraisonManager livraisonManager) {
+    	mPlanManager = planManager;
+    	mLivraisonManager = livraisonManager;
+    	mainFrame = new JFrame();
+    	mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    	
+    	mainPanel = new JPanel();
+    	mainFrame.setLayout(new BorderLayout(2, 2));
     }
+    
+    /**
+     * Affiche la fenetre principale du programme
+     */
+    public void afficherFenetrePrincipale() {
+    	
+    	JPanel mainPanel = new JPanel();
+    	mainFrame.add(mainPanel);
+    	mainFrame.pack();
+    	mainFrame.setVisible(true);
+    }
+    
 
 
     /**
@@ -21,6 +56,13 @@ public class VueGestionLivraison {
      */
     public void afficherItineraire(List<Troncon> circuit) {
         // TODO implement here
+    }
+    
+    public void afficherPlan(Collection<Troncon> troncons) {
+    	
+    	VuePlan vuePlan = new VuePlan(troncons);
+    	mainPanel.add(vuePlan);
+    	mainFrame.pack();
     }
 
 }

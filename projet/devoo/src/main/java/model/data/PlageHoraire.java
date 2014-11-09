@@ -14,15 +14,20 @@ public class PlageHoraire {
     	livraisons = new ArrayList<Livraison>();
     }
 
+    public PlageHoraire(String dateDebut, String dateFin) {
+    	this.dateDebut = dateDebut;
+    	this.dateFin = dateFin;
+    }
+    
     /**
      * 
      */
-    private Date dateDebut;
+    private String dateDebut;
 
     /**
      * 
      */
-    private Date dateFin;
+    private String dateFin;
 
     /**
      * Livraisons dans cette plage horaire

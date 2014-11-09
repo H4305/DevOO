@@ -10,6 +10,9 @@ import model.data.Troncon;
  * 
  */
 public class PlanManager {
+	
+	Set<Troncon> troncons = new HashSet<Troncon>();
+	Set<Point> points = new HashSet<Point>();
 
     /**
      * 
@@ -44,6 +47,18 @@ public class PlanManager {
      */
     public void getChemin(Set<Troncon> listTroncon, List<Troncon> circuit) {
         // TODO implement here
+    }
+    
+    /**
+     * Ajoute un point au plan
+     * @param troncon
+     */
+    public void addTroncon(Troncon troncon) {
+    	troncons.add(troncon);
+    }
+    
+    public Collection<Troncon> getAllTroncons() {
+    	return troncons;
     }
 
 }
