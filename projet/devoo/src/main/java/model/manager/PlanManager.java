@@ -60,5 +60,16 @@ public class PlanManager {
     public Collection<Troncon> getAllTroncons() {
     	return troncons;
     }
+    
+    public class TronconNotFoundExcepetion extends Exception {
+    	
+ 
+		private static final long serialVersionUID = 3754278865880411751L;
+
+		@Override
+    	public String getMessage() {
+    		return "Le troncon demandé n'existe pas";
+    	}
+    }
 
 }

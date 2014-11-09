@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import vue.widget.VuePlan;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
@@ -43,9 +44,6 @@ public class VueGestionLivraison {
     public void afficherFenetrePrincipale() {
     	
     	JPanel mainPanel = new JPanel();
-    	JLabel helloWorldLabel = new JLabel();
-    	helloWorldLabel.setText("A");
-    	mainPanel.add(helloWorldLabel);
     	mainFrame.add(mainPanel);
     	mainFrame.pack();
     	mainFrame.setVisible(true);
@@ -60,11 +58,11 @@ public class VueGestionLivraison {
         // TODO implement here
     }
     
-    public void afficherPlan() {
-    	Collection<Troncon> troncons = mPlanManager.getAllTroncons();
+    public void afficherPlan(Collection<Troncon> troncons) {
     	
-    	
-    	
+    	VuePlan vuePlan = new VuePlan(troncons);
+    	mainPanel.add(vuePlan);
+    	mainFrame.pack();
     }
 
 }

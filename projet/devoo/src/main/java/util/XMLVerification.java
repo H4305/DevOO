@@ -25,7 +25,7 @@ public class XMLVerification {
         for (int i = 0; i < listNodes.getLength(); i++) {
         	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
             	final Element noeud = (Element) listNodes.item(i); 
-            
+            /*
             	// Check the attributes number
                 if(noeud.getAttributes().getLength() != 3) {
         			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
@@ -40,7 +40,7 @@ public class XMLVerification {
             	else if (noeud.getElementsByTagName("LeTronconSortant").getLength() < 1){
             		return false;
             	}
-            	
+            	*/
                 // Get the value of the attributes
                 String id = noeud.getAttribute("id");
                 String x = noeud.getAttribute("x");
@@ -64,7 +64,7 @@ public class XMLVerification {
         for (int i = 0; i < listNodes.getLength(); i++) {
         	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
             	final Element noeud = (Element) listNodes.item(i); 
-            	if(noeud.getAttributes().getLength() != 4) {
+            	/*if(noeud.getAttributes().getLength() != 4) {
         			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
             		return false;
             	}
@@ -73,7 +73,7 @@ public class XMLVerification {
         			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
             		return false;
             	}
-            	
+            	*/
                 // Get the value of the attributes
                 String nomRue = noeud.getAttribute("nomRue");
                 String vitesse = noeud.getAttribute("vitesse");
@@ -105,7 +105,7 @@ public class XMLVerification {
 	        for (int i = 0; i < listNodes.getLength(); i++) {
 	        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 	            	final Element noeud = (Element) listNodes.item(i); 
-	            
+	            /*
 	            	// Check the attributes number
 	                if(noeud.getAttributes().getLength() != 2) {
 	        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
@@ -120,7 +120,7 @@ public class XMLVerification {
 	            	else if (noeud.getElementsByTagName("Livraisons").getLength() < 1){
 	            		return false;
 	            	}
-	            	
+	            	*/
 	                // Get the value of the attributes
 	                String heureDebut = noeud.getAttribute("heureDebut");
 	                String heureFin = noeud.getAttribute("heureFin");
@@ -147,7 +147,7 @@ public class XMLVerification {
 	        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 	            	final Element noeud = (Element) listNodes.item(i); 
 	            	// Check the attributes number
-	                if(noeud.getAttributes().getLength() != 3) {
+	              /*  if(noeud.getAttributes().getLength() != 3) {
 	        			System.out.println("Something wrong with the number of attributes of the node " + noeud.getNodeName());
 	            		return false;
 	            	}
@@ -156,7 +156,7 @@ public class XMLVerification {
 	        			System.out.println("Something wrong with the attributes of the node " + noeud.getNodeName());
 	            		return false;
 	            	}
-
+*/
 	                // Get the value of the attributes
 	                String id = noeud.getAttribute("id");
 	                String client = noeud.getAttribute("client");

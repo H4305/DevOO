@@ -8,7 +8,7 @@ import java.util.*;
 public class Livraison {
 
     /**
-     * 
+     * Constructeur
      */
     public Livraison() {
     }
@@ -31,29 +31,32 @@ public class Livraison {
     private int id;
 
     /**
-     * 
+     * L'heure prévue de la livraison
      */
     private String heureLivraison;
 
     /**
-     * 
+     * L'id du client
      */
     private int id_client;
 
-
+    /**
+     * L'adresse de livraison
+     */
+    private Point adresse;
 
     /**
-     * @param heure
+     * @param La nouvelle heure l'heure de la livraison
      */
-    public void setHeureLivraison(Date heure) {
-        // TODO implement here
+    public void setHeureLivraison(String heure) {
+        heureLivraison = heure;
     }
 
     /**
-     * 
+     * return L'adresse de livraison
      */
-    public void getAdresse() {
-        // TODO implement here
+    public Point getAdresse() {
+        return adresse;
     }
 
 }

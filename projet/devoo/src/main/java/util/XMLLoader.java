@@ -14,18 +14,6 @@ import model.data.Troncon;
 
 public class XMLLoader {
 
-	public static boolean isNumericAndGreaterThanZero(String inputData) {
-		return inputData.matches("[0-9]+");
-	}
-
-	public static boolean isFloatWithSixDecimalPlaces(String inputData) {
-		return inputData.matches("[0-9]+\\,[0-9]{6}");
-	}
-
-	public static boolean isHour(String inputData) {
-		return inputData.matches("[0-2]?[0-9]?:[0-5]?[0-9]?:[0-5]?[0-9]");
-	}
-
 	public static Boolean getPlanXML(Element racine){
     	List<Point> nodeListNoeud = new ArrayList<Point>();
     	
@@ -76,7 +64,6 @@ public class XMLLoader {
 		for (int i = 0; i < listNodes.getLength(); i++) {
 			if (listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				final Element noeud = (Element) listNodes.item(i);
-
 
 				// Get the value of the attributes
 				String heureDebut = noeud.getAttribute("heureDebut");

@@ -19,7 +19,7 @@ public class Point {
      * @param x
      * @param y
      */
-    public Point (int id, int x, int y){
+    public Point (int id, int x, int y) {
     	this.id = id;
     	this.x = x;
     	this.y = y;
@@ -46,6 +46,22 @@ public class Point {
      */
 	public int getId() {
 		return id;
+	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		if(!(arg0 instanceof Point)) return false;
+		Point p = (Point) arg0;
+		if(p.x == x && p.y == y) return true;
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 89 * hash + x;
+		hash = 89 * hash + y;
+		return hash;
 	}
 
 

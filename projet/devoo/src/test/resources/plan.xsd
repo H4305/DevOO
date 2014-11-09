@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Reseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Noeud" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LeTronconSortant" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="nomRue" use="required"/>
+                      <xs:attribute type="xs:string" name="vitesse" use="required"/>
+                      <xs:attribute type="xs:string" name="longueur" use="required"/>
+                      <xs:attribute type="xs:short" name="idNoeudDestination" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:short" name="id" use="required"/>
+            <xs:attribute type="xs:short" name="x" use="required"/>
+            <xs:attribute type="xs:short" name="y" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+
+     <xs:key name="key_Noeud">
+      <xs:selector xpath="Noeud"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="key_LeTronconSortant" refer="key_Noeud">
+      <xs:selector xpath="Noeud/LeTronconSortant"/>
+      <xs:field xpath="@idNoeudDestination"/>
+    </xs:keyref>
+
+
+
+  </xs:element>
+</xs:schema>
