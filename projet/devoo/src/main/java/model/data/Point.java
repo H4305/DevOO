@@ -47,6 +47,14 @@ public class Point {
 	public int getId() {
 		return id;
 	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		if(!(arg0 instanceof Point)) return false;
+		Point p = (Point) arg0;
+		if(p.x == x && p.y == y) return true;
+		return false;
+	}
 
 
 }

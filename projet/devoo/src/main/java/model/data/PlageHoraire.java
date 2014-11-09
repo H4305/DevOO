@@ -38,7 +38,7 @@ public class PlageHoraire {
      * Getter pour la date de début
      * @return La date de debut de la plage horaire
      */
-    public Date getDateDebut() {
+    public String getDateDebut() {
 		return dateDebut;
 	}
 

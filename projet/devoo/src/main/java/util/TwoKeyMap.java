@@ -55,16 +55,29 @@ public class TwoKeyMap<K1, K2, V> {
 		map2.put(key2, value);
 	}
 	
+	/**
+	 * Remove the value a
+	 * @param key1
+	 * @param key2
+	 */
 	public void remove(K1 key1, K2 key2) {
 		HashMap<K2, V> map2;
 		if(map1.containsKey(key1)) {
 			map2 = map1.get(key1);
 			if(map2.containsKey(key2)) {
 				map2.remove(key2);
-				map1.remove(key1);
+				if(map2.isEmpty()) {
+					map1.remove(key1);
+				}
 				size--;
 			}
 		}
+	}
+	
+	public boolean containsKeys(K1 key1, K2 key2) {
+		if(!map1.containsKey(key1)) return false;
+		HashMap<K2, V> map2 = map1.get(key1);
+		return map2.containsKey(key2);
 	}
 	
 	public int getSize() { return size; };
