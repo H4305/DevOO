@@ -14,9 +14,10 @@ public class PlageHoraire {
     	livraisons = new ArrayList<Livraison>();
     }
 
-    public PlageHoraire(String dateDebut, String dateFin) {
+    public PlageHoraire(String dateDebut, String dateFin, List<Livraison> livraisons) {
     	this.dateDebut = dateDebut;
     	this.dateFin = dateFin;
+    	this.livraisons = livraisons;
     }
     
     /**

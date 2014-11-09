@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="JourneeType">
     <xs:complexType>
@@ -6,7 +7,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute type="xs:short" name="adresse"/>
+                <xs:attribute type="regex_NumericGreaterThanZero" name="adresse"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -24,9 +25,9 @@
                             <xs:complexType>
                               <xs:simpleContent>
                                 <xs:extension base="xs:string">
-                                  <xs:attribute type="xs:byte" name="id" use="required"/>
-                                  <xs:attribute type="xs:short" name="client" use="required"/>
-                                  <xs:attribute type="xs:short" name="adresse" use="required"/>
+                                  <xs:attribute type="regex_NumericGreaterThanZero" name="id" use="required"/>
+                                  <xs:attribute type="regex_NumericGreaterThanZero" name="client" use="required"/>
+                                  <xs:attribute type="regex_NumericGreaterThanZero" name="adresse" use="required"/>
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -35,8 +36,8 @@
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
-                  <xs:attribute type="xs:string" name="heureDebut" use="required"/>
-                  <xs:attribute type="xs:string" name="heureFin" use="required"/>
+                  <xs:attribute type="regex_hour" name="heureDebut" use="required"/>
+                  <xs:attribute type="regex_hour" name="heureFin" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -45,4 +46,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
+  <xs:simpleType name="regex_NumericGreaterThanZero">
+    <xs:restriction base="xs:short">
+      <xs:pattern value="[0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="regex_hour">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-2]?[0-9]?:[0-5]?[0-9]?:[0-5]?[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
 </xs:schema>
