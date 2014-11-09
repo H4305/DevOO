@@ -12,14 +12,10 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import model.data.Point;
-import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLVerification {
@@ -28,7 +24,7 @@ public class XMLVerification {
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
 	private static final Logger LOGGER = Logger.getLogger(XMLVerification.class.getName());
 	
-	public static Boolean getPlanXML(File file, Element racine) throws PlanXMLException {
+	public static Boolean checkPlanXML(File file, Element racine) throws PlanXMLException {
 		
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -50,7 +46,7 @@ public class XMLVerification {
 	// -----------------------------------------------------------------------------------------
 
 	// Return object demandeDeLivraison
-	public static Boolean getLivraisonXML(File file, Element racine) throws LivraisonXMLException {
+	public static Boolean checkLivraisonXML(File file, Element racine) throws LivraisonXMLException {
 
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

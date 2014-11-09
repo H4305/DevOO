@@ -19,6 +19,13 @@ public class DemandeLivraisons {
     	plagesHoraires = new ArrayList<PlageHoraire>();
     }
 
+    /**
+     * 
+     * @param plagesHoraires
+     */
+    public DemandeLivraisons(List<PlageHoraire> plagesHoraires) {
+    	this.plagesHoraires = plagesHoraires;
+    }
 
     /**
      * 

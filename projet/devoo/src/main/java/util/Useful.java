@@ -1,23 +1,20 @@
 package util;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import model.data.Point;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
-import javax.xml.XMLConstants;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.*;
 
 public class Useful {
 
@@ -54,27 +51,25 @@ public class Useful {
                 
                 // Get the plan
                 if (racine.getNodeName().equals("Reseau")) {
-
                 	try {
-						XMLVerification.getPlanXML(xml, racine);
-					} catch (PlanXMLException e) {
-						System.out.println("----");
-						//e.printStackTrace();
-						
+						//XMLVerification.checkPlanXML(xml, racine);
+						XMLLoader.getPlanXML(xml, racine);
+					} catch (PlanXMLException e) {						
 						// On affichera ca dans la vue
 						System.out.println(e.getMessage());
 					}
                 }
+                // Get the livraison
                 else if (racine.getNodeName().equals("JourneeType")) {
                 	try {
-						XMLVerification.getLivraisonXML(xml, racine);
+                		XMLLoader.getLivraisonXML(xml, racine, new HashMap<Integer, Point>());
 					} catch (LivraisonXMLException e) {
-						System.out.println("----");
-						//e.printStackTrace();
-						
 						// On affichera ca dans la vue
 						System.out.println(e.getMessage());
 					}
+                }
+                else {
+                	System.out.println("Structure de fichier inconnue");
                 }
                
             } catch (ParserConfigurationException pce) {
@@ -90,10 +85,10 @@ public class Useful {
         }  
 	}
 	public static void main(String[] args) throws IOException, SAXException {
-		//lireDepuisFichierXML();
+		lireDepuisFichierXML();
 		
 		//Source xmlFile = new StreamSource(new File("src/test/resources/xml/plan20x20.xml"));
-		Source xmlFile = new StreamSource(new File("src/main/resources/xml/livraison20x20-2.xml"));
+		/*Source xmlFile = new StreamSource(new File("src/main/resources/xml/livraison20x20-2.xml"));
 		
 		//Source xsdPlan = new StreamSource(new File("src/main/resources/plan.xsd"));
 		Source xsdLivraison = new StreamSource(new File("src/main/resources/livraison.xsd"));
@@ -108,6 +103,6 @@ public class Useful {
 		} catch (SAXException e) {
 		  System.out.println("The " + xmlFile.getSystemId() + " is NOT valid");
 		  System.out.println("Reason: " + e.getLocalizedMessage());
-		}
+		}*/
 	}		
 }

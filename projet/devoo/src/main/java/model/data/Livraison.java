@@ -20,10 +20,25 @@ public class Livraison {
      * @param id_client
      */
     public Livraison(int id, String heureLivraison, int id_client) {
+    	// TODO : Je ne sais pas si quelqu'un l'utilise, moi j'en sers plus
     	this.id = id;
     	this.heureLivraison = heureLivraison;
     	this.id_client = id_client;
     }
+    
+    /**
+     * 
+     * @param id
+     * @param heureLivraison
+     * @param id_client
+     */
+    public Livraison(int id, int id_client, Point adresse) {
+    	this.id = id;
+    	this.heureLivraison = "";
+    	this.id_client = id_client;
+    	this.adresse = adresse;
+    }
+    
     
     /**
      * 
