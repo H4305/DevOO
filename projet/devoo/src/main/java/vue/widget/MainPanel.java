@@ -11,11 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import vue.VueGestionLivraison;
+import javax.swing.JLabel;
+import java.awt.Color;
 
 public class MainPanel extends JPanel {
 
 	VueGestionLivraison mGestionLivraison;
 	private JPanel planWrapper;
+	private JButton btnChargerPlan;
+	private JButton btnLoadLivraison;
+	private JPanel panelError;
+	private JLabel lblErreur;
+	private JLabel lblErreurMessage;
 
 	/**
 	 * Create the panel.
@@ -30,14 +37,15 @@ public class MainPanel extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.WEST);
 		
-		JButton btnLoadLivraison = new JButton("ChargerLivraison");
+		btnLoadLivraison = new JButton("ChargerLivraison");
 		btnLoadLivraison.setEnabled(false);
 		btnLoadLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.chargerLivraison();
 			}
 		});
 		
-		JButton btnChargerPlan = new JButton("Charger Plan");
+		btnChargerPlan = new JButton("Charger Plan");
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
@@ -63,11 +71,33 @@ public class MainPanel extends JPanel {
 					.addContainerGap(230, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
+		
+		panelError = new JPanel();
+		panelError.setOpaque(false);
+		add(panelError, BorderLayout.SOUTH);
+		panelError.setLayout(new BorderLayout(0, 0));
+		
+		lblErreur = new JLabel("Erreur : ");
+		lblErreur.setForeground(Color.RED);
+		lblErreur.setVisible(false);
+		panelError.add(lblErreur, BorderLayout.WEST);
+		
+		lblErreurMessage = new JLabel();
+		lblErreurMessage.setForeground(Color.RED);
+		panelError.add(lblErreurMessage, BorderLayout.CENTER);
 
 	}
 	
 	public void setPlan(PlanPanel plan) {
+		planWrapper.removeAll();
 		planWrapper.add(plan);
+		if(plan.hasPlan()) {
+			btnLoadLivraison.setEnabled(true);
+		}
 	}
-
+	
+	public void setErrorMessage(String message) {
+		lblErreur.setVisible(true);
+		lblErreurMessage.setText(message);
+	}
 }

@@ -78,7 +78,7 @@ public class XMLLoader {
 		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur").replace(',', '.'));
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
-		                Point pointArrivee = noeuds.get(idNoeudDestination);
+		                Point pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
 		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
  
 		        	}

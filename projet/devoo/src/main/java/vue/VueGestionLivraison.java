@@ -50,22 +50,12 @@ public class VueGestionLivraison {
     }
 
 	public void afficherDemandeLivraisons() {
-		/* Demander à livraison manager une demande de livraison
-		* Colorier chaque point en fonction de :
-		* - Sa plage horaire
-		* - S'il est un entrepot
-		*/
+		vuePlan.setDemandeLivraisons(mLivraisonManager.getDemandeLivraisons());
+		vuePlan.afficherDemandeLivraison();
 	}
     
     public void afficherExceptionOuvertureXML(String message) {
-    	/* TODO ONLY FOR TEST */
-		JPanel mainPanel = new JPanel();
-    	mainFrame.add(mainPanel);
-    	mainFrame.pack();
-    	mainFrame.setVisible(true);
-    	
-    	JLabel label = new JLabel(message);
-    	mainPanel.add(label);
+		mainPanel.setErrorMessage(message);
 	}
 
     /**
@@ -89,6 +79,7 @@ public class VueGestionLivraison {
 	public void afficherPlan() {
     	vuePlan = new PlanPanel(mPlanManager.getPlan());
     	vuePlan.setPointClickedListener(pointClickedListener);
+    	vuePlan.repaint();
     	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();
     }
@@ -103,7 +94,11 @@ public class VueGestionLivraison {
 	}
 	
 	public void chargerPlan() {
-		//TODO mController.
+		mController.loadPlanXML();
+	}
+	
+	public void chargerLivraison() {
+		mController.loadDemandeLivrasonsXML();
 	}
 	
 

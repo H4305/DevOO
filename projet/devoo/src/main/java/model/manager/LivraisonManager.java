@@ -48,7 +48,9 @@ public class LivraisonManager {
     	this.mController = controller;
     }
 
-    
+    public DemandeLivraisons getDemandeLivraisons() {
+		return mDemandeLivraisons;
+	}
 
     /**
      * @return

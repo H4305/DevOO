@@ -111,7 +111,7 @@ public class PlanManager {
 	/**
      * 
      */
-    public void loadPlanXML(File fileXML) {
+    public void loadPlanXML(File fileXML) throws NullPointerException {
     	
     	if (fileXML != null) {
             try {
@@ -148,7 +148,9 @@ public class PlanManager {
         	   mController.exceptionOpenFileXML("Erreur d'entree/sortie");
         	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
            }
-       }     	
+       } else {
+    	   throw new NullPointerException();
+       }
     }
 
 }

@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 import model.data.Chemin;
+import model.data.DemandeLivraisons;
+import model.data.Livraison;
+import model.data.PlageHoraire;
 import model.data.Point;
 import model.data.Troncon;
 import vue.VueChemin;
@@ -37,6 +40,7 @@ public class PlanPanel extends JPanel {
 
 
 	Collection<Troncon> mTronconsPlan;
+	DemandeLivraisons demandeLivraisons;
 	VueChemin mChemin;
 	int maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
 	int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE;
@@ -96,6 +100,21 @@ public class PlanPanel extends JPanel {
 		mChemin = new VueChemin(itineraire);
 	}
 	
+	public void setDemandeLivraisons(DemandeLivraisons demandeLivraisons) {
+		this.demandeLivraisons = demandeLivraisons;
+		int colorIndex = 0;
+		for (PlageHoraire plage : demandeLivraisons.getPlagesHoraire()) {
+			Color color = AppColors.plageHoraire[colorIndex++];
+			for(Livraison livraison : plage.getLivraisons()) {
+				for(VuePoint vuePoint : vuesPoints) {
+					if(vuePoint.getPoint().equals(livraison.getAdresse())) {
+						vuePoint.setColor(color);
+					}
+				}
+			}
+		}
+	}
+	
 	public void setPointClickedListener(
 			PointClickedListener pointClickedListener) {
 		this.pointClickedListener = pointClickedListener;
@@ -109,6 +128,10 @@ public class PlanPanel extends JPanel {
 		}
 		displayItineraire = true;
 		repaint();
+	}
+	
+	public void afficherDemandeLivraison() {
+		//repaint();
 	}
 	
 	public void masquerItineraire() {
@@ -135,6 +158,10 @@ public class PlanPanel extends JPanel {
 		for(VuePoint point : vuesPoints) {
 			point.draw(g, new Converter());
 		}
+	}
+	
+	public boolean hasPlan() {
+		return !mTronconsPlan.isEmpty();
 	}
 	
 	private class Converter implements CoordinateConverter {
@@ -172,7 +199,6 @@ public class PlanPanel extends JPanel {
 					}
 				}
 			}
-			
 		}
 
 		@Override

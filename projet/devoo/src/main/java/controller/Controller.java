@@ -1,18 +1,21 @@
 package controller;
 
-import java.io.File;
-import java.util.*;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/*
- * vue import
- */
-import vue.VueGestionLivraison;
-
+import model.data.Point;
 /*
  * model import
  */
 import model.data.Troncon;
-import model.manager.*;
+import model.manager.LivraisonManager;
+import model.manager.PlanManager;
+/*
+ * vue import
+ */
+import vue.VueGestionLivraison;
+import vue.widget.PlanPanel.PointClickedListener;
 
 /**
  * 
@@ -22,6 +25,9 @@ public class Controller {
 	//model attributes
 	private LivraisonManager mLivraisonManager;
 	private PlanManager mPlanManager;
+	
+	private static final Logger LOG = Logger.getLogger(Controller.class
+			.getName());
 	
 	//vue attributes
 	private VueGestionLivraison mVueGestionLivraison;
@@ -51,6 +57,13 @@ public class Controller {
      */
     public void start() {
     	this.mVueGestionLivraison.afficherFenetrePrincipale();
+    	mVueGestionLivraison.setPointClickedListener(new PointClickedListener() {
+			
+			@Override
+			public void pointClicked(Point point) {
+				LOG.log(Level.INFO, "Point Clicked");
+			}
+		});
     }
 
     /**
@@ -92,7 +105,6 @@ public class Controller {
 	}
 
 	public void afficherPlan() {
-		//mVueGestionLivraison.afficherPlan();
-		
+		mVueGestionLivraison.afficherPlan();
 	}
 }
