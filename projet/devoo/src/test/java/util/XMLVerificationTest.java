@@ -9,6 +9,14 @@ import org.junit.Test;
 
 public class XMLVerificationTest {
 
+	// Example of other test I have to do 
+	
+    // Example :
+   /* @Test(expected = ArithmeticException.class)  
+	public void testdivisionWithException() {  
+	  int i = 1/0;
+	} */
+	
 	@Test 
 	public void testcheckPlanXML() {
 		File file = new File("src/main/resources/xml/plan20x20.xml");             
@@ -66,11 +74,13 @@ public class XMLVerificationTest {
 		// ------------------------------------------------------- XML's structure malformed
         
         // TODO Other tests...
+        
+
 		// ------------------------------------------------------- / XML's structure malformed
 	}  
 	
 	@Test 
-	public void testcheckLivraisonXML_OK() {
+	public void testcheckLivraisonXML() {
 		File file = new File("src/main/resources/xml/livraison20x20-2.xml");             
         assertTrue(XMLVerification.checkLivraisonXML(file));
         
