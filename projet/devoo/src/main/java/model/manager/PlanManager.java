@@ -57,7 +57,7 @@ public class PlanManager {
     	
     	for(Vertex v : vertexCourtChemin)
     	{
-    		points.add(v.point); //Sei sicura? -- points Ã© la lista dei punti del piano
+    		pointsDuCourtChemin.add(v.point); 
     	}
     	// TODO recuperer la liste des troncons correspondate	
         return null;
@@ -99,7 +99,7 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demandï¿½ n'existe pas";
+    		return "Le troncon demandé n'existe pas";
     	}
     }
 
