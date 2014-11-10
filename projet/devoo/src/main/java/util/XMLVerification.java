@@ -12,16 +12,15 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 public class XMLVerification {
 
 	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
-	private static final Logger LOGGER = Logger.getLogger(XMLVerification.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(XMLVerificationTest.class.getName());
 	
-	public static Boolean checkPlanXML(File file, Element racine) {
+	public static Boolean checkPlanXML(File file) {
 		
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -41,7 +40,6 @@ public class XMLVerification {
 
 	// -----------------------------------------------------------------------------------------
 
-	// Return Boolean 
 	public static Boolean checkLivraisonXML(File file){
 
 		Source xmlFile = new StreamSource(file);

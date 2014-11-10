@@ -52,7 +52,6 @@ public class Useful {
                 // Get the plan
                 if (racine.getNodeName().equals("Reseau")) {
                 	try {
-						//XMLVerification.checkPlanXML(xml, racine);
 						XMLLoader.getPlanXML(xml, racine);
 					} catch (PlanXMLException e) {						
 						// On affichera ca dans la vue
