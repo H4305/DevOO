@@ -73,5 +73,11 @@ public class Livraison {
     public Point getAdresse() {
         return adresse;
     }
+    public String getHeureLivraison() {
+    	if(heureLivraison==""){
+    		return " pas encore prevue";
+    	}
+    	return heureLivraison;       
+    }
 
 }

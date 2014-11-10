@@ -25,8 +25,8 @@ public class LivraisonManagerTest {
 		
 	}@Test
 	public void testRemovePanel() {
-		Livraison livraison = new Livraison(1,"20",2);
-		//Point point = new Point(20,20,20);
+		Point point = new Point(20,20,20);
+		Livraison livraison = new Livraison(1,2,point);	
 		LivraisonManager livraisonManager = new LivraisonManager();
 		livraisonManager.remove(livraison);
 		
