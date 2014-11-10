@@ -81,6 +81,9 @@ public class Point {
 		hash = 89 * hash + y;
 		return hash;
 	}
-
+	@Override
+	public String toString(){
+		return "(" + this.x + "," + this.y + ")"; 
+	}
 
 }

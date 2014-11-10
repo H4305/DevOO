@@ -3,7 +3,7 @@ package controller;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import model.data.Livraison;
 import model.data.Point;
 /*
  * model import
@@ -107,4 +107,13 @@ public class Controller {
 	public void afficherPlan() {
 		mVueGestionLivraison.afficherPlan();
 	}
+	public void pointClicked(Point p){
+		Livraison livraison = mLivraisonManager.leLivraison(p);
+    	if(livraison!=null)  {
+    		mLivraisonManager.remove(livraison);
+    	} else {
+    		mLivraisonManager.add(p);
+    	}
+    	
+    }
 }

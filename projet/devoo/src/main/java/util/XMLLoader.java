@@ -89,30 +89,6 @@ public class XMLLoader {
 		        }
         	}
         }
-        
-        /*Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
-        listNodes = racine.getElementsByTagName("LeTronconSortant");       
-        
-        for (int i = 0; i < listNodes.getLength(); i++) {
-        	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-            	final Element noeud = (Element) listNodes.item(i); 
-            	
-                // Get the value of the attributes
-                String nomRue = noeud.getAttribute("nomRue");
-                float vitesse = Float.parseFloat(noeud.getAttribute("vitesse"));
-                float longueur = Float.parseFloat(noeud.getAttribute("longueur"));
-                String idNoeudDestination = noeud.getAttribute("idNoeudDestination");
-                
-                // Rajouter le point de Depart
-                
-                for (Point p : nodeListNoeud) {
-                	if (p.getId() == Integer.parseInt(idNoeudDestination)) {
-                		nodeListTronconSortant.add(new Troncon(nomRue, vitesse, longueur, p));
-                		break; // On sort de la boucle
-                	}
-                }
-        	}
-        }*/
 		return nodeListTronconSortant;
 	}
 
@@ -173,7 +149,7 @@ public class XMLLoader {
 						
 						Point adresse  = plan.get(id_adresse);
 						
-						if(adresse == entrepot){
+						if(adresse.equals(entrepot)){
 							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");
 						}
 						

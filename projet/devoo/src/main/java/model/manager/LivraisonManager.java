@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,6 +16,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
+
+
+
+
 
 
 /*
@@ -23,6 +32,8 @@ import controller.Controller;
  */
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
+import model.data.Livraison;
+import model.data.PlageHoraire;
 import model.manager.PlanManager;
 import model.data.Point;
 import model.exceptions.LivraisonXMLException;
@@ -32,6 +43,8 @@ import model.exceptions.PlanXMLException;
  * util import
  */
 import util.XMLLoader;
+import util.generationIDint;
+//import util.generationIDint;
 
 /**
  * 
@@ -41,6 +54,7 @@ public class LivraisonManager {
 	private Controller mController;
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
+	private generationIDint uniqueIDgenerator = new generationIDint(); 
 
     
     public LivraisonManager(PlanManager planManager, Controller controller) {
@@ -103,5 +117,82 @@ public class LivraisonManager {
         	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
            }
        }     	
+    }
+    
+    public List<PlageHoraire> getPlagesHoraire(){
+    	//ici j'ai juste une seule demande de livraison, d'où est ce que je peux les récuperer toutes
+    	List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
+    	Date d = new Date();
+    	plagesHoraires.add(this.mDemandeLivraisons.getPlageHoraire(d));
+    	return plagesHoraires;
+    }
+    
+    public List<Livraison> getLivraisons(){
+    	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
+    	
+    	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
+    	for(PlageHoraire plage: plagesHoraires){
+    		lesLivraisons.addAll(plage.getLivraisons());
+    	}
+    	return lesLivraisons;
+    }
+    
+    public Livraison leLivraison(Point point){
+    	List<Livraison> lesLivraisons = getLivraisons();
+    	for(Livraison livraison: lesLivraisons){
+			if(livraison.getAdresse().equals(point)){
+				return livraison;
+			}
+		}
+    	return null;
+    }
+    
+    public void add(Point point){
+    	//On cree et on affiche un boîte de dialogue pour inserer les infos sur la nouvelle livraison 
+    	JTextField id_client = new JTextField();
+    	JTextField heureDebutInput = new JTextField();
+    	JTextField heureFinInput = new JTextField();
+    	int id = uniqueIDgenerator.getUniqueId();
+    	final JComponent[] inputs = new JComponent[] {
+    			new JLabel("Id Client"),
+    			id_client,
+    			new JLabel("Heure début"),
+    			heureDebutInput,
+    			new JLabel("Heure fin"),
+    			heureFinInput
+    	};
+    	
+    	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
+    	//on recupere les infos et on crée une nouvelle instance de la classe livraison 
+    	Point adresse = point; //la nouvelle livraison est rajoutée dans le point où on a cliqué 
+    	int idClient = Integer.parseInt(id_client.getText());
+    	Livraison newLivraison = new Livraison(id, idClient, adresse);
+    	//Je annonce que j'ai cree une nouvelle livraison
+    	JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient + " dans la plage horaire " + heureDebutInput.getText() + "-" + heureFinInput.getText() , null, JOptionPane.INFORMATION_MESSAGE);
+    	
+    	//on recupere les données et on crée une nouvelle plage horaire 
+    	String heureDebut = heureDebutInput.getText();
+    	String heureFin = heureFinInput.getText();
+    	List<Livraison> newLivraisonList = new ArrayList<Livraison>();
+    	newLivraisonList.add(newLivraison);
+    	PlageHoraire plage = new PlageHoraire(heureDebut, heureFin, newLivraisonList);
+    	this.addLivraison(newLivraison,plage);
+    	
+    	//TODO Afficher les plages horaire et choisir une et ne pas créer une nouvelle plage horaire à chaque fois
+    }
+    public void addLivraison(Livraison livraison, PlageHoraire plage){
+    	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
+    }
+    public void remove(Livraison l){
+    	JFrame frame = new JFrame("Supprimer une livraison");
+    	JOptionPane removeLivraisonPanel = new JOptionPane();
+	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison à l'adresse: " + l.getAdresse().toString() + " prevuée à l'heure: " + l.getHeureLivraison(), null, 0, 0, null, null, removeLivraisonPanel);
+    	if(n==0) {
+    		this.removeLivraison(l);		
+    		
+    	}
+    }
+    public void removeLivraison(Livraison l){
+    	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
     }
 }
