@@ -41,7 +41,8 @@ public class XMLVerification {
 
 	// -----------------------------------------------------------------------------------------
 
-	public static Boolean checkLivraisonXML(File file, Element racine) {
+	// Return Boolean 
+	public static Boolean checkLivraisonXML(File file){
 
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

@@ -6,13 +6,13 @@ public class AppColors {
 
 	public static final Color planBackground = new Color(0x3498db);
 	public static final Color normalPoint = new Color(0x8e44ad);
-	public static final Color troncon = new Color(0x34495e);
+	public static final Color troncon = new Color(0xecf0f1);
 	public static final Color itineraire1 = new Color(0x2ecc71);
 	public static final Color itineraire2 = new Color(0xe67e22);
 	public static final Color itineraire3 = new Color(0x16a085);
 	public static final Color itineraire4 = new Color(0xc0392b);
 	
-	public static final Color secondary1 = new Color(0xE0F49E);
+	public static final Color clickedPoint = new Color(0xe67e22);
 	public static final Color secondary2 = new Color(0xBBD566);
 	public static final Color secondary3 = new Color(0x76921D);
 	public static final Color secondary4 = new Color(0x516804);

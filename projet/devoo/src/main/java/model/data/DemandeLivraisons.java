@@ -10,35 +10,37 @@ public class DemandeLivraisons {
 	/**
 	 * 
 	 */
-	private List<PlageHoraire> plagesHoraires;
+	private List<PlageHoraire> mPlagesHoraires;
+	private Point mEntrepot;
 	
     /**
      * 
      */
     public DemandeLivraisons() {
-    	plagesHoraires = new ArrayList<PlageHoraire>();
+    	mPlagesHoraires = new ArrayList<PlageHoraire>();
     }
 
     /**
-     * 
+     * @param entrepot
      * @param plagesHoraires
      */
-    public DemandeLivraisons(List<PlageHoraire> plagesHoraires) {
-    	this.plagesHoraires = plagesHoraires;
+    public DemandeLivraisons(Point entrepot, List<PlageHoraire> plagesHoraires) {
+    	this.mPlagesHoraires = plagesHoraires;
+    	this.mEntrepot = entrepot;
     }
 
     /**
      * 
      */
     public List<PlageHoraire> getPlagesHoraire() {
-        return plagesHoraires;
+        return mPlagesHoraires;
     }
 
     /**
      * @param dateDebut
      */
     public PlageHoraire getPlageHoraire(Date dateDebut) {
-    	for (PlageHoraire pH : plagesHoraires) {
+    	for (PlageHoraire pH : mPlagesHoraires) {
     		if(pH.getDateDebut().equals(dateDebut)) {
     			return pH;
     		}

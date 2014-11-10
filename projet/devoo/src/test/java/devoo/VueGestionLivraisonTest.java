@@ -12,6 +12,7 @@ import model.manager.PlanManager;
 
 import org.junit.Test;
 
+import controller.Controller;
 import vue.VueGestionLivraison;
 
 public class VueGestionLivraisonTest {
@@ -46,7 +47,8 @@ public class VueGestionLivraisonTest {
 		        new Troncon("rue", 50.0f, 50, p3, p4),
 		        new Troncon("rue", 50.0f, 50, p4, p5),
 		        new Troncon("rue", 50.0f, 50, p5, p1)));
-		VueGestionLivraison gestionLivraison = new VueGestionLivraison(new PlanManager(), new LivraisonManager());
+		Controller controller = new Controller();
+		VueGestionLivraison gestionLivraison = new VueGestionLivraison(new PlanManager(controller), new LivraisonManager(), controller);
 		gestionLivraison.afficherFenetrePrincipale();
 		gestionLivraison.afficherPlan(troncons);
 		for(long i=0; i<999999999; i++ );
