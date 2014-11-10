@@ -35,7 +35,8 @@ public class PlanManager {
     /**
      * 
      */
-    public PlanManager() {
+    public PlanManager(Controller controller) {
+    	this.mController = controller;
     }
 
 
