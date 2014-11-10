@@ -6,7 +6,7 @@
 </Noeud>
 <Noeud id="1" x="26" y="65">
 <LeTronconSortant nomRue="v0" vitesse="4,500000" longueur="300,200000" idNoeudDestination="0"/>
-<LeTronconSortant nomRue="v0" vitesse="4,200000" longueur="408,700000" idNoeudDestination="2"/>
+<LeTronconSortant nomRue="v0" vitesse="4,200000" longueur="aa" idNoeudDestination="2"/>
 </Noeud>
 <Noeud id="2" x="23" y="116">
 <LeTronconSortant nomRue="v0" vitesse="4,700000" longueur="408,700000" idNoeudDestination="1"/>
