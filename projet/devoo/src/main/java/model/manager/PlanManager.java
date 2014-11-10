@@ -26,8 +26,7 @@ import model.exceptions.PlanXMLException;
 public class PlanManager {
 	
 	private Controller mController;
-	Set<Troncon> troncons = new HashSet<Troncon>();
-	Set<Point> points = new HashSet<Point>();
+	private Set<Troncon> troncons = new HashSet<Troncon>();
 
     /**
      * 
@@ -89,12 +88,17 @@ public class PlanManager {
     }
 
 	public HashMap<Integer, Point> getHashMapPlan() {
-		
+		//Lire troncon et mettre la chose des trucs mmmm
 		HashMap<Integer, Point> planPoints = new HashMap<Integer, Point>();
 		
-		for(Point point: points)
-		{
-			planPoints.put(point.getId(), point);
+		for(Troncon troncon: troncons)
+		{	
+			Point point = troncon.getDepart();
+			int id = point.getId();
+			
+			if( !planPoints.containsKey(id) ) {
+				planPoints.put(id, point);
+			}
 		}
 		
 		return planPoints;
