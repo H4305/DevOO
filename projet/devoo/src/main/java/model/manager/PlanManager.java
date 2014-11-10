@@ -5,7 +5,6 @@ import util.Dijkstra;
 import util.Vertex;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,6 +29,7 @@ public class PlanManager {
 	
 	private Controller mController;
 	private Set<Troncon> troncons = new HashSet<Troncon>();
+	private Set<Point> points = new HashSet<Point>();
 
     /**
      * 
@@ -54,9 +54,10 @@ public class PlanManager {
     	
     	List<Vertex> vertexCourtChemin = dijkstra.getShortestPathTo(vCible);
     	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	
     	for(Vertex v : vertexCourtChemin)
     	{
-    		points.add(v.point);
+    		points.add(v.point); //Sei sicura? -- points Ã© la lista dei punti del piano
     	}
     	// TODO recuperer la liste des troncons correspondate	
         return null;
@@ -98,7 +99,7 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demandé n'existe pas";
+    		return "Le troncon demandï¿½ n'existe pas";
     	}
     }
 
