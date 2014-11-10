@@ -2,7 +2,7 @@ package util;
 
 import org.junit.Test;
 
-public class Useful {
+public class UsefulTest {
 
 	@Test(expected = ArithmeticException.class)  
 	public void testDivisionWithException() {  

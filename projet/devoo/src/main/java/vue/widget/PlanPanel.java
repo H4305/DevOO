@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +56,7 @@ public class PlanPanel extends JPanel {
 		mTronconsPlan = troncons;
 
 		setLayout(new BorderLayout());
-		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		//setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setBackground(Color.GREEN);
 		addMouseListener(new MouseActionListener());
@@ -101,6 +102,11 @@ public class PlanPanel extends JPanel {
 	}
 	
 	public void setDemandeLivraisons(DemandeLivraisons demandeLivraisons) {
+		
+		for (VuePoint vuePoint : vuesPoints) {
+			vuePoint.setColor(AppColors.normalPoint);
+		}
+		
 		this.demandeLivraisons = demandeLivraisons;
 		int colorIndex = 0;
 		for (PlageHoraire plage : demandeLivraisons.getPlagesHoraire()) {
@@ -131,7 +137,7 @@ public class PlanPanel extends JPanel {
 	}
 	
 	public void afficherDemandeLivraison() {
-		//repaint();
+		repaint();
 	}
 	
 	public void masquerItineraire() {

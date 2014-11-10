@@ -23,7 +23,7 @@ public class XMLLoader {
 
 	public static Set<Troncon> getPlanXML(File file, Element racine) throws PlanXMLException {
 		
-		if (!XMLVerification.checkPlanXML(file, racine)) {
+		if (!XMLVerification.checkPlanXML(file)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 			
@@ -104,10 +104,7 @@ public class XMLLoader {
 		for (int i = 0; i < listEntrepot.getLength(); i++) {
 			if (listEntrepot.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				final Element noeud = (Element) listEntrepot.item(i);
-				
-				// Get the entrepot id
 				int id_entrepot = Integer.parseInt(noeud.getAttribute("adresse"));
-						
 				if (!plan.containsKey(id_entrepot)){
 					throw new LivraisonXMLException("LivraisonXMLException - The adress of this warehouse doesn't exists");
 				}
@@ -127,11 +124,11 @@ public class XMLLoader {
 				String heureFin = noeud.getAttribute("heureFin");
 				
 				List<Livraison> listLivraisons = new ArrayList<Livraison>();
-				listNodes = noeud.getElementsByTagName("Livraison");
+				NodeList listNodesFils = noeud.getElementsByTagName("Livraison");
 
-				for (int j = 0; j < listNodes.getLength(); j++) {
-					if (listNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
-						final Element noeudFils = (Element) listNodes.item(j);
+				for (int j = 0; j < listNodesFils.getLength(); j++) {
+					if (listNodesFils.item(j).getNodeType() == Node.ELEMENT_NODE) {
+						final Element noeudFils = (Element) listNodesFils.item(j);
 
 						// Get the value of the attributes
 						int id = Integer.parseInt(noeudFils.getAttribute("id"));
