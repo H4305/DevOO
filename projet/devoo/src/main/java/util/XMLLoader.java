@@ -1,13 +1,10 @@
 package util;
 
 import java.io.File;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -114,9 +111,7 @@ public class XMLLoader {
 				if (!plan.containsKey(id_entrepot)){
 					throw new LivraisonXMLException("LivraisonXMLException - The adress of this warehouse doesn't exists");
 				}
-				
 				entrepot = plan.get(id_entrepot);			
-				
 			}
 		}
 		

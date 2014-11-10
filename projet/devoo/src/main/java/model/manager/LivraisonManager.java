@@ -120,10 +120,9 @@ public class LivraisonManager {
     }
     
     public List<PlageHoraire> getPlagesHoraire(){
-    	//ici j'ai juste une seule demande de livraison, d'où est ce que je peux les récuperer toutes
+    	
     	List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
-    	Date d = new Date();
-    	plagesHoraires.add(this.mDemandeLivraisons.getPlageHoraire(d));
+    	plagesHoraires.addAll(this.mDemandeLivraisons.getPlagesHoraire());
     	return plagesHoraires;
     }
     
