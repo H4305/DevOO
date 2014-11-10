@@ -18,7 +18,7 @@ public class XMLVerification {
 
 	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
-	private static final Logger LOGGER = Logger.getLogger(XMLVerificationTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(XMLVerification.class.getName());
 	
 	public static Boolean checkPlanXML(File file) {
 		

@@ -12,7 +12,7 @@ import controller.Controller;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
-import util.UsefulTest;
+import util.Useful;
 import vue.widget.PlanPanel;
 
 /**
@@ -90,7 +90,7 @@ public class VueGestionLivraison {
     }
 
 	public File getFichierXML() {
-		return UsefulTest.ouvrirFichier('o');
+		return Useful.ouvrirFichier('o');
 	}
 
 	public void setPointClickedListener(

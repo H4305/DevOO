@@ -23,7 +23,7 @@ public class XMLLoader {
 
 	public static Set<Troncon> getPlanXML(File file, Element racine) throws PlanXMLException {
 		
-		if (!XMLVerificationTest.checkPlanXML(file, racine)) {
+		if (!XMLVerification.checkPlanXML(file)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 			
@@ -93,7 +93,7 @@ public class XMLLoader {
 
 	public static DemandeLivraisons getLivraisonXML(File file, Element racine, HashMap<Integer, Point> plan) throws LivraisonXMLException {
 		
-		if (!XMLVerificationTest.checkLivraisonXML(file)) {
+		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 		
