@@ -38,8 +38,6 @@ public class PlanManager {
     	this.mController = controller;
     }
 
-
-
     /**
      * @param PointA 
      * @param PointB 

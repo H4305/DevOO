@@ -13,11 +13,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-
-
-
-
-
 /*
  * controller import
  */
@@ -39,7 +34,7 @@ import model.exceptions.PlanXMLException;
  * util import
  */
 import util.XMLLoader;
-import util.generationIDint;
+//import util.generationIDint;
 
 /**
  * 
@@ -49,7 +44,7 @@ public class LivraisonManager {
 	private Controller mController;
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
-	private generationIDint uniqueIDgenerator = new generationIDint(); 
+	//private generationIDint uniqueIDgenerator = new generationIDint(); 
 
     /**
      * 
@@ -124,6 +119,7 @@ public class LivraisonManager {
     	plagesHoraires.add(this.mDemandeLivraisons.getPlageHoraire(d));
     	return plagesHoraires;
     }
+    
     public List<Livraison> getLivraisons(){
     	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
     	
@@ -133,6 +129,7 @@ public class LivraisonManager {
     	}
     	return lesLivraisons;
     }
+    
     public Livraison leLivraison(Point point){
     	List<Livraison> lesLivraisons = getLivraisons();
     	for(Livraison livraison: lesLivraisons){
@@ -142,9 +139,9 @@ public class LivraisonManager {
 		}
     	return null;
     }
-    public void add(Point p){
-    	int id = uniqueIDgenerator.getUniqueId();
-    	Point adresse = p;
+    
+    public void add(Point adresse){
+    	int id = 10;//uniqueIDgenerator.getUniqueId();
     	JOptionPane addLivraisonPanel = new JOptionPane();
     	String id_clientString = addLivraisonPanel.showInputDialog(null, "Id client:", null, JOptionPane.QUESTION_MESSAGE);
     	addLivraisonPanel.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + id_clientString, null, JOptionPane.INFORMATION_MESSAGE);
