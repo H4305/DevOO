@@ -1,10 +1,13 @@
 package util;
 
 import java.io.File;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -59,8 +62,20 @@ public class XMLLoader {
 		            	
 		                // Get the value of the attributes
 		                String nomRue = noeudFils.getAttribute("nomRue");
-		                float vitesse = Float.parseFloat(noeudFils.getAttribute("vitesse"));
-		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur"));
+		                
+		                // Si .replace(',', '.') ne nous plait pas on peut utiliser ca ..
+		                /*
+		                NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+		                Number number = null;
+						try {
+							number = format.parse("1,234");
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+		                double d = number.floatValue();
+		                */
+		                float vitesse = Float.parseFloat(noeudFils.getAttribute("vitesse").replace(',', '.'));
+		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur").replace(',', '.'));
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
 		                Point pointArrivee = noeuds.get(idNoeudDestination);

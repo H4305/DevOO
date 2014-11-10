@@ -1,5 +1,8 @@
 package model.manager;
 
+import java.util.*;
+import util.Dijkstra;
+import util.Vertex;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -42,8 +45,20 @@ public class PlanManager {
      * @param PointB 
      * @return
      */
-    public Chemin plusCourtChemin(Point PointA, Point PointB) {
-        // TODO implement here
+    public Chemin plusCourtChemin(Point source, Point cible) {
+        
+    	Dijkstra dijkstra = new Dijkstra();
+    	Vertex vSource = new Vertex (source);
+    	Vertex vCible = new Vertex (cible);
+    	dijkstra.computePaths(vSource);
+    	
+    	List<Vertex> vertexCourtChemin = dijkstra.getShortestPathTo(vCible);
+    	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	for(Vertex v : vertexCourtChemin)
+    	{
+    		points.add(v.point);
+    	}
+    	// TODO recuperer la liste des troncons correspondate	
         return null;
     }
 
@@ -83,7 +98,7 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demandï¿½ n'existe pas";
+    		return "Le troncon demandé n'existe pas";
     	}
     }
 
