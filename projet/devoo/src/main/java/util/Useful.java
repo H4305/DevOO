@@ -39,6 +39,60 @@ public class Useful {
         return null;
 	}
 	
+	public static void lirePlanDepuisFichierXML(){
+        File xml = ouvrirFichier('o');
+        if (xml != null) {
+             try {
+                // Creation d'un constructeur de documents a l'aide d'une fabrique
+                DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
+                // Lecture du contenu d'un fichier XML avec DOM
+                Document document = constructeur.parse(xml);
+                Element racine = document.getDocumentElement();
+                
+                // Get the plan
+				XMLLoader.getPlanXML(xml, racine);
+			} catch (PlanXMLException e) {						
+				System.out.println(e.getMessage());
+            } catch (ParserConfigurationException pce) {
+                System.out.println("Erreur de configuration du parseur DOM");
+                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
+            } catch (SAXException se) {
+                System.out.println("Erreur lors du parsing du document");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            } catch (IOException ioe) {
+                System.out.println("Erreur d'entree/sortie");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            }
+        }  
+	}
+	
+	public static void lireLivraisonDepuisFichierXML(){
+        File xml = ouvrirFichier('o');
+        if (xml != null) {
+             try {
+                // Creation d'un constructeur de documents a l'aide d'une fabrique
+                DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
+                // Lecture du contenu d'un fichier XML avec DOM
+                Document document = constructeur.parse(xml);
+                Element racine = document.getDocumentElement();
+                
+                // Get the plan
+				XMLLoader.getLivraisonXML(xml, racine, new HashMap<Integer, Point>());
+			} catch (LivraisonXMLException e) {						
+				System.out.println(e.getMessage());
+            } catch (ParserConfigurationException pce) {
+                System.out.println("Erreur de configuration du parseur DOM");
+                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
+            } catch (SAXException se) {
+                System.out.println("Erreur lors du parsing du document");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            } catch (IOException ioe) {
+                System.out.println("Erreur d'entree/sortie");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            }
+        }  
+	}
+	
 	public static void lireDepuisFichierXML(){
         File xml = ouvrirFichier('o');
         if (xml != null) {
