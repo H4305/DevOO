@@ -51,12 +51,11 @@ public class PlanManager {
      */
     public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
         
-    	Dijkstra dijkstra = new Dijkstra();
     	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
     	
-    	dijkstra.computePaths(vSource);
-    	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
+    	Dijkstra.computePaths(vSource);
+    	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
     	
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{

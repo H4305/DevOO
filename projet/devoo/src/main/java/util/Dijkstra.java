@@ -9,10 +9,7 @@ import model.data.Troncon;
 
 public class Dijkstra {
 	
-	public Dijkstra() {
-    }
-	
-	public void computePaths(Vertex source)
+	public static void computePaths(Vertex source)
     {
         source.setMinTemps(0.);
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
@@ -38,7 +35,7 @@ public class Dijkstra {
 		
     }
 
-    public ArrayList<Vertex> getShortestPathTo(Vertex target)
+    public static ArrayList<Vertex> getShortestPathTo(Vertex target)
     {
         ArrayList<Vertex> path = new ArrayList<Vertex>();
         for (Vertex vertex = target; vertex != null; vertex = vertex.getPrecedent())
