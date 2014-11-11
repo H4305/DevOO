@@ -1,53 +1,85 @@
 package model.manager;
 
 import java.util.*;
+import java.io.File;
+
+import controller.Controller;
 
 import util.Dijkstra;
 import util.PairKey;
 import util.Vertex;
-
-import java.io.File;
-import java.io.IOException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
-
-import controller.Controller;
 import util.XMLLoader;
+
 import model.data.Chemin;
 import model.data.Point;
 import model.data.Troncon;
-import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
 
 /**
+ * 
+ * PlanManager has the role to manage all the data related to the plan. 
+ * It stores most of the mathematics results and it's a bridge between the controller and the model.
+ * 
+ * @author      Vadim Caen
+ * @author      Maria Etegan
+ * @author      Anthony Faraut
+ * @author      Ludmila Danilescu
+ * @author      Marco Montalto
+ * @author      Bernardo Rittmeyer
  * 
  */
 public class PlanManager {
 	
 	private Controller mController;
-	private Set<Troncon> troncons = new HashSet<Troncon>();
-	private ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
+	private Set<Troncon> troncons;
+	private ArrayList<Vertex> vertexs;
 
-    /**
-     * 
-     */
+	/**
+    * Class constructor specifying a Controller
+    * 	    
+    * @param controller is the Controller, to advise the system when operations are concluded.
+    */
     public PlanManager(Controller controller) {
     	this.mController = controller;
+    	this.troncons = new HashSet<Troncon>();
+    	this.vertexs = new ArrayList<Vertex>();
     }
-
+    
     /**
-     * Cette methode calcule le plus court chemin entre 2 points avce la methode de Dijkstra
-     * @param Point source
-     * @param Point target 
+	 * This method loads a "plan" from a xml file, passing through the XMLLoader class,
+	 * and stores the result to the attributes troncons and vertexs. An exception is cached if there's a problem
+	 * opening or reading the file.
+	 * 
+	 * @param fileXML is a xml File, which contains all the informations concerning a plan.
+	 * @throws NullPointException() if file is empty
+	 */
+    public void loadPlanXML(File fileXML) throws NullPointerException {
+    	if (fileXML != null) {
+			// Get the plan
+			try {
+				
+				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
+				setPlan(tronconsVertexs.troncons);
+				setVertexs(tronconsVertexs.vertexs);	
+				mController.afficherPlan();
+				
+			} catch (PlanXMLException e) {
+				// On affichera ca dans la vue
+				mController.exceptionOpenFileXML(e.getMessage());
+			}
+       } else {
+    	   throw new NullPointerException();
+       }
+    }
+    
+    /**
+     * Cette methode calcule le plus court chemin entre 2 points avec la methode de Dijkstra
+     * 
+     * @param Point source 
+     * @param Point target  
      * @param Vertex source
      * @param Vertex target 
-     * @return 
+     * @return Chemin 
      */
     public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
         
@@ -119,8 +151,13 @@ public class PlanManager {
     	}
     }
 
+    /**
+	 * This method reads the list of "troncons" and create a HashMap<Integer, Point>
+	 * 
+	 * @return a HashMap, which key is the id of a point and value is the point itself
+	 */
 	public HashMap<Integer, Point> getHashMapPlan() {
-		//Lire troncon et mettre la chose des trucs mmmm
+
 		HashMap<Integer, Point> planPoints = new HashMap<Integer, Point>();
 		
 		for(Troncon troncon: troncons)
@@ -147,26 +184,4 @@ public class PlanManager {
 	public void setVertexs(ArrayList<Vertex> vertexs) {
 		this.vertexs = vertexs;
 	}
-
-	/**
-     * 
-     */
-    public void loadPlanXML(File fileXML) throws NullPointerException {
-    	if (fileXML != null) {
-			// Get the plan
-			try {
-				
-				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
-				setPlan(tronconsVertexs.troncons);
-				setVertexs(tronconsVertexs.vertexs);	
-				mController.afficherPlan();
-				
-			} catch (PlanXMLException e) {
-				// On affichera ca dans la vue
-				mController.exceptionOpenFileXML(e.getMessage());
-			}
-       } else {
-    	   throw new NullPointerException();
-       }
-    }
 }

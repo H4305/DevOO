@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 
 
 
+
+
+
 /*
  * controller import
  */
@@ -33,13 +36,11 @@ import model.exceptions.LivraisonXMLException;
  */
 import util.XMLLoader;
 import util.GenerationIDint;
-//import util.generationIDint;
-import util.procedure.PairProcedure;
 
 /**
  * 
- * LivraisonManager has the role to administrate all the data related to the "livraisons". 
- * It stores most of the mathematic results and it's a bridge between the controller and the model.
+ * LivraisonManager has the role to manage all the data related to the "livraisons". 
+ * It stores most of the mathematics results and it's a bridge between the controller and the model.
  * 
  * @author      Vadim Caen
  * @author      Maria Etegan
@@ -70,12 +71,13 @@ public class LivraisonManager {
     
     /**
 	 * This method loads a "demande de livraisons" from a xml file, passing through the XMLLoader class,
-	 * and stores the result to the attributes mDemandeLivraisons. An exception is catched if there's a problem
+	 * and stores the result to the attributes mDemandeLivraisons. An exception is cached if there's a problem
 	 * opening or reading the file.
 	 * 
 	 * @param fileXML is a xml File, which contains all the informations concerning a "demande de livraisons"
+	 * @throws NullPointException() if file is empty
 	 */
-    public void loadDemandeLivraisonsXML(File fileXML) {
+    public void loadDemandeLivraisonsXML(File fileXML) throws NullPointerException {
     	if (fileXML != null) {             
 			// Get the livraison
 			try {
@@ -87,7 +89,9 @@ public class LivraisonManager {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
 			}
-       }     	
+       }else {
+    	   throw new NullPointerException();
+       }
     }
 
     public DemandeLivraisons getDemandeLivraisons() {
@@ -137,7 +141,7 @@ public class LivraisonManager {
     	final JComponent[] inputs = new JComponent[] {
     			new JLabel("Id Client"),
     			id_client,
-    			new JLabel("Heure d�but"),
+    			new JLabel("Heure debut"),
     			heureDebutInput,
     			new JLabel("Heure fin"),
     			heureFinInput
@@ -161,6 +165,7 @@ public class LivraisonManager {
     	
     	//TODO Afficher les plages horaire et choisir une et ne pas cr�er une nouvelle plage horaire � chaque fois
     }
+    
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
     }
