@@ -22,6 +22,9 @@ import org.xml.sax.SAXException;
 
 
 
+
+
+
 /*
  * controller import
  */
@@ -45,6 +48,7 @@ import model.exceptions.PlanXMLException;
 import util.XMLLoader;
 import util.generationIDint;
 //import util.generationIDint;
+import util.procedure.PairProcedure;
 
 /**
  * 
@@ -115,16 +119,15 @@ public class LivraisonManager {
     }
     
     public List<PlageHoraire> getPlagesHoraire(){
-    	
-    	List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
-    	plagesHoraires.addAll(this.mDemandeLivraisons.getPlagesHoraire());
-    	return plagesHoraires;
+    	if(mDemandeLivraisons == null) return new ArrayList<PlageHoraire>();
+    	return mDemandeLivraisons.getPlagesHoraire();
     }
     
     public List<Livraison> getLivraisons(){
-    	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
-    	
     	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
+    	if(plagesHoraires == null) return new ArrayList<>();
+    	
+    	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
     	for(PlageHoraire plage: plagesHoraires){
     		lesLivraisons.addAll(plage.getLivraisons());
     	}
@@ -188,5 +191,24 @@ public class LivraisonManager {
     }
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
+    }
+    
+    public Livraison findLivraisonByAddress(Point address) {
+    	for(Livraison livraison : getLivraisons()) {
+    		if(livraison.getAdresse().equals(address)) 
+    			return livraison;
+    	}
+    	return null;
+    }
+    
+    public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
+    	for(PlageHoraire horaire : getPlagesHoraire()) {
+    		for(Livraison liv : horaire.getLivraisons()) {
+    			if(livraison.equals(liv)) {
+    				return horaire;
+    			}
+    		}
+    	}
+    	return null;
     }
 }
