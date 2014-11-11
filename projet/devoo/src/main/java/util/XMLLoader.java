@@ -61,7 +61,7 @@ public class XMLLoader {
 	 * @return A set of troncon
 	 * @throws PlanXMLException
 	 */
-	public static Set<Troncon> getPlanXML(File file) throws PlanXMLException {
+	public static PairKey<Set<Troncon>, ArrayList<Vertex>> getPlanXML(File file) throws PlanXMLException {
 		
 		if (!XMLVerification.checkPlanXML(file)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
@@ -121,7 +121,7 @@ public class XMLLoader {
 		        }
         	}
         }
-		return nodeListTronconSortant;
+		return new PairKey(nodeListTronconSortant, vertexs);
 	}
 
 	/**

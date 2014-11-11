@@ -21,8 +21,7 @@ public class Vertex implements Comparable<Vertex> {
     { 
     	this.pointVertex = pointVertex; 
     	this.adjacencies = adjacencies;
-    }
-    
+    }   
     
     public int compareTo(Vertex autre)
     {

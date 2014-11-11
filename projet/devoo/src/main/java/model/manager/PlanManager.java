@@ -3,6 +3,7 @@ package model.manager;
 import java.util.*;
 
 import util.Dijkstra;
+import util.PairKey;
 import util.Vertex;
 
 import java.io.File;
@@ -31,7 +32,7 @@ public class PlanManager {
 	
 	private Controller mController;
 	private Set<Troncon> troncons = new HashSet<Troncon>();
-	private Set<Point> points = new HashSet<Point>();
+	private ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
 
     /**
      * 
@@ -108,7 +109,6 @@ public class PlanManager {
     
     public class TronconNotFoundExcepetion extends Exception {
     	
- 
 		private static final long serialVersionUID = 3754278865880411751L;
 
 		@Override
@@ -138,8 +138,12 @@ public class PlanManager {
 		return troncons;
 	}
 	
-	public void setPlan(Set<Troncon> plan) {
-		troncons = plan;
+	public void setPlan(Set<Troncon> troncons) {
+		this.troncons = troncons;
+	}
+	
+	public void setVertexs(ArrayList<Vertex> vertexs) {
+		this.vertexs = vertexs;
 	}
 
 	/**
@@ -149,8 +153,12 @@ public class PlanManager {
     	if (fileXML != null) {
 			// Get the plan
 			try {
-				setPlan(XMLLoader.getPlanXML(fileXML));
+				
+				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
+				setPlan(tronconsVertexs.troncons);
+				setVertexs(tronconsVertexs.vertexs);	
 				mController.afficherPlan();
+				
 			} catch (PlanXMLException e) {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
