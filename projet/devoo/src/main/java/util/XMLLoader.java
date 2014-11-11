@@ -1,15 +1,22 @@
 package util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
@@ -21,12 +28,44 @@ import model.exceptions.PlanXMLException;
 
 public class XMLLoader {
 
-	public static Set<Troncon> getPlanXML(File file, Element racine) throws PlanXMLException {
+	private static Element getRootFromXMLFile(File file){
+
+        if (file != null) {
+             try {
+                // Creation d'un constructeur de documents a l'aide d'une fabrique
+                DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
+                // Lecture du contenu d'un fichier XML avec DOM
+                Document document = constructeur.parse(file);
+                return document.getDocumentElement();
+                
+            } catch (ParserConfigurationException pce) {
+                System.out.println("Erreur de configuration du parseur DOM");
+                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
+            } catch (SAXException se) {
+                System.out.println("Erreur lors du parsing du document");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            } catch (IOException ioe) {
+                System.out.println("Erreur d'entree/sortie");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            }
+        }
+		return null;  
+	}
+	
+	/**
+	 * This method allows to get the plan after check the macth with XSD file
+	 * @param file : The XML file we want to load
+	 * @param racine 
+	 * @return
+	 * @throws PlanXMLException
+	 */
+	public static Set<Troncon> getPlanXML(File file) throws PlanXMLException {
 		
 		if (!XMLVerification.checkPlanXML(file)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
-			
+		
+		Element racine = getRootFromXMLFile(file);
 		HashMap<Integer, Point> noeuds = new HashMap<Integer, Point>();
     	Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
         NodeList listNodes = racine.getElementsByTagName("Noeud");
@@ -91,14 +130,14 @@ public class XMLLoader {
 
 	// -----------------------------------------------------------------------------------------
 
-	public static DemandeLivraisons getLivraisonXML(File file, Element racine, HashMap<Integer, Point> plan) throws LivraisonXMLException {
+	public static DemandeLivraisons getLivraisonXML(File file, HashMap<Integer, Point> plan) throws LivraisonXMLException {
 		
 		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 		
+		Element racine = getRootFromXMLFile(file);
 		Point entrepot = new Point();
-		
 		NodeList listEntrepot = racine.getElementsByTagName("Entrepot");
 		
 		for (int i = 0; i < listEntrepot.getLength(); i++) {

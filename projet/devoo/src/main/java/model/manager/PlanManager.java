@@ -130,40 +130,17 @@ public class PlanManager {
      * 
      */
     public void loadPlanXML(File fileXML) throws NullPointerException {
-    	
     	if (fileXML != null) {
-            try {
-               // Creation d'un constructeur de documents a l'aide d'une fabrique
-               DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
-               // Lecture du contenu d'un fichier XML avec DOM
-               Document document = constructeur.parse(fileXML);
-               Element racine = document.getDocumentElement();
-               
-               // Get the plan
-               try {
-						//XMLVerification.checkPlanXML(xml, racine);
-						setPlan(XMLLoader.getPlanXML(fileXML, racine));
-						
-						mController.afficherPlan();
-						
-				} catch (PlanXMLException e) {						
-					// On affichera ca dans la vue
-					mController.exceptionOpenFileXML(e.getMessage());
-				}
-              
-           } catch (ParserConfigurationException pce) {
-        	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
-        	   mController.exceptionOpenFileXML("lors de l'appel a fabrique.newDocumentBuilder();");
-           } catch (SAXException se) {
-        	   mController.exceptionOpenFileXML("Erreur lors du parsing du document");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           } catch (IOException ioe) {
-        	   mController.exceptionOpenFileXML("Erreur d'entree/sortie");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           }
+			// Get the plan
+			try {
+				setPlan(XMLLoader.getPlanXML(fileXML));
+				mController.afficherPlan();
+			} catch (PlanXMLException e) {
+				// On affichera ca dans la vue
+				mController.exceptionOpenFileXML(e.getMessage());
+			}
        } else {
     	   throw new NullPointerException();
        }
     }
-
 }

@@ -16,10 +16,26 @@ import org.xml.sax.SAXException;
 
 public class XMLVerification {
 
+	/**
+	 * XSD File to check the plan XML files
+	 */
 	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));
+	
+	/**
+	 * XSD File to check the livraison XML files
+	 */
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
+	
+	/**
+	 * LOGGER to write with level, all the issues we want
+	 */
 	private static final Logger LOGGER = Logger.getLogger(XMLVerification.class.getName());
 	
+	/**
+	 * This method allows to check if the Plan XML corresponds to the XSD file
+	 * @param file : The XML file we want to check
+	 * @return Boolean
+	 */
 	public static Boolean checkPlanXML(File file) {
 		
 		Source xmlFile = new StreamSource(file);
@@ -38,8 +54,12 @@ public class XMLVerification {
 		}
 	}
 
-	// -----------------------------------------------------------------------------------------
 
+	/**
+	 * This method allows to check if the Livraison XML corresponds to the XSD file
+	 * @param file : The XML file we want to check
+	 * @return Boolean
+	 */
 	public static Boolean checkLivraisonXML(File file){
 
 		Source xmlFile = new StreamSource(file);

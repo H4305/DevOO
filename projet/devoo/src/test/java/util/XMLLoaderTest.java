@@ -30,10 +30,7 @@ public class XMLLoaderTest {
 		plan.put((Integer) 4, new Point(4, 2, 2));
 		plan.put((Integer) 0, new Point(0, 0, 0));
 		File file = new File("src/test/resources/xml/livraisonTestOk.xml");
-		 DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		Document document = constructeur.parse(file);
-        Element racine = document.getDocumentElement();
-		DemandeLivraisons demandeLivraisons = XMLLoader.getLivraisonXML(file, racine, plan);
+		DemandeLivraisons demandeLivraisons = XMLLoader.getLivraisonXML(file, plan);
 		Assert.assertEquals(3, demandeLivraisons.getPlagesHoraire().size());
 		Assert.assertEquals(1, demandeLivraisons.getPlagesHoraire().get(0).getLivraisons().size());
 		Assert.assertEquals(2, demandeLivraisons.getPlagesHoraire().get(1).getLivraisons().size());
