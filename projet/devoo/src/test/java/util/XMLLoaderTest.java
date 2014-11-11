@@ -5,9 +5,7 @@ import model.data.Point;
 import model.data.Troncon;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -49,6 +47,7 @@ public class XMLLoaderTest {
 		Point point1 = new Point(1,26,65);
 		Point point2 = new Point(2,23,116);
 		
+		// Because of the set, it is not ordered
 		for (Troncon troncon : troncons) {
 			
 			if (troncon.getNomRue().equals("h1")){
