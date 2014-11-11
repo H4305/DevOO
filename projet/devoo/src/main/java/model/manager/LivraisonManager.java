@@ -88,7 +88,6 @@ public class LivraisonManager {
                Element racine = document.getDocumentElement();
                
                // Get the livraison
-               if (racine.getNodeName().equals("JourneeType")) {
                	try {
                		
                		HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
@@ -97,14 +96,10 @@ public class LivraisonManager {
                		
                		mController.afficherDemandeLivraisons();
                		
-					} catch (LivraisonXMLException e) {
-						// On affichera ca dans la vue
-						mController.exceptionOpenFileXML(e.getMessage());
-					}
-               }
-               else {
-            	   mController.exceptionOpenFileXML("Structure de fichier inconnue");
-               }
+				} catch (LivraisonXMLException e) {
+					// On affichera ca dans la vue
+					mController.exceptionOpenFileXML(e.getMessage());
+				}
               
            } catch (ParserConfigurationException pce) {
         	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
@@ -147,7 +142,7 @@ public class LivraisonManager {
     }
     
     public void add(Point point){
-    	//On cree et on affiche un boîte de dialogue pour inserer les infos sur la nouvelle livraison 
+    	//On cree et on affiche un boï¿½te de dialogue pour inserer les infos sur la nouvelle livraison 
     	JTextField id_client = new JTextField();
     	JTextField heureDebutInput = new JTextField();
     	JTextField heureFinInput = new JTextField();
@@ -155,21 +150,21 @@ public class LivraisonManager {
     	final JComponent[] inputs = new JComponent[] {
     			new JLabel("Id Client"),
     			id_client,
-    			new JLabel("Heure début"),
+    			new JLabel("Heure dï¿½but"),
     			heureDebutInput,
     			new JLabel("Heure fin"),
     			heureFinInput
     	};
     	
     	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
-    	//on recupere les infos et on crée une nouvelle instance de la classe livraison 
-    	Point adresse = point; //la nouvelle livraison est rajoutée dans le point où on a cliqué 
+    	//on recupere les infos et on crï¿½e une nouvelle instance de la classe livraison 
+    	Point adresse = point; //la nouvelle livraison est rajoutï¿½e dans le point oï¿½ on a cliquï¿½ 
     	int idClient = Integer.parseInt(id_client.getText());
     	Livraison newLivraison = new Livraison(id, idClient, adresse);
     	//Je annonce que j'ai cree une nouvelle livraison
     	JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient + " dans la plage horaire " + heureDebutInput.getText() + "-" + heureFinInput.getText() , null, JOptionPane.INFORMATION_MESSAGE);
     	
-    	//on recupere les données et on crée une nouvelle plage horaire 
+    	//on recupere les donnï¿½es et on crï¿½e une nouvelle plage horaire 
     	String heureDebut = heureDebutInput.getText();
     	String heureFin = heureFinInput.getText();
     	List<Livraison> newLivraisonList = new ArrayList<Livraison>();
@@ -177,7 +172,7 @@ public class LivraisonManager {
     	PlageHoraire plage = new PlageHoraire(heureDebut, heureFin, newLivraisonList);
     	this.addLivraison(newLivraison,plage);
     	
-    	//TODO Afficher les plages horaire et choisir une et ne pas créer une nouvelle plage horaire à chaque fois
+    	//TODO Afficher les plages horaire et choisir une et ne pas crï¿½er une nouvelle plage horaire ï¿½ chaque fois
     }
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
@@ -185,7 +180,7 @@ public class LivraisonManager {
     public void remove(Livraison l){
     	JFrame frame = new JFrame("Supprimer une livraison");
     	JOptionPane removeLivraisonPanel = new JOptionPane();
-	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison à l'adresse: " + l.getAdresse().toString() + " prevuée à l'heure: " + l.getHeureLivraison(), null, 0, 0, null, null, removeLivraisonPanel);
+	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison ï¿½ l'adresse: " + l.getAdresse().toString() + " prevuï¿½e ï¿½ l'heure: " + l.getHeureLivraison(), null, 0, 0, null, null, removeLivraisonPanel);
     	if(n==0) {
     		this.removeLivraison(l);		
     		

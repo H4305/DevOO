@@ -97,7 +97,7 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demandé n'existe pas";
+    		return "Le troncon demandï¿½ n'existe pas";
     	}
     }
 
@@ -140,21 +140,16 @@ public class PlanManager {
                Element racine = document.getDocumentElement();
                
                // Get the plan
-               if (racine.getNodeName().equals("Reseau")) {
-               	try {
+               try {
 						//XMLVerification.checkPlanXML(xml, racine);
 						setPlan(XMLLoader.getPlanXML(fileXML, racine));
 						
 						mController.afficherPlan();
 						
-					} catch (PlanXMLException e) {						
-						// On affichera ca dans la vue
-						mController.exceptionOpenFileXML(e.getMessage());
-					}
-               }
-               else {
-            	   mController.exceptionOpenFileXML("Structure de fichier inconnue");
-               }
+				} catch (PlanXMLException e) {						
+					// On affichera ca dans la vue
+					mController.exceptionOpenFileXML(e.getMessage());
+				}
               
            } catch (ParserConfigurationException pce) {
         	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
