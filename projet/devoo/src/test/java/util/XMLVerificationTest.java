@@ -71,6 +71,38 @@ public class XMLVerificationTest {
 		// ------------------------------------------------------- / BAD Attributes values
         
         
+		// ------------------------------------------------------- MISSING Attributes values
+		
+		// Bad XML file - Problem Attribut Noeud id
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-id.xml"); 
+        assertFalse(XMLVerification.checkPlanXML(file));
+ 
+		// Bad XML file - Problem Attribut Noeud x
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-x.xml"); 
+        assertFalse(XMLVerification.checkPlanXML(file));
+
+		// Bad XML file - Problem Attribut Noeud y
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-y.xml"); 
+        assertFalse(XMLVerification.checkPlanXML(file));
+
+		// Bad XML file - Problem Attribut LeTronconSortant nomRue
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-nomRue.xml"); 
+        assertFalse(XMLVerification.checkPlanXML(file));
+
+		// Bad XML file - Problem Attribut LeTronconSortant vitesse
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-vitesse.xml"); 
+        assertFalse(XMLVerification.checkPlanXML(file));
+	
+		// Bad XML file - Problem Attribut LeTronconSortant longueur
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-longueur.xml");  
+        assertFalse(XMLVerification.checkPlanXML(file));
+
+		// Bad XML file - Problem Attribut LeTronconSortant idNoeudDestination
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-idNoeudDestination.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
+        
+		// ------------------------------------------------------- / MISSING Attributes values
+        
 		// ------------------------------------------------------- XML's structure malformed
         
         // TODO Other tests...

@@ -7,7 +7,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute type="regex_NumericGreaterThanZero" name="adresse"/>
+                <xs:attribute type="regex_NumericGreaterThanZero" name="adresse" use="required"/>
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
