@@ -5,12 +5,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /*
  * model import
  */
 import model.data.Livraison;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
+import model.data.PlageHoraire;
 import model.data.Point;
 import model.data.Troncon;
 
@@ -91,6 +93,14 @@ public class Controller {
     public void masquerLivraison() {
     	mVueGestionLivraison.masquerLivraison();
     }
+    
+	/**
+	 * This method asks the views to select a file and send it to the LivraisonManager class, to analyse it.
+	 * The file should contain a "Plan" in a xml format
+	 * 
+	 */
+    public void loadPlanXML() {
+    	LOG.log(Level.INFO, "loadPlanXML :: BEGIN");
 
     	mPlanManager.loadPlanXML(this.mVueGestionLivraison.getFichierXML());
     	
@@ -160,4 +170,5 @@ public class Controller {
     	}
     	
     }
+	
 }
