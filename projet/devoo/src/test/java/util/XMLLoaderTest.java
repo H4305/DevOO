@@ -1,8 +1,11 @@
 package util;
 
+import static org.junit.Assert.assertFalse;
 import model.data.DemandeLivraisons;
 import model.data.Point;
 import model.data.Troncon;
+import model.exceptions.LivraisonXMLException;
+import model.exceptions.PlanXMLException;
 
 import java.io.File;
 import java.util.HashMap;
@@ -13,11 +16,115 @@ import org.junit.Test;
 
 public class XMLLoaderTest {
 
-	/*
-	@Test(expected = ArithmeticException.class)  
-	public void testDivisionWithException() {  
-	  int i = 1/0;
-	}  */
+	
+	@Test(expected = PlanXMLException.class)  
+	public void testGetPlanXML_with_exception() throws PlanXMLException {
+		
+		// Bad XML file
+		File file = new File("src/main/resources/xml/livraison20x20-2.xml");      
+		XMLLoader.getPlanXML(file);
+		
+		// ------------------------------------------------------- BAD Attributes values
+		
+		// Bad XML file - Problem Attribut Noeud id
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-id.xml"); 
+        XMLLoader.getPlanXML(file);
+ 
+		// Bad XML file - Problem Attribut Noeud x
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-x.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut Noeud y
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-y.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant nomRue
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-nomRue.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant vitesse
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant vitesse 2
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse-1.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant vitesse 3
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse-2.xml"); 
+        XMLLoader.getPlanXML(file);
+	
+		// Bad XML file - Problem Attribut LeTronconSortant longueur
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-longueur.xml");  
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant longueur 2
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-longueur-1.xml");   
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant idNoeudDestination
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-idNoeudDestination.xml");    
+        XMLLoader.getPlanXML(file);
+        
+		// ------------------------------------------------------- / BAD Attributes values
+        
+        
+		// ------------------------------------------------------- MISSING Attributes values
+		
+		// Bad XML file - Problem Attribut Noeud id
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-id.xml"); 
+        XMLLoader.getPlanXML(file);
+ 
+		// Bad XML file - Problem Attribut Noeud x
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-x.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut Noeud y
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-noeud-y.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant nomRue
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-nomRue.xml"); 
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant vitesse
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-vitesse.xml"); 
+        XMLLoader.getPlanXML(file);
+	
+		// Bad XML file - Problem Attribut LeTronconSortant longueur
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-longueur.xml");  
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem Attribut LeTronconSortant idNoeudDestination
+		file = new File("src/test/resources/xml/plan20x20-attribut-missing-LeTronconSortant-idNoeudDestination.xml");    
+        XMLLoader.getPlanXML(file);
+        
+		// ------------------------------------------------------- / MISSING Attributes values
+        
+		// ------------------------------------------------------- XML's structure malformed
+        
+		// Bad XML file - Problem malformed Reseau <opening tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Reseau-1.xml");    
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem malformed Reseau <closing tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Reseau-2.xml");    
+        XMLLoader.getPlanXML(file);
+      
+		// Bad XML file - Problem malformed Noeud <opening tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Noeud-1.xml");    
+        XMLLoader.getPlanXML(file);
+
+		// Bad XML file - Problem malformed Noeud <closing tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Noeud-2.xml");    
+        XMLLoader.getPlanXML(file);
+        
+		// Bad XML file - Problem malformed LeTronconSortant
+		file = new File("src/test/resources/xml/plan20x20-malformed-LeTronconSortant.xml");    
+        XMLLoader.getPlanXML(file);
+        
+		// ------------------------------------------------------- / XML's structure malformed
+	}
 	
 	@Test
 	public void testGetPlanXML() throws Exception {
@@ -64,7 +171,6 @@ public class XMLLoaderTest {
 				float longueur = 116.400000f;
 				float vitesse = 4.300000f;
 				float duree = (float)longueur/vitesse;
-				System.out.println(troncon.getDepart());
 				Assert.assertEquals(point0, troncon.getDepart());
 				Assert.assertEquals(point2, troncon.getArrivee());
 				Assert.assertEquals(new Float(longueur), new Float(troncon.getLongueur()));
@@ -123,7 +229,115 @@ public class XMLLoaderTest {
 			}
 		}
 	}
+	
+	@Test(expected = LivraisonXMLException.class)  
+	public void testGetLivraisonXML_with_exception() throws LivraisonXMLException {
 
+		// Bad XML file
+		File file = new File("src/main/resources/xml/plan20x20.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+		// ------------------------------------------------------- BAD Attributes values
+        
+		// Bad XML file - Problem Attribut Entrepot adresse
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Entrepot-adresse.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem Attribut Plage heureDebut
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureDebut.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+		// Bad XML file - Problem Attribut Plage heureFin
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureFin.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+  		// Bad XML file - Problem Attribut Livraison id
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-id.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+  		// Bad XML file - Problem Attribut Livraison client
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-client.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	 
+  		// Bad XML file - Problem Attribut Livraison adresse
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-adresse.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// ------------------------------------------------------- / BAD Attributes values
+        
+		// ------------------------------------------------------- MISSING Attributes values
+        
+		// Bad XML file - Problem Attribut Entrepot adresse
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Entrepot-adresse.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem Attribut Plage heureDebut
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureDebut.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+		// Bad XML file - Problem Attribut Plage heureFin
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureFin.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+  		// Bad XML file - Problem Attribut Livraison id
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-id.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	  
+  		// Bad XML file - Problem Attribut Livraison client
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-client.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+	 
+  		// Bad XML file - Problem Attribut Livraison adresse
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-adresse.xml"); 
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// ------------------------------------------------------- / MISSING Attributes values
+        
+		// ------------------------------------------------------- XML's structure malformed
+        
+		// Bad XML file - Problem malformed JourneeType <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-1.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem malformed JourneeType <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-2.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// Bad XML file - Problem malformed Livraisons <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-1.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem malformed Livraisons <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-2.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// Bad XML file - Problem malformed Plage <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-1.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem malformed Plage <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-2.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// Bad XML file - Problem malformed PlageHoraires <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-1.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+
+		// Bad XML file - Problem malformed PlageHoraires <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-2.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// Bad XML file - Problem malformed Entrepot
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Entrepot.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// Bad XML file - Problem malformed Livraison
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraison.xml");    
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        
+		// ------------------------------------------------------- / XML's structure malformed
+	}
+	
 	@Test
 	public void testGetLivraisonXML() throws Exception {
 		HashMap<Integer, Point> plan = new HashMap<Integer, Point>();
