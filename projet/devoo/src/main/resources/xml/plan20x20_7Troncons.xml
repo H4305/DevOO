@@ -10,7 +10,7 @@
 	</Noeud>
 	<Noeud id="2" x="23" y="116">
 		<LeTronconSortant nomRue="h5" vitesse="4,700000" longueur="408,700000" idNoeudDestination="1"/>
-		<LeTronconSortant nomRue="h6" vitesse="3,800000" longueur="291,200000" idNoeudDestination="2"/>
+		<LeTronconSortant nomRue="h6" vitesse="3,800000" longueur="291,200000" idNoeudDestination="0"/>
 		<LeTronconSortant nomRue="h7" vitesse="4,000002" longueur="364,300000" idNoeudDestination="1"/>
 	</Noeud>
 </Reseau>
