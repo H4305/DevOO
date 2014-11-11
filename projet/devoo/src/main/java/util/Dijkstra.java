@@ -14,35 +14,38 @@ public class Dijkstra {
 	
 	public void computePaths(Vertex source)
     {
-        source.minDistance = 0.;
+        source.setMinTemps(0.);
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
       	vertexQueue.add(source);
 
 		while (!vertexQueue.isEmpty()) {
 		    Vertex u = vertexQueue.poll();
 	
-	    	ArrayList<Troncon> adjacencies = u.point.getTronconsSortants();
-	        // Visit each edge exiting u
-	        for (Troncon t : adjacencies)
+	        for (Troncon t : u.getAdjacencies())
 	        {
-	            Vertex v = new Vertex (t.getArrivee());
+	            Vertex v = t.getTarget();
 	            float temps = t.getDuree();
-	            float distanceThroughU = (float)(u.minDistance + temps);
-				if (distanceThroughU < v.minDistance) {
+	            float tempsThroughU = (float)(u.getMinTemps() + temps);
+	            
+				if (tempsThroughU < v.getMinTemps()) {
 				    vertexQueue.remove(v);
-				    v.minDistance = distanceThroughU ;
-				    v.precedent = u;
+				    v.setMinTemps(tempsThroughU);
+				    v.setPrecedent(u);				   
 				    vertexQueue.add(v);
 				}
 	        }
 	    }
+		
     }
 
-    public List<Vertex> getShortestPathTo(Vertex target)
+    public ArrayList<Vertex> getShortestPathTo(Vertex target)
     {
-        List<Vertex> path = new ArrayList<Vertex>();
-        for (Vertex vertex = target; vertex != null; vertex = vertex.precedent)
-            path.add(vertex);
+        ArrayList<Vertex> path = new ArrayList<Vertex>();
+        for (Vertex vertex = target; vertex != null; vertex = vertex.getPrecedent())
+        {
+        	path.add(vertex);
+        }
+        
         Collections.reverse(path);
         return path;
     }

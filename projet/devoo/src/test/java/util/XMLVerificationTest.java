@@ -105,8 +105,6 @@ public class XMLVerificationTest {
         
 		// ------------------------------------------------------- XML's structure malformed
         
-        // TODO Other tests...
-        
 		// Bad XML file - Problem malformed Reseau <opening tag>
 		file = new File("src/test/resources/xml/plan20x20-malformed-Reseau-1.xml");    
         assertFalse(XMLVerification.checkPlanXML(file));

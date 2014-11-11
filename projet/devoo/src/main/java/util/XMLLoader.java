@@ -1,15 +1,22 @@
 package util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
@@ -21,14 +28,51 @@ import model.exceptions.PlanXMLException;
 
 public class XMLLoader {
 
-	public static Set<Troncon> getPlanXML(File file, Element racine) throws PlanXMLException {
+	/**
+	 * This method allows to get the Root from a xml file
+	 * @param file : The XML file we want to get the root
+	 * @return The Element root
+	 */
+	private static Element getRootFromXMLFile(File file){
+
+        if (file != null) {
+             try {
+                DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
+                Document document = constructeur.parse(file);
+                return document.getDocumentElement();
+                
+            } catch (ParserConfigurationException pce) {
+                System.out.println("Erreur de configuration du parseur DOM");
+                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
+            } catch (SAXException se) {
+                System.out.println("Erreur lors du parsing du document");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            } catch (IOException ioe) {
+                System.out.println("Erreur d'entree/sortie");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            }
+        }
+		return null;  
+	}
+	
+	/**
+	 * This method allows to get the plan after check the match with XSD file
+	 * @param file : The XML file we want to load
+	 * @return A set of troncon
+	 * @throws PlanXMLException
+	 */
+	public static PairKey<Set<Troncon>, ArrayList<Vertex>> getPlanXML(File file) throws PlanXMLException {
 		
 		if (!XMLVerification.checkPlanXML(file)) {
 			throw new PlanXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
-			
+		
+		Element racine = getRootFromXMLFile(file);
+		
 		HashMap<Integer, Point> noeuds = new HashMap<Integer, Point>();
+		ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
     	Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
+    	
         NodeList listNodes = racine.getElementsByTagName("Noeud");
 
         for (int i = 0; i < listNodes.getLength(); i++) {
@@ -38,7 +82,7 @@ public class XMLLoader {
 				int id = Integer.parseInt(noeud.getAttribute("id"));
 				int x = Integer.parseInt(noeud.getAttribute("x"));
 				int y = Integer.parseInt(noeud.getAttribute("y"));
-
+				
 				noeuds.put(id, new Point(id, x, y));	
         	}
         }
@@ -59,46 +103,42 @@ public class XMLLoader {
 		            	
 		                // Get the value of the attributes
 		                String nomRue = noeudFils.getAttribute("nomRue");
-		                
-		                // Si .replace(',', '.') ne nous plait pas on peut utiliser ca ..
-		                /*
-		                NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-		                Number number = null;
-						try {
-							number = format.parse("1,234");
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-		                double d = number.floatValue();
-		                */
 		                float vitesse = Float.parseFloat(noeudFils.getAttribute("vitesse").replace(',', '.'));
 		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur").replace(',', '.'));
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
 		                Point pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
 		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
- 
 		        	}
-		        } 
+		        }
+		        
 		        pointDepart.addTronconSortants(listTroncon);
+
+				vertexs.add( new Vertex(pointDepart, listTroncon) );
+				
 		        for (Troncon troncon : listTroncon){
 		        	nodeListTronconSortant.add(troncon);
 		        }
         	}
         }
-		return nodeListTronconSortant;
+		return new PairKey(nodeListTronconSortant, vertexs);
 	}
 
-	// -----------------------------------------------------------------------------------------
-
-	public static DemandeLivraisons getLivraisonXML(File file, Element racine, HashMap<Integer, Point> plan) throws LivraisonXMLException {
+	/**
+	 * This method allows to get the livraison after check the match with XSD file
+	 * @param file : The XML file we want to load
+	 * @param plan : The previously loaded plan, to check if the adresse of the livraison already exists
+	 * @return A DemandeLivraisons object
+	 * @throws LivraisonXMLException
+	 */
+	public static DemandeLivraisons getLivraisonXML(File file, HashMap<Integer, Point> plan) throws LivraisonXMLException {
 		
 		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 		
+		Element racine = getRootFromXMLFile(file);
 		Point entrepot = new Point();
-		
 		NodeList listEntrepot = racine.getElementsByTagName("Entrepot");
 		
 		for (int i = 0; i < listEntrepot.getLength(); i++) {

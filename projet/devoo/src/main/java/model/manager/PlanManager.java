@@ -1,8 +1,11 @@
 package model.manager;
 
 import java.util.*;
+
 import util.Dijkstra;
+import util.PairKey;
 import util.Vertex;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -29,7 +32,7 @@ public class PlanManager {
 	
 	private Controller mController;
 	private Set<Troncon> troncons = new HashSet<Troncon>();
-	private Set<Point> points = new HashSet<Point>();
+	private ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
 
     /**
      * 
@@ -39,26 +42,43 @@ public class PlanManager {
     }
 
     /**
-     * @param PointA 
-     * @param PointB 
-     * @return
+     * Cette methode calcule le plus court chemin entre 2 points avce la methode de Dijkstra
+     * @param Point source
+     * @param Point target 
+     * @param Vertex source
+     * @param Vertex target 
+     * @return 
      */
-    public Chemin plusCourtChemin(Point source, Point cible) {
+    public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
         
     	Dijkstra dijkstra = new Dijkstra();
-    	Vertex vSource = new Vertex (source);
-    	Vertex vCible = new Vertex (cible);
-    	dijkstra.computePaths(vSource);
-    	
-    	List<Vertex> vertexCourtChemin = dijkstra.getShortestPathTo(vCible);
     	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
     	
-    	for(Vertex v : vertexCourtChemin)
+    	dijkstra.computePaths(vSource);
+    	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
+    	
+    	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
-    		pointsDuCourtChemin.add(v.point); 
-    	}
-    	// TODO recuperer la liste des troncons correspondate	
-        return null;
+    		pointsDuCourtChemin.add(v.getPoint()); 
+    	}    	
+    	
+        Chemin chemin = new Chemin(cible, source);  
+        //TODO faire set dureeTrajet tempsParcours
+    	
+        for(int i = 0; i < pointsDuCourtChemin.size()-1; i++)   //on parcourt la liste des points du plus court chemin
+        {
+        	for(Troncon t : pointsDuCourtChemin.get(i).getTronconsSortants())  //on parcourt la liste de troncons sortants des points du plus court chemin
+        	{
+        		if(t.getArrivee().equals(pointsDuCourtChemin.get(i+1)))  //on verifie si on est sur le troncon partant du point i et arrivant au point i+1
+        		{
+        			chemin.addTronconChemin(t);   //on ajoute le troncon au chemin
+        			break;
+        		}
+        	}
+        }      
+    		
+        return chemin;
     }
 
     /**
@@ -92,7 +112,6 @@ public class PlanManager {
     
     public class TronconNotFoundExcepetion extends Exception {
     	
- 
 		private static final long serialVersionUID = 3754278865880411751L;
 
 		@Override
@@ -122,48 +141,33 @@ public class PlanManager {
 		return troncons;
 	}
 	
-	public void setPlan(Set<Troncon> plan) {
-		troncons = plan;
+	public void setPlan(Set<Troncon> troncons) {
+		this.troncons = troncons;
+	}
+	
+	public void setVertexs(ArrayList<Vertex> vertexs) {
+		this.vertexs = vertexs;
 	}
 
 	/**
      * 
      */
     public void loadPlanXML(File fileXML) throws NullPointerException {
-    	
     	if (fileXML != null) {
-            try {
-               // Creation d'un constructeur de documents a l'aide d'une fabrique
-               DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
-               // Lecture du contenu d'un fichier XML avec DOM
-               Document document = constructeur.parse(fileXML);
-               Element racine = document.getDocumentElement();
-               
-               // Get the plan
-               try {
-						//XMLVerification.checkPlanXML(xml, racine);
-						setPlan(XMLLoader.getPlanXML(fileXML, racine));
-						
-						mController.afficherPlan();
-						
-				} catch (PlanXMLException e) {						
-					// On affichera ca dans la vue
-					mController.exceptionOpenFileXML(e.getMessage());
-				}
-              
-           } catch (ParserConfigurationException pce) {
-        	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
-        	   mController.exceptionOpenFileXML("lors de l'appel a fabrique.newDocumentBuilder();");
-           } catch (SAXException se) {
-        	   mController.exceptionOpenFileXML("Erreur lors du parsing du document");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           } catch (IOException ioe) {
-        	   mController.exceptionOpenFileXML("Erreur d'entree/sortie");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           }
+			// Get the plan
+			try {
+				
+				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
+				setPlan(tronconsVertexs.troncons);
+				setVertexs(tronconsVertexs.vertexs);	
+				mController.afficherPlan();
+				
+			} catch (PlanXMLException e) {
+				// On affichera ca dans la vue
+				mController.exceptionOpenFileXML(e.getMessage());
+			}
        } else {
     	   throw new NullPointerException();
        }
     }
-
 }
