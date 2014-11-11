@@ -1,5 +1,6 @@
 package model.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,17 +13,23 @@ public class Chemin {
      * 
      */
 	private Point arrivee;
+	private Point depart;
+	private ArrayList<Troncon> troncon;
+	private float tempsParcours;
 
-	private List<Troncon> troncon;
-
-	public Chemin(Point arrivee, Point depart, List<Troncon> troncon) {
+	public Chemin(Point arrivee, Point depart, ArrayList<Troncon> argTroncons) {
 		super();
 		this.arrivee = arrivee;
 		this.depart = depart;
-		this.troncon = troncon;
+		this.troncon = argTroncons;
 	}
-
-	private Point depart;
+	
+	public Chemin(Point arrivee, Point depart) {
+		super();
+		this.arrivee = arrivee;
+		this.depart = depart;
+		this.troncon = new ArrayList<Troncon>();
+	}
 
 	/**
      * 
@@ -45,8 +52,41 @@ public class Chemin {
 		this.arrivee = pointArrivee;
 	}
 	
-	public List<Troncon> getTroncons() {
+	/**
+     * 
+     */
+	public ArrayList<Troncon> getTroncons() {
 		return troncon;
 	}
+	
+	/**
+     * 
+     */
+	public void addTronconChemin(Troncon troncon) {
+		this.troncon.add(troncon);
+	}
+	
+	/**
+     * 
+     */
+	public String toString()
+	{
+		String s;
+		s = "Chemin : depart de " + this.depart.toString() + ", arrivee à " + this.arrivee.toString() + ", en passant par les rues : "; 
+		for(int i = 0; i< this.troncon.size(); i++)
+		{
+			s = s + this.troncon.get(i).toString() + ", " ;
+		}
+		return s;
+	}
+
+	public float getTempsParcours() {
+		return tempsParcours;
+	}
+
+	public void setTempsParcours(float tempsParcours) {
+		this.tempsParcours = tempsParcours;
+	}
+	
 
 }

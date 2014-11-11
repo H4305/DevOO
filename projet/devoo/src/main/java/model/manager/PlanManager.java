@@ -1,8 +1,10 @@
 package model.manager;
 
 import java.util.*;
+
 import util.Dijkstra;
 import util.Vertex;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -43,22 +45,36 @@ public class PlanManager {
      * @param PointB 
      * @return
      */
-    public Chemin plusCourtChemin(Point source, Point cible) {
+    public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
         
     	Dijkstra dijkstra = new Dijkstra();
-    	Vertex vSource = new Vertex (source);
-    	Vertex vCible = new Vertex (cible);
-    	dijkstra.computePaths(vSource);
-    	
-    	List<Vertex> vertexCourtChemin = dijkstra.getShortestPathTo(vCible);
     	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
     	
-    	for(Vertex v : vertexCourtChemin)
+    	dijkstra.computePaths(vSource);
+    	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
+    	
+    	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
-    		pointsDuCourtChemin.add(v.point); 
-    	}
-    	// TODO recuperer la liste des troncons correspondate	
-        return null;
+    		pointsDuCourtChemin.add(v.getPoint()); 
+    	}    	
+    	
+        Chemin chemin = new Chemin(cible, source);  
+        //TODO faire set dureeTrajet tempsParcours
+    	
+        for(int i = 0; i < pointsDuCourtChemin.size()-1; i++)   //on parcourt la liste des points du plus court chemin
+        {
+        	for(Troncon t : pointsDuCourtChemin.get(i).getTronconsSortants())  //on parcourt la liste de troncons sortants des points du plus court chemin
+        	{
+        		if(t.getArrivee().equals(pointsDuCourtChemin.get(i+1)))  //on verifie si on est sur le troncon partant du point i et arrivant au point i+1
+        		{
+        			chemin.addTronconChemin(t);   //on ajoute le troncon au chemin
+        			break;
+        		}
+        	}
+        }      
+    		
+        return chemin;
     }
 
     /**

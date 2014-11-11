@@ -6,55 +6,45 @@ import model.data.Troncon;
 
 public class Vertex implements Comparable<Vertex> {
 
-    private Integer id;
+    private Point point;
+    private ArrayList<Troncon> adjacencies;
     private double minTemps = Double.POSITIVE_INFINITY;
     private Vertex precedent;
-    private ArrayList<Troncon> adjacencies;
     
-    public Vertex(Integer id, ArrayList<Troncon> adjacencies) 
+    public Vertex(Point argPoint) 
     { 
-    	this.id = id; 
-    	this.adjacencies = adjacencies;
+    	this.point = argPoint;
+    	this.adjacencies = this.point.getTronconsSortants();
     }
-    
     
     public int compareTo(Vertex autre)
     {
-        return Double.compare(minTemps, autre.minTemps);
+        return Double.compare(getMinTemps(), autre.getMinTemps());
     }
-    
-    public Integer getId()
-    {
-    	return this.id;
-    }
-    
-    public double getMinTemps()
-    {
-    	return minTemps;
-    }
-    
-    public void setMinTemps(double minTemps)
-    {
-    	this.minTemps = minTemps;
-    }
-    
-    public Vertex getPrecedent()
-    {
-    	return precedent;
-    }
-    
-    public void setPrecedent(Vertex precedent)
-    {
-    	this.precedent = precedent;
-    }
-    
-    public void setAdjacencies(ArrayList<Troncon> adjacencies)
-    {
-    	this.adjacencies = adjacencies;
-    }
-    
-    public ArrayList<Troncon> getAdjacencies()
-    {
-    	return adjacencies;
-    }
+
+	public Point getPoint() {
+		return point;
+	}
+
+	public Vertex getPrecedent() {
+		return this.precedent;
+	}
+
+	public void setPrecedent(Vertex precedent) {
+		this.precedent = precedent;
+	}
+
+	public ArrayList<Troncon> getAdjacencies() {
+		return adjacencies;
+	}
+
+	public double getMinTemps() {
+		return minTemps;
+	}
+
+	public void setMinTemps(double minTemps) {
+		this.minTemps = minTemps;
+	}
+
+
 }
