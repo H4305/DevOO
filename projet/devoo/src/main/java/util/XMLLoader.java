@@ -113,8 +113,8 @@ public class XMLLoader {
 		        }
 		        
 		        pointDepart.addTronconSortants(listTroncon);
-		        
-				vertexs.add(new Vertex(pointDepart.getId(), listTroncon));
+
+				vertexs.add( new Vertex(pointDepart, listTroncon) );
 				
 		        for (Troncon troncon : listTroncon){
 		        	nodeListTronconSortant.add(troncon);
