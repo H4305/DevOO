@@ -21,6 +21,7 @@ import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.Point;
 import model.data.Troncon;
+import solver.search.strategy.strategy.set.SetSearchStrategy;
 import vue.VueChemin;
 import vue.VuePoint;
 import vue.VueTroncon;
@@ -49,6 +50,8 @@ public class PlanPanel extends JPanel {
 	Set<VuePoint> vuesPoints = new HashSet<VuePoint>();
 	Set<VueTroncon> vuesTroncon = new HashSet<VueTroncon>();
 	PointClickedListener pointClickedListener;
+	
+	VuePoint lastSelectedPoint;
 
 	boolean displayItineraire = false;
 
@@ -56,13 +59,12 @@ public class PlanPanel extends JPanel {
 		mTronconsPlan = troncons;
 
 		setLayout(new BorderLayout());
-		//setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setBackground(Color.GREEN);
 		addMouseListener(new MouseActionListener());
 
 		setPlan(new HashSet<Troncon>(troncons));
-
 	}
 	
 	public void setPlan(Set<Troncon> troncons) {
@@ -191,19 +193,30 @@ public class PlanPanel extends JPanel {
 	
 	private class MouseActionListener implements MouseListener {
 		
-		VuePoint lastPoint;
+		boolean selectedPoint = false;
+		
 
 		@Override
 		public void mouseClicked(MouseEvent arg0){
 			LOGGER.log(Level.INFO, "Plan clicked");
 			if(pointClickedListener != null) {
+				selectedPoint = false;
 				for(VuePoint vuePoint : vuesPoints) {
-					lastPoint = vuePoint;
-					if(vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
+
+					if(!selectedPoint && vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
 						vuePoint.mouseDown(arg0);
 						pointClickedListener.pointClicked(vuePoint.getPoint());
+						vuePoint.setSelected(true);
+						selectedPoint = true;
+						lastSelectedPoint = vuePoint;
+					} else {
+						vuePoint.setSelected(false);
 					}
 				}
+				if(!selectedPoint) {
+					lastSelectedPoint.setSelected(true);
+				}
+				repaint();
 			}
 		}
 
@@ -227,9 +240,6 @@ public class PlanPanel extends JPanel {
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			if(lastPoint != null) {
-				lastPoint.mouseUp(arg0);
-			}
 			
 		}
 		

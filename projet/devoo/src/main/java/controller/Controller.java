@@ -65,17 +65,32 @@ public class Controller {
 			@Override
 			public void pointClicked(Point point) {
 				LOG.log(Level.INFO, "Point Clicked");
+				onePointSelected(point);
 			}
 		});
     }
     
-	/**
-	 * This method asks the views to select a file and send it to the LivraisonManager class, to analyse it.
-	 * The file should contain a "Plan" in a xml format
-	 * 
-	 */
-    public void loadPlanXML() {
-    	LOG.log(Level.INFO, "loadPlanXML :: BEGIN");
+    public void onePointSelected(Point point) {
+    	afficherLivraison(point);
+    }
+    
+    public void afficherLivraison(Point point) {
+    	Livraison livraison = mLivraisonManager.findLivraisonByAddress(point);
+    	if(livraison != null) {
+    		PlageHoraire plageHoraire = mLivraisonManager.findPlageHoraireByLivraison(livraison);
+    		if(plageHoraire!=null) {
+    			mVueGestionLivraison.afficherLivraison(plageHoraire, livraison);
+    		} else {
+    			masquerLivraison();
+    		}
+    	} else {
+    		masquerLivraison();
+    	}
+    }
+    
+    public void masquerLivraison() {
+    	mVueGestionLivraison.masquerLivraison();
+    }
 
     	mPlanManager.loadPlanXML(this.mVueGestionLivraison.getFichierXML());
     	

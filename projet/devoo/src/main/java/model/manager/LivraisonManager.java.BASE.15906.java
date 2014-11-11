@@ -9,9 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
-
-
 /*
  * controller import
  */
@@ -32,21 +29,10 @@ import model.exceptions.LivraisonXMLException;
  * util import
  */
 import util.XMLLoader;
-import util.GenerationIDint;
+import util.generationIDint;
 //import util.generationIDint;
-import util.procedure.PairProcedure;
 
 /**
- * 
- * LivraisonManager has the role to administrate all the data related to the "livraisons". 
- * It stores most of the mathematic results and it's a bridge between the controller and the model.
- * 
- * @author      Vadim Caen
- * @author      Maria Etegan
- * @author      Anthony Faraut
- * @author      Ludmila Danilescu
- * @author      Marco Montalto
- * @author      Bernardo Rittmeyer
  * 
  */
 public class LivraisonManager {
@@ -54,26 +40,29 @@ public class LivraisonManager {
 	private Controller mController;
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
-	private GenerationIDint uniqueIDgenerator; 
+	private generationIDint uniqueIDgenerator = new generationIDint(); 
 
-   /**
-    * Class constructor specifying a Controller and a PlanManager
-    * 
-    * @param planManager is the PlanManager, necessary as LivraisonManager needs the plan data.
-    * @param controller is the Controller, to advise the system when operations are concluded.
-    */
+    
     public LivraisonManager(PlanManager planManager, Controller controller) {
     	this.mPlanManager = planManager;
     	this.mController = controller;
-    	this.uniqueIDgenerator = new GenerationIDint();
+    }
+
+    public DemandeLivraisons getDemandeLivraisons() {
+		return mDemandeLivraisons;
+	}
+
+    /**
+     * @return
+     */
+    public Itineraire calculItineraire() {
+        // TODO implement here
+        return null;
     }
     
-    /**
-	 * This method loads a "demande de livraisons" from a xml file, passing through the XMLLoader class,
-	 * and stores the result to the attributes mDemandeLivraisons. An exception is catched if there's a problem
-	 * opening or reading the file.
+	/**
 	 * 
-	 * @param fileXML is a xml File, which contains all the informations concerning a "demande de livraisons"
+	 * @param fileXML
 	 */
     public void loadDemandeLivraisonsXML(File fileXML) {
     	if (fileXML != null) {             
@@ -89,29 +78,18 @@ public class LivraisonManager {
 			}
        }     	
     }
-
-    public DemandeLivraisons getDemandeLivraisons() {
-		return mDemandeLivraisons;
-	}
-
-    /**
-     * @return
-     */
-    public Itineraire calculItineraire() {
-        // TODO implement here
-        return null;
-    }
-	
-    public List<PlageHoraire> getPlagesHoraire() {
+    
+    public List<PlageHoraire> getPlagesHoraire(){
     	
-    	return this.mDemandeLivraisons.getPlagesHoraire();
+    	List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
+    	plagesHoraires.addAll(this.mDemandeLivraisons.getPlagesHoraire());
+    	return plagesHoraires;
     }
     
     public List<Livraison> getLivraisons(){
-    	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
-    	if(plagesHoraires == null) return new ArrayList<>();
-    	
     	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
+    	
+    	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
     	for(PlageHoraire plage: plagesHoraires){
     		lesLivraisons.addAll(plage.getLivraisons());
     	}
@@ -175,24 +153,5 @@ public class LivraisonManager {
     }
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
-    }
-    
-    public Livraison findLivraisonByAddress(Point address) {
-    	for(Livraison livraison : getLivraisons()) {
-    		if(livraison.getAdresse().equals(address)) 
-    			return livraison;
-    	}
-    	return null;
-    }
-    
-    public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
-    	for(PlageHoraire horaire : getPlagesHoraire()) {
-    		for(Livraison liv : horaire.getLivraisons()) {
-    			if(livraison.equals(liv)) {
-    				return horaire;
-    			}
-    		}
-    	}
-    	return null;
     }
 }

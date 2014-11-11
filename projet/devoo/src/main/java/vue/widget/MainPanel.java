@@ -11,33 +11,47 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import vue.VueGestionLivraison;
+import vue.VueLivraison;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
 import javax.swing.BoxLayout;
+
+import model.data.Livraison;
+import model.data.PlageHoraire;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Component;
 
 public class MainPanel extends JPanel {
 
 	VueGestionLivraison mGestionLivraison;
-	private JPanel planWrapper;
 	private JButton btnChargerPlan;
 	private JButton btnLoadLivraison;
 	private JPanel panelError;
 	private JLabel lblErreur;
 	private JLabel lblErreurMessage;
-	private JPanel panel;
+	private JPanel panelPrincipal;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JPanel panel_4;
+	private JPanel panelLivraisons;
 	private JPanel panel_5;
 	private JButton btnAnnuler;
 	private JButton btnRetablir;
 	private JButton btnExporter;
+	private JPanel panelLivraisonSelected;
+	private JPanel panelLivraisonAdd;
+	private JButton btnSupprimerLivraison;
+	private JButton btnAjouter;
+	
+	private VueLivraison vueLivraison;
 
 	/**
 	 * Create the panel.
@@ -46,12 +60,12 @@ public class MainPanel extends JPanel {
 		mGestionLivraison = gestionLivraison;
 		setLayout(new BorderLayout(0, 0));
 		
-		panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		panelPrincipal = new JPanel();
+		add(panelPrincipal, BorderLayout.CENTER);
+		panelPrincipal.setLayout(new BorderLayout(0, 0));
 		
 		panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.NORTH);
+		panelPrincipal.add(panel_1, BorderLayout.NORTH);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
 		panel_1.add(btnLoadLivraison);
@@ -62,11 +76,8 @@ public class MainPanel extends JPanel {
 			}
 		});
 		
-		planWrapper = new JPanel();
-		panel.add(planWrapper, BorderLayout.CENTER);
-		
 		panel_5 = new JPanel();
-		panel.add(panel_5, BorderLayout.SOUTH);
+		panelPrincipal.add(panel_5, BorderLayout.SOUTH);
 		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnExporter = new JButton("<html><center>Exporter <br/>feuille de route</center></html>");
@@ -104,9 +115,32 @@ public class MainPanel extends JPanel {
 			}
 		});
 		
-		panel_4 = new JPanel();
-		panel_2.add(panel_4);
-		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+		panelLivraisons = new JPanel();
+		panel_2.add(panelLivraisons);
+		panelLivraisons.setLayout(new BoxLayout(panelLivraisons, BoxLayout.Y_AXIS));
+		
+		panelLivraisonSelected = new JPanel();
+		panelLivraisons.add(panelLivraisonSelected);
+		panelLivraisonSelected.setLayout(new BorderLayout(0, 0));
+		
+		vueLivraison = new VueLivraison();
+		panelLivraisonSelected.add(vueLivraison, BorderLayout.CENTER);
+		
+		btnSupprimerLivraison = new JButton("Supprimer");
+		btnSupprimerLivraison.setEnabled(false);
+		btnSupprimerLivraison.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+		
+		panelLivraisonAdd = new JPanel();
+		panelLivraisons.add(panelLivraisonAdd);
+		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
+		
+		btnAjouter = new JButton("Ajouter");
+		btnAjouter.setEnabled(false);
+		panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
@@ -125,8 +159,11 @@ public class MainPanel extends JPanel {
 	}
 	
 	public void setPlan(PlanPanel plan) {
-		planWrapper.removeAll();
-		planWrapper.add(plan);
+		Component component = ((BorderLayout)panelPrincipal.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+		if(component != null) {
+			panelPrincipal.remove(component);
+		}
+		panelPrincipal.add(plan, BorderLayout.CENTER);
 		if(plan.hasPlan()) {
 			btnLoadLivraison.setEnabled(true);
 		}
@@ -135,5 +172,30 @@ public class MainPanel extends JPanel {
 	public void setErrorMessage(String message) {
 		lblErreur.setVisible(true);
 		lblErreurMessage.setText(message);
+	}
+	
+	public void setLivraisonSelected(PlageHoraire plageHoraire, Livraison livraison) {
+		vueLivraison.setLivraison(plageHoraire, livraison);
+		btnSupprimerLivraison.setEnabled(true);
+		//validate();
+	}
+	
+	public void removeLivraison() {
+		vueLivraison.removeLivraion();
+		btnSupprimerLivraison.setEnabled(false);
+		//validate();
+	}
+	
+	public JPanel getPanelLivraisonAdd() {
+		return panelLivraisonAdd;
+	}
+	public JButton getBtnExporter() {
+		return btnExporter;
+	}
+	public JButton getBtnAnnuler() {
+		return btnAnnuler;
+	}
+	public JButton getBtnRetablir() {
+		return btnRetablir;
 	}
 }

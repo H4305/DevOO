@@ -12,9 +12,14 @@ public class VuePoint extends Vue{
 	
 	
 	private static final int POINT_RADIUS = 10;
+	private static final int POINT_SELECTED_RADIUS = 15;
+	
+	
 	
 	Point pointModel;
 	java.awt.Point pointVue;
+	
+	boolean selected = false;
 
 	Color color = AppColors.normalPoint;
 	public VuePoint(Point pointModel) {
@@ -26,6 +31,11 @@ public class VuePoint extends Vue{
 	@Override
 	public void draw(Graphics g, CoordinateConverter converter) {
 		this.pointVue = converter.convert(pointModel.x, pointModel.y);
+		if(selected) {
+			g.setColor(AppColors.selectedPointBorder);
+			g.fillOval(pointVue.x - POINT_SELECTED_RADIUS / 2, pointVue.y - POINT_SELECTED_RADIUS / 2,
+					POINT_SELECTED_RADIUS, POINT_SELECTED_RADIUS);
+		}
 			g.setColor(color);
 			g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2,
 					POINT_RADIUS, POINT_RADIUS);
@@ -60,5 +70,9 @@ public class VuePoint extends Vue{
 	
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

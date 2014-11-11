@@ -9,9 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
-
-
 /*
  * controller import
  */
@@ -34,7 +31,6 @@ import model.exceptions.LivraisonXMLException;
 import util.XMLLoader;
 import util.GenerationIDint;
 //import util.generationIDint;
-import util.procedure.PairProcedure;
 
 /**
  * 
@@ -102,16 +98,16 @@ public class LivraisonManager {
         return null;
     }
 	
+    
     public List<PlageHoraire> getPlagesHoraire() {
     	
     	return this.mDemandeLivraisons.getPlagesHoraire();
     }
     
     public List<Livraison> getLivraisons(){
-    	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
-    	if(plagesHoraires == null) return new ArrayList<>();
-    	
     	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
+    	
+    	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
     	for(PlageHoraire plage: plagesHoraires){
     		lesLivraisons.addAll(plage.getLivraisons());
     	}
@@ -175,24 +171,5 @@ public class LivraisonManager {
     }
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
-    }
-    
-    public Livraison findLivraisonByAddress(Point address) {
-    	for(Livraison livraison : getLivraisons()) {
-    		if(livraison.getAdresse().equals(address)) 
-    			return livraison;
-    	}
-    	return null;
-    }
-    
-    public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
-    	for(PlageHoraire horaire : getPlagesHoraire()) {
-    		for(Livraison liv : horaire.getLivraisons()) {
-    			if(livraison.equals(liv)) {
-    				return horaire;
-    			}
-    		}
-    	}
-    	return null;
     }
 }
