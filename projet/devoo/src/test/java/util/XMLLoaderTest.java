@@ -26,23 +26,23 @@ public class XMLLoaderTest {
 
 		// 1150 troncons
 		File file = new File("src/main/resources/xml/plan20x20.xml");
-		Set<Troncon> troncons = XMLLoader.getPlanXML(file);
+		Set<Troncon> troncons = XMLLoader.getPlanXML(file).troncons;
 		Assert.assertEquals(1150, troncons.size());
 		
 		// 724 troncons
 		file = new File("src/main/resources/xml/plan20x20_724Troncons.xml");
-		troncons = XMLLoader.getPlanXML(file);
+		troncons = XMLLoader.getPlanXML(file).troncons;
 		Assert.assertEquals(724, troncons.size());
 		
 		// 200 troncons
 		file = new File("src/main/resources/xml/plan20x20_200Troncons.xml");
-		troncons = XMLLoader.getPlanXML(file);
+		troncons = XMLLoader.getPlanXML(file).troncons;
 		Assert.assertEquals(200, troncons.size());
 		
 		
 		// 7 troncons
 		file = new File("src/main/resources/xml/plan20x20_7Troncons.xml");
-		troncons = XMLLoader.getPlanXML(file);
+		troncons = XMLLoader.getPlanXML(file).troncons;
 		Assert.assertEquals(7, troncons.size());
 		
 		Point point0 = new Point(0,51,37);

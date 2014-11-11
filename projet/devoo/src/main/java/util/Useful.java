@@ -47,7 +47,7 @@ public class Useful {
 		if (xml != null) {
 			try {
 				// Get the plan
-				return XMLLoader.getPlanXML(xml);
+				return XMLLoader.getPlanXML(xml).troncons;
 			} catch (PlanXMLException e) {
 				System.out.println(e.getMessage());
 			}
