@@ -13,6 +13,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import vue.VueGestionLivraison;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class MainPanel extends JPanel {
 
@@ -23,6 +29,15 @@ public class MainPanel extends JPanel {
 	private JPanel panelError;
 	private JLabel lblErreur;
 	private JLabel lblErreurMessage;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JPanel panel_5;
+	private JButton btnAnnuler;
+	private JButton btnRetablir;
+	private JButton btnExporter;
 
 	/**
 	 * Create the panel.
@@ -31,13 +46,15 @@ public class MainPanel extends JPanel {
 		mGestionLivraison = gestionLivraison;
 		setLayout(new BorderLayout(0, 0));
 		
-		planWrapper = new JPanel();
-		add(planWrapper, BorderLayout.CENTER);
+		panel = new JPanel();
+		add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.WEST);
+		panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.NORTH);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
+		panel_1.add(btnLoadLivraison);
 		btnLoadLivraison.setEnabled(false);
 		btnLoadLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -45,32 +62,51 @@ public class MainPanel extends JPanel {
 			}
 		});
 		
+		planWrapper = new JPanel();
+		panel.add(planWrapper, BorderLayout.CENTER);
+		
+		panel_5 = new JPanel();
+		panel.add(panel_5, BorderLayout.SOUTH);
+		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnExporter = new JButton("<html><center>Exporter <br/>feuille de route</center></html>");
+		btnExporter.setEnabled(false);
+		btnExporter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel_5.add(btnExporter);
+		
+		btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setEnabled(false);
+		panel_5.add(btnAnnuler);
+		
+		btnRetablir = new JButton("R\u00E9tablir");
+		btnRetablir.setEnabled(false);
+		panel_5.add(btnRetablir);
+		
+		JPanel panelLeft = new JPanel();
+		add(panelLeft, BorderLayout.WEST);
+		
+		panel_2 = new JPanel();
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		panelLeft.setLayout(new BoxLayout(panelLeft, BoxLayout.X_AXIS));
+		panelLeft.add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_2.add(panel_3);
+		
 		btnChargerPlan = new JButton("Charger Plan");
+		panel_3.add(btnChargerPlan);
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
 			}
 		});
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnChargerPlan, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-						.addComponent(btnLoadLivraison, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnChargerPlan)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnLoadLivraison)
-					.addContainerGap(230, Short.MAX_VALUE))
-		);
-		panel_1.setLayout(gl_panel_1);
+		
+		panel_4 = new JPanel();
+		panel_2.add(panel_4);
+		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
