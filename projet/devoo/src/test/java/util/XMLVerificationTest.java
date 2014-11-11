@@ -136,6 +136,33 @@ public class XMLVerificationTest {
         
 		// ------------------------------------------------------- / BAD Attributes values
         
+		// ------------------------------------------------------- MISSING Attributes values
+        
+		// Bad XML file - Problem Attribut Entrepot adresse
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Entrepot-adresse.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+
+		// Bad XML file - Problem Attribut Plage heureDebut
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureDebut.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+	  
+		// Bad XML file - Problem Attribut Plage heureFin
+		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureFin.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+	  
+  		// Bad XML file - Problem Attribut Livraison id
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-id.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+	  
+  		// Bad XML file - Problem Attribut Livraison client
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-client.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+	 
+  		// Bad XML file - Problem Attribut Livraison adresse
+		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-adresse.xml"); 
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// ------------------------------------------------------- / MISSING Attributes values
         
 		// ------------------------------------------------------- XML's structure malformed
         
