@@ -1,0 +1,110 @@
+package util;
+<<<<<<< HEAD
+
+import java.util.ArrayList;
+
+import model.data.Troncon;
+
+public class Vertex implements Comparable<Vertex> {
+
+    private Integer id;
+    private double minTemps = Double.POSITIVE_INFINITY;
+    private Vertex precedent;
+    private ArrayList<Troncon> adjacencies;
+    
+    public Vertex(Integer id, ArrayList<Troncon> adjacencies) 
+    { 
+    	this.id = id; 
+    	this.adjacencies = adjacencies;
+    }
+    
+    
+    public int compareTo(Vertex autre)
+    {
+        return Double.compare(minTemps, autre.minTemps);
+    }
+    
+    public Integer getId()
+    {
+    	return this.id;
+    }
+    
+    public double getMinTemps()
+    {
+    	return minTemps;
+    }
+    
+    public void setMinTemps(double minTemps)
+    {
+    	this.minTemps = minTemps;
+    }
+    
+    public Vertex getPrecedent()
+    {
+    	return precedent;
+    }
+    
+    public void setPrecedent(Vertex precedent)
+    {
+    	this.precedent = precedent;
+    }
+    
+    public void setAdjacencies(ArrayList<Troncon> adjacencies)
+    {
+    	this.adjacencies = adjacencies;
+    }
+    
+    public ArrayList<Troncon> getAdjacencies()
+    {
+    	return adjacencies;
+    }
+=======
+import model.data.Point;
+import model.data.Troncon;
+import java.util.ArrayList;
+
+public class Vertex implements Comparable<Vertex> {
+
+    private Point point;
+    private ArrayList<Troncon> adjacencies;
+    private double minTemps = Double.POSITIVE_INFINITY;
+    private Vertex precedent;
+    
+    public Vertex(Point argPoint) 
+    { 
+    	this.point = argPoint;
+    	this.adjacencies = this.point.getTronconsSortants();
+    }
+    
+    public int compareTo(Vertex autre)
+    {
+        return Double.compare(getMinTemps(), autre.getMinTemps());
+    }
+
+	public Point getPoint() {
+		return point;
+	}
+
+	public Vertex getPrecedent() {
+		return this.precedent;
+	}
+
+	public void setPrecedent(Vertex precedent) {
+		this.precedent = precedent;
+	}
+
+	public ArrayList<Troncon> getAdjacencies() {
+		return adjacencies;
+	}
+
+	public double getMinTemps() {
+		return minTemps;
+	}
+
+	public void setMinTemps(double minTemps) {
+		this.minTemps = minTemps;
+	}
+
+
+>>>>>>> 4734be907a62d618496c8acf6d155cd24f457123
+}
