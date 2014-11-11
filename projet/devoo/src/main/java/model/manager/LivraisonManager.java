@@ -69,7 +69,7 @@ public class LivraisonManager {
 			// Get the livraison
 			try {
 				HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
-				this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML,planPoints);
+				this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, planPoints);
 				mController.afficherDemandeLivraisons();
 				
 			} catch (LivraisonXMLException e) {

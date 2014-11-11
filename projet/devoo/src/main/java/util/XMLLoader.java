@@ -28,13 +28,16 @@ import model.exceptions.PlanXMLException;
 
 public class XMLLoader {
 
+	/**
+	 * This method allows to get the Root from a xml file
+	 * @param file : The XML file we want to get the root
+	 * @return The Element root
+	 */
 	private static Element getRootFromXMLFile(File file){
 
         if (file != null) {
              try {
-                // Creation d'un constructeur de documents a l'aide d'une fabrique
                 DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
-                // Lecture du contenu d'un fichier XML avec DOM
                 Document document = constructeur.parse(file);
                 return document.getDocumentElement();
                 
@@ -53,10 +56,9 @@ public class XMLLoader {
 	}
 	
 	/**
-	 * This method allows to get the plan after check the macth with XSD file
+	 * This method allows to get the plan after check the match with XSD file
 	 * @param file : The XML file we want to load
-	 * @param racine 
-	 * @return
+	 * @return A set of troncon
 	 * @throws PlanXMLException
 	 */
 	public static Set<Troncon> getPlanXML(File file) throws PlanXMLException {
@@ -98,25 +100,12 @@ public class XMLLoader {
 		            	
 		                // Get the value of the attributes
 		                String nomRue = noeudFils.getAttribute("nomRue");
-		                
-		                // Si .replace(',', '.') ne nous plait pas on peut utiliser ca ..
-		                /*
-		                NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-		                Number number = null;
-						try {
-							number = format.parse("1,234");
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-		                double d = number.floatValue();
-		                */
 		                float vitesse = Float.parseFloat(noeudFils.getAttribute("vitesse").replace(',', '.'));
 		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur").replace(',', '.'));
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
 		                Point pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
 		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
- 
 		        	}
 		        } 
 		        pointDepart.addTronconSortants(listTroncon);
@@ -128,8 +117,13 @@ public class XMLLoader {
 		return nodeListTronconSortant;
 	}
 
-	// -----------------------------------------------------------------------------------------
-
+	/**
+	 * This method allows to get the livraison after check the match with XSD file
+	 * @param file : The XML file we want to load
+	 * @param plan : The previously loaded plan, to check if the adresse of the livraison already exists
+	 * @return A DemandeLivraisons object
+	 * @throws LivraisonXMLException
+	 */
 	public static DemandeLivraisons getLivraisonXML(File file, HashMap<Integer, Point> plan) throws LivraisonXMLException {
 		
 		if (!XMLVerification.checkLivraisonXML(file)) {
