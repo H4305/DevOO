@@ -49,17 +49,68 @@ public class XMLLoaderTest {
 		Point point1 = new Point(1,26,65);
 		Point point2 = new Point(2,23,116);
 		
-
-		List<Troncon> listTroncons = new ArrayList<Troncon>(troncons);
-
-		Troncon troncon = listTroncons.get(0);
-		Assert.assertEquals(point0, troncon.getDepart());
-		Assert.assertEquals(point1, troncon.getArrivee());
-		float vitesse = 350.200000f;
-		float longueur = 4.400000f;
-		float duree = (float)vitesse/longueur;
-		Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
-		
+		for (Troncon troncon : troncons) {
+			
+			if (troncon.getNomRue().equals("h1")){
+				float vitesse = 350.200000f;
+				float longueur = 4.400000f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point0, troncon.getDepart());
+				Assert.assertEquals(point1, troncon.getArrivee());
+				System.out.println(duree);
+				System.out.println(troncon.getDuree());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h2")){
+				float vitesse = 116.400000f;
+				float longueur = 4.300000f;
+				float duree = (float)longueur/vitesse;
+				System.out.println(troncon.getDepart());
+				Assert.assertEquals(point0, troncon.getDepart());
+				Assert.assertEquals(point2, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h3")){
+				float vitesse = 300.200000f;
+				float longueur = 4.500000f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point1, troncon.getDepart());
+				Assert.assertEquals(point0, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h4")){
+				float vitesse = 408.700000f;
+				float longueur = 4.200000f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point1, troncon.getDepart());
+				Assert.assertEquals(point2, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h5")){
+				float vitesse = 408.700000f;
+				float longueur = 4.700000f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point2, troncon.getDepart());
+				Assert.assertEquals(point1, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h6")){
+				float vitesse = 291.200000f;
+				float longueur = 3.800000f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point2, troncon.getDepart());
+				Assert.assertEquals(point1, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+			else if (troncon.getNomRue().equals("h7")){
+				float vitesse = 364.300000f;
+				float longueur = 4.000002f;
+				float duree = (float)longueur/vitesse;
+				Assert.assertEquals(point2, troncon.getDepart());
+				Assert.assertEquals(point1, troncon.getArrivee());
+				Assert.assertEquals(new Float(duree), new Float(troncon.getDuree()));
+			}
+		}
 	}
 
 	@Test
