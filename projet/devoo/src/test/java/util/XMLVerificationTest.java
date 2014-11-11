@@ -29,43 +29,43 @@ public class XMLVerificationTest {
 		// ------------------------------------------------------- BAD Attributes values
 		
 		// Bad XML file - Problem Attribut Noeud id
-		file = new File("src/test/resources/xml/plan20x20-1.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-id.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
  
 		// Bad XML file - Problem Attribut Noeud x
-		file = new File("src/test/resources/xml/plan20x20-2.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-x.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut Noeud y
-		file = new File("src/test/resources/xml/plan20x20-3.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-noeud-y.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant nomRue
-		file = new File("src/test/resources/xml/plan20x20-4.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-nomRue.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant vitesse
-		file = new File("src/test/resources/xml/plan20x20-5.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant vitesse 2
-		file = new File("src/test/resources/xml/plan20x20-6.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse-1.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant vitesse 3
-		file = new File("src/test/resources/xml/plan20x20-7.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-vitesse-2.xml"); 
         assertFalse(XMLVerification.checkPlanXML(file));
 	
 		// Bad XML file - Problem Attribut LeTronconSortant longueur
-		file = new File("src/test/resources/xml/plan20x20-8.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-longueur.xml");  
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant longueur 2
-		file = new File("src/test/resources/xml/plan20x20-9.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-longueur-1.xml");   
         assertFalse(XMLVerification.checkPlanXML(file));
 
 		// Bad XML file - Problem Attribut LeTronconSortant idNoeudDestination
-		file = new File("src/test/resources/xml/plan20x20-10.xml"); 
+		file = new File("src/test/resources/xml/plan20x20-attribut-LeTronconSortant-idNoeudDestination.xml");    
         assertFalse(XMLVerification.checkPlanXML(file));
         
 		// ------------------------------------------------------- / BAD Attributes values
