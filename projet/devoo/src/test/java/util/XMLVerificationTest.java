@@ -91,27 +91,27 @@ public class XMLVerificationTest {
 		// ------------------------------------------------------- BAD Attributes values
         
 		// Bad XML file - Problem Attribut Entrepot adresse
-		file = new File("src/test/resources/xml/livraison10x10-1.xml"); 
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Entrepot-adresse.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
 
 		// Bad XML file - Problem Attribut Plage heureDebut
-		file = new File("src/test/resources/xml/livraison10x10-2.xml"); 
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureDebut.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
 	  
 		// Bad XML file - Problem Attribut Plage heureFin
-		file = new File("src/test/resources/xml/livraison10x10-3.xml"); 
+		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureFin.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
 	  
   		// Bad XML file - Problem Attribut Livraison id
-		file = new File("src/test/resources/xml/livraison20x20-1.xml"); 
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-id.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
 	  
   		// Bad XML file - Problem Attribut Livraison client
-		file = new File("src/test/resources/xml/livraison20x20-2.xml"); 
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-client.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
 	 
   		// Bad XML file - Problem Attribut Livraison adresse
-		file = new File("src/test/resources/xml/livraison20x20-3.xml"); 
+		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-adresse.xml"); 
         assertFalse(XMLVerification.checkLivraisonXML(file));
         
 		// ------------------------------------------------------- / BAD Attributes values
