@@ -68,8 +68,11 @@ public class XMLLoader {
 		}
 		
 		Element racine = getRootFromXMLFile(file);
+		
 		HashMap<Integer, Point> noeuds = new HashMap<Integer, Point>();
+		ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
     	Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
+    	
         NodeList listNodes = racine.getElementsByTagName("Noeud");
 
         for (int i = 0; i < listNodes.getLength(); i++) {
@@ -79,7 +82,7 @@ public class XMLLoader {
 				int id = Integer.parseInt(noeud.getAttribute("id"));
 				int x = Integer.parseInt(noeud.getAttribute("x"));
 				int y = Integer.parseInt(noeud.getAttribute("y"));
-
+				
 				noeuds.put(id, new Point(id, x, y));	
         	}
         }
@@ -107,8 +110,12 @@ public class XMLLoader {
 		                Point pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
 		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
 		        	}
-		        } 
+		        }
+		        
 		        pointDepart.addTronconSortants(listTroncon);
+		        
+				vertexs.add(new Vertex(pointDepart.getId(), listTroncon));
+				
 		        for (Troncon troncon : listTroncon){
 		        	nodeListTronconSortant.add(troncon);
 		        }
