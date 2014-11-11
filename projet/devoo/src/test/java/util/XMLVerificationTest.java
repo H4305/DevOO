@@ -75,7 +75,27 @@ public class XMLVerificationTest {
         
         // TODO Other tests...
         
+		// Bad XML file - Problem malformed Reseau <opening tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Reseau-1.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
 
+		// Bad XML file - Problem malformed Reseau <closing tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Reseau-2.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
+      
+		// Bad XML file - Problem malformed Noeud <opening tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Noeud-1.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
+
+		// Bad XML file - Problem malformed Noeud <closing tag>
+		file = new File("src/test/resources/xml/plan20x20-malformed-Noeud-2.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
+        
+		// Bad XML file - Problem malformed LeTronconSortant
+		file = new File("src/test/resources/xml/plan20x20-malformed-LeTronconSortant.xml");    
+        assertFalse(XMLVerification.checkPlanXML(file));
+        
+        
 		// ------------------------------------------------------- / XML's structure malformed
 	}  
 	
@@ -115,5 +135,50 @@ public class XMLVerificationTest {
         assertFalse(XMLVerification.checkLivraisonXML(file));
         
 		// ------------------------------------------------------- / BAD Attributes values
+        
+        
+		// ------------------------------------------------------- XML's structure malformed
+        
+		// Bad XML file - Problem malformed JourneeType <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-1.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+
+		// Bad XML file - Problem malformed JourneeType <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-2.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// Bad XML file - Problem malformed Livraisons <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-1.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+
+		// Bad XML file - Problem malformed Livraisons <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-2.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// Bad XML file - Problem malformed Plage <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-1.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+
+		// Bad XML file - Problem malformed Plage <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-2.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// Bad XML file - Problem malformed PlageHoraires <opening tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-1.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+
+		// Bad XML file - Problem malformed PlageHoraires <closing tag>
+		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-2.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// Bad XML file - Problem malformed Entrepot
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Entrepot.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// Bad XML file - Problem malformed Livraison
+		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraison.xml");    
+        assertFalse(XMLVerification.checkLivraisonXML(file));
+        
+		// ------------------------------------------------------- / XML's structure malformed
 	}  
 }
