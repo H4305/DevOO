@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,8 +17,9 @@ import vue.util.Vue;
 
 public class VueChemin extends Vue {
 	
+	private static final int REDUCTION_LENGTH = 5;
 	private static final int LINE_WIDTH = 2;
-	private static final int PARALLELE_LINE_DISTANCE = 5;
+	private static final int PARALLELE_LINE_DISTANCE = 2;
 	private static final Logger LOGGER = Logger.getLogger(VueChemin.class.getName());
 
 	class TronconCounter {
@@ -26,13 +28,8 @@ public class VueChemin extends Vue {
 		int displayed = 0;
 	}
 	
-	Color[] colorTroncon = {
-			AppColors.itineraire1,
-			AppColors.itineraire4,
-			AppColors.itineraire3,
-			AppColors.itineraire2
-	};
-
+	Color[] colorTroncon = AppColors.itineraire;
+	
 	TwoKeyMap<model.data.Point, model.data.Point, TronconCounter> displayedTroncon = 
 			new TwoKeyMap<model.data.Point, model.data.Point, TronconCounter>();
 	Chemin mChemin;
@@ -42,7 +39,7 @@ public class VueChemin extends Vue {
 
 		for (Troncon troncon : chemin.getTroncons()) {
 			if (displayedTroncon.containsKeys(troncon.getDepart(),
-					troncon.getDepart())) {
+					troncon.getArrivee())) {
 				displayedTroncon.get(troncon.getDepart(), troncon.getArrivee()).number++;
 			} else if (displayedTroncon.containsKeys(troncon.getArrivee(),
 					troncon.getDepart())) {
@@ -60,13 +57,6 @@ public class VueChemin extends Vue {
 
 	@Override
 	public void draw(Graphics g, CoordinateConverter converter) {
-		drawChemin(g, converter);
-	}
-
-
-	private void drawChemin(Graphics g, CoordinateConverter converter) {
-		// Affiche l'itineraire
-
 		for (Troncon troncon : mChemin.getTroncons()) {
 			TronconCounter counter = null;
 			if (displayedTroncon.containsKeys(troncon.getDepart(),
@@ -79,17 +69,28 @@ public class VueChemin extends Vue {
 						troncon.getDepart());
 			}
 			if (counter != null) {
+				
+				if(counter.displayed >= counter.number) {
+					counter.displayed = 0;
+				}
+				
 				int offset = Math.round((counter.number / 2f + 0.5f)
 						* LINE_WIDTH + counter.displayed
 						* PARALLELE_LINE_DISTANCE);
-				java.awt.Point point1 = converter.convert(
+				Point point1 = converter.convert(
 						troncon.getDepart().x, troncon.getDepart().y);
-				java.awt.Point point2 = converter.convert(
+				Point point2 = converter.convert(
 						troncon.getArrivee().x, troncon.getArrivee().y);
-
+				
+				
+				point1 = movePointTowards(point1, point2, REDUCTION_LENGTH * counter.displayed);
+				point2 = movePointTowards(point2, point1, REDUCTION_LENGTH * counter.displayed);
+		
+				// Calcul décalage
 				double L = Math.sqrt((point1.x - point2.x)
 						* (point1.x - point2.x) + (point1.y - point2.y)
 						* (point1.y - point2.y));
+				
 				int nx1 = new Double(point1.x + offset * (point2.y - point1.y)
 						/ L).intValue();
 				int nx2 = new Double(point2.x + offset * (point2.y - point1.y)
@@ -98,19 +99,32 @@ public class VueChemin extends Vue {
 						/ L).intValue();
 				int ny2 = new Double(point2.y + offset * (point1.x - point2.x)
 						/ L).intValue();
-
+				
+				
+		
 				g.setColor(colorTroncon[counter.displayed % colorTroncon.length]);
 				ComplexDrawing.drawArrow(g, nx1, ny1, nx2, ny2,
 						LINE_WIDTH, g.getColor());
 				counter.displayed++;
-				if(counter.displayed == counter.number) {
-					counter.displayed = 0;
-				}
+				
 			} else {
 				LOGGER.log(Level.WARNING,
 						"Troncon de l'tineraire introuvable dans le plan");
 			}
 		}
+	}
+	
+	private Point movePointTowards(Point a, Point b, float distance)
+	{
+	    Point vector = new Point(b.x - a.x, b.y - a.y);
+	    float length = (float) Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+	    
+	    float unitX = vector.x / length;
+	    float unitY = vector.y / length;
+	    
+	    int nx = Math.round(a.x + unitX * distance);
+	    int ny = Math.round(a.y + unitY * distance);
+	    return new Point(nx, ny);
 	}
 
 }
