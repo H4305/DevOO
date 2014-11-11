@@ -2,13 +2,16 @@ package util;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import model.data.DemandeLivraisons;
 import model.data.Point;
+import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
 
@@ -39,28 +42,30 @@ public class Useful {
         return null;
 	}
 	
-	public static void lirePlanDepuisFichierXML(){
+	public static Set<Troncon> lirePlanDepuisFichierXML(){
 		File xml = ouvrirFichier('o');
 		if (xml != null) {
 			try {
 				// Get the plan
-				XMLLoader.getPlanXML(xml);
+				return XMLLoader.getPlanXML(xml);
 			} catch (PlanXMLException e) {
 				System.out.println(e.getMessage());
 			}
 		}
+		return null;
 	}
 	
-	public static void lireLivraisonDepuisFichierXML(){
+	public static DemandeLivraisons lireLivraisonDepuisFichierXML(){
 		File xml = ouvrirFichier('o');
 		if (xml != null) {
 			try {
-				// Get the plan
-				XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
+				// Get the livraison
+				return XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
 			} catch (LivraisonXMLException e) {
 				System.out.println(e.getMessage());
 			}
 		}
+		return null;
 	}
 	
 	public static void lireDepuisFichierXML(){

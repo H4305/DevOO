@@ -42,9 +42,12 @@ public class PlanManager {
     }
 
     /**
-     * @param PointA 
-     * @param PointB 
-     * @return
+     * Cette methode calcule le plus court chemin entre 2 points avce la methode de Dijkstra
+     * @param Point source
+     * @param Point target 
+     * @param Vertex source
+     * @param Vertex target 
+     * @return 
      */
     public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
         
