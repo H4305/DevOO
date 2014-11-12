@@ -10,12 +10,12 @@ public class Itineraire {
     /**
      * 
      */
-    private ArrayList<Chemin> mChemins;
+    private List<Chemin> mChemins;
     
     /**
      * 
      */
-    public Itineraire(ArrayList<Chemin> chemins) {
+    public Itineraire(List<Chemin> chemins) {
     	this.mChemins = chemins;
     }
     
@@ -51,7 +51,7 @@ public class Itineraire {
     	return cheminRes;
 	}
 	
-	public ArrayList<Chemin> getChemins() {
+	public List<Chemin> getChemins() {
 		return mChemins;
 	}
 

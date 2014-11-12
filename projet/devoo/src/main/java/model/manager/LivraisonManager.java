@@ -105,7 +105,7 @@ public class LivraisonManager {
      * Fait le calcul de l'itinéraire a suivre
      * @return l'itineraire à suivre
      */
-    public Itineraire calculItineraire() {
+    public void calculItineraire() {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
@@ -120,11 +120,9 @@ public class LivraisonManager {
         	adresses.add(setPlage);
         }
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
-        Chemin chemin = mPlanManager.getChemin(adresses);
-        //TODO
-        //mItineraire = new Itineraire(ArrayList<Chemin>);
-        mController.afficherItineraire(chemin); //pas de paramètre
-        return null;
+        List<Chemin> chemins = mPlanManager.getChemins(adresses);
+        mItineraire = new Itineraire(chemins);
+        mController.afficherItineraire(); //pas de paramètre
     }
 	
     public List<PlageHoraire> getPlagesHoraire() {
