@@ -1,22 +1,21 @@
 package vue;
 
-import java.io.File;
 import java.awt.BorderLayout;
-import java.util.Collection;
+import java.io.File;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import controller.Controller;
+import model.data.Livraison;
+import model.data.PlageHoraire;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import util.Useful;
 import vue.widget.MainPanel;
 import vue.widget.PlanPanel;
+import controller.Controller;
 
 /**
  * 
@@ -44,6 +43,7 @@ public class VueGestionLivraison {
     	
     	mainFrame = new JFrame();
     	mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    	mainFrame.setLayout(new BorderLayout());
     	
     	mainPanel = new MainPanel(this);
     	mainFrame.setLayout(new BorderLayout(2, 2));
@@ -62,10 +62,11 @@ public class VueGestionLivraison {
      * Affiche la fenetre principale du programme
      */
     public void afficherFenetrePrincipale() {
-    	mainFrame.add(mainPanel);
+    	mainFrame.add(mainPanel, BorderLayout.CENTER);
+    	afficherPlan();
     	mainFrame.pack();
     	mainFrame.setVisible(true);
-    	afficherPlan();
+    	
     }
     
     /**
@@ -91,6 +92,14 @@ public class VueGestionLivraison {
 	public void setPointClickedListener(
 			PlanPanel.PointClickedListener pointClickedListener) {
 		this.pointClickedListener = pointClickedListener;
+	}
+	
+	public void afficherLivraison(PlageHoraire plageHoraire, Livraison livraison) {
+		mainPanel.setLivraisonSelected(plageHoraire, livraison);
+	}
+	
+	public void masquerLivraison() {
+		mainPanel.removeLivraison();
 	}
 	
 	public void chargerPlan() {

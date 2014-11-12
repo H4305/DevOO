@@ -1,12 +1,18 @@
 package model.data;
 
+import util.Vertex;
+
 /**
  * 
  */
 public class Troncon {
 
-    
-    /**
+	/**
+     * 
+     */
+    private Vertex target;
+
+	/**
      * 
      */
     private String nomRue;
@@ -84,6 +90,25 @@ public class Troncon {
        return arrivee;
     }
     
+    /**
+     * 
+     */
+    public String toString()
+	{
+		String s;
+		s = this.nomRue;
+		return s;
+	}
+
+	public Vertex getTarget() {
+		return this.target;
+	}
+    
+	public void setTarget(Vertex target) {
+		this.target = target;
+	}
+    
+	
  /*   public void setArrivee(Point pointArrivee) {
     	this.arrivee = pointArrivee;
     }*/

@@ -1,7 +1,6 @@
 package model.manager;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 import javax.swing.JComponent;
@@ -9,13 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 
 
@@ -40,16 +33,24 @@ import model.data.ZoneGeographique;
 import model.manager.PlanManager;
 import model.data.Point;
 import model.exceptions.LivraisonXMLException;
-import model.exceptions.PlanXMLException;
 
 /*
  * util import
  */
 import util.XMLLoader;
-import util.generationIDint;
-//import util.generationIDint;
+import util.GenerationIDint;
 
 /**
+ * 
+ * LivraisonManager has the role to manage all the data related to the "livraisons". 
+ * It stores most of the mathematics results and it's a bridge between the controller and the model.
+ * 
+ * @author      Vadim Caen
+ * @author      Maria Etegan
+ * @author      Anthony Faraut
+ * @author      Ludmila Danilescu
+ * @author      Marco Montalto
+ * @author      Bernardo Rittmeyer
  * 
  */
 public class LivraisonManager {
@@ -57,12 +58,43 @@ public class LivraisonManager {
 	private Controller mController;
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
-	private generationIDint uniqueIDgenerator = new generationIDint(); 
+	private GenerationIDint uniqueIDgenerator; 
 
-    
+   /**
+    * Class constructor specifying a Controller and a PlanManager
+    * 
+    * @param planManager is the PlanManager, necessary as LivraisonManager needs the plan data.
+    * @param controller is the Controller, to advise the system when operations are concluded.
+    */
     public LivraisonManager(PlanManager planManager, Controller controller) {
     	this.mPlanManager = planManager;
     	this.mController = controller;
+    	this.uniqueIDgenerator = new GenerationIDint();
+    }
+    
+    /**
+	 * This method loads a "demande de livraisons" from a xml file, passing through the XMLLoader class,
+	 * and stores the result to the attributes mDemandeLivraisons. An exception is cached if there's a problem
+	 * opening or reading the file.
+	 * 
+	 * @param fileXML is a xml File, which contains all the informations concerning a "demande de livraisons"
+	 * @throws NullPointException() if file is empty
+	 */
+    public void loadDemandeLivraisonsXML(File fileXML) throws NullPointerException {
+    	if (fileXML != null) {             
+			// Get the livraison
+			try {
+				HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
+				this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, planPoints);
+				mController.afficherDemandeLivraisons();
+				
+			} catch (LivraisonXMLException e) {
+				// On affichera ca dans la vue
+				mController.exceptionOpenFileXML(e.getMessage());
+			}
+       }else {
+    	   throw new NullPointerException();
+       }
     }
 
     public DemandeLivraisons getDemandeLivraisons() {
@@ -92,63 +124,17 @@ public class LivraisonManager {
         mController.afficherItineraire(itineraire);
         return null;
     }
-    
-    /**
-     * 
-     */
-    public void loadDemandeLivraisonsXML(File fileXML) {
+	
+    public List<PlageHoraire> getPlagesHoraire() {
     	
-    	if (fileXML != null) {
-            try {
-               // Creation d'un constructeur de documents a l'aide d'une fabrique
-               DocumentBuilder constructeur = DocumentBuilderFactory.newInstance().newDocumentBuilder();	
-               // Lecture du contenu d'un fichier XML avec DOM
-               Document document = constructeur.parse(fileXML);
-               Element racine = document.getDocumentElement();
-               
-               // Get the livraison
-               if (racine.getNodeName().equals("JourneeType")) {
-               	try {
-               		
-               		HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
-               		
-               		this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, racine, planPoints);
-               		
-               		mController.afficherDemandeLivraisons();
-               		
-					} catch (LivraisonXMLException e) {
-						// On affichera ca dans la vue
-						mController.exceptionOpenFileXML(e.getMessage());
-					}
-               }
-               else {
-            	   mController.exceptionOpenFileXML("Structure de fichier inconnue");
-               }
-              
-           } catch (ParserConfigurationException pce) {
-        	   mController.exceptionOpenFileXML("Erreur de configuration du parseur DOM");
-        	   mController.exceptionOpenFileXML("lors de l'appel a fabrique.newDocumentBuilder();");
-           } catch (SAXException se) {
-        	   mController.exceptionOpenFileXML("Erreur lors du parsing du document");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           } catch (IOException ioe) {
-        	   mController.exceptionOpenFileXML("Erreur d'entree/sortie");
-        	   mController.exceptionOpenFileXML("lors de l'appel a construteur.parse(xml)");
-           }
-       }     	
-    }
-    
-    public List<PlageHoraire> getPlagesHoraire(){
-    	
-    	List<PlageHoraire> plagesHoraires = new ArrayList<PlageHoraire>();
-    	plagesHoraires.addAll(this.mDemandeLivraisons.getPlagesHoraire());
-    	return plagesHoraires;
+    	return this.mDemandeLivraisons.getPlagesHoraire();
     }
     
     public List<Livraison> getLivraisons(){
-    	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
-    	
     	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
+    	if(plagesHoraires == null) return new ArrayList<>();
+    	
+    	List<Livraison> lesLivraisons = new ArrayList<Livraison>();
     	for(PlageHoraire plage: plagesHoraires){
     		lesLivraisons.addAll(plage.getLivraisons());
     	}
@@ -175,7 +161,7 @@ public class LivraisonManager {
     	final JComponent[] inputs = new JComponent[] {
     			new JLabel("Id Client"),
     			id_client,
-    			new JLabel("Heure d�but"),
+    			new JLabel("Heure debut"),
     			heureDebutInput,
     			new JLabel("Heure fin"),
     			heureFinInput
@@ -199,6 +185,7 @@ public class LivraisonManager {
     	
     	//TODO Afficher les plages horaire et choisir une et ne pas cr�er une nouvelle plage horaire � chaque fois
     }
+    
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
     }
@@ -213,5 +200,24 @@ public class LivraisonManager {
     }
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
+    }
+    
+    public Livraison findLivraisonByAddress(Point address) {
+    	for(Livraison livraison : getLivraisons()) {
+    		if(livraison.getAdresse().equals(address)) 
+    			return livraison;
+    	}
+    	return null;
+    }
+    
+    public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
+    	for(PlageHoraire horaire : getPlagesHoraire()) {
+    		for(Livraison liv : horaire.getLivraisons()) {
+    			if(livraison.equals(liv)) {
+    				return horaire;
+    			}
+    		}
+    	}
+    	return null;
     }
 }

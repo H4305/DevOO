@@ -46,18 +46,22 @@ public class PlanPanelTest {
 
 		ArrayList<Troncon> troncons = new ArrayList<Troncon>();
 
-		troncons.addAll(Arrays.asList(new Troncon("rue", 50.0f, 50, p1, p2),
-				new Troncon("rue", 50.0f, 50, p2, p3), new Troncon("rue",
-						50.0f, 50, p3, p4), new Troncon("rue", 50.0f, 50, p4,
-						p5), new Troncon("rue", 50.0f, 50, p5, p1),
+		troncons.addAll(Arrays.asList(
+				new Troncon("rue", 50.0f, 50, p1, p2),
+				new Troncon("rue", 50.0f, 50, p2, p3), 
+				new Troncon("rue",50.0f, 50, p3, p4),
+				new Troncon("rue", 50.0f, 50, p4,p5),
+				new Troncon("rue", 50.0f, 50, p5, p1),
 				new Troncon("rue", 50.0f, 50, p2, p6)));
 
 		ArrayList<Troncon> itineraire = new ArrayList<Troncon>();
 
-		itineraire.addAll(Arrays.asList(new Troncon("rue", 50.0f, 50, p1, p2),
-				new Troncon("rue", 50.0f, 50, p2, p3), new Troncon("rue",
-						50.0f, 50, p2, p6), new Troncon("rue", 50.0f, 50, p6,
-						p2), new Troncon("rue", 50.0f, 50, p2, p6),
+		itineraire.addAll(Arrays.asList(
+				new Troncon("rue", 50.0f, 50, p1, p2),
+				new Troncon("rue", 50.0f, 50, p2, p3),
+				new Troncon("rue", 50.0f, 50, p2, p6), 
+				new Troncon("rue", 50.0f, 50, p6, p2),
+				new Troncon("rue", 50.0f, 50, p2, p6),
 				new Troncon("rue", 50.0f, 50, p3, p2)));
 
 		JFrame jFrame = new JFrame();

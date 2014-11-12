@@ -11,18 +11,47 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import vue.VueGestionLivraison;
+import vue.VueLivraison;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
+import javax.swing.BoxLayout;
+
+import model.data.Livraison;
+import model.data.PlageHoraire;
+
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Component;
 
 public class MainPanel extends JPanel {
 
 	VueGestionLivraison mGestionLivraison;
-	private JPanel planWrapper;
 	private JButton btnChargerPlan;
 	private JButton btnLoadLivraison;
 	private JPanel panelError;
 	private JLabel lblErreur;
 	private JLabel lblErreurMessage;
+	private JPanel panelPrincipal;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panelLivraisons;
+	private JPanel panel_5;
+	private JButton btnAnnuler;
+	private JButton btnRetablir;
+	private JButton btnExporter;
+	private JPanel panelLivraisonSelected;
+	private JPanel panelLivraisonAdd;
+	private JButton btnSupprimerLivraison;
+	private JButton btnAjouter;
+	
+	private VueLivraison vueLivraison;
 
 	/**
 	 * Create the panel.
@@ -31,13 +60,15 @@ public class MainPanel extends JPanel {
 		mGestionLivraison = gestionLivraison;
 		setLayout(new BorderLayout(0, 0));
 		
-		planWrapper = new JPanel();
-		add(planWrapper, BorderLayout.CENTER);
+		panelPrincipal = new JPanel();
+		add(panelPrincipal, BorderLayout.CENTER);
+		panelPrincipal.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.WEST);
+		panel_1 = new JPanel();
+		panelPrincipal.add(panel_1, BorderLayout.NORTH);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
+		panel_1.add(btnLoadLivraison);
 		btnLoadLivraison.setEnabled(false);
 		btnLoadLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -45,32 +76,71 @@ public class MainPanel extends JPanel {
 			}
 		});
 		
+		panel_5 = new JPanel();
+		panelPrincipal.add(panel_5, BorderLayout.SOUTH);
+		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnExporter = new JButton("<html><center>Exporter <br/>feuille de route</center></html>");
+		btnExporter.setEnabled(false);
+		btnExporter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel_5.add(btnExporter);
+		
+		btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setEnabled(false);
+		panel_5.add(btnAnnuler);
+		
+		btnRetablir = new JButton("R\u00E9tablir");
+		btnRetablir.setEnabled(false);
+		panel_5.add(btnRetablir);
+		
+		JPanel panelLeft = new JPanel();
+		add(panelLeft, BorderLayout.WEST);
+		
+		panel_2 = new JPanel();
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		panelLeft.setLayout(new BoxLayout(panelLeft, BoxLayout.X_AXIS));
+		panelLeft.add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_2.add(panel_3);
+		
 		btnChargerPlan = new JButton("Charger Plan");
+		panel_3.add(btnChargerPlan);
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
 			}
 		});
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnChargerPlan, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-						.addComponent(btnLoadLivraison, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnChargerPlan)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnLoadLivraison)
-					.addContainerGap(230, Short.MAX_VALUE))
-		);
-		panel_1.setLayout(gl_panel_1);
+		
+		panelLivraisons = new JPanel();
+		panel_2.add(panelLivraisons);
+		panelLivraisons.setLayout(new BoxLayout(panelLivraisons, BoxLayout.Y_AXIS));
+		
+		panelLivraisonSelected = new JPanel();
+		panelLivraisons.add(panelLivraisonSelected);
+		panelLivraisonSelected.setLayout(new BorderLayout(0, 0));
+		
+		vueLivraison = new VueLivraison();
+		panelLivraisonSelected.add(vueLivraison, BorderLayout.CENTER);
+		
+		btnSupprimerLivraison = new JButton("Supprimer");
+		btnSupprimerLivraison.setEnabled(false);
+		btnSupprimerLivraison.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+		
+		panelLivraisonAdd = new JPanel();
+		panelLivraisons.add(panelLivraisonAdd);
+		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
+		
+		btnAjouter = new JButton("Ajouter");
+		btnAjouter.setEnabled(false);
+		panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
@@ -89,8 +159,11 @@ public class MainPanel extends JPanel {
 	}
 	
 	public void setPlan(PlanPanel plan) {
-		planWrapper.removeAll();
-		planWrapper.add(plan);
+		Component component = ((BorderLayout)panelPrincipal.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+		if(component != null) {
+			panelPrincipal.remove(component);
+		}
+		panelPrincipal.add(plan, BorderLayout.CENTER);
 		if(plan.hasPlan()) {
 			btnLoadLivraison.setEnabled(true);
 		}
@@ -99,5 +172,30 @@ public class MainPanel extends JPanel {
 	public void setErrorMessage(String message) {
 		lblErreur.setVisible(true);
 		lblErreurMessage.setText(message);
+	}
+	
+	public void setLivraisonSelected(PlageHoraire plageHoraire, Livraison livraison) {
+		vueLivraison.setLivraison(plageHoraire, livraison);
+		btnSupprimerLivraison.setEnabled(true);
+		//validate();
+	}
+	
+	public void removeLivraison() {
+		vueLivraison.removeLivraion();
+		btnSupprimerLivraison.setEnabled(false);
+		//validate();
+	}
+	
+	public JPanel getPanelLivraisonAdd() {
+		return panelLivraisonAdd;
+	}
+	public JButton getBtnExporter() {
+		return btnExporter;
+	}
+	public JButton getBtnAnnuler() {
+		return btnAnnuler;
+	}
+	public JButton getBtnRetablir() {
+		return btnRetablir;
 	}
 }

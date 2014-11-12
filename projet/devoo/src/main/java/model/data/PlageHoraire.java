@@ -42,6 +42,10 @@ public class PlageHoraire {
     public String getDateDebut() {
 		return dateDebut;
 	}
+    
+    public String getDateFin() {
+		return dateFin;
+	}
 
     /**
      * @return Liste des livraisons de la plage horaire

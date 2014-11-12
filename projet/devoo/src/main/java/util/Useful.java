@@ -2,13 +2,16 @@ package util;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import model.data.DemandeLivraisons;
 import model.data.Point;
+import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
 
@@ -39,6 +42,32 @@ public class Useful {
         return null;
 	}
 	
+	public static Set<Troncon> lirePlanDepuisFichierXML(){
+		File xml = ouvrirFichier('o');
+		if (xml != null) {
+			try {
+				// Get the plan
+				return XMLLoader.getPlanXML(xml).troncons;
+			} catch (PlanXMLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	public static DemandeLivraisons lireLivraisonDepuisFichierXML(){
+		File xml = ouvrirFichier('o');
+		if (xml != null) {
+			try {
+				// Get the livraison
+				return XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
+			} catch (LivraisonXMLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
 	public static void lireDepuisFichierXML(){
         File xml = ouvrirFichier('o');
         if (xml != null) {
@@ -52,7 +81,7 @@ public class Useful {
                 // Get the plan
                 if (racine.getNodeName().equals("Reseau")) {
                 	try {
-						XMLLoader.getPlanXML(xml, racine);
+						XMLLoader.getPlanXML(xml);
 					} catch (PlanXMLException e) {						
 						// On affichera ca dans la vue
 						System.out.println(e.getMessage());
@@ -61,7 +90,7 @@ public class Useful {
                 // Get the livraison
                 else if (racine.getNodeName().equals("JourneeType")) {
                 	try {
-                		XMLLoader.getLivraisonXML(xml, racine, new HashMap<Integer, Point>());
+                		XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
 					} catch (LivraisonXMLException e) {
 						// On affichera ca dans la vue
 						System.out.println(e.getMessage());
@@ -85,23 +114,5 @@ public class Useful {
 	}
 	public static void main(String[] args) throws IOException, SAXException {
 		lireDepuisFichierXML();
-				
-		//Source xmlFile = new StreamSource(new File("src/test/resources/xml/plan20x20.xml"));
-		/*Source xmlFile = new StreamSource(new File("src/main/resources/xml/livraison20x20-2.xml"));
-		
-		//Source xsdPlan = new StreamSource(new File("src/main/resources/plan.xsd"));
-		Source xsdLivraison = new StreamSource(new File("src/main/resources/livraison.xsd"));
-		
-		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		Schema schema = schemaFactory.newSchema(xsdLivraison);
-		Validator validator = schema.newValidator();
-		
-		try {
-		  validator.validate(xmlFile);
-		  System.out.println("The " + xmlFile.getSystemId() + " is valid - XML complies with XSD");
-		} catch (SAXException e) {
-		  System.out.println("The " + xmlFile.getSystemId() + " is NOT valid");
-		  System.out.println("Reason: " + e.getLocalizedMessage());
-		}*/
 	}		
 }
