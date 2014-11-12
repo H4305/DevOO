@@ -64,6 +64,7 @@ public class Controller {
 			@Override
 			public void pointClicked(Point point) {
 				LOG.log(Level.INFO, "Point Clicked");
+				
 				onePointSelected(point);
 			}
 		});

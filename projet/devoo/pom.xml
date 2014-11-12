@@ -40,14 +40,23 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>choco</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.jgoodies</groupId>
+			<artifactId>jgoodies-forms</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+
+
+
 	</dependencies>
 
 
