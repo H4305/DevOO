@@ -77,7 +77,7 @@ public class Livraison {
     	if(heureLivraison==""){
     		return " pas encore prevue";
     	}
-    	return heureLivraison;       
+    	return heureLivraison;
     }
     
     public int getId() {

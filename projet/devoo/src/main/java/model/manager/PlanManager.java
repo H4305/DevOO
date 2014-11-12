@@ -1,6 +1,11 @@
 package model.manager;
 
 import java.util.*;
+
+import util.Dijkstra;
+import util.TwoKeyMap;
+import util.Vertex;
+
 import java.io.File;
 
 import controller.Controller;
@@ -116,8 +121,30 @@ public class PlanManager {
      * @param Points 
      * @return
      */
-    public Chemin getChemin(Set<Point> Points) {
-        // TODO implement here
+    public Chemin getChemin(List<Set<Point>> plages) {
+    	TwoKeyMap<Point, Point, Chemin> courtsChemins = new TwoKeyMap<Point, Point, Chemin>();
+        Set<Point> plagePrecedente = null;
+    	//Pour chaque plage
+    	for(Set<Point> plage : plages) {
+    		//On calcule le meilleur chemin entre tous les points de cette plage
+    		for(Point orig : plage) {
+    			for(Point dest : plage) {
+            		if(!orig.equals(dest)) {
+            			courtsChemins.put(orig, dest, plusCourtChemin(orig, dest));
+            		}
+            	}
+    		}
+    		//On calcule le meilleur chemin de tous les points de la plage précedente a la plage actuelle
+    		if(plagePrecedente != null) {
+    			for(Point orig : plagePrecedente) {
+    				for(Point dest : plage) {
+    					courtsChemins.put(orig, dest, plusCourtChemin(orig, dest));
+    				}
+    			}
+    		}
+    		plagePrecedente = plage;
+    	}
+        
         return null;
     }
 

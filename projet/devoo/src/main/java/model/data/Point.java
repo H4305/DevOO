@@ -30,6 +30,11 @@ public class Point {
      * 
      */
     private int id;
+    
+    /**
+     * 
+     */
+    private ZoneGeographique zone;
 
     /**
      * 

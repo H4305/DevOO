@@ -4,7 +4,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.Set;
 
+import model.data.Troncon;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class XMLVerificationTest {
@@ -21,6 +25,10 @@ public class XMLVerificationTest {
 	public void testcheckPlanXML() {
 		File file = new File("src/main/resources/xml/plan20x20.xml");             
         assertTrue(XMLVerification.checkPlanXML(file));
+        
+		//
+		file = new File("src/main/resources/xml/plan20x20-malformed-without-LeTronconSortant.xml");
+		assertFalse(XMLVerification.checkPlanXML(file));
         
 		// Bad XML file
 		file = new File("src/main/resources/xml/livraison20x20-2.xml");      

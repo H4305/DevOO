@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 
 
+
 /*
  * controller import
  */
@@ -23,10 +24,12 @@ import controller.Controller;
 /*
  * model import
  */
+import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.PlageHoraire;
+import model.data.ZoneGeographique;
 import model.manager.PlanManager;
 import model.data.Point;
 import model.exceptions.LivraisonXMLException;
@@ -99,10 +102,26 @@ public class LivraisonManager {
 	}
 
     /**
-     * @return
+     * Fait le calcul de l'itinéraire a suivre
+     * @return l'itineraire à suivre
      */
     public Itineraire calculItineraire() {
-        // TODO implement here
+    	List<Set<Point>> adresses = new ArrayList<Set<Point>>();
+    	
+        List<PlageHoraire> plagesHoraire = getPlagesHoraire();
+        for(PlageHoraire horaire : plagesHoraire) {
+        	Set<Point> setPlage = new TreeSet<Point>();
+        	for(Livraison livraison : horaire.getLivraisons()) {
+        		setPlage.add(livraison.getAdresse());
+        	}
+        	adresses.add(setPlage);
+        }
+
+        Chemin chemin = mPlanManager.getChemin(adresses);
+        
+        Itineraire itineraire = new Itineraire();
+        //TODO
+        mController.afficherItineraire(itineraire);
         return null;
     }
 	
@@ -121,6 +140,7 @@ public class LivraisonManager {
     	}
     	return lesLivraisons;
     }
+    
     
     public Livraison leLivraison(Point point){
     	List<Livraison> lesLivraisons = getLivraisons();

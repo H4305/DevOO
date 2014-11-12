@@ -4,8 +4,9 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
+import model.data.Itineraire;
+import model.data.Livraison;
+import model.data.Point;
 /*
  * model import
  */
@@ -51,11 +52,16 @@ public class Controller {
     * Class constructor.
     */
     public Controller() {
-		super();
 		this.mPlanManager = new PlanManager(this);
 		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
 	}
+    
+    public void generateRoadmap () {
+    	mPlanManager.getAllTroncons();
+    	
+    	//mLivraisonManager.g
+    }
     
     /**
      * Initialisation de l'applicatione et affichage de l'�cran d'accueil.
@@ -67,11 +73,19 @@ public class Controller {
 			@Override
 			public void pointClicked(Point point) {
 				LOG.log(Level.INFO, "Point Clicked");
+				
 				onePointSelected(point);
 			}
 		});
     }
-    
+
+    /**
+     * @param circuit
+     */
+    public void afficherItineraire(Itineraire circuit) {
+        // TODO implement here
+    }
+
     public void onePointSelected(Point point) {
     	afficherLivraison(point);
     }

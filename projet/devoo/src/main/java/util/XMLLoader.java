@@ -121,7 +121,7 @@ public class XMLLoader {
 		        }
         	}
         }
-		return new PairKey(nodeListTronconSortant, vertexs);
+		return new PairKey<Set<Troncon>, ArrayList<Vertex>>(nodeListTronconSortant, vertexs);
 	}
 
 	/**
