@@ -52,7 +52,7 @@ public class DemandeLivraisons {
      * Returne l'entrepot de la demande de livraison
      * @return l'entrepot de la demande de livraison
      */
-    public Point getEntrepot() {
+    public Noeud getEntrepot() {
     	return mEntrepot;
     }
 }

@@ -109,7 +109,7 @@ public class LivraisonManager {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
-        Set<Point> setEntrepot = new TreeSet<Point>();
+        Set<Noeud> setEntrepot = new TreeSet<Noeud>();
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
