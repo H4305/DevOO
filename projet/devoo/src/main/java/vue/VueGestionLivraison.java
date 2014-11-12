@@ -65,8 +65,7 @@ public class VueGestionLivraison {
     	mainFrame.add(mainPanel, BorderLayout.CENTER);
     	afficherPlan();
     	mainFrame.pack();
-    	mainFrame.setVisible(true);
-    	
+    	mainFrame.setVisible(true);   	
     }
     
     /**
