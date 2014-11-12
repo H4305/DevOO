@@ -104,6 +104,7 @@ public class VueGestionLivraison {
     	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();
     }
+	
 	public File getFichierXML() {
 		return Useful.ouvrirFichier('o');
 	}
