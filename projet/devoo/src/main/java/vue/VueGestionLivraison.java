@@ -130,12 +130,7 @@ public class VueGestionLivraison {
 	}
 	
     public void add(Noeud point){ 
-    	
-    	
-    	
-    	
 
-        
     	//JOptionPane.showMessageDialog(null, null, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
     	
     	
@@ -153,11 +148,9 @@ public class VueGestionLivraison {
     	}
     	else {
     		JOptionPane.showMessageDialog(null,"Problem with the ID", null, JOptionPane.INFORMATION_MESSAGE);
-    	}
-    	
-    	
-    	
+    	}	
     }
+    
     public void remove(Noeud p){
     	JFrame frame = new JFrame("Supprimer une livraison");
     	JOptionPane removeLivraisonPanel = new JOptionPane();

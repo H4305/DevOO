@@ -197,10 +197,7 @@ public class PlanPanel extends JPanel {
 		
 
 		@Override
-		public void mouseClicked(MouseEvent arg0){
-			
-			System.out.println("CARRRROUUUUUU LOLOLOLO ");
-			
+		public void mouseClicked(MouseEvent arg0){			
 			
 			LOGGER.log(Level.INFO, "Plan clicked");
 			if(pointClickedListener != null) {
