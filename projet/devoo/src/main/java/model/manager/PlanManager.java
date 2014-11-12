@@ -12,6 +12,8 @@ import controller.Controller;
 import util.CheminGraph;
 import util.Dijkstra;
 import util.PairKey;
+import util.SolutionState;
+import util.TSP;
 import util.Vertex;
 import util.XMLLoader;
 import model.data.Chemin;
@@ -138,7 +140,7 @@ public class PlanManager {
      * @param Points Une liste ordonnée de Sets des points de chaque plage horaire
      * @return
      */
-    public Chemin getChemin(List<Set<Noeud>> plages) {
+    public List<Chemin> getChemins(List<Set<Noeud>> plages) {
     	List<Chemin> chemins = new ArrayList<Chemin>();
     	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
         Set<Noeud> plagePrecedente = null;
@@ -165,8 +167,29 @@ public class PlanManager {
     	}
     	
     	CheminGraph graph = new CheminGraph(chemins);
+    	
+    	TSP tsp = new TSP(graph);
+    	
+    	int bound = graph.getNbVertices()*graph.getMaxArcCost() + 1;
+		int[] next = null;
+		for (int t = 10; (tsp.getSolutionState() != SolutionState.OPTIMAL_SOLUTION_FOUND) && 
+						 (tsp.getSolutionState() != SolutionState.INCONSISTENT); t*=2){
+			System.out.println("--> Search of a tour strictly lower than "+bound+" within a time limit of "+t+"s.");
+			tsp.solve(t*1000,bound-1);
+			if (tsp.getSolutionState() == SolutionState.OPTIMAL_SOLUTION_FOUND) {
+				next = tsp.getNext();
+				break;
+			} else{ // etat = SOLUTION_FOUND
+				next = tsp.getNext();
+			}
+		}	
+		List<Chemin> cheminsItineraire = new ArrayList<Chemin>();
+		for(int i : next) {
+			cheminsItineraire.add(chemins.get(i));
+		}
+		
         
-        return null;
+        return cheminsItineraire;
     }
 
     /**
