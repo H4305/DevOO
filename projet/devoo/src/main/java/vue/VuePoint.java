@@ -14,6 +14,12 @@ public class VuePoint extends Vue{
 	private static final int POINT_RADIUS = 10;
 	private static final int POINT_SELECTED_RADIUS = 15;
 	
+	public enum Shape {
+		CIRCLE,
+		SQUARE,
+		CROSS
+	};
+	
 	
 	
 	Point pointModel;
@@ -22,6 +28,7 @@ public class VuePoint extends Vue{
 	boolean selected = false;
 
 	Color color = AppColors.normalPoint;
+	private Shape shape;
 	public VuePoint(Point pointModel) {
 		super();
 		this.pointModel = pointModel;
@@ -37,8 +44,25 @@ public class VuePoint extends Vue{
 					POINT_SELECTED_RADIUS, POINT_SELECTED_RADIUS);
 		}
 			g.setColor(color);
-			g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2,
+			
+		if(shape != null) {
+			switch (shape) {
+			case SQUARE:
+				int size = Math.round(POINT_RADIUS * 1.25f);
+				g.fillRect(pointVue.x - size / 2, pointVue.y - size / 2,
+						size, size);
+				break;
+
+			default:
+				g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2 ,
+						POINT_RADIUS, POINT_RADIUS);
+				break;
+			}
+			
+		} else {
+			g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2 ,
 					POINT_RADIUS, POINT_RADIUS);
+		}
 	}
 	
 	@Override
@@ -72,7 +96,13 @@ public class VuePoint extends Vue{
 		this.color = color;
 	}
 	
+	public void setShape(Shape shape) {
+		this.shape = shape;
+	}
+	
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+	
+	
 }

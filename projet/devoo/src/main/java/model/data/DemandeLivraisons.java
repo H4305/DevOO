@@ -26,7 +26,7 @@ public class DemandeLivraisons {
      */
     public DemandeLivraisons(Point entrepot, List<PlageHoraire> plagesHoraires) {
     	this.mPlagesHoraires = plagesHoraires;
-    	this.mEntrepot = entrepot;
+    	mEntrepot = entrepot;
     }
 
     /**
@@ -47,5 +47,10 @@ public class DemandeLivraisons {
     	}
     	return null;
     }
+
+	public Point getEntrepot() {
+		return mEntrepot;
+	}
+
 
 }

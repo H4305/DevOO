@@ -24,6 +24,7 @@ import model.data.Troncon;
 import solver.search.strategy.strategy.set.SetSearchStrategy;
 import vue.VueChemin;
 import vue.VuePoint;
+import vue.VuePoint.Shape;
 import vue.VueTroncon;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
@@ -117,7 +118,10 @@ public class PlanPanel extends JPanel {
 				for(VuePoint vuePoint : vuesPoints) {
 					if(vuePoint.getPoint().equals(livraison.getAdresse())) {
 						vuePoint.setColor(color);
+					} else if(vuePoint.getPoint().equals(demandeLivraisons.getEntrepot())) {
+						vuePoint.setShape(Shape.SQUARE);
 					}
+					
 				}
 			}
 		}
