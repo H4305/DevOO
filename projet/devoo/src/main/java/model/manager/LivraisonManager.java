@@ -12,6 +12,10 @@ import javax.swing.JTextField;
 
 
 
+
+
+
+
 /*
  * controller import
  */
@@ -20,10 +24,12 @@ import controller.Controller;
 /*
  * model import
  */
+import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.PlageHoraire;
+import model.data.ZoneGeographique;
 import model.manager.PlanManager;
 import model.data.Point;
 import model.exceptions.LivraisonXMLException;
@@ -32,11 +38,19 @@ import model.exceptions.LivraisonXMLException;
  * util import
  */
 import util.XMLLoader;
-import util.generationIDint;
-//import util.generationIDint;
-import util.procedure.PairProcedure;
+import util.GenerationIDint;
 
 /**
+ * 
+ * LivraisonManager has the role to manage all the data related to the "livraisons". 
+ * It stores most of the mathematics results and it's a bridge between the controller and the model.
+ * 
+ * @author      Vadim Caen
+ * @author      Maria Etegan
+ * @author      Anthony Faraut
+ * @author      Ludmila Danilescu
+ * @author      Marco Montalto
+ * @author      Bernardo Rittmeyer
  * 
  */
 public class LivraisonManager {
@@ -44,31 +58,29 @@ public class LivraisonManager {
 	private Controller mController;
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
-	private generationIDint uniqueIDgenerator = new generationIDint(); 
+	private GenerationIDint uniqueIDgenerator; 
 
-    
+   /**
+    * Class constructor specifying a Controller and a PlanManager
+    * 
+    * @param planManager is the PlanManager, necessary as LivraisonManager needs the plan data.
+    * @param controller is the Controller, to advise the system when operations are concluded.
+    */
     public LivraisonManager(PlanManager planManager, Controller controller) {
     	this.mPlanManager = planManager;
     	this.mController = controller;
-    }
-
-    public DemandeLivraisons getDemandeLivraisons() {
-		return mDemandeLivraisons;
-	}
-
-    /**
-     * @return
-     */
-    public Itineraire calculItineraire() {
-        // TODO implement here
-        return null;
+    	this.uniqueIDgenerator = new GenerationIDint();
     }
     
-	/**
+    /**
+	 * This method loads a "demande de livraisons" from a xml file, passing through the XMLLoader class,
+	 * and stores the result to the attributes mDemandeLivraisons. An exception is cached if there's a problem
+	 * opening or reading the file.
 	 * 
-	 * @param fileXML
+	 * @param fileXML is a xml File, which contains all the informations concerning a "demande de livraisons"
+	 * @throws NullPointException() if file is empty
 	 */
-    public void loadDemandeLivraisonsXML(File fileXML) {
+    public void loadDemandeLivraisonsXML(File fileXML) throws NullPointerException {
     	if (fileXML != null) {             
 			// Get the livraison
 			try {
@@ -80,12 +92,42 @@ public class LivraisonManager {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
 			}
-       }     	
+       }else {
+    	   throw new NullPointerException();
+       }
     }
-    
-    public List<PlageHoraire> getPlagesHoraire(){
-    	if(mDemandeLivraisons == null) return new ArrayList<PlageHoraire>();
-    	return mDemandeLivraisons.getPlagesHoraire();
+
+    public DemandeLivraisons getDemandeLivraisons() {
+		return mDemandeLivraisons;
+	}
+
+    /**
+     * Fait le calcul de l'itinéraire a suivre
+     * @return l'itineraire à suivre
+     */
+    public Itineraire calculItineraire() {
+    	List<Set<Point>> adresses = new ArrayList<Set<Point>>();
+    	
+        List<PlageHoraire> plagesHoraire = getPlagesHoraire();
+        for(PlageHoraire horaire : plagesHoraire) {
+        	Set<Point> setPlage = new TreeSet<Point>();
+        	for(Livraison livraison : horaire.getLivraisons()) {
+        		setPlage.add(livraison.getAdresse());
+        	}
+        	adresses.add(setPlage);
+        }
+
+        Chemin chemin = mPlanManager.getChemin(adresses);
+        
+        Itineraire itineraire = new Itineraire();
+        //TODO
+        mController.afficherItineraire(itineraire);
+        return null;
+    }
+	
+    public List<PlageHoraire> getPlagesHoraire() {
+    	
+    	return this.mDemandeLivraisons.getPlagesHoraire();
     }
     
     public List<Livraison> getLivraisons(){
@@ -98,6 +140,7 @@ public class LivraisonManager {
     	}
     	return lesLivraisons;
     }
+    
     
     public Livraison leLivraison(Point point){
     	List<Livraison> lesLivraisons = getLivraisons();
@@ -118,7 +161,7 @@ public class LivraisonManager {
     	final JComponent[] inputs = new JComponent[] {
     			new JLabel("Id Client"),
     			id_client,
-    			new JLabel("Heure d�but"),
+    			new JLabel("Heure debut"),
     			heureDebutInput,
     			new JLabel("Heure fin"),
     			heureFinInput
@@ -142,6 +185,7 @@ public class LivraisonManager {
     	
     	//TODO Afficher les plages horaire et choisir une et ne pas cr�er une nouvelle plage horaire � chaque fois
     }
+    
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
     }

@@ -1,9 +1,9 @@
 package util;
 
 
-public class generationIDint {
+public class GenerationIDint {
 	static int uniqueId;
-	public generationIDint(){
+	public GenerationIDint(){
 		uniqueId = 1000;
 	}
 	public int getUniqueId()

@@ -58,7 +58,7 @@ public class XMLLoader {
 	/**
 	 * This method allows to get the plan after check the match with XSD file
 	 * @param file : The XML file we want to load
-	 * @return A set of troncon
+	 * @return A Pair containing a set of troncons as first element and an Array list of vertex as second
 	 * @throws PlanXMLException
 	 */
 	public static PairKey<Set<Troncon>, ArrayList<Vertex>> getPlanXML(File file) throws PlanXMLException {
@@ -121,7 +121,7 @@ public class XMLLoader {
 		        }
         	}
         }
-		return new PairKey(nodeListTronconSortant, vertexs);
+		return new PairKey<Set<Troncon>, ArrayList<Vertex>>(nodeListTronconSortant, vertexs);
 	}
 
 	/**
