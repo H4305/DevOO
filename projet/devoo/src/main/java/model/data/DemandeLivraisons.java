@@ -48,4 +48,11 @@ public class DemandeLivraisons {
     	return null;
     }
 
+    /**
+     * Returne l'entrepot de la demande de livraison
+     * @return l'entrepot de la demande de livraison
+     */
+    public Point getEntrepot() {
+    	return mEntrepot;
+    }
 }

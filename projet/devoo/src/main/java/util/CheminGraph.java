@@ -7,16 +7,17 @@ package util;
 import model.data.Chemin;
 import model.data.Point;
 
-/**
- * @author mozilla
- *
- */
 public class CheminGraph implements Graph {
 	
-	private TwoKeyMap<Point, Point, Chemin> chemins;
+	private TwoKeyMap<Point, Point, Chemin> mChemins;
 
+	private TreeMap<Pair<Point,Point>, Chemin> chemin;
 	private int maxArcCost = 0;
 	private int minArcCost = 0;
+	
+	public CheminGraph(TwoKeyMap<Point, Point, Chemin> chemins) {
+		mChemins = chemins;
+	}
 	
 	/* (non-Javadoc)
 	 * @see util.Graph#getMaxArcCost()
@@ -39,7 +40,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getNbVertices() {
-		return chemins.size();
+		return mChemins.getSize();
 	}
 
 	/* (non-Javadoc)

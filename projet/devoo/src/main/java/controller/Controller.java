@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import model.data.Chemin;
 import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.Point;
@@ -76,7 +77,7 @@ public class Controller {
     /**
      * @param circuit
      */
-    public void afficherItineraire(Itineraire circuit) {
+    public void afficherItineraire(Chemin circuit) {
         // TODO implement here
     }
 
