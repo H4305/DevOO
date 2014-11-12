@@ -27,6 +27,8 @@ public class Livraison {
      */
     private Noeud adresse;
 	
+    private Boolean aLivrer;
+    
     /**
      * 
      * @param id
@@ -38,6 +40,7 @@ public class Livraison {
     	this.heureLivraison = "";
     	this.idClient = id_client;
     	this.adresse = adresse;
+    	this.aLivrer = false;
     }
 
     /**
@@ -97,6 +100,10 @@ public class Livraison {
 		if (idClient != other.idClient)
 			return false;
 		return true;
+	}
+
+	public void setALivrer() {
+		this.aLivrer = true;		
 	}
     
 

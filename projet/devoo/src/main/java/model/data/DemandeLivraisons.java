@@ -40,6 +40,7 @@ public class DemandeLivraisons {
      * @param dateDebut
      */
     public PlageHoraire getPlageHoraire(Date dateDebut) {
+    	
     	for (PlageHoraire pH : mPlagesHoraires) {
     		if(pH.getDateDebut().equals(dateDebut)) {
     			return pH;
@@ -55,4 +56,19 @@ public class DemandeLivraisons {
     public Noeud getEntrepot() {
     	return mEntrepot;
     }
+    
+    /**
+     * @param dateDebut
+     */
+    public PlageHoraire getPlageHoraireEquals(PlageHoraire plageHoraire) {
+    	
+    	for (PlageHoraire pH : mPlagesHoraires) {
+    		if(pH.equals(plageHoraire)) {
+    			return pH;
+    		}
+    	}
+    	return null;
+    }
+    
+    
 }

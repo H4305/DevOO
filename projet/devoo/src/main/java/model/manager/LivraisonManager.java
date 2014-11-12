@@ -205,11 +205,15 @@ public class LivraisonManager {
     		* -> decaler tous
     		* -> set a Livrer
     		*/
+    		nouvelleLivraison.setALivrer();
+    		
+    		
+    		
     	}else {
-    		/*
-    		 * J'ajoute une demande de livraison avec a livrer ENUM false
-    		 */
+    		    		
     	}
+    	
+    	mDemandeLivraisons.getPlageHoraireEquals(plageHoraireLivPrecedente).getLivraisons().add(nouvelleLivraison);
     	
     }
     
