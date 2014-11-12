@@ -9,12 +9,11 @@ import util.Vertex;
 import java.io.File;
 
 import controller.Controller;
-
+import util.CheminGraph;
 import util.Dijkstra;
 import util.PairKey;
 import util.Vertex;
 import util.XMLLoader;
-
 import model.data.Chemin;
 import model.data.Noeud;
 import model.data.Troncon;
@@ -132,10 +131,11 @@ public class PlanManager {
     }
 
     /**
-     * @param Points 
+     * @param Points Une liste ordonnée de Sets des points de chaque plage horaire
      * @return
      */
-    public Chemin getChemin(List<Set<Noeud>> plages) {
+    public Chemin getChemin(List<Set<Point>> plages) {
+    	List<Chemin> chemins = new ArrayList<Chemin>();
     	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
         Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
@@ -144,7 +144,8 @@ public class PlanManager {
     		for(Noeud orig : plage) {
     			for(Noeud dest : plage) {
             		if(!orig.equals(dest)) {
-            			courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
+            			chemins.add(calculerPlusCourtChemin(orig, dest));
+            			//courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
             		}
             	}
     		}
@@ -158,6 +159,8 @@ public class PlanManager {
     		}
     		plagePrecedente = plage;
     	}
+    	
+    	CheminGraph graph = new CheminGraph(courtsChemins);
         
         return null;
     }
