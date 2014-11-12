@@ -142,53 +142,11 @@ public class LivraisonManager {
     	}
     	return lesLivraisons;
     }
-    
-    public void add(Noeud point){
-    	//On cree et on affiche un bo�te de dialogue pour inserer les infos sur la nouvelle livraison 
-    	JTextField id_client = new JTextField();
-    	JTextField heureDebutInput = new JTextField();
-    	JTextField heureFinInput = new JTextField();
-    	int id = uniqueIDgenerator.getUniqueId();
-    	final JComponent[] inputs = new JComponent[] {
-    			new JLabel("Id Client"),
-    			id_client,
-    			new JLabel("Heure debut"),
-    			heureDebutInput,
-    			new JLabel("Heure fin"),
-    			heureFinInput
-    	};
-        
-    	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
-    	//on recupere les infos et on cr�e une nouvelle instance de la classe livraison 
-    	Noeud adresse = point; //la nouvelle livraison est rajout�e dans le point o� on a cliqu� 
-    	int idClient = Integer.parseInt(id_client.getText());
-    	Livraison newLivraison = new Livraison(id, idClient, adresse);
-    	//Je annonce que j'ai cree une nouvelle livraison
-    	JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient + " dans la plage horaire " + heureDebutInput.getText() + "-" + heureFinInput.getText() , null, JOptionPane.INFORMATION_MESSAGE);
-    	
-    	//on recupere les donn�es et on cr�e une nouvelle plage horaire 
-    	String heureDebut = heureDebutInput.getText();
-    	String heureFin = heureFinInput.getText();
-    	List<Livraison> newLivraisonList = new ArrayList<Livraison>();
-    	newLivraisonList.add(newLivraison);
-    	PlageHoraire plage = new PlageHoraire(heureDebut, heureFin, newLivraisonList);
-    	this.addLivraison(newLivraison,plage);
-    	
-    	//TODO Afficher les plages horaire et choisir une et ne pas cr�er une nouvelle plage horaire � chaque fois
-    }
-    
+       
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
     }
-    public void remove(Livraison l){
-    	JFrame frame = new JFrame("Supprimer une livraison");
-    	JOptionPane removeLivraisonPanel = new JOptionPane();
-	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison � l'adresse: " + l.getAdresse().toString() + " prevu�e � l'heure: " + l.getHeureLivraison(), null, 0, 0, null, null, removeLivraisonPanel);
-    	if(n==0) {
-    		this.removeLivraison(l);		
-    		
-    	}
-    }
+    
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
     }

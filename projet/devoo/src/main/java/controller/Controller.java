@@ -176,14 +176,4 @@ public class Controller {
     }
 	
 	
-	public void pointClicked(Noeud p){
-		Livraison livraison = mLivraisonManager.findLivraisonByAddress(p);
-    	if(livraison!=null)  {
-    		mLivraisonManager.remove(livraison);
-    	} else {
-    		mLivraisonManager.add(p);
-    	}
-    	
-    }
-	
 }

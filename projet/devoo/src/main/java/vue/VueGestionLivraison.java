@@ -2,9 +2,14 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import model.data.Livraison;
@@ -78,13 +83,20 @@ public class VueGestionLivraison {
     }
     
 
+	
 	public void afficherPlan() {
     	vuePlan = new PlanPanel(mPlanManager.getPlan());
     	vuePlan.setPointClickedListener(new PointClickedListener() {
 			
 			@Override
 			public void pointClicked(Noeud point) {
-				mLivraisonManager.add(point);
+				if(!point.isLivraison()){
+					add(point);
+				}
+				else {
+					remove(point);
+				}
+
 				
 			}
 		});
@@ -92,7 +104,6 @@ public class VueGestionLivraison {
     	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();
     }
-
 	public File getFichierXML() {
 		return Useful.ouvrirFichier('o');
 	}
@@ -118,6 +129,43 @@ public class VueGestionLivraison {
 		mController.loadDemandeLivrasonsXML();
 	}
 	
+    public void add(Noeud point){ 
+    	
+    	
+    	
+    	
 
+        
+    	//JOptionPane.showMessageDialog(null, null, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
+    	
+    	
+    	JTextField id_client = new JTextField();
+    	final JComponent[] inputs = new JComponent[] {
+    			new JLabel("Id Client"),
+    			id_client
+    	};
+        
+    	JOptionPane.showMessageDialog(null, inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
+    	
+    	if (!id_client.getText().equals("")) {
+    		int idClient = Integer.parseInt(id_client.getText());
+    		JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient, null, JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else {
+    		JOptionPane.showMessageDialog(null,"Problem with the ID", null, JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	
+    	
+    	
+    }
+    public void remove(Noeud p){
+    	JFrame frame = new JFrame("Supprimer une livraison");
+    	JOptionPane removeLivraisonPanel = new JOptionPane();
+	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison à l'adresse: " + p.toString(), null, 0, 0, null, null, removeLivraisonPanel);
+    	if(n==0) {
+    		//this.removeLivraison(l);		
+    		//on supprime la livraison
+    	}
+    }
 
 }

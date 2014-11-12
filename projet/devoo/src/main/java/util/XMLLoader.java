@@ -136,7 +136,14 @@ public class XMLLoader {
 		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
+/*-------------------------------------------------------------------------------------------*/
 		
+		List<Noeud> list = new ArrayList<Noeud>(plan.values());
+		
+		for (Noeud noeee : list){
+			noeee.setIsLivraison(false);
+		}
+/*-------------------------------------------------------------------------------------------*/
 		Element racine = getRootFromXMLFile(file);
 		Noeud entrepot = new Noeud();
 		NodeList listEntrepot = racine.getElementsByTagName("Entrepot");
@@ -180,7 +187,7 @@ public class XMLLoader {
 						}
 						
 						Noeud adresse  = plan.get(id_adresse);
-						
+						adresse.setIsLivraison(true);
 						if(adresse.equals(entrepot)){
 							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");
 						}
