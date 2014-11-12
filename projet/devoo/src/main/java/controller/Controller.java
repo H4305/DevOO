@@ -3,6 +3,8 @@ package controller;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.Point;
 /*
@@ -69,7 +71,7 @@ public class Controller {
     /**
      * @param circuit
      */
-    public void afficherItineraire(Set<Troncon> circuit) {
+    public void afficherItineraire(Itineraire circuit) {
         // TODO implement here
     }
     
