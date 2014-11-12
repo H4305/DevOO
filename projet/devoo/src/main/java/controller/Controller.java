@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import model.data.Chemin;
 import model.data.Itineraire;
 import model.data.Livraison;
-import model.data.Point;
+import model.data.Noeud;
 /*
  * model import
  */
@@ -15,7 +15,7 @@ import model.data.Livraison;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import model.data.PlageHoraire;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 
 /*
@@ -53,11 +53,16 @@ public class Controller {
     * Class constructor.
     */
     public Controller() {
-		super();
 		this.mPlanManager = new PlanManager(this);
 		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
 	}
+    
+    public void generateRoadmap () {
+    	mPlanManager.getAllTroncons();
+    	
+    	//mLivraisonManager.g
+    }
     
     /**
      * Initialisation de l'applicatione et affichage de l'�cran d'accueil.
@@ -67,8 +72,9 @@ public class Controller {
     	mVueGestionLivraison.setPointClickedListener(new PointClickedListener() {
 			
 			@Override
-			public void pointClicked(Point point) {
+			public void pointClicked(Noeud point) {
 				LOG.log(Level.INFO, "Point Clicked");
+				
 				onePointSelected(point);
 			}
 		});
@@ -81,11 +87,11 @@ public class Controller {
         // TODO implement here
     }
 
-    public void onePointSelected(Point point) {
+    public void onePointSelected(Noeud point) {
     	afficherLivraison(point);
     }
     
-    public void afficherLivraison(Point point) {
+    public void afficherLivraison(Noeud point) {
     	Livraison livraison = mLivraisonManager.findLivraisonByAddress(point);
     	if(livraison != null) {
     		PlageHoraire plageHoraire = mLivraisonManager.findPlageHoraireByLivraison(livraison);
@@ -170,7 +176,7 @@ public class Controller {
     }
 	
 	
-	public void pointClicked(Point p){
+	public void pointClicked(Noeud p){
 		Livraison livraison = mLivraisonManager.leLivraison(p);
     	if(livraison!=null)  {
     		mLivraisonManager.remove(livraison);

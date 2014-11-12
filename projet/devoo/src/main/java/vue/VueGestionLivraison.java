@@ -9,12 +9,14 @@ import javax.swing.WindowConstants;
 
 import model.data.Livraison;
 import model.data.PlageHoraire;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import util.Useful;
 import vue.widget.MainPanel;
 import vue.widget.PlanPanel;
+import vue.widget.PlanPanel.PointClickedListener;
 import controller.Controller;
 
 /**
@@ -65,8 +67,7 @@ public class VueGestionLivraison {
     	mainFrame.add(mainPanel, BorderLayout.CENTER);
     	afficherPlan();
     	mainFrame.pack();
-    	mainFrame.setVisible(true);
-    	
+    	mainFrame.setVisible(true);   	
     }
     
     /**
@@ -79,7 +80,14 @@ public class VueGestionLivraison {
 
 	public void afficherPlan() {
     	vuePlan = new PlanPanel(mPlanManager.getPlan());
-    	vuePlan.setPointClickedListener(pointClickedListener);
+    	vuePlan.setPointClickedListener(new PointClickedListener() {
+			
+			@Override
+			public void pointClicked(Noeud point) {
+				mLivraisonManager.add(point);
+				
+			}
+		});
     	vuePlan.repaint();
     	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();

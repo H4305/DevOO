@@ -31,7 +31,7 @@ import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.ZoneGeographique;
 import model.manager.PlanManager;
-import model.data.Point;
+import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
 
 /*
@@ -84,7 +84,7 @@ public class LivraisonManager {
     	if (fileXML != null) {             
 			// Get the livraison
 			try {
-				HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
+				HashMap<Integer, Noeud> planPoints = this.mPlanManager.getHashMapPlan();
 				this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, planPoints);
 				mController.afficherDemandeLivraisons();
 				
@@ -106,14 +106,14 @@ public class LivraisonManager {
      * @return l'itineraire à suivre
      */
     public Itineraire calculItineraire() {
-    	List<Set<Point>> adresses = new ArrayList<Set<Point>>();
+    	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
         Set<Point> setEntrepot = new TreeSet<Point>();
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
-        	Set<Point> setPlage = new TreeSet<Point>();
+        	Set<Noeud> setPlage = new TreeSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
         		setPlage.add(livraison.getAdresse());
         	}
@@ -143,7 +143,7 @@ public class LivraisonManager {
     }
     
     
-    public Livraison leLivraison(Point point){
+    public Livraison leLivraison(Noeud point){
     	List<Livraison> lesLivraisons = getLivraisons();
     	for(Livraison livraison: lesLivraisons){
 			if(livraison.getAdresse().equals(point)){
@@ -153,7 +153,7 @@ public class LivraisonManager {
     	return null;
     }
     
-    public void add(Point point){
+    public void add(Noeud point){
     	//On cree et on affiche un bo�te de dialogue pour inserer les infos sur la nouvelle livraison 
     	JTextField id_client = new JTextField();
     	JTextField heureDebutInput = new JTextField();
@@ -170,7 +170,7 @@ public class LivraisonManager {
         
     	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
     	//on recupere les infos et on cr�e une nouvelle instance de la classe livraison 
-    	Point adresse = point; //la nouvelle livraison est rajout�e dans le point o� on a cliqu� 
+    	Noeud adresse = point; //la nouvelle livraison est rajout�e dans le point o� on a cliqu� 
     	int idClient = Integer.parseInt(id_client.getText());
     	Livraison newLivraison = new Livraison(id, idClient, adresse);
     	//Je annonce que j'ai cree une nouvelle livraison
@@ -203,7 +203,7 @@ public class LivraisonManager {
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
     }
     
-    public Livraison findLivraisonByAddress(Point address) {
+    public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
     		if(livraison.getAdresse().equals(address)) 
     			return livraison;

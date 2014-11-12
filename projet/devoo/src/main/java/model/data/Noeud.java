@@ -5,12 +5,12 @@ import java.util.*;
 /**
  * 
  */
-public class Point {
+public class Noeud {
 
     /**
      * 
      */
-    public Point() {
+    public Noeud() {
     }
     
     /**
@@ -19,7 +19,7 @@ public class Point {
      * @param x
      * @param y
      */
-    public Point (int id, int x, int y) {
+    public Noeud (int id, int x, int y) {
     	this.id = id;
     	this.x = x;
     	this.y = y;
@@ -73,8 +73,8 @@ public class Point {
 	
 	@Override
 	public boolean equals(Object arg0) {
-		if(!(arg0 instanceof Point)) return false;
-		Point p = (Point) arg0;
+		if(!(arg0 instanceof Noeud)) return false;
+		Noeud p = (Noeud) arg0;
 		if(p.x == x && p.y == y) return true;
 		return false;
 	}

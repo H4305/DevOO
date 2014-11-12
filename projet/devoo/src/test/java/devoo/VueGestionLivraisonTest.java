@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
@@ -47,11 +47,11 @@ public class VueGestionLivraisonTest {
 	@Test
 	public void testAfficherPlan() {
 		ArrayList<Troncon> troncons = new ArrayList<Troncon>();
-		Point p1 = new Point(1, 2, 4);
-		Point p2 = new Point(2, 2, 6);
-		Point p3 = new Point(3, 2, 8);
-		Point p4 = new Point(4, 4, 4);
-		Point p5 = new Point(5, 4, 8);
+		Noeud p1 = new Noeud(1, 2, 4);
+		Noeud p2 = new Noeud(2, 2, 6);
+		Noeud p3 = new Noeud(3, 2, 8);
+		Noeud p4 = new Noeud(4, 4, 4);
+		Noeud p5 = new Noeud(5, 4, 8);
 		
 		troncons.addAll(Arrays.asList(
 				new Troncon("rue", 50.0f, 50, p1, p2),

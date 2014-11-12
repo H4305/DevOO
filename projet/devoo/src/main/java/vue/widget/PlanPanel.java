@@ -19,7 +19,7 @@ import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import solver.search.strategy.strategy.set.SetSearchStrategy;
 import vue.VueChemin;
@@ -79,8 +79,8 @@ public class PlanPanel extends JPanel {
 		
 		// Find max and min for scale
 		for (Troncon troncon : mTronconsPlan) {
-			Point arrivee = troncon.getArrivee();
-			Point depart = troncon.getDepart();
+			Noeud arrivee = troncon.getArrivee();
+			Noeud depart = troncon.getDepart();
 
 			maxX = Math.max(maxX, arrivee.x);
 			maxX = Math.max(maxX, depart.x);
@@ -130,7 +130,7 @@ public class PlanPanel extends JPanel {
 
 	public void afficherItineraire() {
 		if(mChemin == null) {
-			LOGGER.log(Level.WARNING, "Aucun itineraire n'a été ajouté à ce plan. "
+			LOGGER.log(Level.WARNING, "Aucun itineraire n'a ï¿½tï¿½ ajoutï¿½ ï¿½ ce plan. "
 					+ "Utilsez addItineraire pour en ajouter un.");
 			return;
 		}
@@ -188,7 +188,7 @@ public class PlanPanel extends JPanel {
 	}
 	
 	public interface PointClickedListener {
-		public void pointClicked(Point point);
+		public void pointClicked(Noeud point);
 	}
 	
 	private class MouseActionListener implements MouseListener {

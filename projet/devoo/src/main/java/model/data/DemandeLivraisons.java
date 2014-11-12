@@ -11,7 +11,7 @@ public class DemandeLivraisons {
 	 * 
 	 */
 	private List<PlageHoraire> mPlagesHoraires;
-	private Point mEntrepot;
+	private Noeud mEntrepot;
 	
     /**
      * 
@@ -24,7 +24,7 @@ public class DemandeLivraisons {
      * @param entrepot
      * @param plagesHoraires
      */
-    public DemandeLivraisons(Point entrepot, List<PlageHoraire> plagesHoraires) {
+    public DemandeLivraisons(Noeud entrepot, List<PlageHoraire> plagesHoraires) {
     	this.mPlagesHoraires = plagesHoraires;
     	this.mEntrepot = entrepot;
     }

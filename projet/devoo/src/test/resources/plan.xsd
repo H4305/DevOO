@@ -6,7 +6,7 @@
         <xs:element name="Noeud" maxOccurs="unbounded" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="LeTronconSortant" maxOccurs="unbounded" minOccurs="0">
+              <xs:element name="LeTronconSortant" maxOccurs="unbounded" minOccurs="1">
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">

@@ -12,7 +12,7 @@ public class AppColors {
 
 	
 	public static final Color[] plageHoraire = {
-		new Color(0x16a085),
+		new Color(0x16C085),
 		new Color(0xf1c40f),
 		new Color(0xc0392b),
 		new Color(0x2ecc71),

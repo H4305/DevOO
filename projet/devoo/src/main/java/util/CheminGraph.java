@@ -5,11 +5,11 @@ package util;
 
 
 import model.data.Chemin;
-import model.data.Point;
+import model.data.Noeud;
 
 public class CheminGraph implements Graph {
-	
-	private TwoKeyMap<Point, Point, Chemin> mChemins;
+
+	private TwoKeyMap<Noeud, Noeud, Chemin> chemins;
 
 	private TreeMap<Pair<Point,Point>, Chemin> chemin;
 	private int maxArcCost = 0;
