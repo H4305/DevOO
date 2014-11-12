@@ -299,16 +299,16 @@ public class LivraisonManager {
 		java.util.Date date = new java.util.Date(); 
     	File file = new File("C:/Users/Liuda/Desktop/file.txt");
         PrintWriter printWriter = null;
-        ArrayList<Chemin> chemins = this.mItineraire.getChemins();
+        List<Chemin> chemins = this.mItineraire.getChemins();
 
         try
         {
             printWriter = new PrintWriter(file);
             printWriter.println("------------------FEUILLE DE ROUTE------------------");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
-            printWriter.println("Aujourd'hui vous avez à déposer " + chemins.size()+" clients.");
+            printWriter.println("Aujourd'hui vous avez ï¿½ dï¿½poser " + chemins.size()+" clients.");
             printWriter.println("Suivez les instructions suivantes: ");
-            printWriter.print("Départ du dépot : rue ");
+            printWriter.print("Dï¿½part du dï¿½pot : rue ");
             for(Chemin c : chemins){
             	
             	for(Troncon t : c.getTroncons())
@@ -320,7 +320,7 @@ public class LivraisonManager {
             		}
             		else
             		{
-            			printWriter.print("Vous etes arrivé à la livraison ....");
+            			printWriter.print("Vous etes arrivï¿½ ï¿½ la livraison ....");
             		}
             	}
             	

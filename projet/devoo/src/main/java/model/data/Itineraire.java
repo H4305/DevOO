@@ -54,10 +54,5 @@ public class Itineraire {
 	public List<Chemin> getChemins() {
 		return mChemins;
 	}
-
-	public ArrayList<Chemin> getChemins(){
-		
-		return this.mChemins;
-	}
 	
 }
