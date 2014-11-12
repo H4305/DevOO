@@ -42,6 +42,7 @@ public class LivraisonManagerTest {
 		//livraisonManager.remove(livraison);
 		
 	}
+	
 	@Test
 	public void testAddPanel() {
 		//Livraison livraison = new Livraison(1,"20",2);
@@ -52,5 +53,19 @@ public class LivraisonManagerTest {
 		//livraisonManager.add(point);
 		
 	}
+	
+	@Test
+	public void exporterFeuilleRoute() {
+		
+		Controller controller = new Controller();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
+		//livraisonManager.exporterFeuilleRoute();
+		  System.out.println("Suivez les instructions suivantes: ");
+		  System.out.print("Départ du dépot : rue");
+		  System.out.println("Lalal");
+		
+	}
+
 
 }
