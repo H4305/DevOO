@@ -50,5 +50,9 @@ public class Itineraire {
     	
     	return cheminRes;
 	}
+	
+	public ArrayList<Chemin> getChemins() {
+		return mChemins;
+	}
 
 }

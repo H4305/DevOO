@@ -204,16 +204,32 @@ public class LivraisonManager {
     		/*La livraison Prevue rentre dans la plage horaire -> ajout demandeLivraison,
     		* -> decaler tous
     		* -> set a Livrer
+    		* -> supprimer le chemin de l'itineraire et ajouter les deux nouveaux chemins
     		*/
     		nouvelleLivraison.setALivrer();
     		
+    		String decalage = this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours() + plusCourCheminNouvelleSucc.getTempsParcours() + cheminPrecSucc.getTempsParcours());
     		
+    		List <Livraison> livraisons = plageHoraireLivPrecedente.getLivraisons();
     		
-    	}else {
-    		    		
+    		for(Livraison liv: livraisons) {
+    			
+    			String heurePassage = liv.getHeureLivraison();
+    			
+    			if(this.firstBeforeSecond( heureLivraisonPrevue, heurePassage) ) {
+    				
+    				String heure = this.sommeHeures(heurePassage, decalage) ;
+    				
+    				liv.setHeureLivraison(heure);	
+    			}			
+    		}			
+    		
+    		mItineraire.getChemins().remove(cheminPrecSucc);
+    		mItineraire.getChemins().add(plusCourtCheminPrecNouvelle);
+    		mItineraire.getChemins().add(plusCourCheminNouvelleSucc);  				
     	}
     	
-    	mDemandeLivraisons.getPlageHoraireEquals(plageHoraireLivPrecedente).getLivraisons().add(nouvelleLivraison);
+    	plageHoraireLivPrecedente.getLivraisons().add(nouvelleLivraison);
     	
     }
     
