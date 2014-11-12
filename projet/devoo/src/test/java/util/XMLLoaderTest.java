@@ -233,6 +233,24 @@ public class XMLLoaderTest {
 	@Test(expected = LivraisonXMLException.class)  
 	public void testGetLivraisonXML_with_exception() throws LivraisonXMLException {
 
+		/*
+
+@Test
+    public void canVote_throws_IllegalArgumentException_for_zero_age() {
+        Student student = new Student();
+        try {
+            student.canVote(0);
+        } catch (IllegalArgumentException ex) {
+            assertThat(ex.getMessage(), containsString("age should be +ve"));
+        }
+        fail("expected IllegalArgumentException for non +ve age");
+    }
+
+		 * 
+		 */
+		
+		
+		
 		// Bad XML file
 		File file = new File("src/main/resources/xml/plan20x20.xml"); 
         XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
@@ -242,7 +260,7 @@ public class XMLLoaderTest {
 		// Bad XML file - Problem Attribut Entrepot adresse
 		file = new File("src/test/resources/xml/livraison10x10-attribut-Entrepot-adresse.xml"); 
         XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
-
+       
 		// Bad XML file - Problem Attribut Plage heureDebut
 		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureDebut.xml"); 
         XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
