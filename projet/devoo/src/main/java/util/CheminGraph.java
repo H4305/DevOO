@@ -5,7 +5,7 @@ package util;
 
 
 import model.data.Chemin;
-import model.data.Point;
+import model.data.Noeud;
 
 /**
  * @author mozilla
@@ -13,7 +13,7 @@ import model.data.Point;
  */
 public class CheminGraph implements Graph {
 	
-	private TwoKeyMap<Point, Point, Chemin> chemins;
+	private TwoKeyMap<Noeud, Noeud, Chemin> chemins;
 
 	private int maxArcCost = 0;
 	private int minArcCost = 0;
@@ -39,7 +39,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getNbVertices() {
-		return chemins.size();
+		return chemins.getSize();
 	}
 
 	/* (non-Javadoc)

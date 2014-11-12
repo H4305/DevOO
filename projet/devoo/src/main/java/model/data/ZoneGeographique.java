@@ -22,12 +22,12 @@ public class ZoneGeographique {
     /**
      * 
      */
-    private Point depot;
+    private Noeud depot;
 
     /**
      * 
      */
-    public Point getDepot() {
+    public Noeud getDepot() {
         return depot;
     }
 

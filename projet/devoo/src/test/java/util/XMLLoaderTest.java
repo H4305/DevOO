@@ -2,7 +2,7 @@ package util;
 
 import static org.junit.Assert.assertFalse;
 import model.data.DemandeLivraisons;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
@@ -150,9 +150,9 @@ public class XMLLoaderTest {
 		troncons = XMLLoader.getPlanXML(file).troncons;
 		Assert.assertEquals(7, troncons.size());
 		
-		Point point0 = new Point(0,51,37);
-		Point point1 = new Point(1,26,65);
-		Point point2 = new Point(2,23,116);
+		Noeud point0 = new Noeud(0,51,37);
+		Noeud point1 = new Noeud(1,26,65);
+		Noeud point2 = new Noeud(2,23,116);
 		
 		// Because of the set, it is not ordered
 		for (Troncon troncon : troncons) {
@@ -253,33 +253,33 @@ public class XMLLoaderTest {
 		
 		// Bad XML file
 		File file = new File("src/main/resources/xml/plan20x20.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
 		// ------------------------------------------------------- BAD Attributes values
         
 		// Bad XML file - Problem Attribut Entrepot adresse
 		file = new File("src/test/resources/xml/livraison10x10-attribut-Entrepot-adresse.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
-       
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
+
 		// Bad XML file - Problem Attribut Plage heureDebut
 		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureDebut.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
 		// Bad XML file - Problem Attribut Plage heureFin
 		file = new File("src/test/resources/xml/livraison10x10-attribut-Plage-heureFin.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
   		// Bad XML file - Problem Attribut Livraison id
 		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-id.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
   		// Bad XML file - Problem Attribut Livraison client
 		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-client.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	 
   		// Bad XML file - Problem Attribut Livraison adresse
 		file = new File("src/test/resources/xml/livraison20x20-attribut-Livraison-adresse.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// ------------------------------------------------------- / BAD Attributes values
         
@@ -287,27 +287,27 @@ public class XMLLoaderTest {
         
 		// Bad XML file - Problem Attribut Entrepot adresse
 		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Entrepot-adresse.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 
 		// Bad XML file - Problem Attribut Plage heureDebut
 		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureDebut.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
 		// Bad XML file - Problem Attribut Plage heureFin
 		file = new File("src/test/resources/xml/livraison10x10-attribut-missing-Plage-heureFin.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
   		// Bad XML file - Problem Attribut Livraison id
 		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-id.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	  
   		// Bad XML file - Problem Attribut Livraison client
 		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-client.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 	 
   		// Bad XML file - Problem Attribut Livraison adresse
 		file = new File("src/test/resources/xml/livraison20x20-attribut-missing-Livraison-adresse.xml"); 
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// ------------------------------------------------------- / MISSING Attributes values
         
@@ -315,55 +315,55 @@ public class XMLLoaderTest {
         
 		// Bad XML file - Problem malformed JourneeType <opening tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-1.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 
 		// Bad XML file - Problem malformed JourneeType <closing tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-JourneeType-2.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// Bad XML file - Problem malformed Livraisons <opening tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-1.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 
 		// Bad XML file - Problem malformed Livraisons <closing tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraisons-2.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// Bad XML file - Problem malformed Plage <opening tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-1.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 
 		// Bad XML file - Problem malformed Plage <closing tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Plage-2.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// Bad XML file - Problem malformed PlageHoraires <opening tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-1.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
 
 		// Bad XML file - Problem malformed PlageHoraires <closing tag>
 		file = new File("src/test/resources/xml/livraison20x20-malformed-PlageHoraires-2.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// Bad XML file - Problem malformed Entrepot
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Entrepot.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// Bad XML file - Problem malformed Livraison
 		file = new File("src/test/resources/xml/livraison20x20-malformed-Livraison.xml");    
-        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Point>());
+        XMLLoader.getLivraisonXML(file, new HashMap<Integer, Noeud>());
         
 		// ------------------------------------------------------- / XML's structure malformed
 	}
 	
 	@Test
 	public void testGetLivraisonXML() throws Exception {
-		HashMap<Integer, Point> plan = new HashMap<Integer, Point>();
-		plan.put((Integer) 1, new Point(1, 1, 1));
-		plan.put((Integer) 2, new Point(2, 1, 2));
-		plan.put((Integer) 3, new Point(3, 2, 1));
-		plan.put((Integer) 4, new Point(4, 2, 2));
-		plan.put((Integer) 0, new Point(0, 0, 0));
+		HashMap<Integer, Noeud> plan = new HashMap<Integer, Noeud>();
+		plan.put((Integer) 1, new Noeud(1, 1, 1));
+		plan.put((Integer) 2, new Noeud(2, 1, 2));
+		plan.put((Integer) 3, new Noeud(3, 2, 1));
+		plan.put((Integer) 4, new Noeud(4, 2, 2));
+		plan.put((Integer) 0, new Noeud(0, 0, 0));
 		File file = new File("src/test/resources/xml/livraisonTestOk.xml");
 		DemandeLivraisons demandeLivraisons = XMLLoader.getLivraisonXML(file, plan);
 		Assert.assertEquals(3, demandeLivraisons.getPlagesHoraire().size());

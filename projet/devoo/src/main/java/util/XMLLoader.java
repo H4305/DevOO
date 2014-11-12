@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
@@ -69,7 +69,7 @@ public class XMLLoader {
 		
 		Element racine = getRootFromXMLFile(file);
 		
-		HashMap<Integer, Point> noeuds = new HashMap<Integer, Point>();
+		HashMap<Integer, Noeud> noeuds = new HashMap<Integer, Noeud>();
 		ArrayList<Vertex> vertexs = new ArrayList<Vertex>();
     	Set<Troncon> nodeListTronconSortant = new HashSet<Troncon>();
     	
@@ -83,7 +83,7 @@ public class XMLLoader {
 				int x = Integer.parseInt(noeud.getAttribute("x"));
 				int y = Integer.parseInt(noeud.getAttribute("y"));
 				
-				noeuds.put(id, new Point(id, x, y));	
+				noeuds.put(id, new Noeud(id, x, y));	
         	}
         }
         
@@ -94,7 +94,7 @@ public class XMLLoader {
         		final Element noeud = (Element) listNodes.item(i); 
             	
 				int id = Integer.parseInt(noeud.getAttribute("id"));
-				Point pointDepart = noeuds.get(id);
+				Noeud pointDepart = noeuds.get(id);
 				NodeList listNodesFils = noeud.getElementsByTagName("LeTronconSortant");       
 		        
 		        for (int j = 0; j < listNodesFils.getLength(); j++) {
@@ -107,7 +107,7 @@ public class XMLLoader {
 		                float longueur = Float.parseFloat(noeudFils.getAttribute("longueur").replace(',', '.'));
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
-		                Point pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
+		                Noeud pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
 		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
 		        	}
 		        }
@@ -131,14 +131,14 @@ public class XMLLoader {
 	 * @return A DemandeLivraisons object
 	 * @throws LivraisonXMLException
 	 */
-	public static DemandeLivraisons getLivraisonXML(File file, HashMap<Integer, Point> plan) throws LivraisonXMLException {
+	public static DemandeLivraisons getLivraisonXML(File file, HashMap<Integer, Noeud> plan) throws LivraisonXMLException {
 		
 		if (!XMLVerification.checkLivraisonXML(file)) {
 			throw new LivraisonXMLException("The " + file.getAbsolutePath() + " is NOT valid");
 		}
 		
 		Element racine = getRootFromXMLFile(file);
-		Point entrepot = new Point();
+		Noeud entrepot = new Noeud();
 		NodeList listEntrepot = racine.getElementsByTagName("Entrepot");
 		
 		for (int i = 0; i < listEntrepot.getLength(); i++) {
@@ -179,7 +179,7 @@ public class XMLLoader {
 							throw new LivraisonXMLException("LivraisonXMLException - The adress needed is not available");
 						}
 						
-						Point adresse  = plan.get(id_adresse);
+						Noeud adresse  = plan.get(id_adresse);
 						
 						if(adresse.equals(entrepot)){
 							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");

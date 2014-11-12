@@ -10,7 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import model.data.DemandeLivraisons;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.exceptions.LivraisonXMLException;
 import model.exceptions.PlanXMLException;
@@ -60,7 +60,7 @@ public class Useful {
 		if (xml != null) {
 			try {
 				// Get the livraison
-				return XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
+				return XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Noeud>());
 			} catch (LivraisonXMLException e) {
 				System.out.println(e.getMessage());
 			}
@@ -90,7 +90,7 @@ public class Useful {
                 // Get the livraison
                 else if (racine.getNodeName().equals("JourneeType")) {
                 	try {
-                		XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Point>());
+                		XMLLoader.getLivraisonXML(xml, new HashMap<Integer, Noeud>());
 					} catch (LivraisonXMLException e) {
 						// On affichera ca dans la vue
 						System.out.println(e.getMessage());

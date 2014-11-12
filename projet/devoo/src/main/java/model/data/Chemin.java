@@ -12,19 +12,19 @@ public class Chemin {
 	/**
      * 
      */
-	private Point arrivee;
-	private Point depart;
+	private Noeud arrivee;
+	private Noeud depart;
 	private ArrayList<Troncon> troncon;
 	private float tempsParcours;
 
-	public Chemin(Point arrivee, Point depart, ArrayList<Troncon> argTroncons) {
+	public Chemin(Noeud arrivee, Noeud depart, ArrayList<Troncon> argTroncons) {
 		super();
 		this.arrivee = arrivee;
 		this.depart = depart;
 		this.troncon = argTroncons;
 	}
 	
-	public Chemin(Point arrivee, Point depart) {
+	public Chemin(Noeud arrivee, Noeud depart) {
 		super();
 		this.arrivee = arrivee;
 		this.depart = depart;
@@ -34,21 +34,21 @@ public class Chemin {
 	/**
      * 
      */
-	public Point getDepart() {
+	public Noeud getDepart() {
 		return depart;
 	}
 
 	/**
      * 
      */
-	public Point getArrivee() {
+	public Noeud getArrivee() {
 		return arrivee;
 	}
 
 	/**
      * 
      */
-	public void setArrivee(Point pointArrivee) {
+	public void setArrivee(Noeud pointArrivee) {
 		this.arrivee = pointArrivee;
 	}
 	
@@ -72,7 +72,7 @@ public class Chemin {
 	public String toString()
 	{
 		String s;
-		s = "Chemin : depart de " + this.depart.toString() + ", arrivee à " + this.arrivee.toString() + ", en passant par les rues : "; 
+		s = "Chemin : depart de " + this.depart.toString() + ", arrivee ï¿½ " + this.arrivee.toString() + ", en passant par les rues : "; 
 		for(int i = 0; i< this.troncon.size(); i++)
 		{
 			s = s + this.troncon.get(i).toString() + ", " ;
