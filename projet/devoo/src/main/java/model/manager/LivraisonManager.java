@@ -59,6 +59,7 @@ public class LivraisonManager {
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
 	private GenerationIDint uniqueIDgenerator; 
+	private Itineraire mItineraire;
 
    /**
     * Class constructor specifying a Controller and a PlanManager
@@ -119,9 +120,9 @@ public class LivraisonManager {
 
         Chemin chemin = mPlanManager.getChemin(adresses);
         
-        Itineraire itineraire = new Itineraire();
+        mItineraire = new Itineraire(null); //Faut mettre l'array list
         //TODO
-        mController.afficherItineraire(itineraire);
+        mController.afficherItineraire(mItineraire);
         return null;
     }
 	
@@ -139,17 +140,6 @@ public class LivraisonManager {
     		lesLivraisons.addAll(plage.getLivraisons());
     	}
     	return lesLivraisons;
-    }
-    
-    
-    public Livraison leLivraison(Noeud point){
-    	List<Livraison> lesLivraisons = getLivraisons();
-    	for(Livraison livraison: lesLivraisons){
-			if(livraison.getAdresse().equals(point)){
-				return livraison;
-			}
-		}
-    	return null;
     }
     
     public void add(Noeud point){
@@ -219,5 +209,28 @@ public class LivraisonManager {
     		}
     	}
     	return null;
+    }
+    
+    public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {	
+    	
+    	Livraison livraisonPrecedente;
+    	PlageHoraire plageHoraireLivPrecedente;
+    	
+    	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
+    		
+    		for(Livraison livraison : plageHoraire.getLivraisons()) {
+    			
+    			if(livraison.getAdresse().equals(adresseLivraisonPrecedente)) {
+    				
+    				livraisonPrecedente = livraison;
+    				plageHoraireLivPrecedente = plageHoraire;
+    				
+    			}
+    		}
+    	}
+    	
+    	Chemin plusCourtCheminPrecNouvelle = mPlanManager.calculerPlusCourtChemin(adresseLivraisonPrecedente, adresseNouvelleLivraison);
+    	
+    	
     }
 }
