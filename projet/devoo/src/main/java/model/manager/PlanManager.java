@@ -89,6 +89,7 @@ public class PlanManager {
         
     	Vertex vSource = null;
     	Vertex vCible = null;
+    	float tempsParcours = 0;
     	
     	for(Vertex v: vertexs) {
     		
@@ -122,10 +123,13 @@ public class PlanManager {
         		if(t.getArrivee().equals(pointsDuCourtChemin.get(i+1)))  //on verifie si on est sur le troncon partant du point i et arrivant au point i+1
         		{
         			chemin.addTronconChemin(t);   //on ajoute le troncon au chemin
+        			tempsParcours += t.getDuree();
         			break;
         		}
         	}
-        }      
+        } 
+        
+        chemin.setTempsParcours(tempsParcours);
     		
         return chemin;
     }
