@@ -31,12 +31,12 @@ public class Troncon {
     /**
      * 
      */
-    private Point depart;
+    private Noeud depart;
 
     /**
      * 
      */
-    private Point arrivee;
+    private Noeud arrivee;
 
 	/**
      * 
@@ -44,14 +44,14 @@ public class Troncon {
     public Troncon() {
     }
 
-    public Troncon(String nomRue, float vitesse, float longueur, Point pointDepart) {
+    public Troncon(String nomRue, float vitesse, float longueur, Noeud pointDepart) {
     	this.nomRue = nomRue;
     	this.vitesse = vitesse;
     	this.longueur = longueur;
     	this.depart = pointDepart;
     }
     
-    public Troncon(String nomRue, float vitesse, float longueur, Point pointDepart, Point pointArrivee) {
+    public Troncon(String nomRue, float vitesse, float longueur, Noeud pointDepart, Noeud pointArrivee) {
     	this.nomRue = nomRue;
     	this.vitesse = vitesse;
     	this.longueur = longueur;
@@ -79,14 +79,14 @@ public class Troncon {
 	/**
      * 
      */
-    public Point getDepart() {
+    public Noeud getDepart() {
         return depart;
     }
 
     /**
      * 
      */
-    public Point getArrivee() {
+    public Noeud getArrivee() {
        return arrivee;
     }
     

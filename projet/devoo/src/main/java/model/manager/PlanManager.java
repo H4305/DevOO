@@ -9,14 +9,13 @@ import util.Vertex;
 import java.io.File;
 
 import controller.Controller;
-
+import util.CheminGraph;
 import util.Dijkstra;
 import util.PairKey;
 import util.Vertex;
 import util.XMLLoader;
-
 import model.data.Chemin;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import model.exceptions.PlanXMLException;
 
@@ -80,15 +79,30 @@ public class PlanManager {
     /**
      * Cette methode calcule le plus court chemin entre 2 points avec la methode de Dijkstra
      * 
-     * @param Point source 
-     * @param Point target  
+     * @param Noeud source 
+     * @param Noeud target  
      * @param Vertex source
      * @param Vertex target 
      * @return Chemin 
      */
-    public Chemin calculerPlusCourtChemin(Point source, Point cible, Vertex vSource, Vertex vCible) {
+    public Chemin calculerPlusCourtChemin(Noeud source, Noeud cible) {
         
-    	ArrayList<Point> pointsDuCourtChemin = new ArrayList<Point>();
+    	Vertex vSource = null;
+    	Vertex vCible = null;
+    	float tempsParcours = 0;
+    	
+    	for(Vertex v: vertexs) {
+    		
+    		if(v.getPoint().equals(source)) {
+    			vSource = v;
+    		}
+    		
+    		if(v.getPoint().equals(cible)) {
+    			vCible = v;
+    		}
+    	}
+    	
+    	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
     	
     	Dijkstra.computePaths(vSource);
@@ -109,41 +123,48 @@ public class PlanManager {
         		if(t.getArrivee().equals(pointsDuCourtChemin.get(i+1)))  //on verifie si on est sur le troncon partant du point i et arrivant au point i+1
         		{
         			chemin.addTronconChemin(t);   //on ajoute le troncon au chemin
+        			tempsParcours += t.getDuree();
         			break;
         		}
         	}
-        }      
+        } 
+        
+        chemin.setTempsParcours(tempsParcours);
     		
         return chemin;
     }
 
     /**
-     * @param Points 
+     * @param Points Une liste ordonnée de Sets des points de chaque plage horaire
      * @return
      */
-    public Chemin getChemin(List<Set<Point>> plages) {
-    	TwoKeyMap<Point, Point, Chemin> courtsChemins = new TwoKeyMap<Point, Point, Chemin>();
-        Set<Point> plagePrecedente = null;
+    public Chemin getChemin(List<Set<Noeud>> plages) {
+    	List<Chemin> chemins = new ArrayList<Chemin>();
+    	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
+        Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
-    	for(Set<Point> plage : plages) {
+    	for(Set<Noeud> plage : plages) {
     		//On calcule le meilleur chemin entre tous les points de cette plage
-    		for(Point orig : plage) {
-    			for(Point dest : plage) {
+    		for(Noeud orig : plage) {
+    			for(Noeud dest : plage) {
             		if(!orig.equals(dest)) {
-            			courtsChemins.put(orig, dest, plusCourtChemin(orig, dest));
+            			chemins.add(calculerPlusCourtChemin(orig, dest));
+            			//courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
             		}
             	}
     		}
     		//On calcule le meilleur chemin de tous les points de la plage précedente a la plage actuelle
     		if(plagePrecedente != null) {
-    			for(Point orig : plagePrecedente) {
-    				for(Point dest : plage) {
-    					courtsChemins.put(orig, dest, plusCourtChemin(orig, dest));
+    			for(Noeud orig : plagePrecedente) {
+    				for(Noeud dest : plage) {
+    					courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
     				}
     			}
     		}
     		plagePrecedente = plage;
     	}
+    	
+    	CheminGraph graph = new CheminGraph(chemins);
         
         return null;
     }
@@ -183,13 +204,13 @@ public class PlanManager {
 	 * 
 	 * @return a HashMap, which key is the id of a point and value is the point itself
 	 */
-	public HashMap<Integer, Point> getHashMapPlan() {
+	public HashMap<Integer, Noeud> getHashMapPlan() {
 
-		HashMap<Integer, Point> planPoints = new HashMap<Integer, Point>();
+		HashMap<Integer, Noeud> planPoints = new HashMap<Integer, Noeud>();
 		
 		for(Troncon troncon: troncons)
 		{	
-			Point point = troncon.getDepart();
+			Noeud point = troncon.getDepart();
 			int id = point.getId();
 			
 			if( !planPoints.containsKey(id) ) {

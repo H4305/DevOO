@@ -1,6 +1,8 @@
 package model.manager;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.JComponent;
@@ -8,9 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-
-
 
 
 
@@ -31,7 +30,7 @@ import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.ZoneGeographique;
 import model.manager.PlanManager;
-import model.data.Point;
+import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
 
 /*
@@ -59,6 +58,7 @@ public class LivraisonManager {
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
 	private GenerationIDint uniqueIDgenerator; 
+	private Itineraire mItineraire;
 
    /**
     * Class constructor specifying a Controller and a PlanManager
@@ -84,7 +84,7 @@ public class LivraisonManager {
     	if (fileXML != null) {             
 			// Get the livraison
 			try {
-				HashMap<Integer, Point> planPoints = this.mPlanManager.getHashMapPlan();
+				HashMap<Integer, Noeud> planPoints = this.mPlanManager.getHashMapPlan();
 				this.mDemandeLivraisons = XMLLoader.getLivraisonXML(fileXML, planPoints);
 				mController.afficherDemandeLivraisons();
 				
@@ -106,22 +106,24 @@ public class LivraisonManager {
      * @return l'itineraire à suivre
      */
     public Itineraire calculItineraire() {
-    	List<Set<Point>> adresses = new ArrayList<Set<Point>>();
+    	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
+        Set<Noeud> setEntrepot = new TreeSet<Noeud>();
+        setEntrepot.add(mDemandeLivraisons.getEntrepot());
+        adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
-        	Set<Point> setPlage = new TreeSet<Point>();
+        	Set<Noeud> setPlage = new TreeSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
         		setPlage.add(livraison.getAdresse());
         	}
         	adresses.add(setPlage);
         }
-
+        setEntrepot.add(mDemandeLivraisons.getEntrepot());
         Chemin chemin = mPlanManager.getChemin(adresses);
-        
-        Itineraire itineraire = new Itineraire();
         //TODO
-        mController.afficherItineraire(itineraire);
+        //mItineraire = new Itineraire(ArrayList<Chemin>);
+        mController.afficherItineraire(chemin); //pas de paramètre
         return null;
     }
 	
@@ -140,69 +142,16 @@ public class LivraisonManager {
     	}
     	return lesLivraisons;
     }
-    
-    
-    public Livraison leLivraison(Point point){
-    	List<Livraison> lesLivraisons = getLivraisons();
-    	for(Livraison livraison: lesLivraisons){
-			if(livraison.getAdresse().equals(point)){
-				return livraison;
-			}
-		}
-    	return null;
-    }
-    
-    public void add(Point point){
-    	//On cree et on affiche un bo�te de dialogue pour inserer les infos sur la nouvelle livraison 
-    	JTextField id_client = new JTextField();
-    	JTextField heureDebutInput = new JTextField();
-    	JTextField heureFinInput = new JTextField();
-    	int id = uniqueIDgenerator.getUniqueId();
-    	final JComponent[] inputs = new JComponent[] {
-    			new JLabel("Id Client"),
-    			id_client,
-    			new JLabel("Heure debut"),
-    			heureDebutInput,
-    			new JLabel("Heure fin"),
-    			heureFinInput
-    	};
-    	
-    	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
-    	//on recupere les infos et on cr�e une nouvelle instance de la classe livraison 
-    	Point adresse = point; //la nouvelle livraison est rajout�e dans le point o� on a cliqu� 
-    	int idClient = Integer.parseInt(id_client.getText());
-    	Livraison newLivraison = new Livraison(id, idClient, adresse);
-    	//Je annonce que j'ai cree une nouvelle livraison
-    	JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient + " dans la plage horaire " + heureDebutInput.getText() + "-" + heureFinInput.getText() , null, JOptionPane.INFORMATION_MESSAGE);
-    	
-    	//on recupere les donn�es et on cr�e une nouvelle plage horaire 
-    	String heureDebut = heureDebutInput.getText();
-    	String heureFin = heureFinInput.getText();
-    	List<Livraison> newLivraisonList = new ArrayList<Livraison>();
-    	newLivraisonList.add(newLivraison);
-    	PlageHoraire plage = new PlageHoraire(heureDebut, heureFin, newLivraisonList);
-    	this.addLivraison(newLivraison,plage);
-    	
-    	//TODO Afficher les plages horaire et choisir une et ne pas cr�er une nouvelle plage horaire � chaque fois
-    }
-    
+       
     public void addLivraison(Livraison livraison, PlageHoraire plage){
     	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
     }
-    public void remove(Livraison l){
-    	JFrame frame = new JFrame("Supprimer une livraison");
-    	JOptionPane removeLivraisonPanel = new JOptionPane();
-	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison � l'adresse: " + l.getAdresse().toString() + " prevu�e � l'heure: " + l.getHeureLivraison(), null, 0, 0, null, null, removeLivraisonPanel);
-    	if(n==0) {
-    		this.removeLivraison(l);		
-    		
-    	}
-    }
+    
     public void removeLivraison(Livraison l){
     	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
     }
     
-    public Livraison findLivraisonByAddress(Point address) {
+    public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
     		if(livraison.getAdresse().equals(address)) 
     			return livraison;
@@ -220,4 +169,121 @@ public class LivraisonManager {
     	}
     	return null;
     }
+    
+    public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {	
+    	
+    	Livraison nouvelleLivraison = new Livraison(uniqueIDgenerator.getUniqueId(), idClient, adresseNouvelleLivraison);
+    	
+    	Livraison livraisonPrecedente = null;
+    	PlageHoraire plageHoraireLivPrecedente = null;
+    	
+    	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
+    		
+    		for(Livraison livraison : plageHoraire.getLivraisons()) {
+    			
+    			if(livraison.getAdresse().equals(adresseLivraisonPrecedente)) {
+    				
+    				livraisonPrecedente = livraison;
+    				plageHoraireLivPrecedente = plageHoraire;
+    				
+    			}
+    		}
+    	}
+    	
+    	Chemin cheminPrecSucc = mItineraire.getCheminByDepart(adresseLivraisonPrecedente);
+    	
+    	Noeud adresseLivraisonSuccessive = mItineraire.getAdresseArriveByDepart(adresseLivraisonPrecedente);
+    	
+    	Chemin plusCourtCheminPrecNouvelle = mPlanManager.calculerPlusCourtChemin(adresseLivraisonPrecedente, adresseNouvelleLivraison);
+    	
+    	Chemin plusCourCheminNouvelleSucc = mPlanManager.calculerPlusCourtChemin(adresseNouvelleLivraison, adresseLivraisonSuccessive);
+    	
+    	String heureLivraisonPrevue = sommeHeures( sommeHeures(livraisonPrecedente.getHeureLivraison(), "00:10"), this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
+    	
+    	if(this.firstBeforeSecond( heureLivraisonPrevue, plageHoraireLivPrecedente.getDateFin()) ) {
+    		/*La livraison Prevue rentre dans la plage horaire -> ajout demandeLivraison,
+    		* -> decaler tous
+    		* -> set a Livrer
+    		* -> supprimer le chemin de l'itineraire et ajouter les deux nouveaux chemins
+    		*/
+    		nouvelleLivraison.setALivrer();
+    		
+    		String decalage = this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours() + plusCourCheminNouvelleSucc.getTempsParcours() + cheminPrecSucc.getTempsParcours());
+    		
+    		List <Livraison> livraisons = plageHoraireLivPrecedente.getLivraisons();
+    		
+    		for(Livraison liv: livraisons) {
+    			
+    			String heurePassage = liv.getHeureLivraison();
+    			
+    			if(this.firstBeforeSecond( heureLivraisonPrevue, heurePassage) ) {
+    				
+    				String heure = this.sommeHeures(heurePassage, decalage) ;
+    				
+    				liv.setHeureLivraison(heure);	
+    			}			
+    		}			
+    		
+    		mItineraire.getChemins().remove(cheminPrecSucc);
+    		mItineraire.getChemins().add(plusCourtCheminPrecNouvelle);
+    		mItineraire.getChemins().add(plusCourCheminNouvelleSucc);  				
+    	}
+    	
+    	plageHoraireLivPrecedente.getLivraisons().add(nouvelleLivraison);
+    	
+    }
+    
+    //A tester
+    public String sommeHeures(String heureA, String heureB) {
+    	
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        
+        Calendar calFirst = Calendar.getInstance();
+        Calendar calSecond = Calendar.getInstance();
+        
+		try {
+			calFirst.setTime(formatter.parse(heureA));
+			calSecond.setTime(formatter.parse(heureA));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		calFirst.setTimeInMillis(calFirst.getTimeInMillis() + calSecond.getTimeInMillis());
+		
+		Date heure = calFirst.getTime();
+		
+		System.out.println(heure);
+		
+		return heure.toString();
+    	
+    }
+    
+    public Boolean firstBeforeSecond(String heureA, String heureB) {
+    	
+    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+    	
+    	Calendar calFirst = Calendar.getInstance();
+        Calendar calSecond = Calendar.getInstance();
+        
+		try {
+			calFirst.setTime(formatter.parse(heureA));
+			calSecond.setTime(formatter.parse(heureB));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return calFirst.before(calSecond);	
+    }
+    
+    public String transformeEnHeureMin(float tempsParcours) {
+    	
+    	int heure = (int) ((int) tempsParcours) / 3600;
+    	int min = heure % 3600;
+    	
+    	return heure + ":" + min;
+    	
+    }
+    
 }

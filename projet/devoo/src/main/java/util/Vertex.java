@@ -2,22 +2,22 @@ package util;
 
 import java.util.ArrayList;
 
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 
 public class Vertex implements Comparable<Vertex> {
 
-    private Point pointVertex;
+    private Noeud pointVertex;
     private double minTemps = Double.POSITIVE_INFINITY;
     private Vertex precedent;
     private ArrayList<Troncon> adjacencies = new ArrayList<Troncon>();
     
-    public Vertex(Point pointVertex) 
+    public Vertex(Noeud pointVertex) 
     { 
     	this.pointVertex = pointVertex; 
     }
     
-    public Vertex(Point pointVertex, ArrayList<Troncon> adjacencies)
+    public Vertex(Noeud pointVertex, ArrayList<Troncon> adjacencies)
     { 
     	this.pointVertex = pointVertex; 
     	this.adjacencies = adjacencies;
@@ -28,7 +28,7 @@ public class Vertex implements Comparable<Vertex> {
         return Double.compare(minTemps, autre.minTemps);
     }
     
-    public Point getPoint()
+    public Noeud getPoint()
     {
     	return this.pointVertex;
     }

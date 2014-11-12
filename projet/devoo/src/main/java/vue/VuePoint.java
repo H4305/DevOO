@@ -3,7 +3,7 @@ package vue;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import model.data.Point;
+import model.data.Noeud;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
 import vue.util.Vue;
@@ -14,6 +14,12 @@ public class VuePoint extends Vue{
 	private static final int POINT_RADIUS = 10;
 	private static final int POINT_SELECTED_RADIUS = 15;
 	
+	/**
+	 * 
+	 * This enum represent the shapes that a {@link VuePoint}
+	 * can have.
+	 *
+	 */
 	public enum Shape {
 		CIRCLE,
 		SQUARE,
@@ -22,14 +28,15 @@ public class VuePoint extends Vue{
 	
 	
 	
-	Point pointModel;
+	Noeud pointModel;
 	java.awt.Point pointVue;
 	
 	boolean selected = false;
 
 	Color color = AppColors.normalPoint;
 	private Shape shape;
-	public VuePoint(Point pointModel) {
+	private boolean selectable = true;
+	public VuePoint(Noeud pointModel) {
 		super();
 		this.pointModel = pointModel;
 	}
@@ -81,7 +88,7 @@ public class VuePoint extends Vue{
 	/**
 	 * @return the data point represented by this view
 	 */
-	public Point getPoint() { return pointModel;}
+	public Noeud getPoint() { return pointModel;}
 	
 	@Override
 	public int hashCode() {
@@ -96,12 +103,37 @@ public class VuePoint extends Vue{
 		this.color = color;
 	}
 	
+	/**
+	 * Set the {@link Shape} of the point.
+	 * @param shape The desired shape.
+	 * @see Shape.
+	 */
 	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 	
+	/**
+	 * Set this {@link VuePoint} as selected.
+	 * @param selected <code>true</code> to select the {@link VuePoint}.
+	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+	/**
+	 *  Set whether this {@link VuePoint} is can be selected or not.
+	 * @param b True if the {@link VuePoint} can be selected. This is the default value.
+	 */
+	public void setIsSelectable(boolean b) {
+		selectable = false;
+	}
+	
+	/**
+	 * Check whether this {@link VuePoint} is can be selected or not.
+	 * @return true if the {@link VuePoint} can be selected.
+	 */
+	public boolean isSelectable() {
+		return selectable;
 	}
 	
 	

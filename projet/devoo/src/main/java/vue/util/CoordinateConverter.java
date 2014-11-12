@@ -11,7 +11,7 @@ import java.awt.Point;
 public interface CoordinateConverter {
 	
 	/**
-	 * A simple converter that juste return the given coordinate into a {@link Point}.
+	 * A simple converter that just return the given coordinate into a {@link Point}.
 	 */
 	public static CoordinateConverter DEFAULT_CONVERTER = new CoordinateConverter() {
 		

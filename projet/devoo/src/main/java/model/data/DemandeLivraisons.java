@@ -11,7 +11,7 @@ public class DemandeLivraisons {
 	 * 
 	 */
 	private List<PlageHoraire> mPlagesHoraires;
-	private Point mEntrepot;
+	private Noeud mEntrepot;
 	
     /**
      * 
@@ -24,7 +24,7 @@ public class DemandeLivraisons {
      * @param entrepot
      * @param plagesHoraires
      */
-    public DemandeLivraisons(Point entrepot, List<PlageHoraire> plagesHoraires) {
+    public DemandeLivraisons(Noeud entrepot, List<PlageHoraire> plagesHoraires) {
     	this.mPlagesHoraires = plagesHoraires;
     	mEntrepot = entrepot;
     }
@@ -40,6 +40,7 @@ public class DemandeLivraisons {
      * @param dateDebut
      */
     public PlageHoraire getPlageHoraire(Date dateDebut) {
+    	
     	for (PlageHoraire pH : mPlagesHoraires) {
     		if(pH.getDateDebut().equals(dateDebut)) {
     			return pH;
@@ -48,9 +49,26 @@ public class DemandeLivraisons {
     	return null;
     }
 
-	public Point getEntrepot() {
-		return mEntrepot;
-	}
-
-
+    /**
+     * Returne l'entrepot de la demande de livraison
+     * @return l'entrepot de la demande de livraison
+     */
+    public Noeud getEntrepot() {
+    	return mEntrepot;
+    }
+    
+    /**
+     * @param dateDebut
+     */
+    public PlageHoraire getPlageHoraireEquals(PlageHoraire plageHoraire) {
+    	
+    	for (PlageHoraire pH : mPlagesHoraires) {
+    		if(pH.equals(plageHoraire)) {
+    			return pH;
+    		}
+    	}
+    	return null;
+    }
+    
+    
 }

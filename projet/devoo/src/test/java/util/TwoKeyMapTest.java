@@ -2,7 +2,7 @@ package util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import model.data.Point;
+import model.data.Noeud;
 
 import org.junit.Test;
 
@@ -49,11 +49,11 @@ public class TwoKeyMapTest {
 	
 	@Test
 	public void testContainsKey() {
-		Point p1 = new Point(1, 1, 1);
-		Point p2 = new Point(1, 2, 1);
-		Point p3 = new Point(1, 1, 1);
-		Point p4 = new Point(1, 2, 1);
-		TwoKeyMap<Point, Point, String> map = new TwoKeyMap<Point, Point, String>();
+		Noeud p1 = new Noeud(1, 1, 1);
+		Noeud p2 = new Noeud(1, 2, 1);
+		Noeud p3 = new Noeud(1, 1, 1);
+		Noeud p4 = new Noeud(1, 2, 1);
+		TwoKeyMap<Noeud, Noeud, String> map = new TwoKeyMap<Noeud, Noeud, String>();
 		map.put(p1, p2, "a");
 		assertEquals("a", map.get(p1, p2));
 		assertEquals("a", map.get(p3, p4));

@@ -9,6 +9,7 @@ public class AppColors {
 	public static final Color selectedPointBorder = new Color(0xFFFF00);
 	public static final Color troncon = new Color(0xecf0f1);
 	public static final Color clickedPoint = new Color(0xe67e22);
+	public static final Color entrepot = new Color(0xFFA330);
 
 	
 	public static final Color[] plageHoraire = {
@@ -26,4 +27,5 @@ public class AppColors {
 		new Color(0xFF7100),
 		new Color(0x5AF552)
 	};
+	
 }

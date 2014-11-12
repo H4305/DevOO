@@ -23,6 +23,7 @@ public class VueLivraison extends JPanel {
 	private JLabel lblPlageHoraireContent;
 	private JLabel lblClientContent;
 	private JLabel lblAdresseContent;
+	private Livraison mLivraison;
 
 	/**
 	 * Create the panel.
@@ -91,6 +92,7 @@ public class VueLivraison extends JPanel {
 	}
 	
 	public void setLivraison(PlageHoraire plageHoraire, Livraison livraison) {
+		mLivraison = livraison;
 		lblClientContent.setText(String.valueOf(livraison.getIdClient()));
 		lblHoraireContent.setText(livraison.getHeureLivraison());
 		lblPlageHoraireContent.setText(plageHoraire.getDateDebut() +  " - "  + plageHoraire.getDateFin());
@@ -98,7 +100,8 @@ public class VueLivraison extends JPanel {
 		lblAdresseContent.setText(String.valueOf(livraison.getAdresse().getId()));
 	}
 	
-	public void removeLivraion() {
+	public void resetInfoLivraison() {
+		mLivraison = null;
 		lblClientContent.setText("");
 		lblHoraireContent.setText("");
 		lblPlageHoraireContent.setText("");
@@ -120,5 +123,9 @@ public class VueLivraison extends JPanel {
 	}
 	public JLabel getLblAdresseContent() {
 		return lblAdresseContent;
+	}
+	
+	public Livraison getLivraison() {
+		return mLivraison;
 	}
 }

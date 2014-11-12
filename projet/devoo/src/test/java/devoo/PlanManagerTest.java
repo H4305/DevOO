@@ -1,7 +1,7 @@
 package devoo;
 
 import model.manager.PlanManager;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 
 import org.junit.Test;
@@ -15,12 +15,12 @@ public class PlanManagerTest {
 	public void testCalculerPlusCourtChemin() {
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
-		Point a = new Point(1, 5, 2);
-		Point b = new Point(2, 5, 7);
-		Point c = new Point(3, 4, 2);
-		Point d = new Point(4, 1, 2);
-		Point e = new Point(5, 9, 7);
-		Point f = new Point(6, 3, 1);
+		Noeud a = new Noeud(1, 5, 2);
+		Noeud b = new Noeud(2, 5, 7);
+		Noeud c = new Noeud(3, 4, 2);
+		Noeud d = new Noeud(4, 1, 2);
+		Noeud e = new Noeud(5, 9, 7);
+		Noeud f = new Noeud(6, 3, 1);
 		Vertex va = new Vertex (a);
 		Vertex vb = new Vertex (b);
 		Vertex vc = new Vertex (c);
@@ -51,7 +51,7 @@ public class PlanManagerTest {
 		e.addTronconSortant(t6);
 		
 
-		System.out.println(planManager.calculerPlusCourtChemin(a, f, va, vf).toString());
+		System.out.println(planManager.calculerPlusCourtChemin(a, f).toString());
 		
 	}
 	

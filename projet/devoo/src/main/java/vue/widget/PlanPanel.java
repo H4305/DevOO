@@ -19,7 +19,7 @@ import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 import solver.search.strategy.strategy.set.SetSearchStrategy;
 import vue.VueChemin;
@@ -80,8 +80,8 @@ public class PlanPanel extends JPanel {
 		
 		// Find max and min for scale
 		for (Troncon troncon : mTronconsPlan) {
-			Point arrivee = troncon.getArrivee();
-			Point depart = troncon.getDepart();
+			Noeud arrivee = troncon.getArrivee();
+			Noeud depart = troncon.getDepart();
 
 			maxX = Math.max(maxX, arrivee.x);
 			maxX = Math.max(maxX, depart.x);
@@ -108,6 +108,7 @@ public class PlanPanel extends JPanel {
 		
 		for (VuePoint vuePoint : vuesPoints) {
 			vuePoint.setColor(AppColors.normalPoint);
+			vuePoint.setShape(Shape.CIRCLE);
 		}
 		
 		this.demandeLivraisons = demandeLivraisons;
@@ -119,7 +120,9 @@ public class PlanPanel extends JPanel {
 					if(vuePoint.getPoint().equals(livraison.getAdresse())) {
 						vuePoint.setColor(color);
 					} else if(vuePoint.getPoint().equals(demandeLivraisons.getEntrepot())) {
+						vuePoint.setColor(AppColors.entrepot);
 						vuePoint.setShape(Shape.SQUARE);
+						vuePoint.setIsSelectable(false);
 					}
 					
 				}
@@ -134,7 +137,7 @@ public class PlanPanel extends JPanel {
 
 	public void afficherItineraire() {
 		if(mChemin == null) {
-			LOGGER.log(Level.WARNING, "Aucun itineraire n'a été ajouté à ce plan. "
+			LOGGER.log(Level.WARNING, "Aucun itineraire n'a ï¿½tï¿½ ajoutï¿½ ï¿½ ce plan. "
 					+ "Utilsez addItineraire pour en ajouter un.");
 			return;
 		}
@@ -192,7 +195,7 @@ public class PlanPanel extends JPanel {
 	}
 	
 	public interface PointClickedListener {
-		public void pointClicked(Point point);
+		public void pointClicked(Noeud point);
 	}
 	
 	private class MouseActionListener implements MouseListener {
@@ -201,15 +204,17 @@ public class PlanPanel extends JPanel {
 		
 
 		@Override
-		public void mouseClicked(MouseEvent arg0){
+		public void mouseClicked(MouseEvent arg0){			
+			
 			LOGGER.log(Level.INFO, "Plan clicked");
 			if(pointClickedListener != null) {
 				selectedPoint = false;
 				for(VuePoint vuePoint : vuesPoints) {
 
-					if(!selectedPoint && vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
+					if(!selectedPoint 
+							&& vuePoint.isSelectable()
+							&& vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
 						vuePoint.mouseDown(arg0);
-						pointClickedListener.pointClicked(vuePoint.getPoint());
 						vuePoint.setSelected(true);
 						selectedPoint = true;
 						lastSelectedPoint = vuePoint;
@@ -217,10 +222,14 @@ public class PlanPanel extends JPanel {
 						vuePoint.setSelected(false);
 					}
 				}
-				if(!selectedPoint) {
-					lastSelectedPoint.setSelected(true);
-				}
+				
 				repaint();
+				if(!selectedPoint && lastSelectedPoint != null) {
+					lastSelectedPoint.setSelected(true);
+				} else if (selectedPoint){
+					pointClickedListener.pointClicked(lastSelectedPoint.getPoint());
+				}
+				
 			}
 		}
 

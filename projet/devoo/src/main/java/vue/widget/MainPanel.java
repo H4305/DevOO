@@ -130,6 +130,7 @@ public class MainPanel extends JPanel {
 		btnSupprimerLivraison.setEnabled(false);
 		btnSupprimerLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.removeSelectedLivraison();
 			}
 		});
 		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
@@ -180,8 +181,8 @@ public class MainPanel extends JPanel {
 		//validate();
 	}
 	
-	public void removeLivraison() {
-		vueLivraison.removeLivraion();
+	public void resetInfoLivraison() {
+		vueLivraison.resetInfoLivraison();
 		btnSupprimerLivraison.setEnabled(false);
 		//validate();
 	}
@@ -197,5 +198,9 @@ public class MainPanel extends JPanel {
 	}
 	public JButton getBtnRetablir() {
 		return btnRetablir;
+	}
+	
+	public VueLivraison getVueLivraison() {
+		return vueLivraison;
 	}
 }
