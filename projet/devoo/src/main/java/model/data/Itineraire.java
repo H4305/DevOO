@@ -55,4 +55,9 @@ public class Itineraire {
 		return mChemins;
 	}
 
+	public ArrayList<Chemin> getChemins(){
+		
+		return this.mChemins;
+	}
+	
 }

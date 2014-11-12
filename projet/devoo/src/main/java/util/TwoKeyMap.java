@@ -1,6 +1,7 @@
 package util;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * This is a HashMap where values are indexed by two keys.
@@ -80,8 +81,34 @@ public class TwoKeyMap<K1, K2, V> {
 		return map2.containsKey(key2);
 	}
 	
-	public int getSize() { return size; };
-	
+	public int getSize() { return size; }
+
+//	@Override
+//	public Iterator<V> iterator() {}
+
+//	private class TwoKeyMapIterator implements Iterator<V> {
+//		
+//		T
+//
+//		@Override
+//		public boolean hasNext() {
+//			// TODO Auto-generated method stub
+//			return false;
+//		}
+//
+//		@Override
+//		public V next() {
+//			// TODO Auto-generated method stub
+//			return null;
+//		}
+//
+//		@Override
+//		public void remove() {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//		
+//	}
 
 	
 

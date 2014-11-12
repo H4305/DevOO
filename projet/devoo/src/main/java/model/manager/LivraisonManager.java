@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
 
 
@@ -24,6 +26,7 @@ import controller.Controller;
  * model import
  */
 import model.data.Chemin;
+import model.data.Troncon;
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
@@ -100,6 +103,11 @@ public class LivraisonManager {
     public DemandeLivraisons getDemandeLivraisons() {
 		return mDemandeLivraisons;
 	}
+    
+    public Itineraire getItineraire(){
+    	
+    	return this.mItineraire;
+    }
 
     /**
      * Fait le calcul de l'itinÃ©raire a suivre
@@ -281,6 +289,55 @@ public class LivraisonManager {
     	int min = heure % 3600;
     	
     	return heure + ":" + min;
+    	
+    }
+    
+    public void exporterFeuilleRoute()
+    {
+    	String format = "dd/MM/yy"; 
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date date = new java.util.Date(); 
+    	File file = new File("C:/Users/Liuda/Desktop/file.txt");
+        PrintWriter printWriter = null;
+        ArrayList<Chemin> chemins = this.mItineraire.getChemins();
+
+        try
+        {
+            printWriter = new PrintWriter(file);
+            printWriter.println("------------------FEUILLE DE ROUTE------------------");
+            printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
+            printWriter.println("Aujourd'hui vous avez à déposer " + chemins.size()+" clients.");
+            printWriter.println("Suivez les instructions suivantes: ");
+            printWriter.print("Départ du dépot : rue ");
+            for(Chemin c : chemins){
+            	
+            	for(Troncon t : c.getTroncons())
+            	{
+            		printWriter.println(t.getNomRue());
+            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t))
+            		{
+            			printWriter.print("Prendre : rue ");
+            		}
+            		else
+            		{
+            			printWriter.print("Vous etes arrivé à la livraison ....");
+            		}
+            	}
+            	
+            	
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if ( printWriter != null ) 
+            {
+                printWriter.close();
+            }
+        }
     	
     }
     

@@ -14,6 +14,18 @@ public class VuePoint extends Vue{
 	private static final int POINT_RADIUS = 10;
 	private static final int POINT_SELECTED_RADIUS = 15;
 	
+	/**
+	 * 
+	 * This enum represent the shapes that a {@link VuePoint}
+	 * can have.
+	 *
+	 */
+	public enum Shape {
+		CIRCLE,
+		SQUARE,
+		CROSS
+	};
+	
 	
 	
 	Noeud pointModel;
@@ -22,6 +34,8 @@ public class VuePoint extends Vue{
 	boolean selected = false;
 
 	Color color = AppColors.normalPoint;
+	private Shape shape;
+	private boolean selectable = true;
 	public VuePoint(Noeud pointModel) {
 		super();
 		this.pointModel = pointModel;
@@ -37,8 +51,25 @@ public class VuePoint extends Vue{
 					POINT_SELECTED_RADIUS, POINT_SELECTED_RADIUS);
 		}
 			g.setColor(color);
-			g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2,
+			
+		if(shape != null) {
+			switch (shape) {
+			case SQUARE:
+				int size = Math.round(POINT_RADIUS * 1.25f);
+				g.fillRect(pointVue.x - size / 2, pointVue.y - size / 2,
+						size, size);
+				break;
+
+			default:
+				g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2 ,
+						POINT_RADIUS, POINT_RADIUS);
+				break;
+			}
+			
+		} else {
+			g.fillOval(pointVue.x - POINT_RADIUS / 2, pointVue.y - POINT_RADIUS / 2 ,
 					POINT_RADIUS, POINT_RADIUS);
+		}
 	}
 	
 	@Override
@@ -72,7 +103,38 @@ public class VuePoint extends Vue{
 		this.color = color;
 	}
 	
+	/**
+	 * Set the {@link Shape} of the point.
+	 * @param shape The desired shape.
+	 * @see Shape.
+	 */
+	public void setShape(Shape shape) {
+		this.shape = shape;
+	}
+	
+	/**
+	 * Set this {@link VuePoint} as selected.
+	 * @param selected <code>true</code> to select the {@link VuePoint}.
+	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+
+	/**
+	 *  Set whether this {@link VuePoint} is can be selected or not.
+	 * @param b True if the {@link VuePoint} can be selected. This is the default value.
+	 */
+	public void setIsSelectable(boolean b) {
+		selectable = false;
+	}
+	
+	/**
+	 * Check whether this {@link VuePoint} is can be selected or not.
+	 * @return true if the {@link VuePoint} can be selected.
+	 */
+	public boolean isSelectable() {
+		return selectable;
+	}
+	
+	
 }

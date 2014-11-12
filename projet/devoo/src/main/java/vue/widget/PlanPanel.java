@@ -24,6 +24,7 @@ import model.data.Troncon;
 import solver.search.strategy.strategy.set.SetSearchStrategy;
 import vue.VueChemin;
 import vue.VuePoint;
+import vue.VuePoint.Shape;
 import vue.VueTroncon;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
@@ -107,6 +108,7 @@ public class PlanPanel extends JPanel {
 		
 		for (VuePoint vuePoint : vuesPoints) {
 			vuePoint.setColor(AppColors.normalPoint);
+			vuePoint.setShape(Shape.CIRCLE);
 		}
 		
 		this.demandeLivraisons = demandeLivraisons;
@@ -117,7 +119,12 @@ public class PlanPanel extends JPanel {
 				for(VuePoint vuePoint : vuesPoints) {
 					if(vuePoint.getPoint().equals(livraison.getAdresse())) {
 						vuePoint.setColor(color);
+					} else if(vuePoint.getPoint().equals(demandeLivraisons.getEntrepot())) {
+						vuePoint.setColor(AppColors.entrepot);
+						vuePoint.setShape(Shape.SQUARE);
+						vuePoint.setIsSelectable(false);
 					}
+					
 				}
 			}
 		}
@@ -204,9 +211,10 @@ public class PlanPanel extends JPanel {
 				selectedPoint = false;
 				for(VuePoint vuePoint : vuesPoints) {
 
-					if(!selectedPoint && vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
+					if(!selectedPoint 
+							&& vuePoint.isSelectable()
+							&& vuePoint.isClicked(new java.awt.Point(arg0.getX(), arg0.getY()))) {
 						vuePoint.mouseDown(arg0);
-						pointClickedListener.pointClicked(vuePoint.getPoint());
 						vuePoint.setSelected(true);
 						selectedPoint = true;
 						lastSelectedPoint = vuePoint;
@@ -214,10 +222,14 @@ public class PlanPanel extends JPanel {
 						vuePoint.setSelected(false);
 					}
 				}
-				if(!selectedPoint) {
-					lastSelectedPoint.setSelected(true);
-				}
+				
 				repaint();
+				if(!selectedPoint && lastSelectedPoint != null) {
+					lastSelectedPoint.setSelected(true);
+				} else if (selectedPoint){
+					pointClickedListener.pointClicked(lastSelectedPoint.getPoint());
+				}
+				
 			}
 		}
 

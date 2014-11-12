@@ -1,14 +1,21 @@
 package vue;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 
 import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import model.data.Livraison;
 import model.data.PlageHoraire;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -23,6 +30,7 @@ public class VueLivraison extends JPanel {
 	private JLabel lblPlageHoraireContent;
 	private JLabel lblClientContent;
 	private JLabel lblAdresseContent;
+	private Livraison mLivraison;
 
 	/**
 	 * Create the panel.
@@ -33,7 +41,35 @@ public class VueLivraison extends JPanel {
 	}
 	
 	public VueLivraison() {
-		setPreferredSize(new Dimension(384, 206));
+		
+		Border loweredetched, redline, compound, raisedbevel, loweredbevel;
+
+		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+
+		redline = BorderFactory.createLineBorder(Color.red);
+		TitledBorder title;
+		title = BorderFactory.createTitledBorder(loweredetched,
+				"Information supplémentaire");
+		title.setTitleJustification(TitledBorder.RIGHT);
+		title.setBorder(loweredetched);
+		/*
+		raisedbevel = BorderFactory.createRaisedBevelBorder();
+		loweredbevel = BorderFactory.createLoweredBevelBorder();
+		
+		compound = BorderFactory.createCompoundBorder(
+                raisedbevel, loweredbevel);
+		
+		compound = BorderFactory.createCompoundBorder(
+                redline, compound);
+		
+		compound = BorderFactory.createTitledBorder(
+                compound, "title",
+                TitledBorder.CENTER,
+                TitledBorder.BELOW_BOTTOM);*/
+		
+		setBorder(title);
+
+		setPreferredSize(new Dimension(280, 206));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JPanel panel = new JPanel();
@@ -91,6 +127,7 @@ public class VueLivraison extends JPanel {
 	}
 	
 	public void setLivraison(PlageHoraire plageHoraire, Livraison livraison) {
+		mLivraison = livraison;
 		lblClientContent.setText(String.valueOf(livraison.getIdClient()));
 		lblHoraireContent.setText(livraison.getHeureLivraison());
 		lblPlageHoraireContent.setText(plageHoraire.getDateDebut() +  " - "  + plageHoraire.getDateFin());
@@ -98,7 +135,8 @@ public class VueLivraison extends JPanel {
 		lblAdresseContent.setText(String.valueOf(livraison.getAdresse().getId()));
 	}
 	
-	public void removeLivraion() {
+	public void resetInfoLivraison() {
+		mLivraison = null;
 		lblClientContent.setText("");
 		lblHoraireContent.setText("");
 		lblPlageHoraireContent.setText("");
@@ -120,5 +158,9 @@ public class VueLivraison extends JPanel {
 	}
 	public JLabel getLblAdresseContent() {
 		return lblAdresseContent;
+	}
+	
+	public Livraison getLivraison() {
+		return mLivraison;
 	}
 }
