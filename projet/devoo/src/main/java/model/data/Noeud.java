@@ -51,6 +51,12 @@ public class Noeud {
      */
     public int y;
 
+    
+    /**
+     * 
+     */
+    public boolean isLivraison;
+    
     /**
      * 
      * @return
@@ -89,6 +95,14 @@ public class Noeud {
 	@Override
 	public String toString(){
 		return "(" + this.x + "," + this.y + ")"; 
+	}
+
+	public void setIsLivraison(boolean bool) {
+		isLivraison = bool;
+	}
+	
+	public boolean isLivraison(){
+		return isLivraison;
 	}
 
 }

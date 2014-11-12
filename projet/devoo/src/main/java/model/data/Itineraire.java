@@ -10,42 +10,45 @@ public class Itineraire {
     /**
      * 
      */
-    public Itineraire() {
-    }
-
+    private ArrayList<Chemin> mChemins;
+    
     /**
      * 
      */
-    private Set<Livraison> livraisonAFaire;
-
-
-
-    /**
-     * 
-     */
-    public void getLivraisons() {
-        // TODO implement here
+    public Itineraire(ArrayList<Chemin> chemins) {
+    	this.mChemins = chemins;
+    }
+    
+    public Noeud getAdresseArriveByDepart(Noeud depart) {
+    	
+    	Noeud arrivee = null;
+    	
+    	for(Chemin chemin: mChemins) {
+    		
+    		if(chemin.getDepart().equals(depart)) {
+    			arrivee = chemin.getArrivee();
+    			return arrivee;
+    		}
+    		
+    	}	
+    	
+    	return arrivee;
     }
 
-    /**
-     * 
-     */
-    public void getZone() {
-        // TODO implement here
-    }
-
-    /**
-     * @param livraison
-     */
-    public void addLivraison(Livraison livraison) {
-        // TODO implement here
-    }
-
-    /**
-     * @param livraison
-     */
-    public void removeLivraison(Livraison livraison) {
-        // TODO implement here
-    }
+	public Chemin getCheminByDepart(Noeud depart) {
+		
+		Chemin cheminRes = null;
+		
+    	for(Chemin chemin: mChemins) {
+    		
+    		if(chemin.getDepart().equals(depart)) {
+    			
+    			return chemin;
+    		}
+    		
+    	}	
+    	
+    	return cheminRes;
+	}
 
 }

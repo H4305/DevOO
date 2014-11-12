@@ -6,39 +6,6 @@ import java.util.*;
  * 
  */
 public class Livraison {
-
-    /**
-     * Constructeur
-     */
-    public Livraison() {
-    }
-
-    /**
-     * 
-     * @param id
-     * @param heureLivraison
-     * @param id_client
-     */
-    public Livraison(int id, String heureLivraison, int id_client) {
-    	// TODO : Je ne sais pas si quelqu'un l'utilise, moi j'en sers plus
-    	this.id = id;
-    	this.heureLivraison = heureLivraison;
-    	this.idClient = id_client;
-    }
-    
-    /**
-     * 
-     * @param id
-     * @param heureLivraison
-     * @param id_client
-     */
-    public Livraison(int id, int id_client, Noeud adresse) {
-    	this.id = id;
-    	this.heureLivraison = "";
-    	this.idClient = id_client;
-    	this.adresse = adresse;
-    }
-    
     
     /**
      * 
@@ -59,6 +26,22 @@ public class Livraison {
      * L'adresse de livraison
      */
     private Noeud adresse;
+	
+    private Boolean aLivrer;
+    
+    /**
+     * 
+     * @param id
+     * @param heureLivraison
+     * @param id_client
+     */
+    public Livraison(int id, int id_client, Noeud adresse) {
+    	this.id = id;
+    	this.heureLivraison = "";
+    	this.idClient = id_client;
+    	this.adresse = adresse;
+    	this.aLivrer = false;
+    }
 
     /**
      * @param La nouvelle heure l'heure de la livraison
@@ -117,6 +100,10 @@ public class Livraison {
 		if (idClient != other.idClient)
 			return false;
 		return true;
+	}
+
+	public void setALivrer() {
+		this.aLivrer = true;		
 	}
     
 
