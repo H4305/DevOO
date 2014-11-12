@@ -4,19 +4,25 @@
 package util;
 
 
+import java.util.List;
+
 import model.data.Chemin;
 import model.data.Noeud;
 
 public class CheminGraph implements Graph {
 
-	private TwoKeyMap<Noeud, Noeud, Chemin> chemins;
-
-	private TreeMap<Pair<Point,Point>, Chemin> chemin;
-	private int maxArcCost = 0;
-	private int minArcCost = 0;
+	private List<Chemin> mChemins;
+	private float maxArcCost = Float.NEGATIVE_INFINITY;
+	private float minArcCost = Float.POSITIVE_INFINITY;
 	
-	public CheminGraph(TwoKeyMap<Point, Point, Chemin> chemins) {
+	public CheminGraph(List<Chemin> chemins) {
 		mChemins = chemins;
+		for(Chemin chemin: mChemins) {
+			if(chemin.getTempsParcours() > maxArcCost) {
+				maxArcCost = chemin.getTempsParcours();
+			}
+			
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -24,7 +30,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getMaxArcCost() {
-		return maxArcCost;
+		return (int) maxArcCost;
 	}
 
 	/* (non-Javadoc)
@@ -32,7 +38,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getMinArcCost() {
-		return minArcCost;
+		return (int) minArcCost;
 	}
 
 	/* (non-Javadoc)
@@ -40,7 +46,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getNbVertices() {
-		return mChemins.getSize();
+		return mChemins.size();
 	}
 
 	/* (non-Javadoc)

@@ -134,7 +134,7 @@ public class PlanManager {
      * @param Points Une liste ordonnée de Sets des points de chaque plage horaire
      * @return
      */
-    public Chemin getChemin(List<Set<Point>> plages) {
+    public Chemin getChemin(List<Set<Noeud>> plages) {
     	List<Chemin> chemins = new ArrayList<Chemin>();
     	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
         Set<Noeud> plagePrecedente = null;
@@ -160,7 +160,7 @@ public class PlanManager {
     		plagePrecedente = plage;
     	}
     	
-    	CheminGraph graph = new CheminGraph(courtsChemins);
+    	CheminGraph graph = new CheminGraph(chemins);
         
         return null;
     }
