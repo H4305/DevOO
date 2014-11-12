@@ -52,11 +52,16 @@ public class Controller {
     * Class constructor.
     */
     public Controller() {
-		super();
 		this.mPlanManager = new PlanManager(this);
 		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
 	}
+    
+    public void generateRoadmap () {
+    	mPlanManager.getAllTroncons();
+    	
+    	//mLivraisonManager.g
+    }
     
     /**
      * Initialisation de l'applicatione et affichage de l'�cran d'accueil.
