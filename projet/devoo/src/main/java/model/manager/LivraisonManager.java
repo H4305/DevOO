@@ -1,6 +1,8 @@
 package model.manager;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.JComponent;
@@ -8,9 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-
-
 
 
 
@@ -59,6 +58,7 @@ public class LivraisonManager {
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
 	private GenerationIDint uniqueIDgenerator; 
+	private Itineraire mItineraire;
 
    /**
     * Class constructor specifying a Controller and a PlanManager
@@ -122,7 +122,8 @@ public class LivraisonManager {
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         Chemin chemin = mPlanManager.getChemin(adresses);
         //TODO
-        mController.afficherItineraire(chemin);
+        //mItineraire = new Itineraire(ArrayList<Chemin>);
+        mController.afficherItineraire(chemin); //pas de paramètre
         return null;
     }
 	
@@ -213,8 +214,10 @@ public class LivraisonManager {
     
     public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {	
     	
-    	Livraison livraisonPrecedente;
-    	PlageHoraire plageHoraireLivPrecedente;
+    	Livraison nouvelleLivraison = new Livraison(uniqueIDgenerator.getUniqueId(), idClient, adresseNouvelleLivraison);
+    	
+    	Livraison livraisonPrecedente = null;
+    	PlageHoraire plageHoraireLivPrecedente = null;
     	
     	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
     		
@@ -229,8 +232,80 @@ public class LivraisonManager {
     		}
     	}
     	
+    	Chemin cheminPrecSucc = mItineraire.getCheminByDepart(adresseLivraisonPrecedente);
+    	
+    	Noeud adresseLivraisonSuccessive = mItineraire.getAdresseArriveByDepart(adresseLivraisonPrecedente);
+    	
     	Chemin plusCourtCheminPrecNouvelle = mPlanManager.calculerPlusCourtChemin(adresseLivraisonPrecedente, adresseNouvelleLivraison);
     	
+    	Chemin plusCourCheminNouvelleSucc = mPlanManager.calculerPlusCourtChemin(adresseNouvelleLivraison, adresseLivraisonSuccessive);
+    	
+    	String heureLivraisonPrevue = sommeHeures( sommeHeures(livraisonPrecedente.getHeureLivraison(), "00:10"), this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
+    	
+    	if(this.firstBeforeSecond( heureLivraisonPrevue, plageHoraireLivPrecedente.getDateFin()) ) {
+    		/*La livraison Prevue rentre dans la plage horaire -> ajout demandeLivraison,
+    		* -> decaler tous
+    		* -> set a Livrer
+    		*/
+    	}else {
+    		/*
+    		 * J'ajoute une demande de livraison avec a livrer ENUM false
+    		 */
+    	}
     	
     }
+    
+    //A tester
+    public String sommeHeures(String heureA, String heureB) {
+    	
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        
+        Calendar calFirst = Calendar.getInstance();
+        Calendar calSecond = Calendar.getInstance();
+        
+		try {
+			calFirst.setTime(formatter.parse(heureA));
+			calSecond.setTime(formatter.parse(heureA));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		calFirst.setTimeInMillis(calFirst.getTimeInMillis() + calSecond.getTimeInMillis());
+		
+		Date heure = calFirst.getTime();
+		
+		System.out.println(heure);
+		
+		return heure.toString();
+    	
+    }
+    
+    public Boolean firstBeforeSecond(String heureA, String heureB) {
+    	
+    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+    	
+    	Calendar calFirst = Calendar.getInstance();
+        Calendar calSecond = Calendar.getInstance();
+        
+		try {
+			calFirst.setTime(formatter.parse(heureA));
+			calSecond.setTime(formatter.parse(heureB));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return calFirst.before(calSecond);	
+    }
+    
+    public String transformeEnHeureMin(float tempsParcours) {
+    	
+    	int heure = (int) ((int) tempsParcours) / 3600;
+    	int min = heure % 3600;
+    	
+    	return heure + ":" + min;
+    	
+    }
+    
 }

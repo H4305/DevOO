@@ -35,4 +35,20 @@ public class Itineraire {
     	return arrivee;
     }
 
+	public Chemin getCheminByDepart(Noeud depart) {
+		
+		Chemin cheminRes = null;
+		
+    	for(Chemin chemin: mChemins) {
+    		
+    		if(chemin.getDepart().equals(depart)) {
+    			
+    			return chemin;
+    		}
+    		
+    	}	
+    	
+    	return cheminRes;
+	}
+
 }
