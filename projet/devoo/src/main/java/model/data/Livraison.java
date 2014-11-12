@@ -32,7 +32,7 @@ public class Livraison {
      * @param heureLivraison
      * @param id_client
      */
-    public Livraison(int id, int id_client, Point adresse) {
+    public Livraison(int id, int id_client, Noeud adresse) {
     	this.id = id;
     	this.heureLivraison = "";
     	this.idClient = id_client;
@@ -58,7 +58,7 @@ public class Livraison {
     /**
      * L'adresse de livraison
      */
-    private Point adresse;
+    private Noeud adresse;
 
     /**
      * @param La nouvelle heure l'heure de la livraison
@@ -70,7 +70,7 @@ public class Livraison {
     /**
      * return L'adresse de livraison
      */
-    public Point getAdresse() {
+    public Noeud getAdresse() {
         return adresse;
     }
     public String getHeureLivraison() {

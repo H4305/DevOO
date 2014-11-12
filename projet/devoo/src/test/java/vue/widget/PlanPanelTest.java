@@ -9,7 +9,7 @@ import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.Point;
+import model.data.Noeud;
 import model.data.Troncon;
 
 import org.junit.Test;
@@ -17,12 +17,12 @@ import org.junit.Test;
 import vue.widget.PlanPanel.PointClickedListener;
 
 public class PlanPanelTest {
-	Point p1 = new Point(1, -200, 400);
-	Point p2 = new Point(2, -200, 600);
-	Point p3 = new Point(3, -200, 800);
-	Point p4 = new Point(4, 400, 800);
-	Point p5 = new Point(5, 400, 400);
-	Point p6 = new Point(5, 400, 600);
+	Noeud p1 = new Noeud(1, -200, 400);
+	Noeud p2 = new Noeud(2, -200, 600);
+	Noeud p3 = new Noeud(3, -200, 800);
+	Noeud p4 = new Noeud(4, 400, 800);
+	Noeud p5 = new Noeud(5, 400, 400);
+	Noeud p6 = new Noeud(5, 400, 600);
 
 	@Test
 	public void testVuePlan() {
@@ -69,7 +69,7 @@ public class PlanPanelTest {
 		vuePlan.setPointClickedListener(new PointClickedListener() {
 
 			@Override
-			public void pointClicked(Point point) {
+			public void pointClicked(Noeud point) {
 				System.out.println("Point clicked");
 			}
 		});

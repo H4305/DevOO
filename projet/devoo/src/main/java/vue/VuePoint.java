@@ -3,7 +3,7 @@ package vue;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import model.data.Point;
+import model.data.Noeud;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
 import vue.util.Vue;
@@ -16,13 +16,13 @@ public class VuePoint extends Vue{
 	
 	
 	
-	Point pointModel;
+	Noeud pointModel;
 	java.awt.Point pointVue;
 	
 	boolean selected = false;
 
 	Color color = AppColors.normalPoint;
-	public VuePoint(Point pointModel) {
+	public VuePoint(Noeud pointModel) {
 		super();
 		this.pointModel = pointModel;
 	}
@@ -57,7 +57,7 @@ public class VuePoint extends Vue{
 	/**
 	 * @return the data point represented by this view
 	 */
-	public Point getPoint() { return pointModel;}
+	public Noeud getPoint() { return pointModel;}
 	
 	@Override
 	public int hashCode() {

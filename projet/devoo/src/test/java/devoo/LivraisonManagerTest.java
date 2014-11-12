@@ -2,7 +2,7 @@ package devoo;
 
 import static org.junit.Assert.*;
 import model.data.Livraison;
-import model.data.Point;
+import model.data.Noeud;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 
@@ -34,7 +34,7 @@ public class LivraisonManagerTest {
 		
 	}@Test
 	public void testRemovePanel() {
-		Point point = new Point(20,20,20);
+		Noeud point = new Noeud(20,20,20);
 		Livraison livraison = new Livraison(1,2,point);	
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
@@ -45,7 +45,7 @@ public class LivraisonManagerTest {
 	@Test
 	public void testAddPanel() {
 		//Livraison livraison = new Livraison(1,"20",2);
-		Point point = new Point(20,20,20);
+		Noeud point = new Noeud(20,20,20);
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);

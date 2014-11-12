@@ -30,8 +30,8 @@ public class VueChemin extends Vue {
 	
 	Color[] colorTroncon = AppColors.itineraire;
 	
-	TwoKeyMap<model.data.Point, model.data.Point, TronconCounter> displayedTroncon = 
-			new TwoKeyMap<model.data.Point, model.data.Point, TronconCounter>();
+	TwoKeyMap<model.data.Noeud, model.data.Noeud, TronconCounter> displayedTroncon = 
+			new TwoKeyMap<model.data.Noeud, model.data.Noeud, TronconCounter>();
 	Chemin mChemin;
 
 	public VueChemin(Chemin chemin) {
@@ -86,7 +86,7 @@ public class VueChemin extends Vue {
 				point1 = movePointTowards(point1, point2, REDUCTION_LENGTH * counter.displayed);
 				point2 = movePointTowards(point2, point1, REDUCTION_LENGTH * counter.displayed);
 		
-				// Calcul décalage
+				// Calcul dï¿½calage
 				double L = Math.sqrt((point1.x - point2.x)
 						* (point1.x - point2.x) + (point1.y - point2.y)
 						* (point1.y - point2.y));
