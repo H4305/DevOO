@@ -59,7 +59,6 @@ public class LivraisonManager {
 	private PlanManager mPlanManager;
 	private DemandeLivraisons mDemandeLivraisons;
 	private GenerationIDint uniqueIDgenerator; 
-	private Itineraire mItineraire;
 
    /**
     * Class constructor specifying a Controller and a PlanManager
@@ -110,6 +109,9 @@ public class LivraisonManager {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
+        Set<Point> setEntrepot = new TreeSet<Point>();
+        setEntrepot.add(mDemandeLivraisons.getEntrepot());
+        adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
         	Set<Noeud> setPlage = new TreeSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
@@ -117,12 +119,10 @@ public class LivraisonManager {
         	}
         	adresses.add(setPlage);
         }
-
+        setEntrepot.add(mDemandeLivraisons.getEntrepot());
         Chemin chemin = mPlanManager.getChemin(adresses);
-        
-        mItineraire = new Itineraire(null); //Faut mettre l'array list
         //TODO
-        mController.afficherItineraire(mItineraire);
+        mController.afficherItineraire(chemin);
         return null;
     }
 	
@@ -156,7 +156,7 @@ public class LivraisonManager {
     			new JLabel("Heure fin"),
     			heureFinInput
     	};
-    	
+        
     	JOptionPane.showMessageDialog(null,inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
     	//on recupere les infos et on cr�e une nouvelle instance de la classe livraison 
     	Noeud adresse = point; //la nouvelle livraison est rajout�e dans le point o� on a cliqu� 
