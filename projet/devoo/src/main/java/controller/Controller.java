@@ -169,6 +169,11 @@ public class Controller {
     public void afficherItineraire(Set<Troncon> circuit) {
         // TODO implement here
     }
+    
+    public PlanManager getPlanManager()
+    {
+    	return this.mPlanManager;
+    }
 	
     /**
      * This method ask the livraison manager to add a new delivrery

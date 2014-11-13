@@ -108,7 +108,7 @@ public class XMLLoader {
 		                String idNoeudDestination = noeudFils.getAttribute("idNoeudDestination");
 		                
 		                Noeud pointArrivee = noeuds.get(Integer.parseInt(idNoeudDestination));
-		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));
+		                listTroncon.add(new Troncon(nomRue, vitesse, longueur, pointDepart, pointArrivee));         
 		        	}
 		        }
 		        
@@ -119,7 +119,9 @@ public class XMLLoader {
 		        for (Troncon troncon : listTroncon){
 		        	nodeListTronconSortant.add(troncon);
 		        }
+		        
         	}
+        	listTroncon.clear();
         }
 		return new PairKey<Set<Troncon>, ArrayList<Vertex>>(nodeListTronconSortant, vertexs);
 	}
