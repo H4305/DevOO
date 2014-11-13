@@ -8,26 +8,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JPanel;
 
-import model.data.Chemin;
 import model.data.DemandeLivraisons;
+import model.data.Itineraire;
 import model.data.Livraison;
-import model.data.PlageHoraire;
 import model.data.Noeud;
+import model.data.PlageHoraire;
 import model.data.Troncon;
-import solver.search.strategy.strategy.set.SetSearchStrategy;
-import vue.VueChemin;
+import vue.VueItineraire;
 import vue.VuePoint;
 import vue.VuePoint.Shape;
 import vue.VueTroncon;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
+import java.awt.SystemColor;
 
 public class PlanPanel extends JPanel {
 ;
@@ -44,7 +43,7 @@ public class PlanPanel extends JPanel {
 
 	Collection<Troncon> mTronconsPlan;
 	DemandeLivraisons demandeLivraisons;
-	VueChemin mChemin;
+	VueItineraire mItineraire;
 	int maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
 	int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE;
 	
@@ -62,7 +61,7 @@ public class PlanPanel extends JPanel {
 		setLayout(new BorderLayout());
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		setBackground(Color.GREEN);
+		setBackground(SystemColor.inactiveCaption);
 		addMouseListener(new MouseActionListener());
 
 		setPlan(new HashSet<Troncon>(troncons));
@@ -99,9 +98,9 @@ public class PlanPanel extends JPanel {
 		}
 	}
 
-	public void setChemin(Chemin itineraire) {
+	public void setItineraire(Itineraire itineraire) {
 		if (itineraire == null) return;
-		mChemin = new VueChemin(itineraire);
+		mItineraire = new VueItineraire(itineraire);
 	}
 	
 	public void setDemandeLivraisons(DemandeLivraisons demandeLivraisons) {
@@ -136,7 +135,7 @@ public class PlanPanel extends JPanel {
 	}
 
 	public void afficherItineraire() {
-		if(mChemin == null) {
+		if(mItineraire == null) {
 			LOGGER.log(Level.WARNING, "Aucun itineraire n'a �t� ajout� � ce plan. "
 					+ "Utilsez addItineraire pour en ajouter un.");
 			return;
@@ -156,12 +155,12 @@ public class PlanPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.setColor(AppColors.planBackground);
+		g.setColor(SystemColor.inactiveCaption);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
 		drawPlan(g);
 		if (displayItineraire) {
-			mChemin.draw(g, new Converter());
+			mItineraire.draw(g, new Converter());
 		}
 	}
 
@@ -177,6 +176,10 @@ public class PlanPanel extends JPanel {
 	
 	public boolean hasPlan() {
 		return !mTronconsPlan.isEmpty();
+	}
+	
+	public boolean hasItienraire() {
+		return displayItineraire;
 	}
 	
 	private class Converter implements CoordinateConverter {
