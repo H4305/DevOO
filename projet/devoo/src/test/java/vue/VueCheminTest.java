@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 
 import model.data.Chemin;
+import model.data.Itineraire;
 import model.data.Noeud;
 import model.data.Troncon;
 
@@ -48,7 +49,8 @@ public class VueCheminTest {
 		jFrame.pack();
 		jFrame.setVisible(true);
 		Chemin chemin = new Chemin(p1, p2, itineraire);
-		vuePlan.setChemin(chemin);
+		Itineraire itineraire2 = new Itineraire(Arrays.asList(chemin));
+		vuePlan.setItineraire(itineraire2);
 		vuePlan.afficherItineraire();
 		try {
 			Thread.sleep(500000);

@@ -1,7 +1,6 @@
 package vue;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 
@@ -15,11 +14,11 @@ import javax.swing.border.TitledBorder;
 import model.data.Livraison;
 import model.data.PlageHoraire;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Component;
+import java.awt.Point;
 
 public class VueLivraison extends JPanel {
 	
@@ -27,12 +26,8 @@ public class VueLivraison extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5815570766714741539L;
-	private JLabel lblLivraisonContent;
-	private JLabel lblHoraireContent;
-	private JLabel lblPlageHoraireContent;
-	private JLabel lblClientContent;
-	private JLabel lblAdresseContent;
 	private Livraison mLivraison;
+	private JLabel lblAdresse, lblLivraisonId, lblPlagehoraire, lblHoraireLivraison;
 
 	/**
 	 * Create the panel.
@@ -45,108 +40,94 @@ public class VueLivraison extends JPanel {
 	public VueLivraison() {
 		
 		Border loweredetched;
-
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder(loweredetched,
 				"Information supplémentaire");
 		title.setTitleJustification(TitledBorder.RIGHT);
 		title.setBorder(loweredetched);
-		title.setTitleFont(new Font(" Verdana", Font.PLAIN , 18));
-		
+		title.setTitleFont(new Font(" Verdana", Font.PLAIN , 16));
 		setBorder(title);
-
-		setPreferredSize(new Dimension(280, 206));
+		setPreferredSize(new Dimension(280, 150));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JPanel panel = new JPanel();
-		add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		
-		JLabel lblAdresse = new JLabel("Adresse : ");
+		panel.setBackground(SystemColor.inactiveCaption);
+		lblAdresse = new JLabel("Adresse : ");
 		panel.add(lblAdresse);
-		
-		lblAdresseContent = new JLabel();
-		panel.add(lblAdresseContent);
-		
-		JPanel panel_1 = new JPanel();
-		add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		
-		JLabel lblLivraisonId = new JLabel("Livraison : ");
+		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+		add(panel);
+
+		JPanel panel_1 = new JPanel();		
+		lblLivraisonId = new JLabel("Livraison : ");
 		panel_1.add(lblLivraisonId);
-		
-		lblLivraisonContent = new JLabel();
-		panel_1.add(lblLivraisonContent);
-		
+		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+		add(panel_1);
+
 		JPanel panel_2 = new JPanel();
-		add(panel_2);
-		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		
-		JLabel lblPlagehoraire = new JLabel("PlageHoraire : ");
+		panel_2.setBackground(SystemColor.inactiveCaption);
+		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+		lblPlagehoraire = new JLabel("PlageHoraire : ");
 		panel_2.add(lblPlagehoraire);
-		
-		lblPlageHoraireContent = new JLabel();
-		panel_2.add(lblPlageHoraireContent);
+		add(panel_2);
 		
 		JPanel panel_4 = new JPanel();
-		add(panel_4);
-		FlowLayout fl_panel_4 = new FlowLayout(FlowLayout.LEFT, 0, 0);
-		panel_4.setLayout(fl_panel_4);
-		
-		JLabel lblHoraireLivraison = new JLabel("Horaire Livraison pr\u00E9vu : ");
+		panel_4.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+		lblHoraireLivraison = new JLabel("Horaire Livraison pr\u00E9vu : ");
 		panel_4.add(lblHoraireLivraison);
-		
-		lblHoraireContent = new JLabel();
-		lblHoraireContent.setPreferredSize(new Dimension(200, 16));
-		lblHoraireContent.setMinimumSize(new Dimension(200, 0));
-		panel_4.add(lblHoraireContent);
-		
-		JPanel panel_3 = new JPanel();
-		add(panel_3);
-		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		
-		JLabel lblClient = new JLabel("Client : ");
-		panel_3.add(lblClient);
-		
-		lblClientContent = new JLabel();
-		panel_3.add(lblClientContent);
+		add(panel_4);
 	}
 	
 	public void setLivraison(PlageHoraire plageHoraire, Livraison livraison) {
 		mLivraison = livraison;
-		lblClientContent.setText(String.valueOf(livraison.getIdClient()));
-		lblHoraireContent.setText(livraison.getHeureLivraison());
-		lblPlageHoraireContent.setText(plageHoraire.getDateDebut() +  " - "  + plageHoraire.getDateFin());
-		lblLivraisonContent.setText(String.valueOf(livraison.getId()));
-		lblAdresseContent.setText(String.valueOf(livraison.getAdresse().getId()));
+
+		lblHoraireLivraison.setText("Horaire Livraison pr\u00E9vu : " + livraison.getHeureLivraison());
+		lblPlagehoraire.setText("PlageHoraire : " + plageHoraire.getDateDebut() +  " - "  + plageHoraire.getDateFin());
+		lblLivraisonId.setText("Livraison : " + String.valueOf(livraison.getId()));
+		lblAdresse.setText("Adresse : " + String.valueOf(livraison.getAdresse().getId()));
 	}
 	
 	public void resetInfoLivraison() {
 		mLivraison = null;
-		lblClientContent.setText("");
-		lblHoraireContent.setText("");
-		lblPlageHoraireContent.setText("");
-		lblLivraisonContent.setText("");
-		lblAdresseContent.setText("");
-	}
 
+		lblHoraireLivraison.setText("");
+		lblPlagehoraire.setText("");
+		lblLivraisonId.setText("");
+		lblAdresse.setText("");
+	}
+/**
+ * 
+ * @return
+ */
 	public JLabel getLblLivraisonContent() {
-		return lblLivraisonContent;
+		return lblLivraisonId;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public JLabel getLblHoraireContent() {
-		return lblHoraireContent;
+		return lblHoraireLivraison;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public JLabel getLblPlageHoraireContent() {
-		return lblPlageHoraireContent;
+		return lblPlagehoraire;
 	}
-	public JLabel getLblClientContent() {
-		return lblClientContent;
-	}
+	/**
+
+	 * 
+	 * @return
+	 */
 	public JLabel getLblAdresseContent() {
-		return lblAdresseContent;
+		return lblAdresse;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public Livraison getLivraison() {
 		return mLivraison;
 	}
