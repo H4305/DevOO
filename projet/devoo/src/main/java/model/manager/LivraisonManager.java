@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 
+
 /*
  * controller import
  */
@@ -25,8 +26,8 @@ import model.data.PlageHoraire;
 import model.manager.PlanManager;
 import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
-
 import util.CalculesHoraires;
+import util.PairIdLivrPrec;
 /*
  * util import
  */
@@ -312,13 +313,14 @@ public class LivraisonManager {
      * 
      * @param adresseLivraison is the address of the delivery that we want to remove 
      */
-    public void supprimerLivraison(Noeud adresseLivraison) {	
+    public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
     	
     	Livraison livraisonASupprimer = adresseLivraison.getLivraison();
+    	int id_client = livraisonASupprimer.getIdClient();
     	
     	PlageHoraire plageHoraireLivraisonASupprimer = getPlageHoraireByAdress(adresseLivraison);
     	
-    	
+    	return new PairIdLivrPrec<Integer, Noeud>(id_client, adresseLivraison);
     }
     
 }
