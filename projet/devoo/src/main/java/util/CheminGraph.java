@@ -119,4 +119,11 @@ public class CheminGraph implements Graph {
 		return successors;
 	}
 
+	public String toString() {
+		String s = "";
+		for(Chemin c : mChemins) {
+			s += c.toString() + "\n";
+		}
+		return s;
+	}
 }

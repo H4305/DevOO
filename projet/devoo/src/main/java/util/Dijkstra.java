@@ -17,17 +17,18 @@ public class Dijkstra {
 
 		while (!vertexQueue.isEmpty()) {
 		    Vertex u = vertexQueue.poll();
-		    System.out.println("Je suis dans computePaths et le vertex u a " + u.getAdjacencies().size() + " troncons");
+		    //System.out.println("Je suis dans computePaths et le vertex u a " + u.getAdjacencies().size() + " troncons");
+		    
 	        for (Troncon t : u.getAdjacencies())
 	        {
 	            Vertex v = t.getTarget();
 	            float temps = t.getDuree();
 	            float tempsThroughU = (float)(u.getMinTemps() + temps);
 	            
-				if (tempsThroughU < v.getMinTemps()) {
+	            if (tempsThroughU < v.getMinTemps()) {
 				    vertexQueue.remove(v);
 				    v.setMinTemps(tempsThroughU);
-				    v.setPrecedent(u);				   
+				    v.setPrecedent(u);		
 				    vertexQueue.add(v);
 				}
 	        }
