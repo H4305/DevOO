@@ -316,11 +316,52 @@ public class LivraisonManager {
     public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
     	
     	Livraison livraisonASupprimer = adresseLivraison.getLivraison();
+    	
     	int id_client = livraisonASupprimer.getIdClient();
     	
-    	PlageHoraire plageHoraireLivraisonASupprimer = getPlageHoraireByAdress(adresseLivraison);
+    	PlageHoraire laPlageHoraire = getPlageHoraireByAdress(adresseLivraison);
     	
-    	return new PairIdLivrPrec<Integer, Noeud>(id_client, adresseLivraison);
+    	Chemin cheminAvant = mItineraire.getCheminByArrivee(adresseLivraison);
+    	Chemin cheminApres = mItineraire.getCheminByDepart(adresseLivraison);
+
+    	Noeud noeudAvant = cheminAvant.getDepart();
+    	Noeud noeudApres = cheminApres.getArrivee();
+    	
+    	Chemin cheminToAdd = mPlanManager.calculerPlusCourtChemin(noeudAvant, noeudApres);
+    	
+    	
+    	mItineraire.getChemins().remove(cheminAvant);
+    	mItineraire.getChemins().remove(cheminApres);
+		mItineraire.getChemins().add(cheminToAdd);
+		
+		float tempsAvant = cheminAvant.getTempsParcours();
+		float tempsApres = cheminApres.getTempsParcours();
+		float tempsToAdd = cheminToAdd.getTempsParcours();
+		
+		float decalageFloat = tempsToAdd - tempsAvant - tempsApres - 10*60;
+		String decalageString = CalculesHoraires.transformeEnHeureMin(decalageFloat);
+		
+		String tempsAvantString = CalculesHoraires.transformeEnHeureMin(tempsAvant);
+		
+		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr à supprimer 
+		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
+		
+		for(Livraison liv: livraisons) {
+			
+			String heurePassage = liv.getHeureLivraison();
+			
+			if(CalculesHoraires.firstBeforeSecond( tempsAvantString, heurePassage) ) {
+				
+				String heure = CalculesHoraires.sommeHeures(heurePassage, decalageString) ;
+				
+				liv.setHeureLivraison(heure);	
+			}			
+		}			
+		
+		
+		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
+    
+    	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
     }
     
 }
