@@ -157,7 +157,7 @@ public class PlanPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.setColor(AppColors.planBackground);
+		g.setColor(SystemColor.inactiveCaption);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
 		drawPlan(g);

@@ -28,8 +28,16 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
+import java.awt.SystemColor;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
-public class MainPanel extends JPanel {
+import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
+
+public class MainPanel extends JPanel implements Runnable {
 
 	VueGestionLivraison mGestionLivraison;
 	private JButton btnChargerPlan;
@@ -52,48 +60,62 @@ public class MainPanel extends JPanel {
 	//private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
-	private JButton btnAnnuler_1;
-	private JButton btnRtablir;
-
+	private JPanel panel;
+	private JPanel panel_4;
+	private JPanel panel_6;
+	private JLabel informations;
+	private Thread tr;
 	/**
 	 * Create the panel.
 	 */
 	public MainPanel(VueGestionLivraison gestionLivraison) {
+		
 		mGestionLivraison = gestionLivraison;
 		setLayout(new BorderLayout(0, 0));
 		
 		panelPrincipal = new JPanel();
+		panelPrincipal.setBorder(new MatteBorder(0, 5, 0, 0, (Color) new Color(0, 0, 0)));
 		add(panelPrincipal, BorderLayout.CENTER);
 		panelPrincipal.setLayout(new BorderLayout(0, 0));
 		
 		panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaption);
 		panelPrincipal.add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		btnAnnuler_1 = new JButton("Annuler");
-		panel_1.add(btnAnnuler_1);
+		panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaption);
+		FlowLayout flowLayout_1 = (FlowLayout) panel.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
+		panel_1.add(panel, BorderLayout.WEST);
 		
-		btnRtablir = new JButton("R\u00E9tablir");
-		panel_1.add(btnRtablir);
-		
-		panel_5 = new JPanel();
-		panelPrincipal.add(panel_5, BorderLayout.SOUTH);
-		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		btnExporter = new JButton("<html><center>Exporter <br/>feuille de route</center></html>");
+		btnExporter = new JButton("Exporter");
+		panel.add(btnExporter);
+		btnExporter.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnExporter.setEnabled(false);
 		btnExporter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		panel_5.add(btnExporter);
+		
+		panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaption);
+		FlowLayout flowLayout_2 = (FlowLayout) panel_4.getLayout();
+		flowLayout_2.setAlignment(FlowLayout.RIGHT);
+		panel_1.add(panel_4, BorderLayout.EAST);
 		
 		btnAnnuler = new JButton("Annuler");
+		panel_4.add(btnAnnuler);
 		btnAnnuler.setEnabled(false);
-		panel_5.add(btnAnnuler);
 		
 		btnRetablir = new JButton("R\u00E9tablir");
+		panel_4.add(btnRetablir);
 		btnRetablir.setEnabled(false);
-		panel_5.add(btnRetablir);
+		
+		panel_5 = new JPanel();
+		panel_5.setBackground(SystemColor.inactiveCaption);
+		panelPrincipal.add(panel_5, BorderLayout.SOUTH);
+		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel panelLeft = new JPanel();
 		add(panelLeft, BorderLayout.WEST);
@@ -126,6 +148,11 @@ public class MainPanel extends JPanel {
 		panelLivraisons = new JPanel();
 		panel_2.add(panelLivraisons);
 		panelLivraisons.setLayout(new BoxLayout(panelLivraisons, BoxLayout.Y_AXIS));
+		//panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+		
+		panelLivraisonAdd = new JPanel();
+		panelLivraisons.add(panelLivraisonAdd);
+		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
 		
 		panelLivraisonSelected = new JPanel();
 		panelLivraisons.add(panelLivraisonSelected);
@@ -141,11 +168,6 @@ public class MainPanel extends JPanel {
 				mGestionLivraison.removeSelectedLivraison();
 			}
 		});*/
-		//panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
-		
-		panelLivraisonAdd = new JPanel();
-		panelLivraisons.add(panelLivraisonAdd);
-		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
 		
 		//btnAjouter = new JButton("Ajouter");
 		//btnAjouter.setEnabled(false);
@@ -164,8 +186,36 @@ public class MainPanel extends JPanel {
 		lblErreurMessage = new JLabel();
 		lblErreurMessage.setForeground(Color.RED);
 		panelError.add(lblErreurMessage, BorderLayout.CENTER);
+		
+		panel_6 = new JPanel();
+		panelError.add(panel_6, BorderLayout.SOUTH);
+		
+		String txtDate=new SimpleDateFormat("dd/MM/yyyy hh:MM", Locale.FRANCE).format(new Date());
+		
+		informations = new JLabel("Réalisation de feuilles de route" + txtDate);
+		panel_6.add(informations);
+		tr = new Thread(this);
+		tr.start();
 
 	}
+	
+	public void run(){
+        while (true) {
+           
+            Date date1 = new Date();
+            DateFormat formatdate = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat formatdate2 = new SimpleDateFormat("HH'h'mm:ss");
+             
+            String horloge=(formatdate.format(date1)+" - "+formatdate2.format(date1));
+            informations.setText(horloge);
+          //  panel_6.validate();
+             
+          try { Thread.sleep(1000);
+          } catch(InterruptedException e){
+        	 // System.out.println("l");
+            }
+        }
+      }
 	
 	public void setPlan(PlanPanel plan) {
 		Component component = ((BorderLayout)panelPrincipal.getLayout()).getLayoutComponent(BorderLayout.CENTER);
