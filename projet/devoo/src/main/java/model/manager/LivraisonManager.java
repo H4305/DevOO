@@ -5,18 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.FileWriter;
-
-
-
 
 /*
  * controller import
@@ -32,7 +22,6 @@ import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.ZoneGeographique;
 import model.manager.PlanManager;
 import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
