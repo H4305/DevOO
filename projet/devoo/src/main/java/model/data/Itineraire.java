@@ -51,6 +51,23 @@ public class Itineraire {
     	return cheminRes;
 	}
 	
+	
+	public Chemin getCheminByArrivee(Noeud arrive) {
+		
+		Chemin cheminRes = null;
+		
+    	for(Chemin chemin: mChemins) {
+    		
+    		if(chemin.getArrivee().equals(arrive)) {
+    			
+    			return chemin;
+    		}
+    		
+    	}	
+    	
+    	return cheminRes;
+	}
+	
 	public List<Chemin> getChemins() {
 		return mChemins;
 	}

@@ -390,4 +390,37 @@ public class LivraisonManager {
         }
     	
     }
+    /**
+     * This method return the object plageHoraire that contains the delivery at the address noeud
+     * 
+     * @param noeud
+     **/
+    public PlageHoraire getPlageHoraireByAdress(Noeud noeud){
+    	PlageHoraire plageHoraireFound = null; 
+    	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
+    		
+    		for(Livraison livraison : plageHoraire.getLivraisons()) {
+    			
+    			if(livraison.getAdresse().equals(noeud)) { 
+    				return plageHoraire;    				
+    			}
+    		}
+    	}
+    	return plageHoraireFound;
+    }
+    
+    /**
+     * This method remove a delivery.
+     * 
+     * @param adresseLivraison is the address of the delivery that we want to remove 
+     */
+    public void supprimerLivraison(Noeud adresseLivraison) {	
+    	
+    	Livraison livraisonASupprimer = adresseLivraison.getLivraison();
+    	
+    	PlageHoraire plageHoraireLivraisonASupprimer = getPlageHoraireByAdress(adresseLivraison);
+    	
+    	
+    }
+    
 }
