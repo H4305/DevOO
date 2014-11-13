@@ -38,7 +38,7 @@ public class PlanManager {
 	
 	private Controller mController;
 	private Set<Troncon> troncons;
-	private ArrayList<Vertex> listVertexs;
+	private List<Vertex> listVertexs;
 
 	/**
     * Class constructor specifying a Controller
@@ -67,6 +67,14 @@ public class PlanManager {
 				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);				
 				this.setPlan(tronconsVertexs.troncons);
 				this.setVertexs(tronconsVertexs.vertexs);	
+				for(Troncon t : troncons) {
+					Noeud n = t.getArrivee();
+					for(Vertex v : this.listVertexs) {
+						if(v.getPoint().equals(n)) {
+							t.setTarget(v);
+						}
+					}
+				}
 				mController.afficherPlan();				
 			} catch (PlanXMLException e) {
 				// On affichera ca dans la vue
@@ -91,29 +99,29 @@ public class PlanManager {
     	Vertex vSource = null;
     	Vertex vCible = null;
     	float tempsParcours = 0;
-    	
-    	for(Vertex v: this.listVertexs) {
-    		
+
+		for(Vertex v: this.listVertexs) {
     		if(v.getPoint().equals(source)) {
     			vSource = v;
-    			System.out.println("La source :" + v.getPoint().toString());
+    			//System.out.println("La source :" + v.getPoint().toString());
     		}
     		
     		if(v.getPoint().equals(cible)) {
     			vCible = v;
-    			System.out.println("La cible :" + v.getPoint().toString());
+    			//System.out.println("La cible :" + v.getPoint().toString());
     		}
     	}
     	
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
+    	//System.out.println(vSource);
     	Dijkstra.computePaths(vSource);
-    	System.out.println("Apres computePaths : ");
+    	//System.out.println("Apres computePaths : ");
     	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
-    	System.out.println("Apres Dijkstra : ");    	
+    	//System.out.println("Apres Dijkstra : ");    	
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
-    		System.out.println(v.getPoint().toString());
+    		//System.out.println(v.getPoint().toString());
     		pointsDuCourtChemin.add(v.getPoint());     		
     	}    	
     	
@@ -144,6 +152,8 @@ public class PlanManager {
      * @return une liste des chemins à suivre pour la livraison
      */
     public List<Chemin> getChemins(List<Set<Noeud>> plages) {
+    	System.out.println("MERDE!");
+        System.out.println(plages);
     	List<Chemin> chemins = new ArrayList<Chemin>();
     	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
@@ -253,12 +263,12 @@ public class PlanManager {
 		this.troncons = troncons;
 	}
 	
-	public ArrayList<Vertex> getVertexes() {
+	public List<Vertex> getVertexes() {
 		System.out.println(this.listVertexs.size());
 		return this.listVertexs; 
 	}
 	
-	public void setVertexs(ArrayList<Vertex> argVertexs) {
+	public void setVertexs(List<Vertex> argVertexs) {
 		this.listVertexs = argVertexs;
 	}
 }

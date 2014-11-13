@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 
 
+
 /*
  * controller import
  */
@@ -377,7 +378,7 @@ public class LivraisonManager {
 		
 		String tempsAvantString = CalculesHoraires.transformeEnHeureMin(tempsAvant);
 		
-		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr à supprimer 
+		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr ï¿½ supprimer 
 		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
 		
 		for(Livraison liv: livraisons) {
