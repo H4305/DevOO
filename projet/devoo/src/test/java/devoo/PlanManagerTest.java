@@ -75,7 +75,6 @@ public class PlanManagerTest {
 		Chemin chemin;
 
 		controller.loadPlanXML();		
-		//controller.loadDemandeLivrasonsXML();
 		
 		ArrayList<Vertex> v = planManager.getVertexes();		
 		Noeud a = v.get(3).getPoint();

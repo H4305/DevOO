@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.data.Noeud;
 import model.data.Troncon;
@@ -10,14 +11,14 @@ public class Vertex implements Comparable<Vertex> {
     private Noeud pointVertex;
     private double minTemps = Double.POSITIVE_INFINITY;
     private Vertex precedent;
-    private ArrayList<Troncon> adjacencies = new ArrayList<Troncon>();
+    private List<Troncon> adjacencies = new ArrayList<Troncon>();
     
     public Vertex(Noeud pointVertex) 
     { 
     	this.pointVertex = pointVertex; 
     }
     
-    public Vertex(Noeud pointVertex, ArrayList<Troncon> adjacencies)
+    public Vertex(Noeud pointVertex, List<Troncon> adjacencies)
     { 
     	this.pointVertex = pointVertex; 
     	this.adjacencies = adjacencies;
@@ -55,13 +56,13 @@ public class Vertex implements Comparable<Vertex> {
     
     public void setAdjacencies(ArrayList<Troncon> adjacencies)
     {
-    	System.out.println("addTronconSortant : Vertex");
     	this.adjacencies = adjacencies;
     }
       
     
-    public ArrayList<Troncon> getAdjacencies()
+    public List<Troncon> getAdjacencies()
     {
+    	System.out.println("Je suis dans getAdjacencies !");
     	return this.adjacencies;
     }
     

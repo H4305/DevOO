@@ -56,6 +56,7 @@ public class MainPanel extends JPanel {
 	private JButton btnExporter;
 	private JPanel panelLivraisonSelected;
 	private JPanel panelLivraisonAdd;
+	private JPanel panelLivraisonAdd_1;
 	private JButton btnSupprimerLivraison;
 	private JButton btnAjouter;
 	
@@ -63,10 +64,13 @@ public class MainPanel extends JPanel {
 	private JButton btnCalculerTournee;
 	private JLabel lblInfoMessage;
 	private JPanel panel;
+	private JPanel panel_9;
 	private JPanel panel_4;
 	private JPanel panel_6;
 	private JLabel informations;
-
+	private JPanel panel_7;
+	private JPanel panel_8;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -129,28 +133,27 @@ public class MainPanel extends JPanel {
 		
 		panel_3 = new JPanel();
 		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		lblInfoMessage = new JLabel("");
-		panel_3.add(lblInfoMessage, BorderLayout.SOUTH);
+		panel_9 = new JPanel();
+		panel_3.add(panel_9, BorderLayout.SOUTH);
+		panel_9.setLayout(new BoxLayout(panel_9, BoxLayout.Y_AXIS));
 		
-		panel = new JPanel();
-		panel_3.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		lblInfoMessage = new JLabel("dfsddfd");
+		panel_9.add(lblInfoMessage);
+	
+		panel_8 = new JPanel();
+		panel_3.add(panel_8, BorderLayout.NORTH);
 		
 		btnChargerPlan = new JButton("Charger Plan");
-		panel_3.add(btnChargerPlan);
+		panel_8.add(btnChargerPlan);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
-		panel_3.add(btnLoadLivraison);
+		panel_8.add(btnLoadLivraison);
 		btnLoadLivraison.setEnabled(false);
-		btnLoadLivraison.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mGestionLivraison.chargerLivraison();
-			}
-		});
 		
 		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
-		panel.add(btnCalculerTournee);
+		panel_8.add(btnCalculerTournee);
 		btnCalculerTournee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mGestionLivraison.chargerTournee();
@@ -158,6 +161,11 @@ public class MainPanel extends JPanel {
 		});
 		btnCalculerTournee.setEnabled(false);
 		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnLoadLivraison.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.chargerLivraison();
+			}
+		});
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
@@ -167,11 +175,6 @@ public class MainPanel extends JPanel {
 		panelLivraisons = new JPanel();
 		panel_2.add(panelLivraisons);
 		panelLivraisons.setLayout(new BoxLayout(panelLivraisons, BoxLayout.Y_AXIS));
-
-		
-		panelLivraisonAdd = new JPanel();
-		panelLivraisons.add(panelLivraisonAdd);
-		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
 		
 		panelLivraisonSelected = new JPanel();
 		panelLivraisons.add(panelLivraisonSelected);
@@ -180,21 +183,29 @@ public class MainPanel extends JPanel {
 		vueLivraison = new VueLivraison();
 		panelLivraisonSelected.add(vueLivraison, BorderLayout.CENTER);
 		
-		btnSupprimerLivraison = new JButton("Supprimer");
-		btnSupprimerLivraison.setEnabled(false);
-		btnSupprimerLivraison.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mGestionLivraison.removeSelectedLivraison();
-			}
-		});
-		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
-		panelLivraisonAdd = new JPanel();
-		panelLivraisons.add(panelLivraisonAdd);
-		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
+		panel_7 = new JPanel();
+		panelLivraisons.add(panel_7);
 		
-		btnAjouter = new JButton("Ajouter");
-		btnAjouter.setEnabled(false);
-		panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
+				
+				panelLivraisonAdd = new JPanel();
+				panel_7.add(panelLivraisonAdd);
+				panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
+				
+				btnSupprimerLivraison = new JButton("Supprimer");
+				panelLivraisonAdd.add(btnSupprimerLivraison, BorderLayout.NORTH);
+				btnSupprimerLivraison.setEnabled(false);
+				panelLivraisonAdd_1 = new JPanel();
+				panel_7.add(panelLivraisonAdd_1);
+				panelLivraisonAdd_1.setLayout(new BorderLayout(0, 0));
+				
+				btnAjouter = new JButton("Ajouter");
+				btnAjouter.setEnabled(false);
+				panelLivraisonAdd_1.add(btnAjouter, BorderLayout.SOUTH);
+				btnSupprimerLivraison.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						mGestionLivraison.removeSelectedLivraison();
+					}
+				});
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
@@ -213,9 +224,9 @@ public class MainPanel extends JPanel {
 		panel_6 = new JPanel();
 		panelError.add(panel_6, BorderLayout.SOUTH);
 		
-		String txtDate=new SimpleDateFormat("dd/MM/yyyy hh:MM", Locale.FRANCE).format(new Date());
+		String txtDate=new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(new Date());
 		
-		informations = new JLabel("Réalisation de feuilles de route" + txtDate);
+		informations = new JLabel(txtDate + " - Réalisation de feuilles de route");
 		panel_6.add(informations);
 	}
 	
@@ -256,7 +267,7 @@ public class MainPanel extends JPanel {
 	}
 	
 	public JPanel getPanelLivraisonAdd() {
-		return panelLivraisonAdd;
+		return panelLivraisonAdd_1;
 	}
 	public JButton getBtnExporter() {
 		return btnExporter;

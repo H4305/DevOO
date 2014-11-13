@@ -39,7 +39,7 @@ public class Noeud {
     /**
      * 
      */
-    private ArrayList<Troncon> tronconsSortants;
+    private List<Troncon> tronconsSortants;
     
     /**
      * 
@@ -79,15 +79,15 @@ public class Noeud {
 		return y;
 	}
 	
-	public ArrayList<Troncon> getTronconsSortants(){
+	public List<Troncon> getTronconsSortants(){
 		return tronconsSortants;
 	}
 	
 	public void addTronconSortant(Troncon troncon) {
-		tronconsSortants.add(troncon);
+		this.tronconsSortants.add(troncon);
 	}
 	
-	public void addTronconSortants(ArrayList<Troncon> troncons) {
+	public void addTronconSortants(List<Troncon> troncons) {
 		tronconsSortants = troncons;
 	}
 	
