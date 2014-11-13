@@ -68,6 +68,7 @@ public class VueGestionLivraison {
      */
 	public void afficherDemandeLivraisons() {
 		mainPanel.getVueLivraison().resetInfoLivraison();
+		mainPanel.setCalculItineraire(true);
 		vuePlan.setDemandeLivraisons(mLivraisonManager.getDemandeLivraisons());
 		vuePlan.afficherDemandeLivraison();
 	}
@@ -89,8 +90,10 @@ public class VueGestionLivraison {
     /**
      * @param circuit
      */
-    public void afficherItineraire(List<Troncon> circuit) {
-        // TODO implement here
+    public void afficherItineraire() {
+        mLivraisonManager.getItineraire().getChemins();
+        
+        vuePlan.afficherItineraire();
     }
     
 
@@ -218,6 +221,10 @@ public class VueGestionLivraison {
 			afficherDialogConfirmationSuppressionLivraison(livraison.getAdresse());
 		}
 		
+	}
+
+	public void chargerTournee() {
+		mLivraisonManager.calculItineraire();	
 	}
 
 }

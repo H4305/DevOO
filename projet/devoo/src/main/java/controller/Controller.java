@@ -83,7 +83,7 @@ public class Controller {
     /**
      * @param circuit
      */
-    public void afficherItineraire(Chemin circuit) {
+    public void afficherItineraire() {
         // TODO implement here
     }
 
@@ -165,7 +165,7 @@ public class Controller {
      * 
      */
     public void calculItineraire() {
-        // TODO implement here
+        mLivraisonManager.calculItineraire();
     }
 
     /**

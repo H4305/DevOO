@@ -28,6 +28,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
+import javax.swing.JSeparator;
+import javax.swing.border.LineBorder;
 
 public class MainPanel extends JPanel {
 
@@ -52,6 +54,7 @@ public class MainPanel extends JPanel {
 	private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
+	private JButton btnCalculerTournee;
 
 	/**
 	 * Create the panel.
@@ -105,15 +108,28 @@ public class MainPanel extends JPanel {
 		panelLeft.add(panel_2);
 		
 		panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		panel_2.add(panel_3);
+		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 		
 		btnChargerPlan = new JButton("Charger Plan");
+		btnChargerPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel_3.add(btnChargerPlan);
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
 			}
 		});
+		
+		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
+		btnCalculerTournee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mGestionLivraison.chargerTournee();
+			}
+		});
+		btnCalculerTournee.setEnabled(false);
+		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel_3.add(btnCalculerTournee);
 		
 		panelLivraisons = new JPanel();
 		panel_2.add(panelLivraisons);
@@ -202,5 +218,9 @@ public class MainPanel extends JPanel {
 	
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
+	}
+
+	public void setCalculItineraire(boolean b) {
+		btnCalculerTournee.setEnabled(b);
 	}
 }

@@ -54,5 +54,9 @@ public class Itineraire {
 	public List<Chemin> getChemins() {
 		return mChemins;
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> aa4d2f2a09c1e49d1a79a4e9db72ae61fc9a8fae
 	
 }

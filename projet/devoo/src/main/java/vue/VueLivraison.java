@@ -17,7 +17,9 @@ import model.data.PlageHoraire;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 
 public class VueLivraison extends JPanel {
 	
@@ -42,30 +44,15 @@ public class VueLivraison extends JPanel {
 	
 	public VueLivraison() {
 		
-		Border loweredetched, redline, compound, raisedbevel, loweredbevel;
+		Border loweredetched;
 
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-
-		redline = BorderFactory.createLineBorder(Color.red);
 		TitledBorder title;
 		title = BorderFactory.createTitledBorder(loweredetched,
 				"Information supplémentaire");
 		title.setTitleJustification(TitledBorder.RIGHT);
 		title.setBorder(loweredetched);
-		/*
-		raisedbevel = BorderFactory.createRaisedBevelBorder();
-		loweredbevel = BorderFactory.createLoweredBevelBorder();
-		
-		compound = BorderFactory.createCompoundBorder(
-                raisedbevel, loweredbevel);
-		
-		compound = BorderFactory.createCompoundBorder(
-                redline, compound);
-		
-		compound = BorderFactory.createTitledBorder(
-                compound, "title",
-                TitledBorder.CENTER,
-                TitledBorder.BELOW_BOTTOM);*/
+		title.setTitleFont(new Font(" Verdana", Font.PLAIN , 18));
 		
 		setBorder(title);
 
