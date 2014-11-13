@@ -1,11 +1,17 @@
 package devoo;
 
+import java.io.File;
+import java.util.ArrayList;
+
+import model.manager.LivraisonManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
 import model.manager.PlanManager;
+import model.data.Chemin;
 import model.data.Noeud;
 import model.data.Troncon;
 
@@ -58,6 +64,27 @@ public class PlanManagerTest {
 
 		System.out.println(planManager.calculerPlusCourtChemin(a, f).toString());
 		
+	}
+	
+
+	
+	@Test
+	public void testCalculerPlusCourtCheminXML() {
+		Controller controller = new Controller();		
+		PlanManager planManager = controller.getPlanManager();
+		Chemin chemin;
+
+		controller.loadPlanXML();		
+		//controller.loadDemandeLivrasonsXML();
+		
+		ArrayList<Vertex> v = planManager.getVertexes();		
+		Noeud a = v.get(3).getPoint();
+		Noeud b = v.get(2).getPoint();
+		
+		System.out.println("Premier point :" + a.toString() + ". Il a " + a.getTronconsSortants().size());
+		System.out.println("Deuxieme point :" + b.toString() + ". Il a " + b.getTronconsSortants().size());
+		chemin = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
+		System.out.println(chemin.toString());
 	}
 	
 	@Test
@@ -116,6 +143,7 @@ public class PlanManagerTest {
 		listePlages.add(Plage0);
 		
 		System.out.println(planManager.getChemins(listePlages).toString());
+
 	}
 	
 }

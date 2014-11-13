@@ -114,7 +114,7 @@ public class VueGestionLivraison {
 			public void pointClicked(Noeud point) {
 				if(!point.isLivraison() && vuePlan.hasItienraire()){
 					askForSecondPoint(point);
-				} else if (point.isLivraison()){
+				} else {
 					mController.afficherLivraison(point);
 				}
 			}

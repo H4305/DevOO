@@ -17,7 +17,7 @@ public class Dijkstra {
 
 		while (!vertexQueue.isEmpty()) {
 		    Vertex u = vertexQueue.poll();
-	
+		    System.out.println("Je suis dans computePaths et le vertex u a " + u.getAdjacencies().size() + " troncons");
 	        for (Troncon t : u.getAdjacencies())
 	        {
 	            Vertex v = t.getTarget();

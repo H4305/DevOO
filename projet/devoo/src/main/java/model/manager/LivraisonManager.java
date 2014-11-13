@@ -121,10 +121,48 @@ public class LivraisonManager {
         	}
         	adresses.add(setPlage);
         }
+        
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
+        
+        this.updateLivraisonsTime(plagesHoraire, chemins);
+        
         mItineraire = new Itineraire(chemins);
         mController.afficherItineraire(); //pas de paramètre
+    }
+    
+    /**
+     * Met a jour les horaires des livraisons
+     * @param plagesHoraire liste ordonnée de plages horaires
+     * @param chemins liste ordonnée des chemins
+     */
+    private void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
+    	PlageHoraire plageActuelle = null;
+    	String horaire = "00:00";
+        for(Chemin chemin : chemins) {
+        	//Si nous avons arrivé à l'entrepot nous pouvons sortir de la boucle
+        	if(chemin.getArrivee().equals(mDemandeLivraisons.getEntrepot())) { 
+        		break;
+        	}
+        	//Met a jour la plage horaire actuelle
+        	if(plageActuelle != this.getPlageHoraireByAdress(chemin.getArrivee())) {
+        		plageActuelle = this.getPlageHoraireByAdress(chemin.getArrivee());
+        		//
+        		if(CalculesHoraires.firstBeforeSecond(horaire, plageActuelle.getDateDebut())) {
+        			horaire = plageActuelle.getDateDebut();
+        		}
+        	}
+        	//Calcule l'horaire de la prochaine livraison
+        	String horaireTmp = CalculesHoraires.sommeHeures(horaire, CalculesHoraires.transformeEnHeureMin(chemin.getTempsParcours()));
+        	
+        	//Si l'horaire sort de la plage horaire, on lui enleve du graphe
+        	if(CalculesHoraires.firstBeforeSecond(plageActuelle.getDateFin(), horaireTmp)) {
+        		//TODO PANIC!
+        	} else {
+        		chemin.getArrivee().getLivraison().setHeureLivraison(horaireTmp);
+        	}
+        	horaire = CalculesHoraires.sommeHeures(horaireTmp, "00:10");
+        }
     }
 	
     public List<PlageHoraire> getPlagesHoraire() {
