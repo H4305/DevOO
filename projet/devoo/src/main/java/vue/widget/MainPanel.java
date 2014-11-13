@@ -48,10 +48,12 @@ public class MainPanel extends JPanel {
 	private JButton btnExporter;
 	private JPanel panelLivraisonSelected;
 	private JPanel panelLivraisonAdd;
-	private JButton btnSupprimerLivraison;
-	private JButton btnAjouter;
+//	private JButton btnSupprimerLivraison;
+	//private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
+	private JButton btnAnnuler_1;
+	private JButton btnRtablir;
 
 	/**
 	 * Create the panel.
@@ -67,14 +69,11 @@ public class MainPanel extends JPanel {
 		panel_1 = new JPanel();
 		panelPrincipal.add(panel_1, BorderLayout.NORTH);
 		
-		btnLoadLivraison = new JButton("ChargerLivraison");
-		panel_1.add(btnLoadLivraison);
-		btnLoadLivraison.setEnabled(false);
-		btnLoadLivraison.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mGestionLivraison.chargerLivraison();
-			}
-		});
+		btnAnnuler_1 = new JButton("Annuler");
+		panel_1.add(btnAnnuler_1);
+		
+		btnRtablir = new JButton("R\u00E9tablir");
+		panel_1.add(btnRtablir);
 		
 		panel_5 = new JPanel();
 		panelPrincipal.add(panel_5, BorderLayout.SOUTH);
@@ -109,6 +108,15 @@ public class MainPanel extends JPanel {
 		
 		btnChargerPlan = new JButton("Charger Plan");
 		panel_3.add(btnChargerPlan);
+		
+		btnLoadLivraison = new JButton("ChargerLivraison");
+		panel_3.add(btnLoadLivraison);
+		btnLoadLivraison.setEnabled(false);
+		btnLoadLivraison.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.chargerLivraison();
+			}
+		});
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
@@ -126,22 +134,22 @@ public class MainPanel extends JPanel {
 		vueLivraison = new VueLivraison();
 		panelLivraisonSelected.add(vueLivraison, BorderLayout.CENTER);
 		
-		btnSupprimerLivraison = new JButton("Supprimer");
+	/*	btnSupprimerLivraison = new JButton("Supprimer");
 		btnSupprimerLivraison.setEnabled(false);
 		btnSupprimerLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.removeSelectedLivraison();
 			}
-		});
-		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+		});*/
+		//panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
 		
 		panelLivraisonAdd = new JPanel();
 		panelLivraisons.add(panelLivraisonAdd);
 		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
 		
-		btnAjouter = new JButton("Ajouter");
-		btnAjouter.setEnabled(false);
-		panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
+		//btnAjouter = new JButton("Ajouter");
+		//btnAjouter.setEnabled(false);
+		//panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
@@ -177,13 +185,13 @@ public class MainPanel extends JPanel {
 	
 	public void setLivraisonSelected(PlageHoraire plageHoraire, Livraison livraison) {
 		vueLivraison.setLivraison(plageHoraire, livraison);
-		btnSupprimerLivraison.setEnabled(true);
+		//btnSupprimerLivraison.setEnabled(true);
 		//validate();
 	}
 	
 	public void resetInfoLivraison() {
 		vueLivraison.resetInfoLivraison();
-		btnSupprimerLivraison.setEnabled(false);
+		//btnSupprimerLivraison.setEnabled(false);
 		//validate();
 	}
 	

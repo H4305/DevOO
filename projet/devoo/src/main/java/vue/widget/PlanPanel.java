@@ -28,6 +28,7 @@ import vue.VuePoint.Shape;
 import vue.VueTroncon;
 import vue.util.AppColors;
 import vue.util.CoordinateConverter;
+import java.awt.SystemColor;
 
 public class PlanPanel extends JPanel {
 ;
@@ -62,7 +63,7 @@ public class PlanPanel extends JPanel {
 		setLayout(new BorderLayout());
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		setBackground(Color.GREEN);
+		setBackground(SystemColor.inactiveCaption);
 		addMouseListener(new MouseActionListener());
 
 		setPlan(new HashSet<Troncon>(troncons));
