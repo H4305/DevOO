@@ -55,8 +55,8 @@ public class MainPanel extends JPanel implements Runnable {
 	private JButton btnExporter;
 	private JPanel panelLivraisonSelected;
 	private JPanel panelLivraisonAdd;
-//	private JButton btnSupprimerLivraison;
-	//private JButton btnAjouter;
+	private JButton btnSupprimerLivraison;
+	private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
 
