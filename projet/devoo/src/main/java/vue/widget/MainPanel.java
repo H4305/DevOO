@@ -1,35 +1,23 @@
 package vue.widget;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import vue.VueGestionLivraison;
-import vue.VueLivraison;
-
-import javax.swing.JLabel;
-
-import java.awt.Color;
-
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import model.data.Livraison;
 import model.data.PlageHoraire;
-
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Component;
-import javax.swing.JSeparator;
-import javax.swing.border.LineBorder;
+import vue.VueGestionLivraison;
+import vue.VueLivraison;
 
 public class MainPanel extends JPanel {
 

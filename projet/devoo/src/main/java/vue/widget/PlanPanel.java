@@ -8,22 +8,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JPanel;
 
-import model.data.Chemin;
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
-import model.data.PlageHoraire;
 import model.data.Noeud;
+import model.data.PlageHoraire;
 import model.data.Troncon;
-import solver.search.strategy.strategy.set.SetSearchStrategy;
-import vue.VueChemin;
 import vue.VueItineraire;
 import vue.VuePoint;
 import vue.VuePoint.Shape;
