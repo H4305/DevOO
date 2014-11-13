@@ -46,7 +46,6 @@ public class VueLivraison extends JPanel {
 				"Information supplémentaire");
 		title.setTitleJustification(TitledBorder.RIGHT);
 		title.setBorder(loweredetched);
-		title.setTitleFont(new Font(" Verdana", Font.PLAIN , 16));
 		setBorder(title);
 		setPreferredSize(new Dimension(280, 150));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -90,10 +89,10 @@ public class VueLivraison extends JPanel {
 	public void resetInfoLivraison() {
 		mLivraison = null;
 
-		lblHoraireLivraison.setText("");
-		lblPlagehoraire.setText("");
-		lblLivraisonId.setText("");
-		lblAdresse.setText("");
+		lblHoraireLivraison.setText("Horaire Livraison pr\u00E9vu : ");
+		lblPlagehoraire.setText("PlageHoraire : ");
+		lblLivraisonId.setText("Livraison : ");
+		lblAdresse.setText("Adresse : ");
 	}
 /**
  * 
