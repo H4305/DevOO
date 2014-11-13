@@ -68,7 +68,6 @@ public class MainPanel extends JPanel implements Runnable {
 
 	private JButton btnCalculerTournee;
 	private JLabel lblInfoMessage;
-	private JPanel panel;
 
 
 	/**
@@ -287,11 +286,7 @@ public class MainPanel extends JPanel implements Runnable {
 	public JButton getBtnRetablir() {
 		return btnRetablir;
 	}
-	
-	public JButton getBtnAjouter() {
-		return btnAjouter;
-	}
-	
+		
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
 	}
@@ -304,10 +299,4 @@ public class MainPanel extends JPanel implements Runnable {
 		lblInfoMessage.setText(message);
 	}
 	
-	public void disablebtnAjouter() {
-		for(ActionListener listener : btnAjouter.getActionListeners()) {
-			btnAjouter.removeActionListener(listener);
-		}
-		btnAjouter.setEnabled(false);
-	}
 }
