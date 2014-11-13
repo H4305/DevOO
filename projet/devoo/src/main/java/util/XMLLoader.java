@@ -184,7 +184,7 @@ public class XMLLoader {
 		    		MMDebutString = "0" + MMDebutString;
 		    	}
 				
-		    	String heureDebut = HHDebutString + MMDebutString;
+		    	String heureDebut = HHDebutString + ":" + MMDebutString;
 		    	
 		    	System.out.println("Heure debut: " + heureDebut);
 				
@@ -206,7 +206,9 @@ public class XMLLoader {
 		    		MMFinString = "0" + MMFinString;
 		    	}
 				
-		    	String heureFin = HHDebutString + MMDebutString;
+		    	String heureFin = HHFinString + ":" + MMFinString;
+		    	
+		    	System.out.println("Heure fin: " + heureFin);
 				
 				List<Livraison> listLivraisons = new ArrayList<Livraison>();
 				NodeList listNodesFils = noeud.getElementsByTagName("Livraison");

@@ -1,23 +1,18 @@
 package vue.widget;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import vue.VueGestionLivraison;
-import vue.VueLivraison;
-
-import javax.swing.JLabel;
-
-import java.awt.Color;
-
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import model.data.Livraison;
 import model.data.PlageHoraire;
@@ -33,6 +28,10 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import vue.VueGestionLivraison;
+import vue.VueLivraison;
+
 
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
@@ -60,11 +59,18 @@ public class MainPanel extends JPanel implements Runnable {
 	//private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
+
 	private JPanel panel;
 	private JPanel panel_4;
 	private JPanel panel_6;
 	private JLabel informations;
 	private Thread tr;
+
+	private JButton btnCalculerTournee;
+	private JLabel lblInfoMessage;
+	private JPanel panel;
+
+
 	/**
 	 * Create the panel.
 	 */
@@ -126,9 +132,19 @@ public class MainPanel extends JPanel implements Runnable {
 		panelLeft.add(panel_2);
 		
 		panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		lblInfoMessage = new JLabel("");
+		panel_3.add(lblInfoMessage, BorderLayout.SOUTH);
+		
+		panel = new JPanel();
+		panel_3.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		btnChargerPlan = new JButton("Charger Plan");
+
 		panel_3.add(btnChargerPlan);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
@@ -139,6 +155,20 @@ public class MainPanel extends JPanel implements Runnable {
 				mGestionLivraison.chargerLivraison();
 			}
 		});
+// --------------------------------------
+		panel.add(btnChargerPlan);
+		btnChargerPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
+		panel.add(btnCalculerTournee);
+		btnCalculerTournee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mGestionLivraison.chargerTournee();
+			}
+		});
+		btnCalculerTournee.setEnabled(false);
+		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
+// --------------------------------------
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
@@ -258,7 +288,26 @@ public class MainPanel extends JPanel implements Runnable {
 		return btnRetablir;
 	}
 	
+	public JButton getBtnAjouter() {
+		return btnAjouter;
+	}
+	
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
+	}
+
+	public void setCalculItineraire(boolean b) {
+		btnCalculerTournee.setEnabled(b);
+	}
+	
+	public void setInformationMessage(String message) {
+		lblInfoMessage.setText(message);
+	}
+	
+	public void disablebtnAjouter() {
+		for(ActionListener listener : btnAjouter.getActionListeners()) {
+			btnAjouter.removeActionListener(listener);
+		}
+		btnAjouter.setEnabled(false);
 	}
 }

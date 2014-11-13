@@ -9,6 +9,7 @@ import model.manager.PlanManager;
 import org.junit.Assert;
 import org.junit.Test;
 
+import util.CalculesHoraires;
 import controller.Controller;
 
 public class LivraisonManagerTest {
@@ -19,16 +20,16 @@ public class LivraisonManagerTest {
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
-		String testString = livraisonManager.transformeEnHeureMin(testFloat);
+		String testString = CalculesHoraires.transformeEnHeureMin(testFloat);
 		//System.out.println(testString);
 		Assert.assertEquals(testString, "02:10");	
 
 		testFloat = 7860.0f;
-		String testString2 = livraisonManager.transformeEnHeureMin(testFloat);
+		String testString2 = CalculesHoraires.transformeEnHeureMin(testFloat);
 		//System.out.println(testString2);
 		Assert.assertEquals(testString2, "02:11");	
 		
-		Boolean res = livraisonManager.firstBeforeSecond(testString2, testString);
+		Boolean res = CalculesHoraires.firstBeforeSecond(testString2, testString);
 		//System.out.println(res);
 	}
 	
@@ -39,7 +40,7 @@ public class LivraisonManagerTest {
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
-		String testSomme = livraisonManager.sommeHeures(heureA, heureB);
+		String testSomme = CalculesHoraires.sommeHeures(heureA, heureB);
 		
 		System.out.println(testSomme);
 		Assert.assertEquals(testSomme, "13:05");
@@ -47,7 +48,7 @@ public class LivraisonManagerTest {
 		heureA = "14:25";
 		heureB = "0:47";
 
-		testSomme = livraisonManager.sommeHeures(heureA, heureB);
+		testSomme = CalculesHoraires.sommeHeures(heureA, heureB);
 		
 		System.out.println(testSomme);
 		Assert.assertEquals(testSomme, "15:12");	
@@ -68,7 +69,7 @@ public class LivraisonManagerTest {
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
 		//livraisonManager.exporterFeuilleRoute();
 		  System.out.println("Suivez les instructions suivantes: ");
-		  System.out.print("Départ du dépot : rue");
+		  System.out.print("Dï¿½part du dï¿½pot : rue");
 		  System.out.println("Lalal");
 		
 	}

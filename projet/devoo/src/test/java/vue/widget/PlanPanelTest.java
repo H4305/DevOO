@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import model.data.Chemin;
 import model.data.DemandeLivraisons;
+import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.Noeud;
@@ -84,7 +85,8 @@ public class PlanPanelTest {
 			e.printStackTrace();
 		}
 		Chemin chemin = new Chemin(p1, p6, itineraire);
-		vuePlan.setChemin(chemin);
+		Itineraire itineraire2 = new Itineraire(Arrays.asList(chemin));
+		vuePlan.setItineraire(itineraire2);
 		vuePlan.afficherItineraire();
 		try {
 			Thread.sleep(500000);

@@ -27,7 +27,7 @@ public class VueLivraison extends JPanel {
 	 */
 	private static final long serialVersionUID = -5815570766714741539L;
 	private Livraison mLivraison;
-	private JLabel lblAdresse, lblLivraisonId, lblPlagehoraire, lblHoraireLivraison, lblClient;
+	private JLabel lblAdresse, lblLivraisonId, lblPlagehoraire, lblHoraireLivraison;
 
 	/**
 	 * Create the panel.
@@ -71,19 +71,16 @@ public class VueLivraison extends JPanel {
 		panel_2.add(lblPlagehoraire);
 		add(panel_2);
 		
-
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
 		lblHoraireLivraison = new JLabel("Horaire Livraison pr\u00E9vu : ");
 		panel_4.add(lblHoraireLivraison);
 		add(panel_4);
-		
-
 	}
 	
 	public void setLivraison(PlageHoraire plageHoraire, Livraison livraison) {
 		mLivraison = livraison;
-		lblClient.setText("Client : " + String.valueOf(livraison.getIdClient()));
+
 		lblHoraireLivraison.setText("Horaire Livraison pr\u00E9vu : " + livraison.getHeureLivraison());
 		lblPlagehoraire.setText("PlageHoraire : " + plageHoraire.getDateDebut() +  " - "  + plageHoraire.getDateFin());
 		lblLivraisonId.setText("Livraison : " + String.valueOf(livraison.getId()));
@@ -92,7 +89,7 @@ public class VueLivraison extends JPanel {
 	
 	public void resetInfoLivraison() {
 		mLivraison = null;
-		lblClient.setText("");
+
 		lblHoraireLivraison.setText("");
 		lblPlagehoraire.setText("");
 		lblLivraisonId.setText("");
@@ -120,13 +117,7 @@ public class VueLivraison extends JPanel {
 		return lblPlagehoraire;
 	}
 	/**
-	 * 
-	 * @return
-	 */
-	public JLabel getLblClientContent() {
-		return lblClient;
-	}
-	/**
+
 	 * 
 	 * @return
 	 */
