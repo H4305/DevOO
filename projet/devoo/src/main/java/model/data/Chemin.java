@@ -25,15 +25,6 @@ public class Chemin {
 	}
 	
 	
-	public Chemin(Noeud arrivee, Noeud depart, Troncon troncon) {
-		super();
-		ArrayList<Troncon> ListTroncons = new ArrayList<Troncon>();
-		ListTroncons.add(troncon);
-		this.arrivee = arrivee;
-		this.depart = depart;
-		this.troncon = ListTroncons;
-	}
-	
 	public Chemin(Noeud arrivee, Noeud depart) {
 		super();
 		this.arrivee = arrivee;
@@ -82,7 +73,7 @@ public class Chemin {
 	public String toString()
 	{
 		String s;
-		s = "Chemin : depart de " + this.depart.toString() + ", arrivee � " + this.arrivee.toString() + ", en passant par les rues : "; 
+		s = "Chemin : depart de " + this.depart.toString() + ", arrivee � " + this.arrivee.toString() + ", en passant par les rues ("+ troncon.size() +") : "; 
 		for(int i = 0; i< this.troncon.size(); i++)
 		{
 			s = s + this.troncon.get(i).toString() + ", " ;

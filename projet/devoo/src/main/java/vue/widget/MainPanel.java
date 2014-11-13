@@ -101,6 +101,7 @@ public class MainPanel extends JPanel {
 		btnExporter.setEnabled(false);
 		btnExporter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.exporterFeuilleDeRoute();
 			}
 		});
 		

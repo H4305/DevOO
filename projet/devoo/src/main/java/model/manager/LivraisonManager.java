@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 
 
+
 /*
  * controller import
  */
@@ -280,7 +281,7 @@ public class LivraisonManager {
     	String format = "dd/MM/yy"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
-    	File file = new File("C:/Users/Liuda/Desktop/file.txt");
+    	File file = new File("file.txt");
         PrintWriter printWriter = null;
         List<Chemin> chemins = this.mItineraire.getChemins();
 
@@ -395,7 +396,7 @@ public class LivraisonManager {
 		
 		String tempsAvantString = CalculesHoraires.transformeEnHeureMin(tempsAvant);
 		
-		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr à supprimer 
+		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr ï¿½ supprimer 
 		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
 		
 		for(Livraison liv: livraisons) {

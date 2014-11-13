@@ -32,12 +32,24 @@ public class PlanManagerTest {
 		Noeud d = new Noeud(4, 1, 2);
 		Noeud e = new Noeud(5, 9, 7);
 		Noeud f = new Noeud(6, 3, 1);
+		
+		List<Vertex> argVertexs = new ArrayList<Vertex>();
+		
 		Vertex va = new Vertex (a);
+		argVertexs.add(va);
 		Vertex vb = new Vertex (b);
+		argVertexs.add(vb);
 		Vertex vc = new Vertex (c);
+		argVertexs.add(vc);
 		Vertex vd = new Vertex (d);
+		argVertexs.add(vd);
 		Vertex ve = new Vertex (e);
+		argVertexs.add(ve);
 		Vertex vf = new Vertex (f);
+		argVertexs.add(vf);
+		
+		planManager.setVertexs(argVertexs);
+		
 		Troncon t1 = new Troncon("rue 1", 10, 20, a, c);
 		t1.setTarget(vc);
 		Troncon t2 = new Troncon("rue 2", 10, 20, a, b);
@@ -61,6 +73,13 @@ public class PlanManagerTest {
 		d.addTronconSortant(t4);
 		e.addTronconSortant(t6);
 		
+		va.addTronconSortant(t1);
+		va.addTronconSortant(t2);
+		va.addTronconSortant(t3);
+		vb.addTronconSortant(t5);
+		vc.addTronconSortant(t7);
+		vd.addTronconSortant(t4);
+		ve.addTronconSortant(t6);
 
 		System.out.println(planManager.calculerPlusCourtChemin(a, f).toString());
 		
@@ -76,8 +95,8 @@ public class PlanManagerTest {
 
 		controller.loadPlanXML();		
 		
-		ArrayList<Vertex> v = planManager.getVertexes();		
-		Noeud a = v.get(3).getPoint();
+		List<Vertex> v = planManager.getVertexes();		
+		Noeud a = v.get(15).getPoint();
 		Noeud b = v.get(2).getPoint();
 		
 		System.out.println("Premier point :" + a.toString() + ". Il a " + a.getTronconsSortants().size());
@@ -96,49 +115,72 @@ public class PlanManagerTest {
 		Noeud d = new Noeud(4, 1, 2);
 		Noeud e = new Noeud(5, 9, 7);
 
-		Vertex va = new Vertex (a);
-		Vertex vb = new Vertex (b);
-		Vertex vc = new Vertex (c);
-		Vertex vd = new Vertex (d);
-		Vertex ve = new Vertex (e);
+		List<Vertex> argVertexs = new ArrayList<Vertex>();
 		
-		Troncon t1 = new Troncon("rue 1", 10, 20, a, c);
+		Vertex va = new Vertex (a);
+		argVertexs.add(va);
+		Vertex vb = new Vertex (b);
+		argVertexs.add(vb);
+		Vertex vc = new Vertex (c);
+		argVertexs.add(vc);
+		Vertex vd = new Vertex (d);
+		argVertexs.add(vd);
+		Vertex ve = new Vertex (e);
+		argVertexs.add(ve);
+		
+		planManager.setVertexs(argVertexs);
+		
+		Troncon t1 = new Troncon("rue 1", 10f, 10f, a, b);
 		t1.setTarget(vc);
-		Troncon t2 = new Troncon("rue 2", 10, 20, a, b);
+		Troncon t2 = new Troncon("rue 2", 10f, 20f, b, c);
 		t2.setTarget(vb);
-		Troncon t3 = new Troncon("rue 3", 10, 10, a, d);
+		Troncon t3 = new Troncon("rue 3", 10f, 20f, c, d);
 		t3.setTarget(vd);
-		Troncon t4 = new Troncon("rue 4", 10, 80, d, c);
+		Troncon t4 = new Troncon("rue 4", 10f, 30f, d, e);
 		t4.setTarget(vc);
-		Troncon t5 = new Troncon("rue 5", 10, 10, b, e);
+		Troncon t5 = new Troncon("rue 5", 10f, 10f, e, a);
 		t5.setTarget(ve);
-		Troncon t6 = new Troncon("rue 6", 10, 10, e, a);
+		Troncon t6 = new Troncon("rue 6", 10f, 50f, b, d);
 		t6.setTarget(va);
-		Troncon t7 = new Troncon("rue 7", 10, 50, c, d);
+		Troncon t7 = new Troncon("rue 7", 10f, 40f, e, c);
 		t7.setTarget(vd);
+		Troncon t8 = new Troncon("rue 8", 10f, 100f, c, a);
+		t8.setTarget(vd);
 		
 		a.addTronconSortant(t1);
-		a.addTronconSortant(t2);
-		a.addTronconSortant(t3);
-		b.addTronconSortant(t5);
-		c.addTronconSortant(t7);
+		b.addTronconSortant(t2);
+		b.addTronconSortant(t6);
+		c.addTronconSortant(t3);
+		c.addTronconSortant(t8);
 		d.addTronconSortant(t4);
-		e.addTronconSortant(t6);
+		e.addTronconSortant(t5);
+		e.addTronconSortant(t7);
+		
+		va.addTronconSortant(t1);
+		vb.addTronconSortant(t2);
+		vb.addTronconSortant(t6);
+		vc.addTronconSortant(t3);
+		vc.addTronconSortant(t8);
+		vd.addTronconSortant(t4);
+		ve.addTronconSortant(t5);
+		ve.addTronconSortant(t7);
 		
 		Set<Noeud> Plage0 = new HashSet<Noeud>();
-		Plage0.add(d);
+		Plage0.add(a);
 		
 		Set<Noeud> Plage1 = new HashSet<Noeud>();
-		Plage1.add(a);
 		Plage1.add(b);
+		Plage1.add(c);
+		Plage1.add(d);
+		Plage1.add(e);
 		
-		Set<Noeud> Plage2 = new HashSet<Noeud>();
-		Plage2.add(c);
+		//Set<Noeud> Plage2 = new HashSet<Noeud>();
+		//Plage2.add(a);
 		
 		List<Set<Noeud>> listePlages = new ArrayList<Set<Noeud>>();
 		listePlages.add(Plage0);
 		listePlages.add(Plage1);
-		listePlages.add(Plage2);
+		//listePlages.add(Plage2);
 		listePlages.add(Plage0);
 		
 		System.out.println(planManager.getChemins(listePlages).toString());

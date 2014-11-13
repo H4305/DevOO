@@ -108,7 +108,7 @@ public class Noeud {
 	}
 	@Override
 	public String toString(){
-		return "(" + this.x + "," + this.y + ")"; 
+		return "(" + this.id + ")"; 
 	}
 
 	public void setIsLivraison(boolean bool) {
