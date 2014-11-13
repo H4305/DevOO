@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.data.Chemin;
-import model.data.Noeud;
 
 public class CheminGraph implements Graph {
 

@@ -26,7 +26,7 @@ public class DemandeLivraisons {
      */
     public DemandeLivraisons(Noeud entrepot, List<PlageHoraire> plagesHoraires) {
     	this.mPlagesHoraires = plagesHoraires;
-    	this.mEntrepot = entrepot;
+    	mEntrepot = entrepot;
     }
 
     /**

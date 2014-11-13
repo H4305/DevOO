@@ -59,7 +59,43 @@ public class LivraisonManagerTest {
 		PlanManager planManager = new PlanManager(controller);
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
 		
+<<<<<<< HEAD
+=======
+	}@Test
+	public void testRemovePanel() {
+		Noeud point = new Noeud(20,20,20);
+		Livraison livraison = new Livraison(1,2,point);	
+		Controller controller = new Controller();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
+		//livraisonManager.remove(livraison);
 		
 	}
+	
+	@Test
+	public void testAddPanel() {
+		//Livraison livraison = new Livraison(1,"20",2);
+		Noeud point = new Noeud(20,20,20);
+		Controller controller = new Controller();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
+		//livraisonManager.add(point);
+>>>>>>> branch 'master' of https://github.com/H4305/DevOO.git
+		
+	}
+	
+	@Test
+	public void exporterFeuilleRoute() {
+		
+		Controller controller = new Controller();
+		PlanManager planManager = new PlanManager(controller);
+		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
+		//livraisonManager.exporterFeuilleRoute();
+		  System.out.println("Suivez les instructions suivantes: ");
+		  System.out.print("Départ du dépot : rue");
+		  System.out.println("Lalal");
+		
+	}
+
 
 }

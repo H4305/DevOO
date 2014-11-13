@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
 
 
@@ -25,6 +27,7 @@ import controller.Controller;
  * model import
  */
 import model.data.Chemin;
+import model.data.Troncon;
 import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
@@ -101,31 +104,34 @@ public class LivraisonManager {
     public DemandeLivraisons getDemandeLivraisons() {
 		return mDemandeLivraisons;
 	}
+    
+    public Itineraire getItineraire(){
+    	
+    	return this.mItineraire;
+    }
 
     /**
      * Fait le calcul de l'itinéraire a suivre
      * @return l'itineraire à suivre
      */
-    public Itineraire calculItineraire() {
+    public void calculItineraire() {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
-        Set<Noeud> setEntrepot = new TreeSet<Noeud>();
+        Set<Noeud> setEntrepot = new HashSet<Noeud>();
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
-        	Set<Noeud> setPlage = new TreeSet<Noeud>();
+        	Set<Noeud> setPlage = new HashSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
         		setPlage.add(livraison.getAdresse());
         	}
         	adresses.add(setPlage);
         }
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
-        Chemin chemin = mPlanManager.getChemin(adresses);
-        //TODO
-        //mItineraire = new Itineraire(ArrayList<Chemin>);
-        mController.afficherItineraire(chemin); //pas de paramètre
-        return null;
+        List<Chemin> chemins = mPlanManager.getChemins(adresses);
+        mItineraire = new Itineraire(chemins);
+        mController.afficherItineraire(); //pas de paramètre
     }
 	
     public List<PlageHoraire> getPlagesHoraire() {
@@ -342,5 +348,57 @@ public class LivraisonManager {
     	}
     	
     	return heureS + ":" + minS;    	
+    }
+
+    /**
+     * 
+     */
+    public void exporterFeuilleRoute()
+    {
+    	String format = "dd/MM/yy"; 
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date date = new java.util.Date(); 
+    	File file = new File("C:/Users/Liuda/Desktop/file.txt");
+        PrintWriter printWriter = null;
+        List<Chemin> chemins = this.mItineraire.getChemins();
+
+        try
+        {
+            printWriter = new PrintWriter(file);
+            printWriter.println("------------------FEUILLE DE ROUTE------------------");
+            printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
+            printWriter.println("Aujourd'hui vous avez � d�poser " + chemins.size()+" clients.");
+            printWriter.println("Suivez les instructions suivantes: ");
+            printWriter.print("D�part du d�pot : rue ");
+            for(Chemin c : chemins){
+            	
+            	for(Troncon t : c.getTroncons())
+            	{
+            		printWriter.println(t.getNomRue());
+            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t))
+            		{
+            			printWriter.print("Prendre : rue ");
+            		}
+            		else
+            		{
+            			printWriter.print("Vous etes arriv� � la livraison ....");
+            		}
+            	}
+            	
+            	
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if ( printWriter != null ) 
+            {
+                printWriter.close();
+            }
+        }
+    	
     }
 }
