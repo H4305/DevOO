@@ -25,15 +25,6 @@ public class Chemin {
 	}
 	
 	
-	public Chemin(Noeud arrivee, Noeud depart, Troncon troncon) {
-		super();
-		ArrayList<Troncon> ListTroncons = new ArrayList<Troncon>();
-		ListTroncons.add(troncon);
-		this.arrivee = arrivee;
-		this.depart = depart;
-		this.troncon = ListTroncons;
-	}
-	
 	public Chemin(Noeud arrivee, Noeud depart) {
 		super();
 		this.arrivee = arrivee;
