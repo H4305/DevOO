@@ -168,9 +168,49 @@ public class XMLLoader {
 			if (listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				final Element noeud = (Element) listNodes.item(i);
 
-				// Get the value of the attributes
-				String heureDebut = noeud.getAttribute("heureDebut");
-				String heureFin = noeud.getAttribute("heureFin");
+				// Get heureDebut
+				String heureDebutInit = noeud.getAttribute("heureDebut");		
+				
+		    	int HHDebut = Integer.parseInt(heureDebutInit.split(":")[0]);
+		    	int MMDebut = Integer.parseInt(heureDebutInit.split(":")[1]);
+		    	
+		    	String HHDebutString = HHDebut + "";
+		    	
+		    	if(HHDebut<10) {
+		    		HHDebutString = "0" + HHDebutString;
+		    	}
+		    	
+		    	String MMDebutString = MMDebut + "";
+		    	
+		    	if(MMDebut<10) {
+		    		MMDebutString = "0" + MMDebutString;
+		    	}
+				
+		    	String heureDebut = HHDebutString + ":" + MMDebutString;
+		    	
+		    	System.out.println("Heure debut: " + heureDebut);
+				
+		    	//Get heureFin
+				String heureFinInit = noeud.getAttribute("heureFin");		
+				
+		    	int HHFin = Integer.parseInt(heureFinInit.split(":")[0]);
+		    	int MMFin = Integer.parseInt(heureFinInit.split(":")[1]);
+		    	
+		    	String HHFinString = HHFin + "";
+		    	
+		    	if(HHFin<10) {
+		    		HHFinString = "0" + HHFinString;
+		    	}
+		    	
+		    	String MMFinString = MMFin + "";
+		    	
+		    	if(MMFin<10) {
+		    		MMFinString = "0" + MMFinString;
+		    	}
+				
+		    	String heureFin = HHFinString + ":" + MMFinString;
+		    	
+		    	System.out.println("Heure fin: " + heureFin);
 				
 				List<Livraison> listLivraisons = new ArrayList<Livraison>();
 				NodeList listNodesFils = noeud.getElementsByTagName("Livraison");
@@ -193,8 +233,9 @@ public class XMLLoader {
 						if(adresse.equals(entrepot)){
 							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");
 						}
-						
-						listLivraisons.add(new Livraison(id, client, adresse));
+						Livraison tmp_livraison = new Livraison(id, client, adresse);
+						listLivraisons.add(tmp_livraison);
+						adresse.setLivraison(tmp_livraison);
 					}
 				}
 				plagesHoraires.add(new PlageHoraire(heureDebut, heureFin, listLivraisons));

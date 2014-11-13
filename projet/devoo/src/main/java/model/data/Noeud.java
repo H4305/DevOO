@@ -44,18 +44,24 @@ public class Noeud {
     /**
      * 
      */
-    public int x;
+    private int x;
 
     /**
      * 
      */
-    public int y;
+    private int y;
 
     
     /**
      * 
      */
-    public boolean isLivraison;
+    private boolean isLivraison;
+    
+    
+    /**
+     * Lien bi-directionnel
+     */
+    private Livraison livraison;
     
     /**
      * 
@@ -63,6 +69,14 @@ public class Noeud {
      */    
 	public int getId() {
 		return id;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
 	}
 	
 	public ArrayList<Troncon> getTronconsSortants(){
@@ -104,5 +118,12 @@ public class Noeud {
 	public boolean isLivraison(){
 		return isLivraison;
 	}
-
+	
+	public Livraison getLivraison() {
+		return livraison;
+	}
+	
+	public void setLivraison (Livraison livraison) {
+		this.livraison = livraison;
+	}
 }

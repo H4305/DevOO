@@ -4,16 +4,8 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.FileWriter;
 
 
 
@@ -31,11 +23,11 @@ import model.data.DemandeLivraisons;
 import model.data.Itineraire;
 import model.data.Livraison;
 import model.data.PlageHoraire;
-import model.data.ZoneGeographique;
 import model.manager.PlanManager;
 import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
-
+import util.CalculesHoraires;
+import util.PairIdLivrPrec;
 /*
  * util import
  */
@@ -117,20 +109,58 @@ public class LivraisonManager {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
-        Set<Noeud> setEntrepot = new TreeSet<Noeud>();
+        Set<Noeud> setEntrepot = new HashSet<Noeud>();
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
-        	Set<Noeud> setPlage = new TreeSet<Noeud>();
+        	Set<Noeud> setPlage = new HashSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
         		setPlage.add(livraison.getAdresse());
         	}
         	adresses.add(setPlage);
         }
+        
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
+        
+        this.updateLivraisonsTime(plagesHoraire, chemins);
+        
         mItineraire = new Itineraire(chemins);
         mController.afficherItineraire(); //pas de paramètre
+    }
+    
+    /**
+     * Met a jour les horaires des livraisons
+     * @param plagesHoraire liste ordonnée de plages horaires
+     * @param chemins liste ordonnée des chemins
+     */
+    private void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
+    	PlageHoraire plageActuelle = null;
+    	String horaire = "00:00";
+        for(Chemin chemin : chemins) {
+        	//Si nous avons arrivé à l'entrepot nous pouvons sortir de la boucle
+        	if(chemin.getArrivee().equals(mDemandeLivraisons.getEntrepot())) { 
+        		break;
+        	}
+        	//Met a jour la plage horaire actuelle
+        	if(plageActuelle != this.getPlageHoraireByAdress(chemin.getArrivee())) {
+        		plageActuelle = this.getPlageHoraireByAdress(chemin.getArrivee());
+        		//
+        		if(CalculesHoraires.firstBeforeSecond(horaire, plageActuelle.getDateDebut())) {
+        			horaire = plageActuelle.getDateDebut();
+        		}
+        	}
+        	//Calcule l'horaire de la prochaine livraison
+        	String horaireTmp = CalculesHoraires.sommeHeures(horaire, CalculesHoraires.transformeEnHeureMin(chemin.getTempsParcours()));
+        	
+        	//Si l'horaire sort de la plage horaire, on lui enleve du graphe
+        	if(CalculesHoraires.firstBeforeSecond(plageActuelle.getDateFin(), horaireTmp)) {
+        		//TODO PANIC!
+        	} else {
+        		chemin.getArrivee().getLivraison().setHeureLivraison(horaireTmp);
+        	}
+        	horaire = CalculesHoraires.sommeHeures(horaireTmp, "00:10");
+        }
     }
 	
     public List<PlageHoraire> getPlagesHoraire() {
@@ -176,6 +206,13 @@ public class LivraisonManager {
     	return null;
     }
     
+    /**
+     * This method adds a new delivery.
+     * 
+     * @param adresseNouvelleLivraison is the Noeud where the new delivery will be performed 
+     * @param adresseLivraisonPrecedente is the Noeud of the previous delivery
+     * @param idClient is the client id for the new shipping
+     */
     public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {	
     	
     	Livraison nouvelleLivraison = new Livraison(uniqueIDgenerator.getUniqueId(), idClient, adresseNouvelleLivraison);
@@ -204,9 +241,9 @@ public class LivraisonManager {
     	
     	Chemin plusCourCheminNouvelleSucc = mPlanManager.calculerPlusCourtChemin(adresseNouvelleLivraison, adresseLivraisonSuccessive);
     	
-    	String heureLivraisonPrevue = sommeHeures( sommeHeures(livraisonPrecedente.getHeureLivraison(), "00:10"), this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
+    	String heureLivraisonPrevue = CalculesHoraires.sommeHeures( CalculesHoraires.sommeHeures(livraisonPrecedente.getHeureLivraison(), "00:10"), CalculesHoraires.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
     	
-    	if(this.firstBeforeSecond( heureLivraisonPrevue, plageHoraireLivPrecedente.getDateFin()) ) {
+    	if(CalculesHoraires.firstBeforeSecond( heureLivraisonPrevue, plageHoraireLivPrecedente.getDateFin()) ) {
     		/*La livraison Prevue rentre dans la plage horaire -> ajout demandeLivraison,
     		* -> decaler tous
     		* -> set a Livrer
@@ -214,7 +251,7 @@ public class LivraisonManager {
     		*/
     		nouvelleLivraison.setALivrer();
     		
-    		String decalage = this.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours() + plusCourCheminNouvelleSucc.getTempsParcours() + cheminPrecSucc.getTempsParcours());
+    		String decalage = CalculesHoraires.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours() + plusCourCheminNouvelleSucc.getTempsParcours() + cheminPrecSucc.getTempsParcours());
     		
     		List <Livraison> livraisons = plageHoraireLivPrecedente.getLivraisons();
     		
@@ -222,9 +259,9 @@ public class LivraisonManager {
     			
     			String heurePassage = liv.getHeureLivraison();
     			
-    			if(this.firstBeforeSecond( heureLivraisonPrevue, heurePassage) ) {
+    			if(CalculesHoraires.firstBeforeSecond( heureLivraisonPrevue, heurePassage) ) {
     				
-    				String heure = this.sommeHeures(heurePassage, decalage) ;
+    				String heure = CalculesHoraires.sommeHeures(heurePassage, decalage) ;
     				
     				liv.setHeureLivraison(heure);	
     			}			
@@ -238,60 +275,10 @@ public class LivraisonManager {
     	plageHoraireLivPrecedente.getLivraisons().add(nouvelleLivraison);
     	
     }
-    
-    //A tester
-    public String sommeHeures(String heureA, String heureB) {
-    	
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        
-        Calendar calFirst = Calendar.getInstance();
-        Calendar calSecond = Calendar.getInstance();
-        
-		try {
-			calFirst.setTime(formatter.parse(heureA));
-			calSecond.setTime(formatter.parse(heureA));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		calFirst.setTimeInMillis(calFirst.getTimeInMillis() + calSecond.getTimeInMillis());
-		
-		Date heure = calFirst.getTime();
-		
-		System.out.println(heure);
-		
-		return heure.toString();
-    	
-    }
-    
-    public Boolean firstBeforeSecond(String heureA, String heureB) {
-    	
-    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-    	
-    	Calendar calFirst = Calendar.getInstance();
-        Calendar calSecond = Calendar.getInstance();
-        
-		try {
-			calFirst.setTime(formatter.parse(heureA));
-			calSecond.setTime(formatter.parse(heureB));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-		return calFirst.before(calSecond);	
-    }
-    
-    public String transformeEnHeureMin(float tempsParcours) {
-    	
-    	int heure = (int) ((int) tempsParcours) / 3600;
-    	int min = heure % 3600;
-    	
-    	return heure + ":" + min;
-    	
-    }
-    
+
+    /**
+     * 
+     */
     public void exporterFeuilleRoute()
     {
     	String format = "dd/MM/yy"; 
@@ -339,6 +326,80 @@ public class LivraisonManager {
             }
         }
     	
+    }
+    /**
+     * This method return the object plageHoraire that contains the delivery at the address noeud
+     * 
+     * @param noeud
+     **/
+    public PlageHoraire getPlageHoraireByAdress(Noeud noeud){
+    	PlageHoraire plageHoraireFound = null; 
+    	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
+    		
+    		for(Livraison livraison : plageHoraire.getLivraisons()) {
+    			
+    			if(livraison.getAdresse().equals(noeud)) { 
+    				return plageHoraire;    				
+    			}
+    		}
+    	}
+    	return plageHoraireFound;
+    }
+    
+    /**
+     * This method remove a delivery.
+     * 
+     * @param adresseLivraison is the address of the delivery that we want to remove 
+     */
+    public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
+    	
+    	Livraison livraisonASupprimer = adresseLivraison.getLivraison();
+    	
+    	int id_client = livraisonASupprimer.getIdClient();
+    	
+    	PlageHoraire laPlageHoraire = getPlageHoraireByAdress(adresseLivraison);
+    	
+    	Chemin cheminAvant = mItineraire.getCheminByArrivee(adresseLivraison);
+    	Chemin cheminApres = mItineraire.getCheminByDepart(adresseLivraison);
+
+    	Noeud noeudAvant = cheminAvant.getDepart();
+    	Noeud noeudApres = cheminApres.getArrivee();
+    	
+    	Chemin cheminToAdd = mPlanManager.calculerPlusCourtChemin(noeudAvant, noeudApres);
+    	
+    	
+    	mItineraire.getChemins().remove(cheminAvant);
+    	mItineraire.getChemins().remove(cheminApres);
+		mItineraire.getChemins().add(cheminToAdd);
+		
+		float tempsAvant = cheminAvant.getTempsParcours();
+		float tempsApres = cheminApres.getTempsParcours();
+		float tempsToAdd = cheminToAdd.getTempsParcours();
+		
+		float decalageFloat = tempsToAdd - tempsAvant - tempsApres - 10*60;
+		String decalageString = CalculesHoraires.transformeEnHeureMin(decalageFloat);
+		
+		String tempsAvantString = CalculesHoraires.transformeEnHeureMin(tempsAvant);
+		
+		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr � supprimer 
+		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
+		
+		for(Livraison liv: livraisons) {
+			
+			String heurePassage = liv.getHeureLivraison();
+			
+			if(CalculesHoraires.firstBeforeSecond( tempsAvantString, heurePassage) ) {
+				
+				String heure = CalculesHoraires.sommeHeures(heurePassage, decalageString) ;
+				
+				liv.setHeureLivraison(heure);	
+			}			
+		}			
+		
+		
+		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
+    
+    	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
     }
     
 }

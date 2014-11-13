@@ -44,7 +44,7 @@ public class VuePoint extends Vue{
 	
 	@Override
 	public void draw(Graphics g, CoordinateConverter converter) {
-		this.pointVue = converter.convert(pointModel.x, pointModel.y);
+		this.pointVue = converter.convert(pointModel.getX(), pointModel.getY());
 		if(selected) {
 			g.setColor(AppColors.selectedPointBorder);
 			g.fillOval(pointVue.x - POINT_SELECTED_RADIUS / 2, pointVue.y - POINT_SELECTED_RADIUS / 2,

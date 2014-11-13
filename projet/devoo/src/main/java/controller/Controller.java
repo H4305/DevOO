@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +49,8 @@ public class Controller {
 	private VueGestionLivraison mVueGestionLivraison;
 	
 	private static final Logger LOG = Logger.getLogger(Controller.class.getName());
+	private ArrayList<Action> actions;
+	private int actionsIndex = 0;
 
    /** 
     * Class constructor.
@@ -56,8 +59,12 @@ public class Controller {
 		this.mPlanManager = new PlanManager(this);
 		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
+		this.actions = new ArrayList<Action>();
 	}
     
+    /**
+     * 
+     */
     public void generateRoadmap () {
     	mPlanManager.getAllTroncons();
     	
@@ -69,15 +76,6 @@ public class Controller {
      */
     public void start() {
     	this.mVueGestionLivraison.afficherFenetrePrincipale();
-    	mVueGestionLivraison.setPointClickedListener(new PointClickedListener() {
-			
-			@Override
-			public void pointClicked(Noeud point) {
-				LOG.log(Level.INFO, "Point Clicked");
-				
-				onePointSelected(point);
-			}
-		});
     }
 
     /**
@@ -87,9 +85,6 @@ public class Controller {
         // TODO implement here
     }
 
-    public void onePointSelected(Noeud point) {
-    	afficherLivraison(point);
-    }
     
     public void afficherLivraison(Noeud point) {
     	Livraison livraison = mLivraisonManager.findLivraisonByAddress(point);
@@ -180,5 +175,40 @@ public class Controller {
     	return this.mPlanManager;
     }
 	
+    /**
+     * This method ask the livraison manager to add a new delivrery
+     * 
+     * @param adresseNouvelleLivraison is the Noeud where the new delivery will be performed 
+     * @param adresseLivraisonPrecedente is the Noeud of the previous delivery
+     * @param idClient is the client id for the new shipping
+     */
+    public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {
+    	
+    	mLivraisonManager.addNouvelleLivraison(adresseNouvelleLivraison, adresseLivraisonPrecedente, idClient);
+    	
+    	actions.add(new ActionAddLivraison());
+    	actionsIndex++;
+    }
+    
+    /**
+     * 
+     */
+    public void removeLivraison() {
+	   
+	   //mLivraisonManager.removeLivraison();
+	   
+	   actions.add(new ActionDeleteLivraison());
+   }
 	
+   public void undo() {
+	   
+	   //actions.get(index);
+	   actions.remove(actions.size());
+	   
+	   actions.add(new ActionDeleteLivraison());
+   }
+   
+   public void redo() {
+	   
+   }
 }

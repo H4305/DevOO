@@ -35,10 +35,10 @@ public class VueTroncon {
 	}
 
 	public void draw(Graphics g, CoordinateConverter converter) {
-		Point pointA = converter.convert(troncon.getDepart().x,
-				troncon.getDepart().y);
-		Point pointB = converter.convert(troncon.getArrivee().x,
-				troncon.getArrivee().y);
+		Point pointA = converter.convert(troncon.getDepart().getX(),
+				troncon.getDepart().getY());
+		Point pointB = converter.convert(troncon.getArrivee().getX(),
+				troncon.getArrivee().getY());
 		drawLine(pointA, pointB, g);
 	}
 

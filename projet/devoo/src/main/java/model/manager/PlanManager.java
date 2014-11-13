@@ -141,13 +141,13 @@ public class PlanManager {
     }
 
     /**
+     * Fait le calcul du chemin optimal pour la livraison
      * @param Points Une liste ordonnée de Sets des points de chaque plage horaire
-     * @return
+     * @return une liste des chemins à suivre pour la livraison
      */
     public List<Chemin> getChemins(List<Set<Noeud>> plages) {
     	List<Chemin> chemins = new ArrayList<Chemin>();
-    	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
-        Set<Noeud> plagePrecedente = null;
+    	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
     	for(Set<Noeud> plage : plages) {
     		//On calcule le meilleur chemin entre tous les points de cette plage
@@ -155,7 +155,6 @@ public class PlanManager {
     			for(Noeud dest : plage) {
             		if(!orig.equals(dest)) {
             			chemins.add(calculerPlusCourtChemin(orig, dest));
-            			//courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
             		}
             	}
     		}
@@ -163,7 +162,7 @@ public class PlanManager {
     		if(plagePrecedente != null) {
     			for(Noeud orig : plagePrecedente) {
     				for(Noeud dest : plage) {
-    					courtsChemins.put(orig, dest, calculerPlusCourtChemin(orig, dest));
+    					chemins.add(calculerPlusCourtChemin(orig, dest));
     				}
     			}
     		}
