@@ -229,8 +229,9 @@ public class XMLLoader {
 						if(adresse.equals(entrepot)){
 							throw new LivraisonXMLException("LivraisonXMLException - Cannot deliver the warehouse");
 						}
-						
-						listLivraisons.add(new Livraison(id, client, adresse));
+						Livraison tmp_livraison = new Livraison(id, client, adresse);
+						listLivraisons.add(tmp_livraison);
+						adresse.setLivraison(tmp_livraison);
 					}
 				}
 				plagesHoraires.add(new PlageHoraire(heureDebut, heureFin, listLivraisons));
