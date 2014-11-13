@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 
+
 /*
  * controller import
  */
@@ -25,8 +26,8 @@ import model.data.PlageHoraire;
 import model.manager.PlanManager;
 import model.data.Noeud;
 import model.exceptions.LivraisonXMLException;
-
 import util.CalculesHoraires;
+import util.PairIdLivrPrec;
 /*
  * util import
  */
@@ -288,4 +289,38 @@ public class LivraisonManager {
         }
     	
     }
+    /**
+     * This method return the object plageHoraire that contains the delivery at the address noeud
+     * 
+     * @param noeud
+     **/
+    public PlageHoraire getPlageHoraireByAdress(Noeud noeud){
+    	PlageHoraire plageHoraireFound = null; 
+    	for(PlageHoraire plageHoraire : this.mDemandeLivraisons.getPlagesHoraire()) {
+    		
+    		for(Livraison livraison : plageHoraire.getLivraisons()) {
+    			
+    			if(livraison.getAdresse().equals(noeud)) { 
+    				return plageHoraire;    				
+    			}
+    		}
+    	}
+    	return plageHoraireFound;
+    }
+    
+    /**
+     * This method remove a delivery.
+     * 
+     * @param adresseLivraison is the address of the delivery that we want to remove 
+     */
+    public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
+    	
+    	Livraison livraisonASupprimer = adresseLivraison.getLivraison();
+    	int id_client = livraisonASupprimer.getIdClient();
+    	
+    	PlageHoraire plageHoraireLivraisonASupprimer = getPlageHoraireByAdress(adresseLivraison);
+    	
+    	return new PairIdLivrPrec<Integer, Noeud>(id_client, adresseLivraison);
+    }
+    
 }
