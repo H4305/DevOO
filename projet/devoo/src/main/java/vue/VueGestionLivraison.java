@@ -271,5 +271,26 @@ public class VueGestionLivraison {
 		});
 		mainPanel.getBtnAjouter().setEnabled(true);;
 	}
+	
+	public void afficherLivraisonImpossible(List<Livraison> livraisons) {
+		if(livraisons.size() < 1) return;
+		
+		StringBuilder builder = new StringBuilder();
+		builder
+		.append(livraisons.size() > 1 ? "Les" : "La")
+		.append(" livraison")
+		.append(livraisons.size() > 1 ? "s " : " ");
+		
+		for (Livraison livraison : livraisons) {
+			builder.append(livraison.getId()).append(", ");
+		}
+		if(livraisons.size() > 1) {
+			builder.append("ne peuvent pas être livrées");
+		} else {
+			builder.append("ne peut pas être livrée");
+		}
+		builder.delete(builder.lastIndexOf(","), builder.lastIndexOf(",") +1).append(".");
+		JOptionPane.showMessageDialog(mainFrame, builder.toString());
+	}
 
 }

@@ -157,7 +157,8 @@ public class LivraisonManager {
         	
         	//Si l'horaire sort de la plage horaire, on lui enleve du graphe
         	if(CalculesHoraires.firstBeforeSecond(plageActuelle.getDateFin(), horaireTmp)) {
-        		//TODO PANIC!
+        		//TODO give a list of livraisons 
+        		mController.afficherLivraisonImpossible(null);
         	} else {
         		chemin.getArrivee().getLivraison().setHeureLivraison(horaireTmp);
         	}
