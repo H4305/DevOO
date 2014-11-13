@@ -141,12 +141,16 @@ public class MainPanel extends JPanel {
 		
 		lblInfoMessage = new JLabel("dfsddfd");
 		panel_9.add(lblInfoMessage);
-		
+	
 		panel_8 = new JPanel();
 		panel_3.add(panel_8, BorderLayout.NORTH);
 		
 		btnChargerPlan = new JButton("Charger Plan");
 		panel_8.add(btnChargerPlan);
+		
+		btnLoadLivraison = new JButton("ChargerLivraison");
+		panel_8.add(btnLoadLivraison);
+		btnLoadLivraison.setEnabled(false);
 		
 		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
 		panel_8.add(btnCalculerTournee);
@@ -157,10 +161,6 @@ public class MainPanel extends JPanel {
 		});
 		btnCalculerTournee.setEnabled(false);
 		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		btnLoadLivraison = new JButton("ChargerLivraison");
-		panel_8.add(btnLoadLivraison);
-		btnLoadLivraison.setEnabled(false);
 		btnLoadLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerLivraison();
