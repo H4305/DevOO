@@ -83,7 +83,7 @@ public class PlanManagerTest {
 		System.out.println("Premier point :" + a.toString() + ". Il a " + a.getTronconsSortants().size());
 		System.out.println("Deuxieme point :" + b.toString() + ". Il a " + b.getTronconsSortants().size());
 		chemin = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
-		System.out.println(chemin.toString());
+		System.out.println("Le plus court chemin est" + chemin.toString());
 	}
 	
 	@Test
