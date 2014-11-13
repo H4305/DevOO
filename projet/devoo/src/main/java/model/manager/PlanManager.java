@@ -91,6 +91,7 @@ public class PlanManager {
     	Vertex vSource = null;
     	Vertex vCible = null;
     	float tempsParcours = 0;
+    	Dijkstra dijkstra = new Dijkstra();
     	
     	for(Vertex v: this.listVertexs) {
     		
@@ -107,9 +108,9 @@ public class PlanManager {
     	
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
-    	Dijkstra.computePaths(vSource);
+    	dijkstra.computePaths(vSource);
     	System.out.println("Apres computePaths : ");
-    	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
+    	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
     	System.out.println("Apres Dijkstra : ");    	
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{

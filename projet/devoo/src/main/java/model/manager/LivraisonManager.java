@@ -289,26 +289,44 @@ public class LivraisonManager {
             printWriter = new PrintWriter(file);
             printWriter.println("------------------FEUILLE DE ROUTE------------------");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
-            printWriter.println("Aujourd'hui vous avez ï¿½ dï¿½poser " + chemins.size()+" clients.");
+            printWriter.println("Aujourd'hui vous avez à livrer " + chemins.size()+" clients.");
             printWriter.println("Suivez les instructions suivantes: ");
-            printWriter.print("Dï¿½part du dï¿½pot : rue ");
+            printWriter.print("Départ du dépot : rue ");
+            int i = 0;
             for(Chemin c : chemins){
             	
-            	for(Troncon t : c.getTroncons())
-            	{
-            		printWriter.println(t.getNomRue());
-            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t))
-            		{
-            			printWriter.print("Prendre : rue ");
+            	i++; 
+            	if(i!=1){
+            		printWriter.print("Prendre la rue \"");
+        		}
+        		            	
+            	for(Troncon t : c.getTroncons()){
+            		printWriter.println(t.getNomRue() + "\" et continuer " + t.getLongueur() + " metrès tout droit. ");
+            		
+            		if(t.getVitesse() < 4){
+            			printWriter.println("Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : " +t.getVitesse()*3.6 +"km/h !");
             		}
-            		else
-            		{
-            			printWriter.print("Vous etes arrivï¿½ ï¿½ la livraison ....");
+            		
+            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
+            			printWriter.print("Prendre la rue \"");
+            		}
+            		else{
+            			if(!chemins.get(chemins.size()-1).equals(c)){
+            				printWriter.println("");
+                			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
+                			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
+            			}
+            			else{
+            				printWriter.println("");
+            				printWriter.println("");
+            			}
+            			
             		}
             	}
             	
             	
             }
+            
         }
         catch (FileNotFoundException e)
         {
