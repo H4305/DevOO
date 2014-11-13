@@ -1,18 +1,23 @@
 package vue.widget;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import vue.VueGestionLivraison;
+import vue.VueLivraison;
+
+import javax.swing.JLabel;
+
+import java.awt.Color;
+
+import javax.swing.BoxLayout;
 
 import model.data.Livraison;
 import model.data.PlageHoraire;
@@ -28,10 +33,6 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-
-import vue.VueGestionLivraison;
-import vue.VueLivraison;
-
 
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
@@ -55,21 +56,17 @@ public class MainPanel extends JPanel implements Runnable {
 	private JButton btnExporter;
 	private JPanel panelLivraisonSelected;
 	private JPanel panelLivraisonAdd;
-//	private JButton btnSupprimerLivraison;
-	//private JButton btnAjouter;
+	private JButton btnSupprimerLivraison;
+	private JButton btnAjouter;
 	
 	private VueLivraison vueLivraison;
-
+	private JButton btnCalculerTournee;
+	private JLabel lblInfoMessage;
 	private JPanel panel;
 	private JPanel panel_4;
 	private JPanel panel_6;
 	private JLabel informations;
 	private Thread tr;
-
-	private JButton btnCalculerTournee;
-	private JLabel lblInfoMessage;
-
-
 	/**
 	 * Create the panel.
 	 */
@@ -131,9 +128,7 @@ public class MainPanel extends JPanel implements Runnable {
 		panelLeft.add(panel_2);
 		
 		panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		panel_2.add(panel_3);
-		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		lblInfoMessage = new JLabel("");
 		panel_3.add(lblInfoMessage, BorderLayout.SOUTH);
@@ -143,7 +138,6 @@ public class MainPanel extends JPanel implements Runnable {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		btnChargerPlan = new JButton("Charger Plan");
-
 		panel_3.add(btnChargerPlan);
 		
 		btnLoadLivraison = new JButton("ChargerLivraison");
@@ -154,9 +148,6 @@ public class MainPanel extends JPanel implements Runnable {
 				mGestionLivraison.chargerLivraison();
 			}
 		});
-// --------------------------------------
-		panel.add(btnChargerPlan);
-		btnChargerPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
 		panel.add(btnCalculerTournee);
@@ -167,7 +158,6 @@ public class MainPanel extends JPanel implements Runnable {
 		});
 		btnCalculerTournee.setEnabled(false);
 		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
-// --------------------------------------
 		btnChargerPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.chargerPlan();
@@ -177,7 +167,7 @@ public class MainPanel extends JPanel implements Runnable {
 		panelLivraisons = new JPanel();
 		panel_2.add(panelLivraisons);
 		panelLivraisons.setLayout(new BoxLayout(panelLivraisons, BoxLayout.Y_AXIS));
-		//panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+
 		
 		panelLivraisonAdd = new JPanel();
 		panelLivraisons.add(panelLivraisonAdd);
@@ -186,21 +176,25 @@ public class MainPanel extends JPanel implements Runnable {
 		panelLivraisonSelected = new JPanel();
 		panelLivraisons.add(panelLivraisonSelected);
 		panelLivraisonSelected.setLayout(new BorderLayout(0, 0));
-		
+
 		vueLivraison = new VueLivraison();
 		panelLivraisonSelected.add(vueLivraison, BorderLayout.CENTER);
 		
-	/*	btnSupprimerLivraison = new JButton("Supprimer");
+		btnSupprimerLivraison = new JButton("Supprimer");
 		btnSupprimerLivraison.setEnabled(false);
 		btnSupprimerLivraison.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mGestionLivraison.removeSelectedLivraison();
 			}
-		});*/
+		});
+		panelLivraisonSelected.add(btnSupprimerLivraison, BorderLayout.SOUTH);
+		panelLivraisonAdd = new JPanel();
+		panelLivraisons.add(panelLivraisonAdd);
+		panelLivraisonAdd.setLayout(new BorderLayout(0, 0));
 		
-		//btnAjouter = new JButton("Ajouter");
-		//btnAjouter.setEnabled(false);
-		//panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
+		btnAjouter = new JButton("Ajouter");
+		btnAjouter.setEnabled(false);
+		panelLivraisonAdd.add(btnAjouter, BorderLayout.SOUTH);
 		
 		panelError = new JPanel();
 		panelError.setOpaque(false);
@@ -264,13 +258,13 @@ public class MainPanel extends JPanel implements Runnable {
 	
 	public void setLivraisonSelected(PlageHoraire plageHoraire, Livraison livraison) {
 		vueLivraison.setLivraison(plageHoraire, livraison);
-		//btnSupprimerLivraison.setEnabled(true);
+		btnSupprimerLivraison.setEnabled(true);
 		//validate();
 	}
 	
 	public void resetInfoLivraison() {
 		vueLivraison.resetInfoLivraison();
-		//btnSupprimerLivraison.setEnabled(false);
+		btnSupprimerLivraison.setEnabled(false);
 		//validate();
 	}
 	
@@ -286,7 +280,11 @@ public class MainPanel extends JPanel implements Runnable {
 	public JButton getBtnRetablir() {
 		return btnRetablir;
 	}
-		
+	
+	public JButton getBtnAjouter() {
+		return btnAjouter;
+	}
+	
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
 	}
@@ -299,4 +297,10 @@ public class MainPanel extends JPanel implements Runnable {
 		lblInfoMessage.setText(message);
 	}
 	
+	public void disablebtnAjouter() {
+		for(ActionListener listener : btnAjouter.getActionListeners()) {
+			btnAjouter.removeActionListener(listener);
+		}
+		btnAjouter.setEnabled(false);
+	}
 }
