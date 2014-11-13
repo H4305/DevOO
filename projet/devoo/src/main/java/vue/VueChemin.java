@@ -78,9 +78,9 @@ public class VueChemin extends Vue {
 						* LINE_WIDTH + counter.displayed
 						* PARALLELE_LINE_DISTANCE);
 				Point point1 = converter.convert(
-						troncon.getDepart().x, troncon.getDepart().y);
+						troncon.getDepart().getX(), troncon.getDepart().getY());
 				Point point2 = converter.convert(
-						troncon.getArrivee().x, troncon.getArrivee().y);
+						troncon.getArrivee().getX(), troncon.getArrivee().getY());
 				
 				
 				point1 = movePointTowards(point1, point2, REDUCTION_LENGTH * counter.displayed);

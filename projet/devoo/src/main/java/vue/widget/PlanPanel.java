@@ -85,15 +85,15 @@ public class PlanPanel extends JPanel {
 			Noeud arrivee = troncon.getArrivee();
 			Noeud depart = troncon.getDepart();
 
-			maxX = Math.max(maxX, arrivee.x);
-			maxX = Math.max(maxX, depart.x);
-			maxY = Math.max(maxY, arrivee.y);
-			maxY = Math.max(maxY, depart.y);
+			maxX = Math.max(maxX, arrivee.getX());
+			maxX = Math.max(maxX, depart.getX());
+			maxY = Math.max(maxY, arrivee.getY());
+			maxY = Math.max(maxY, depart.getY());
 
-			minX = Math.min(minX, arrivee.x);
-			minX = Math.min(minX, depart.x);
-			minY = Math.min(minY, arrivee.y);
-			minY = Math.min(minY, depart.y);
+			minX = Math.min(minX, arrivee.getX());
+			minX = Math.min(minX, depart.getX());
+			minY = Math.min(minY, arrivee.getY());
+			minY = Math.min(minY, depart.getY());
 
 			vuesPoints.add(new VuePoint(depart));
 			vuesPoints.add(new VuePoint(arrivee));
