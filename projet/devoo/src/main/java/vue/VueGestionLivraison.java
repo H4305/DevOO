@@ -1,6 +1,9 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
 
 import ch.qos.logback.core.joran.conditional.ThenAction;
 import model.data.DemandeLivraisons;
@@ -103,17 +108,18 @@ public class VueGestionLivraison {
 	 */
 	public void afficherPlan() {
     	vuePlan = new PlanPanel(mPlanManager.getPlan());
-    	vuePlan.setPointClickedListener(new PointClickedListener() {
+    	pointClickedListener = new PointClickedListener() {
 			
 			@Override
 			public void pointClicked(Noeud point) {
-				if(!point.isLivraison()){
-					add(point);
-				} else {
+				if(!point.isLivraison() && vuePlan.hasItienraire()){
+					askForSecondPoint(point);
+				} else if (point.isLivraison()){
 					mController.afficherLivraison(point);
 				}
 			}
-		});
+		};
+    	vuePlan.setPointClickedListener(pointClickedListener);
     	vuePlan.repaint();
     	mainPanel.setPlan(vuePlan);
     	mainFrame.pack();
@@ -171,7 +177,7 @@ public class VueGestionLivraison {
 		mController.loadDemandeLivrasonsXML();
 	}
 	
-    public void add(Noeud point){ 
+    public void askForSecondPoint(Noeud point){ 
     	//JOptionPane.showMessageDialog(null, null, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
     	
     	JTextField id_client = new JTextField();
@@ -179,13 +185,15 @@ public class VueGestionLivraison {
     			new JLabel("Id Client"),
     			id_client
     	};
-    	JOptionPane.showMessageDialog(null, inputs, "Ajouter une livraison", JOptionPane.PLAIN_MESSAGE);
+    	JOptionPane.showMessageDialog(mainFrame, inputs, "Client Id :", JOptionPane.WARNING_MESSAGE);
+    	
     	if (!id_client.getText().equals("")) {
     		int idClient = Integer.parseInt(id_client.getText());
-    		JOptionPane.showMessageDialog(null, "Vous avez introduit une livraison pour le client: " + idClient, null, JOptionPane.INFORMATION_MESSAGE);
+    		mainPanel.setInformationMessage("Selectionner après quelle livraison inserer la nouvelle.");
+    		waitForSecondPoint(point, idClient);
     	}
     	else {
-    		JOptionPane.showMessageDialog(null,"Problem with the ID", null, JOptionPane.INFORMATION_MESSAGE);
+    		JOptionPane.showMessageDialog(null,"Problem with the ID", null, JOptionPane.WARNING_MESSAGE);
     	}	
     }
     
@@ -220,11 +228,48 @@ public class VueGestionLivraison {
 		if(livraison != null) {
 			afficherDialogConfirmationSuppressionLivraison(livraison.getAdresse());
 		}
-		
 	}
 
 	public void chargerTournee() {
 		mLivraisonManager.calculItineraire();	
+	}
+	
+	public void pointClicked(Noeud noeud) {
+		
+	}
+	
+	public void waitForSecondPoint(final Noeud first,final int idClient) {
+		vuePlan.setPointClickedListener(new PointClickedListener() {
+			
+			@Override
+			public void pointClicked(Noeud point) {
+				if(point.isLivraison()) {
+					enableAddLivraisonButton(first, point, idClient);
+				} else {
+					mainPanel.disablebtnAjouter();
+				}
+			}
+		});
+	}
+	
+	public void ajouterLivraison(Noeud nouveau, Noeud precedent, int idClient) {
+		mLivraisonManager.addNouvelleLivraison(nouveau, precedent, idClient);
+		JOptionPane.showMessageDialog(null, 
+				"Une nouvelle livraison pour le client " + idClient +  " a été ajoutée.",
+				"Livraison ajoutée", JOptionPane.PLAIN_MESSAGE);
+		mainPanel.disablebtnAjouter();
+	}
+	
+	public void enableAddLivraisonButton(final Noeud nouveau, final Noeud precedent, final int idClient) {
+		mainPanel.getBtnAjouter().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ajouterLivraison(nouveau, precedent, idClient);
+				vuePlan.setPointClickedListener(pointClickedListener);
+			}
+		});
+		mainPanel.getBtnAjouter().setEnabled(true);;
 	}
 
 }

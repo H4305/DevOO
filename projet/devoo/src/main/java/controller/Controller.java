@@ -76,15 +76,6 @@ public class Controller {
      */
     public void start() {
     	this.mVueGestionLivraison.afficherFenetrePrincipale();
-    	mVueGestionLivraison.setPointClickedListener(new PointClickedListener() {
-			
-			@Override
-			public void pointClicked(Noeud point) {
-				LOG.log(Level.INFO, "Point Clicked");
-				
-				onePointSelected(point);
-			}
-		});
     }
 
     /**
@@ -94,9 +85,6 @@ public class Controller {
         // TODO implement here
     }
 
-    public void onePointSelected(Noeud point) {
-    	afficherLivraison(point);
-    }
     
     public void afficherLivraison(Noeud point) {
     	Livraison livraison = mLivraisonManager.findLivraisonByAddress(point);

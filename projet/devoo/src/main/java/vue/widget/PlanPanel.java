@@ -177,6 +177,10 @@ public class PlanPanel extends JPanel {
 		return !mTronconsPlan.isEmpty();
 	}
 	
+	public boolean hasItienraire() {
+		return displayItineraire;
+	}
+	
 	private class Converter implements CoordinateConverter {
 
 		@Override

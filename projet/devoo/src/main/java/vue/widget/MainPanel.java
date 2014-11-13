@@ -43,6 +43,8 @@ public class MainPanel extends JPanel {
 	
 	private VueLivraison vueLivraison;
 	private JButton btnCalculerTournee;
+	private JLabel lblInfoMessage;
+	private JPanel panel;
 
 	/**
 	 * Create the panel.
@@ -98,18 +100,21 @@ public class MainPanel extends JPanel {
 		panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		panel_2.add(panel_3);
-		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		lblInfoMessage = new JLabel("");
+		panel_3.add(lblInfoMessage, BorderLayout.SOUTH);
+		
+		panel = new JPanel();
+		panel_3.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		btnChargerPlan = new JButton("Charger Plan");
+		panel.add(btnChargerPlan);
 		btnChargerPlan.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel_3.add(btnChargerPlan);
-		btnChargerPlan.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mGestionLivraison.chargerPlan();
-			}
-		});
 		
 		btnCalculerTournee = new JButton("Calculer Tourn\u00E9e");
+		panel.add(btnCalculerTournee);
 		btnCalculerTournee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mGestionLivraison.chargerTournee();
@@ -117,7 +122,11 @@ public class MainPanel extends JPanel {
 		});
 		btnCalculerTournee.setEnabled(false);
 		btnCalculerTournee.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel_3.add(btnCalculerTournee);
+		btnChargerPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mGestionLivraison.chargerPlan();
+			}
+		});
 		
 		panelLivraisons = new JPanel();
 		panel_2.add(panelLivraisons);
@@ -204,11 +213,26 @@ public class MainPanel extends JPanel {
 		return btnRetablir;
 	}
 	
+	public JButton getBtnAjouter() {
+		return btnAjouter;
+	}
+	
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
 	}
 
 	public void setCalculItineraire(boolean b) {
 		btnCalculerTournee.setEnabled(b);
+	}
+	
+	public void setInformationMessage(String message) {
+		lblInfoMessage.setText(message);
+	}
+	
+	public void disablebtnAjouter() {
+		for(ActionListener listener : btnAjouter.getActionListeners()) {
+			btnAjouter.removeActionListener(listener);
+		}
+		btnAjouter.setEnabled(false);
 	}
 }
