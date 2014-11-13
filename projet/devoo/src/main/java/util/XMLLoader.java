@@ -115,14 +115,19 @@ public class XMLLoader {
 		        pointDepart.addTronconSortants(listTroncon);
 
 				vertexs.add( new Vertex(pointDepart, listTroncon) );
-				
+				System.out.println("Size list troncons : " + listTroncon.size());
+				System.out.println("XMLLoader : GetPlanXMl : vertex 0 -> list troncon :  " + vertexs.get(0).getAdjacencies().size());
+				System.out.println("XMLLoader : GetPlanXMl : vertex 0 -> point :  " + vertexs.get(0).getPoint().toString());
+				System.out.println("Taille liste vertex : "+ vertexs.size());
 		        for (Troncon troncon : listTroncon){
 		        	nodeListTronconSortant.add(troncon);
+
 		        }
 		        
         	}
         	listTroncon.clear();
         }
+   
 		return new PairKey<Set<Troncon>, ArrayList<Vertex>>(nodeListTronconSortant, vertexs);
 	}
 

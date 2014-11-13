@@ -80,15 +80,15 @@ public class Noeud {
 	}
 	
 	public ArrayList<Troncon> getTronconsSortants(){
-		return tronconsSortants;
+		return this.tronconsSortants;
 	}
 	
 	public void addTronconSortant(Troncon troncon) {
-		tronconsSortants.add(troncon);
+		this.tronconsSortants.add(troncon);
 	}
 	
 	public void addTronconSortants(ArrayList<Troncon> troncons) {
-		tronconsSortants = troncons;
+		this.tronconsSortants = troncons;
 	}
 	
 	@Override

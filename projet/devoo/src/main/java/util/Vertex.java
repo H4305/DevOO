@@ -55,13 +55,13 @@ public class Vertex implements Comparable<Vertex> {
     
     public void setAdjacencies(ArrayList<Troncon> adjacencies)
     {
-    	System.out.println("addTronconSortant : Vertex");
     	this.adjacencies = adjacencies;
     }
       
     
     public ArrayList<Troncon> getAdjacencies()
     {
+    	System.out.println("Je suis dans getAdjacencies !");
     	return this.adjacencies;
     }
     
