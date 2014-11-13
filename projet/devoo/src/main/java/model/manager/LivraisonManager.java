@@ -95,7 +95,9 @@ public class LivraisonManager {
     public DemandeLivraisons getDemandeLivraisons() {
 		return mDemandeLivraisons;
 	}
-    
+    public void setItineraire(Itineraire it){
+    	this.mItineraire = it;
+    }
     public Itineraire getItineraire(){
     	
     	return this.mItineraire;
@@ -179,13 +181,7 @@ public class LivraisonManager {
     	return lesLivraisons;
     }
        
-    public void addLivraison(Livraison livraison, PlageHoraire plage){
-    	//TODO add la livraison dans l'itineraire (je comprends pas ce qu'il y a en fait dans un itinerarire et comment je peux l'introduire)
-    }
     
-    public void removeLivraison(Livraison l){
-    	//TODO Je fais quoi?? je supprime dans l'itineraire la livraison et je recalcule l'itineraire??
-    }
     
     public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
@@ -398,8 +394,10 @@ public class LivraisonManager {
 		
 		
 		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
+		
+		adresseLivraison.setIsLivraison(false);
     
     	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
-    }
+    } 
     
 }

@@ -109,7 +109,7 @@ public class Troncon {
 	}
     
 	
- /*   public void setArrivee(Point pointArrivee) {
+    /*public void setArrivee(Point pointArrivee) {
     	this.arrivee = pointArrivee;
     }*/
 
