@@ -135,22 +135,30 @@ public class LivraisonManager {
      */
     private void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
     	PlageHoraire plageActuelle = null;
-    	String horaire;
+    	String horaire = "00:00";
         for(Chemin chemin : chemins) {
         	//Si nous avons arrivé à l'entrepot nous pouvons sortir de la boucle
         	if(chemin.getArrivee().equals(mDemandeLivraisons.getEntrepot())) { 
         		break;
         	}
         	//Met a jour la plage horaire actuelle
-        	if(plageActuelle == null) {
-        		plageActuelle = this.getPlageHoraireByAdresse(chemin.getArrivee());
-        		horaire = plageActuelle.getDateDebut();
-        	} else if(plageActuelle != this.getPlageHoraireByAdresse(chemin.getArrivee())) {
-        		plageActuelle = this.getPlageHoraireByAdresse(chemin.getArrivee());
-        		horaire = plageActuelle.getDateDebut();
+        	if(plageActuelle != this.getPlageHoraireByAdress(chemin.getArrivee())) {
+        		plageActuelle = this.getPlageHoraireByAdress(chemin.getArrivee());
+        		//
+        		if(CalculesHoraires.firstBeforeSecond(horaire, plageActuelle.getDateDebut())) {
+        			horaire = plageActuelle.getDateDebut();
+        		}
         	}
-        	horaire = horaire + chemin.getTempsParcours();
-        	chemin.getArrivee().getLivraison().setHeureLivraison(heure);
+        	//Calcule l'horaire de la prochaine livraison
+        	String horaireTmp = CalculesHoraires.sommeHeures(horaire, CalculesHoraires.transformeEnHeureMin(chemin.getTempsParcours()));
+        	
+        	//Si l'horaire sort de la plage horaire, on lui enleve du graphe
+        	if(CalculesHoraires.firstBeforeSecond(plageActuelle.getDateFin(), horaireTmp)) {
+        		//TODO PANIC!
+        	} else {
+        		chemin.getArrivee().getLivraison().setHeureLivraison(horaireTmp);
+        	}
+        	horaire = CalculesHoraires.sommeHeures(horaireTmp, "00:10");
         }
     }
 	
