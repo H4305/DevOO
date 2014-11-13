@@ -65,10 +65,13 @@ public class PlanManager {
 			try {
 				
 				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
-				setPlan(tronconsVertexs.troncons);
-				setVertexs(tronconsVertexs.vertexs);	
-				mController.afficherPlan();
+				System.out.println("Je suis dans loadPlanXML de PlanManager et la size est :" + tronconsVertexs.vertexs.size());
 				
+				this.setPlan(tronconsVertexs.troncons);
+				this.setVertexs(tronconsVertexs.vertexs);	
+				mController.afficherPlan();
+				System.out.println("Je suis dans loadPlanXML de PlanManager et la size des vertexes est :" + this.vertexs.size());
+				System.out.println("Le vertex de la liste de vertexes :" + this.vertexs.get(0).getAdjacencies().size());
 			} catch (PlanXMLException e) {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
@@ -97,22 +100,23 @@ public class PlanManager {
     		
     		if(v.getPoint().equals(source)) {
     			vSource = v;
+    			System.out.println("La source :" + v.getPoint().toString());
     		}
     		
     		if(v.getPoint().equals(cible)) {
     			vCible = v;
+    			System.out.println("La cible :" + v.getPoint().toString());
     		}
     	}
     	
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
-    	
     	Dijkstra.computePaths(vSource);
     	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
     	
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
-    		pointsDuCourtChemin.add(v.getPoint()); 
+    		pointsDuCourtChemin.add(v.getPoint());     		
     	}    	
     	
         Chemin chemin = new Chemin(cible, source);  
@@ -252,7 +256,12 @@ public class PlanManager {
 		this.troncons = troncons;
 	}
 	
-	public void setVertexs(ArrayList<Vertex> vertexs) {
-		this.vertexs = vertexs;
+	public ArrayList<Vertex> getVertexes() {
+		System.out.println(this.vertexs.size());
+		return this.vertexs; 
+	}
+	
+	public void setVertexs(ArrayList<Vertex> argVertexs) {
+		this.vertexs = argVertexs;
 	}
 }

@@ -174,6 +174,11 @@ public class Controller {
     public void afficherItineraire(Set<Troncon> circuit) {
         // TODO implement here
     }
+    
+    public PlanManager getPlanManager()
+    {
+    	return this.mPlanManager;
+    }
 	
 	
 }
