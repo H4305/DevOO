@@ -38,7 +38,7 @@ public class PlanManager {
 	
 	private Controller mController;
 	private Set<Troncon> troncons;
-	private ArrayList<Vertex> vertexs;
+	private ArrayList<Vertex> listVertexs;
 
 	/**
     * Class constructor specifying a Controller
@@ -48,7 +48,7 @@ public class PlanManager {
     public PlanManager(Controller controller) {
     	this.mController = controller;
     	this.troncons = new HashSet<Troncon>();
-    	this.vertexs = new ArrayList<Vertex>();
+    	this.listVertexs = new ArrayList<Vertex>();
     }
     
     /**
@@ -65,13 +65,13 @@ public class PlanManager {
 			try {
 				
 				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
-				System.out.println("Je suis dans loadPlanXML de PlanManager et la size est :" + tronconsVertexs.vertexs.size());
-				
+				System.out.println("PlanManager : loadPlanXML : vertexs -> vertex list troncon size :" + tronconsVertexs.vertexs.get(0).getAdjacencies().size());
+				System.out.println("PlanManager : loadPlanXML : vertexs -> vertex point coord :" + tronconsVertexs.vertexs.get(0).getPoint().toString());
 				this.setPlan(tronconsVertexs.troncons);
 				this.setVertexs(tronconsVertexs.vertexs);	
 				mController.afficherPlan();
-				System.out.println("Je suis dans loadPlanXML de PlanManager et la size des vertexes est :" + this.vertexs.size());
-				System.out.println("Le vertex de la liste de vertexes :" + this.vertexs.get(0).getAdjacencies().size());
+				System.out.println("Je suis dans loadPlanXML de PlanManager et la size des vertexes est :" + this.listVertexs.size());
+				System.out.println("Le vertex de la liste de vertexes :" + this.listVertexs.get(0).getAdjacencies().size());
 			} catch (PlanXMLException e) {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
@@ -96,7 +96,7 @@ public class PlanManager {
     	Vertex vCible = null;
     	float tempsParcours = 0;
     	
-    	for(Vertex v: vertexs) {
+    	for(Vertex v: this.listVertexs) {
     		
     		if(v.getPoint().equals(source)) {
     			vSource = v;
@@ -256,11 +256,11 @@ public class PlanManager {
 	}
 	
 	public ArrayList<Vertex> getVertexes() {
-		System.out.println(this.vertexs.size());
-		return this.vertexs; 
+		System.out.println(this.listVertexs.size());
+		return this.listVertexs; 
 	}
 	
 	public void setVertexs(ArrayList<Vertex> argVertexs) {
-		this.vertexs = argVertexs;
+		this.listVertexs = argVertexs;
 	}
 }

@@ -79,16 +79,26 @@ public class Noeud {
 		return y;
 	}
 	
+<<<<<<< HEAD
 	public List<Troncon> getTronconsSortants(){
 		return tronconsSortants;
+=======
+	public ArrayList<Troncon> getTronconsSortants(){
+		return this.tronconsSortants;
+>>>>>>> 57675473e37e9ff9b2d1e8015daf9c8b922cbd3f
 	}
 	
 	public void addTronconSortant(Troncon troncon) {
-		tronconsSortants.add(troncon);
+		this.tronconsSortants.add(troncon);
 	}
 	
+<<<<<<< HEAD
 	public void addTronconSortants(List<Troncon> troncons) {
 		tronconsSortants = troncons;
+=======
+	public void addTronconSortants(ArrayList<Troncon> troncons) {
+		this.tronconsSortants = troncons;
+>>>>>>> 57675473e37e9ff9b2d1e8015daf9c8b922cbd3f
 	}
 	
 	@Override
