@@ -281,7 +281,7 @@ public class LivraisonManager {
     	String format = "dd/MM/yy"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
-    	File file = new File("C:/Users/Liuda/Desktop/file.txt");
+    	File file = new File("file.txt");
         PrintWriter printWriter = null;
         List<Chemin> chemins = this.mItineraire.getChemins();
 

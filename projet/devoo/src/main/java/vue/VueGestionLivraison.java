@@ -252,6 +252,10 @@ public class VueGestionLivraison {
 		});
 	}
 	
+	public void exporterFeuilleDeRoute(){
+		mLivraisonManager.exporterFeuilleRoute();
+	}
+	
 	public void ajouterLivraison(Noeud nouveau, Noeud precedent, int idClient) {
 		mLivraisonManager.addNouvelleLivraison(nouveau, precedent, idClient);
 		JOptionPane.showMessageDialog(null, 
