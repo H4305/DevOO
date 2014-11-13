@@ -87,9 +87,9 @@ public class XMLLoader {
         	}
         }
         
-        ArrayList<Troncon> listTroncon = new ArrayList<Troncon>();
         
         for (int i = 0; i < listNodes.getLength(); i++) {
+        	List<Troncon> listTroncon = new ArrayList<Troncon>();
         	if(listNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
         		final Element noeud = (Element) listNodes.item(i); 
             	
@@ -121,8 +121,9 @@ public class XMLLoader {
 		        }
 		        
         	}
-        	listTroncon.clear();
+        	//listTroncon.clear();
         }
+
 		return new PairKey<Set<Troncon>, ArrayList<Vertex>>(nodeListTronconSortant, vertexs);
 	}
 
