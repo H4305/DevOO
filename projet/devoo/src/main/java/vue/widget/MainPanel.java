@@ -37,7 +37,7 @@ import java.util.Locale;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
-public class MainPanel extends JPanel implements Runnable {
+public class MainPanel extends JPanel {
 
 	VueGestionLivraison mGestionLivraison;
 	private JButton btnChargerPlan;
@@ -66,7 +66,7 @@ public class MainPanel extends JPanel implements Runnable {
 	private JPanel panel_4;
 	private JPanel panel_6;
 	private JLabel informations;
-	private Thread tr;
+
 	/**
 	 * Create the panel.
 	 */
@@ -217,29 +217,12 @@ public class MainPanel extends JPanel implements Runnable {
 		
 		informations = new JLabel("Réalisation de feuilles de route" + txtDate);
 		panel_6.add(informations);
-		tr = new Thread(this);
-		tr.start();
-
 	}
 	
-	public void run(){
-        while (true) {
-           
-            Date date1 = new Date();
-            DateFormat formatdate = new SimpleDateFormat("dd/MM/yyyy");
-            DateFormat formatdate2 = new SimpleDateFormat("HH'h'mm:ss");
-             
-            String horloge=(formatdate.format(date1)+" - "+formatdate2.format(date1));
-            informations.setText(horloge);
-          //  panel_6.validate();
-             
-          try { Thread.sleep(1000);
-          } catch(InterruptedException e){
-        	 // System.out.println("l");
-            }
-        }
-      }
-	
+	/**
+	 * 
+	 * @param plan
+	 */
 	public void setPlan(PlanPanel plan) {
 		Component component = ((BorderLayout)panelPrincipal.getLayout()).getLayoutComponent(BorderLayout.CENTER);
 		if(component != null) {
@@ -251,6 +234,10 @@ public class MainPanel extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param message
+	 */
 	public void setErrorMessage(String message) {
 		lblErreur.setVisible(true);
 		lblErreurMessage.setText(message);
