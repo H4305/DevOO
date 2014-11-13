@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 
 
+
 /*
  * controller import
  */
@@ -170,6 +171,13 @@ public class LivraisonManager {
     	return null;
     }
     
+    /**
+     * This method adds a new delivery.
+     * 
+     * @param adresseNouvelleLivraison is the Noeud where the new delivery will be performed 
+     * @param adresseLivraisonPrecedente is the Noeud of the previous delivery
+     * @param idClient is the client id for the new shipping
+     */
     public void addNouvelleLivraison(Noeud adresseNouvelleLivraison, Noeud adresseLivraisonPrecedente, int idClient) {	
     	
     	Livraison nouvelleLivraison = new Livraison(uniqueIDgenerator.getUniqueId(), idClient, adresseNouvelleLivraison);
@@ -233,32 +241,61 @@ public class LivraisonManager {
     	
     }
     
-    //A tester
-    public String sommeHeures(String heureA, String heureB) {
+    /**
+     * This method adds two times
+     * 
+     * 
+     * @param heureA is the first time
+     * @param heureB is the second time
+     * @return a string which contains a time, in format HH:MM
+     */
+    public String sommeHeures(String heureA, String heureB) { 	
     	
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        
-        Calendar calFirst = Calendar.getInstance();
-        Calendar calSecond = Calendar.getInstance();
-        
-		try {
-			calFirst.setTime(formatter.parse(heureA));
-			calSecond.setTime(formatter.parse(heureA));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		calFirst.setTimeInMillis(calFirst.getTimeInMillis() + calSecond.getTimeInMillis());
-		
-		Date heure = calFirst.getTime();
-		
-		System.out.println(heure);
-		
-		return heure.toString();
+    	int heureAHH = Integer.parseInt(heureA.split("\\:")[0]);
+    	int heureAMM = Integer.parseInt(heureA.substring(heureA.indexOf(":")+1, heureA.length()));
+    	//System.out.println("heureAMM: " + heureAMM);
     	
+    	int heureBHH = Integer.parseInt(heureB.split("\\:")[0]);
+    	int heureBMM = Integer.parseInt(heureB.substring(heureB.indexOf(":")+1, heureB.length()));
+    	//System.out.println("heureBMM: " + heureBMM);
+    	
+    	int minutesTemps = heureAMM + heureBMM;
+    	//System.out.println("Minutes: " + minutesTemps);
+    	
+    	int heuresAAjouter = (int) (minutesTemps/60);
+    	//System.out.println("Heures à ajouter: " + heuresAAjouter);
+    	
+    	int resMinutes = minutesTemps - 60*heuresAAjouter;
+    	
+    	String minutesString = resMinutes + "";
+    	
+    	if(resMinutes<10) {
+    		
+    		minutesString = "0" + minutesString;
+    		
+    	}
+    	
+    	int resHeures = heureAHH + heureBHH + heuresAAjouter;
+    	
+    	String heuresString = resHeures + "";
+    	
+    	if(resHeures<0) {
+    		
+    		heuresString = "0" + heuresString;
+    		
+    	}
+    	
+    	return heuresString + ":" + minutesString;
+    	   	
     }
     
+    /**
+     * This method compares two times and returns a boolean
+     * 
+     * @param heureA
+     * @param heureB
+     * @return true if the first time is before the second, false if it is not
+     */
     public Boolean firstBeforeSecond(String heureA, String heureB) {
     	
     	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
@@ -277,13 +314,33 @@ public class LivraisonManager {
 		return calFirst.before(calSecond);	
     }
     
+    /**
+     * This method transforms a a float quantity of time, in seconds, in HH:MM time format
+     * 
+     * @param tempsParcours is a quantity of time in seconds
+     * @return a string containing the fime in HH:MM format
+     */
     public String transformeEnHeureMin(float tempsParcours) {
     	
-    	int heure = (int) ((int) tempsParcours) / 3600;
-    	int min = heure % 3600;
+    	int heureI = (int) ((int) tempsParcours) / 3600;
+    	int minI = (int) ( (tempsParcours / 60) % 60);
     	
-    	return heure + ":" + min;
+    	String heureS = "";
+    	String minS = "";
     	
+    	if(heureI<10)
+    	{
+    		heureS = "0"+heureI;
+    	}else{
+    		heureS = "" + heureI;
+    	}
+    	if(minI<10)
+    	{
+    		minS = "0"+minI;
+    	}else{
+    		minS = ""+minI;
+    	}
+    	
+    	return heureS + ":" + minS;    	
     }
-    
 }
