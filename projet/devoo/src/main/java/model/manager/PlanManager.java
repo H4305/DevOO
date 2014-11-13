@@ -142,8 +142,7 @@ public class PlanManager {
      */
     public List<Chemin> getChemins(List<Set<Noeud>> plages) {
     	List<Chemin> chemins = new ArrayList<Chemin>();
-    	TwoKeyMap<Noeud, Noeud, Chemin> courtsChemins = new TwoKeyMap<Noeud, Noeud, Chemin>();
-        Set<Noeud> plagePrecedente = null;
+    	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
     	for(Set<Noeud> plage : plages) {
     		//On calcule le meilleur chemin entre tous les points de cette plage

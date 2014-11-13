@@ -117,10 +117,40 @@ public class LivraisonManager {
         	}
         	adresses.add(setPlage);
         }
+        
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
+        
+        this.updateLivraisonsTime(plagesHoraire, chemins);
+        
         mItineraire = new Itineraire(chemins);
         mController.afficherItineraire(); //pas de paramètre
+    }
+    
+    /**
+     * Met a jour les horaires des livraisons
+     * @param plagesHoraire liste ordonnée de plages horaires
+     * @param chemins liste ordonnée des chemins
+     */
+    private void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
+    	PlageHoraire plageActuelle = null;
+    	String horaire;
+        for(Chemin chemin : chemins) {
+        	//Si nous avons arrivé à l'entrepot nous pouvons sortir de la boucle
+        	if(chemin.getArrivee().equals(mDemandeLivraisons.getEntrepot())) { 
+        		break;
+        	}
+        	//Met a jour la plage horaire actuelle
+        	if(plageActuelle == null) {
+        		plageActuelle = this.getPlageHoraireByAdresse(chemin.getArrivee());
+        		horaire = plageActuelle.getDateDebut();
+        	} else if(plageActuelle != this.getPlageHoraireByAdresse(chemin.getArrivee())) {
+        		plageActuelle = this.getPlageHoraireByAdresse(chemin.getArrivee());
+        		horaire = plageActuelle.getDateDebut();
+        	}
+        	horaire = horaire + chemin.getTempsParcours();
+        	chemin.getArrivee().getLivraison().setHeureLivraison(heure);
+        }
     }
 	
     public List<PlageHoraire> getPlagesHoraire() {
