@@ -117,11 +117,11 @@ public class LivraisonManager {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
     	
         List<PlageHoraire> plagesHoraire = getPlagesHoraire();
-        Set<Noeud> setEntrepot = new TreeSet<Noeud>();
+        Set<Noeud> setEntrepot = new HashSet<Noeud>();
         setEntrepot.add(mDemandeLivraisons.getEntrepot());
         adresses.add(setEntrepot);
         for(PlageHoraire horaire : plagesHoraire) {
-        	Set<Noeud> setPlage = new TreeSet<Noeud>();
+        	Set<Noeud> setPlage = new HashSet<Noeud>();
         	for(Livraison livraison : horaire.getLivraisons()) {
         		setPlage.add(livraison.getAdresse());
         	}
