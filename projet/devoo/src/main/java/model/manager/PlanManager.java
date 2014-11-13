@@ -64,14 +64,10 @@ public class PlanManager {
 			// Get the plan
 			try {
 				
-				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);
-				System.out.println("PlanManager : loadPlanXML : vertexs -> vertex list troncon size :" + tronconsVertexs.vertexs.get(0).getAdjacencies().size());
-				System.out.println("PlanManager : loadPlanXML : vertexs -> vertex point coord :" + tronconsVertexs.vertexs.get(0).getPoint().toString());
+				PairKey<Set<Troncon>, ArrayList<Vertex>> tronconsVertexs = XMLLoader.getPlanXML(fileXML);				
 				this.setPlan(tronconsVertexs.troncons);
 				this.setVertexs(tronconsVertexs.vertexs);	
-				mController.afficherPlan();
-				System.out.println("Je suis dans loadPlanXML de PlanManager et la size des vertexes est :" + this.listVertexs.size());
-				System.out.println("Le vertex de la liste de vertexes :" + this.listVertexs.get(0).getAdjacencies().size());
+				mController.afficherPlan();				
 			} catch (PlanXMLException e) {
 				// On affichera ca dans la vue
 				mController.exceptionOpenFileXML(e.getMessage());
@@ -112,10 +108,12 @@ public class PlanManager {
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
     	Dijkstra.computePaths(vSource);
+    	System.out.println("Apres computePaths : ");
     	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
-    	
+    	System.out.println("Apres Dijkstra : ");    	
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
+    		System.out.println(v.getPoint().toString());
     		pointsDuCourtChemin.add(v.getPoint());     		
     	}    	
     	

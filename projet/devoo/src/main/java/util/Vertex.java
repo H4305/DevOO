@@ -62,7 +62,6 @@ public class Vertex implements Comparable<Vertex> {
     
     public List<Troncon> getAdjacencies()
     {
-    	System.out.println("Je suis dans getAdjacencies !");
     	return this.adjacencies;
     }
     
