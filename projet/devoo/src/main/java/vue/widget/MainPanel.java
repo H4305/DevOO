@@ -140,7 +140,7 @@ public class MainPanel extends JPanel {
 		panel_3.add(panel_9, BorderLayout.SOUTH);
 		panel_9.setLayout(new BoxLayout(panel_9, BoxLayout.Y_AXIS));
 		
-		lblInfoMessage = new JLabel("dfsddfd");
+		lblInfoMessage = new JLabel("");
 		panel_9.add(lblInfoMessage);
 	
 		panel_8 = new JPanel();
@@ -149,7 +149,7 @@ public class MainPanel extends JPanel {
 		btnChargerPlan = new JButton("Charger Plan");
 		panel_8.add(btnChargerPlan);
 		
-		btnLoadLivraison = new JButton("ChargerLivraison");
+		btnLoadLivraison = new JButton("Charger Livraison");
 		panel_8.add(btnLoadLivraison);
 		btnLoadLivraison.setEnabled(false);
 		

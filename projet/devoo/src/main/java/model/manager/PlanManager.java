@@ -99,7 +99,8 @@ public class PlanManager {
     	Vertex vSource = null;
     	Vertex vCible = null;
     	float tempsParcours = 0;
-    	
+    	Dijkstra dijkstra = new Dijkstra();
+
 		for(Vertex v: this.listVertexs) {
 			v.setPrecedent(null);
 			v.setMinTemps(Double.POSITIVE_INFINITY);
