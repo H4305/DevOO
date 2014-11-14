@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import devoo.LivraisonManagerTest;
 import model.data.Chemin;
 import model.data.Itineraire;
 import model.data.Livraison;

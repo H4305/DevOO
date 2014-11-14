@@ -24,6 +24,7 @@ import vue.widget.MainPanel;
 import vue.widget.PlanPanel;
 import vue.widget.PlanPanel.PointClickedListener;
 import controller.Controller;
+import devoo.LivraisonManagerTest;
 
 /**
  *	Gestionnaire de vue qui g�re les actions d�clench�e par les diff�rente vues
@@ -44,12 +45,12 @@ public class VueGestionLivraison {
 
    /**
     * @param planManager Manager du plan dans le mod�le
-    * @param livraisonManager Manager des livraisons dans le mod�le
+    * @param mLivraisonManager2 Manager des livraisons dans le mod�le
     * @param controller Controlleur du programme
     */
-    public VueGestionLivraison(PlanManager planManager, LivraisonManager livraisonManager, Controller controller) {
+    public VueGestionLivraison(PlanManager planManager, LivraisonManager mLivraisonManager2, Controller controller) {
     	mPlanManager = planManager;
-    	mLivraisonManager = livraisonManager;
+    	mLivraisonManager = mLivraisonManager2;
     	mController = controller;
     	
     	mainFrame = new JFrame();
