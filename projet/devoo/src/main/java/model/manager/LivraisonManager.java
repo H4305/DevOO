@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 
 
+
 /*
  * controller import
  */
@@ -136,9 +137,8 @@ public class LivraisonManager {
         	adresses.add(setPlage);
         }
         
-        setEntrepot.add(mDemandeLivraisons.getEntrepot());
+        adresses.add(setEntrepot);
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
-        
         this.updateLivraisonsTime(plagesHoraire, chemins);
         
         mItineraire = new Itineraire(chemins);
@@ -324,12 +324,12 @@ public class LivraisonManager {
             printWriter.println("");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
             printWriter.println("");
-            printWriter.println("Aujourd'hui vous avez à délivrer " + chemins.size()+" clients.");
+            printWriter.println("Aujourd'hui vous avez ï¿½ dï¿½livrer " + chemins.size()+" clients.");
             printWriter.println("");
             printWriter.println("Suivez les instructions suivantes: ");
             printWriter.println("");
             printWriter.println("");
-            printWriter.print("Départ du dépot : rue ");
+            printWriter.print("Dï¿½part du dï¿½pot : rue ");
             int i = 0;
             for(Chemin c : chemins){
             	
@@ -339,10 +339,10 @@ public class LivraisonManager {
         		}
         		            	
             	for(Troncon t : c.getTroncons()){
-            		printWriter.println(t.getNomRue() + "\". Continuer " + t.getLongueur() + " metrès tout droit. ");
+            		printWriter.println(t.getNomRue() + "\". Continuer " + t.getLongueur() + " metrï¿½s tout droit. ");
             		
             		if(t.getVitesse() < 4){
-            			printWriter.println("Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : " +t.getVitesse()*3.6 +"km/h !");
+            			printWriter.println("Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : " +t.getVitesse()*3.6 +"km/h !");
             		}
             		
             		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
@@ -351,15 +351,15 @@ public class LivraisonManager {
             		else{
             			if(chemins.get(chemins.size()-1).equals(c) && c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
             				printWriter.println("");
-            				printWriter.println("Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! ");
-            				printWriter.println("Bonne fin journée !");
+            				printWriter.println("Arrivï¿½e au dï¿½pot. Vous avez fini les livraisons pour aujourd'hui! ");
+            				printWriter.println("Bonne fin journï¿½e !");
 	        				printWriter.println("");
 	        				printWriter.println("");
-            				printWriter.println("-------------------------------*****L'équipe LIVRAMAP*****-------------------------------");
+            				printWriter.println("-------------------------------*****L'ï¿½quipe LIVRAMAP*****-------------------------------");
             			}
             			else{           			
             				printWriter.println("");
-                			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
+                			printWriter.println("Arrivï¿½e au point de livraison numï¿½ro " + i +  "!");
                 			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
             				printWriter.println("");
             			}

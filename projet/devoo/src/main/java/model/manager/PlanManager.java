@@ -107,12 +107,10 @@ public class PlanManager {
 			v.setMinTemps(Double.POSITIVE_INFINITY);
 			if(v.getPoint().equals(source)) {
     			vSource = v;
-    			//System.out.println("La source :" + v.getPoint().toString());
     		}
     		
     		if(v.getPoint().equals(cible)) {
     			vCible = v;
-    			//System.out.println("La cible :" + v.getPoint().toString());
     		}
     	}
     	
@@ -121,18 +119,10 @@ public class PlanManager {
 
     	dijkstra.computePaths(vSource);
     	
-    	//System.out.println("Apres computePaths : ");
     	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
-    	
-    	//System.out.println("MERDE");
-    	//for(Vertex v : vertexCourtChemin)
-    	//	System.out.println(v.getPoint().getId());
-    	
-    	//System.out.println("Apres Dijkstra : ");
 
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
-    		//System.out.println(v.getPoint().toString());
     		pointsDuCourtChemin.add(v.getPoint());     		
     	}    	
         Chemin chemin = new Chemin(cible, source);  
@@ -166,14 +156,6 @@ public class PlanManager {
     	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
     	for(Set<Noeud> plage : plages) {
-    		//On calcule le meilleur chemin entre tous les points de cette plage
-    		for(Noeud orig : plage) {
-    			for(Noeud dest : plage) {
-            		if(!orig.equals(dest)) {
-            			chemins.add(calculerPlusCourtChemin(orig, dest));
-            		}
-            	}
-    		}
     		//On calcule le meilleur chemin de tous les points de la plage précedente a la plage actuelle
     		if(plagePrecedente != null) {
     			for(Noeud orig : plagePrecedente) {
@@ -183,14 +165,19 @@ public class PlanManager {
     			}
     		}
     		plagePrecedente = plage;
+    		
+    		//On calcule le meilleur chemin entre tous les points de cette plage
+    		for(Noeud orig : plage) {
+    			for(Noeud dest : plage) {
+            		if(!orig.equals(dest)) {
+            			chemins.add(calculerPlusCourtChemin(orig, dest));
+            		}
+            	}
+    		}
     	}
-    	System.out.println("MERDE!");
-    	for(Chemin c : chemins) {
-    		System.out.println(c);
-    	}
+    	
     	CheminGraph graph = new CheminGraph(chemins);
     	
-    	System.out.println(graph);
     	TSP tsp = new TSP(graph);
     	
     	int bound = graph.getNbVertices()*graph.getMaxArcCost() + 1;
@@ -208,10 +195,16 @@ public class PlanManager {
 			}
 		}	
 		List<Chemin> cheminsItineraire = new ArrayList<Chemin>();
-		for(int i : next) {
-			cheminsItineraire.add(chemins.get(i));
+		for(int i = 0; i < next.length-1; i++) {
+			Noeud origin = graph.getNoeudFromIndex(next[i]);
+			Noeud destination = graph.getNoeudFromIndex(next[i+1]);
+			for(Chemin c : chemins) {
+				if(c.getDepart().equals(origin) ||
+				   c.getArrivee().equals(destination)) {
+					cheminsItineraire.add(c);
+				}
+			}
 		}
-		
         
         return cheminsItineraire;
     }
@@ -277,7 +270,6 @@ public class PlanManager {
 	}
 	
 	public List<Vertex> getVertexes() {
-		System.out.println(this.listVertexs.size());
 		return this.listVertexs; 
 	}
 	
