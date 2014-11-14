@@ -136,7 +136,6 @@ public class LivraisonManager {
         	}
         	adresses.add(setPlage);
         }
-        
         adresses.add(setEntrepot);
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
         //this.updateLivraisonsTime(plagesHoraire, chemins);

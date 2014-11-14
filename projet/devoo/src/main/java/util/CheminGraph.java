@@ -15,7 +15,7 @@ public class CheminGraph implements Graph {
 	private List<Chemin> mChemins;
 	private float maxArcCost = Float.NEGATIVE_INFINITY;
 	private float minArcCost = Float.POSITIVE_INFINITY;
-	Set<Noeud> noeudSet = new HashSet<Noeud>();
+	Set<Noeud> noeudSet = new LinkedHashSet<Noeud>();
 	
 	HashMap<Integer, Noeud> noeudsMap = new HashMap<Integer, Noeud>();
 	HashMap<Noeud, Integer> noeudsKeys = new HashMap<Noeud, Integer>();
@@ -84,6 +84,7 @@ public class CheminGraph implements Graph {
 		for(Chemin chemin : mChemins) {
 			costs[noeudsKeys.get(chemin.getDepart())][noeudsKeys.get(chemin.getArrivee())] = Math.round(chemin.getTempsParcours());
 		}
+		
 		return costs;
 	}
 
@@ -106,12 +107,18 @@ public class CheminGraph implements Graph {
 			}
 		}
 		int[] r = new int[successors.size()];
-		//System.out.println("Taille " + successors.size());
 		int cpt = 0;
 		for(Object o : successors.toArray()) {
 			r[cpt] = (int) o;
 			cpt++;
 		}
+		System.out.println(getNoeudFromIndex(i));
+		for(int l : r) {
+			System.out.print(getNoeudFromIndex(l) + " ");
+		}
+		System.out.println();
+		System.out.println(r.length);
+		
 		return r;
 	}
 

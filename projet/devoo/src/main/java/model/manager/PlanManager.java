@@ -175,14 +175,16 @@ public class PlanManager {
             	}
     		}
     	}
-    	
+    	//Creates the Paths graph
     	CheminGraph graph = new CheminGraph(chemins);
     	
+    	//Instantiates TSP
     	TSP tsp = new TSP(graph);
     	
     	int bound = graph.getNbVertices()*graph.getMaxArcCost() + 1;
 		int[] next = null;
 		
+		//Looks for optimized solution
 		for (int t = 10; (tsp.getSolutionState() != SolutionState.OPTIMAL_SOLUTION_FOUND) && 
 						 (tsp.getSolutionState() != SolutionState.INCONSISTENT); t*=2){
 			System.out.println("--> Search of a tour strictly lower than "+bound+" within a time limit of "+t+"s.");
@@ -194,20 +196,29 @@ public class PlanManager {
 				next = tsp.getNext();
 			}
 		}	
+		
 		List<Chemin> cheminsItineraire = new ArrayList<Chemin>();
+		
+		//We iterate over the next node array to find the paths
 		for(int i = 0; i < next.length-1; i++) {
-			System.out.println(next[i]);
 			Noeud origin = graph.getNoeudFromIndex(next[i]);
-			System.out.println(origin);
 			Noeud destination = graph.getNoeudFromIndex(next[i+1]);
-			for(Chemin c : chemins) {
-				if(c.getDepart().equals(origin) ||
+			for(Chemin c : chemins) {;
+				if(c.getDepart().equals(origin) &&
 				   c.getArrivee().equals(destination)) {
 					cheminsItineraire.add(c);
 				}
 			}
 		}
-        
+		
+		Noeud destination = graph.getNoeudFromIndex(next[0]);
+		Noeud origin = graph.getNoeudFromIndex(next[next.length-1]);
+		for(Chemin c : chemins) {;
+			if(c.getDepart().equals(origin) &&
+			   c.getArrivee().equals(destination)) {
+				cheminsItineraire.add(c);
+			}
+		}
         return cheminsItineraire;
     }
 
