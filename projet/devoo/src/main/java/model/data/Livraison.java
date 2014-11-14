@@ -8,12 +8,12 @@ import java.util.*;
 public class Livraison {
     
     /**
-     * 
+     * The id of the livraison
      */
     private int id;
 
     /**
-     * L'heure prÃ©vue de la livraison
+     * L'heure pévue de la livraison
      */
     private String heureLivraison;
 
@@ -30,10 +30,10 @@ public class Livraison {
     private Boolean aLivrer;
     
     /**
-     * 
-     * @param id
-     * @param heureLivraison
-     * @param id_client
+     * Constructor
+     * @param id : The id of the livraison
+     * @param heureLivraison : The hour of the livraison
+     * @param id_client : The id of the client who want to be delivered
      */
     public Livraison(int id, int id_client, Noeud adresse) {
     	this.id = id;
@@ -44,6 +44,7 @@ public class Livraison {
     }
 
     /**
+     * This method allows to set the hour of the livraison
      * @param La nouvelle heure l'heure de la livraison
      */
     public void setHeureLivraison(String heure) {
@@ -51,11 +52,15 @@ public class Livraison {
     }
 
     /**
-     * return L'adresse de livraison
+     * This method allows to get the Adresse of the Livraison
      */
     public Noeud getAdresse() {
         return adresse;
     }
+    
+    /**
+     * This method allows to get the Hour of the Livraison
+     */
     public String getHeureLivraison() {
     	if(heureLivraison==""){
     		return " pas encore prevue";
@@ -63,10 +68,16 @@ public class Livraison {
     	return heureLivraison;
     }
     
+    /**
+     * This method allows to get the id of the Livraison
+     */
     public int getId() {
 		return id;
 	}
     
+    /**
+     * This method allows to get the id of the client for the Livraison
+     */
     public int getIdClient() {
 		return idClient;
 	}
@@ -102,10 +113,10 @@ public class Livraison {
 		return true;
 	}
 
+	/**
+	 * This method allows to set the boolean of the livraison reprensenting the state of the livraison
+	 */
 	public void setALivrer() {
 		this.aLivrer = true;		
 	}
-    
-
-
 }

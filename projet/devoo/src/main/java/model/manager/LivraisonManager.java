@@ -93,20 +93,33 @@ public class LivraisonManager {
        }
     }
 
+    /**
+     * This method returns the object "DemandeLivraisons" from the LivraisonManager
+     * @return The object "DemandeLivraisons"
+     */
     public DemandeLivraisons getDemandeLivraisons() {
 		return mDemandeLivraisons;
 	}
+    
+    /**
+     * This method allows to set the Itineraire for the LivraisonManager
+     * @param it : The itineraire we want to set
+     */
     public void setItineraire(Itineraire it){
     	this.mItineraire = it;
     }
+    
+    /**
+     * This method returns the object Itineraire from the LivraisonManager
+     * @return The object "Itineraire"
+     */
     public Itineraire getItineraire(){
     	
     	return this.mItineraire;
     }
 
     /**
-     * Fait le calcul de l'itinÃ©raire a suivre
-     * @return l'itineraire Ã  suivre
+     * Fait le calcul de l'Itineraire a suivre
      */
     public void calculItineraire() {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
@@ -166,11 +179,19 @@ public class LivraisonManager {
         }
     }
 	
+    /**
+     * This method returns the "PlageHoraire's" list from the DemandeLivraison
+     * @return The PlageHoraire's list 
+     */
     public List<PlageHoraire> getPlagesHoraire() {
     	
     	return this.mDemandeLivraisons.getPlagesHoraire();
     }
     
+    /**
+     * This method returns the "Livraison's" list for the livraison management
+     * @return The Livraison's list
+     */
     public List<Livraison> getLivraisons(){
     	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
     	if(plagesHoraires == null) return new ArrayList<>();
@@ -182,8 +203,11 @@ public class LivraisonManager {
     	return lesLivraisons;
     }
        
-    
-    
+    /**
+     * This method allows to return a livraison from an address    
+     * @param address : The Node representing the address
+     * @return The Livraison's object
+     */
     public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
     		if(livraison.getAdresse().equals(address)) 
@@ -192,6 +216,11 @@ public class LivraisonManager {
     	return null;
     }
     
+    /**
+     * This method allows to return a plageHoraire from a Livraison
+     * @param livraison : The Livraison's object in order to get the PlageHoraire
+     * @return The PlageHoraire's object
+     */
     public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
     	for(PlageHoraire horaire : getPlagesHoraire()) {
     		for(Livraison liv : horaire.getLivraisons()) {
@@ -273,9 +302,9 @@ public class LivraisonManager {
     	
     }
 
-    /**
-     * 
-     */
+	/**
+	 * This method allows to export the roadboard in a txt file
+	 */
     public void exporterFeuilleRoute()
     {
     	String format = "dd/MM/yy"; 
@@ -322,31 +351,24 @@ public class LivraisonManager {
                 			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
                 			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
             			}
-            			
             		}
             	}
-            	
-            	
             }
-            
         }
-        catch (FileNotFoundException e)
-        {
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        finally
-        {
-            if ( printWriter != null ) 
-            {
+        finally {
+            if ( printWriter != null ) {
                 printWriter.close();
             }
         }
-    	
     }
+    
     /**
      * This method return the object plageHoraire that contains the delivery at the address noeud
-     * 
      * @param noeud
+     * @return The PlageHoraire's object
      **/
     public PlageHoraire getPlageHoraireByAdress(Noeud noeud){
     	PlageHoraire plageHoraireFound = null; 
@@ -364,8 +386,8 @@ public class LivraisonManager {
     
     /**
      * This method remove a delivery.
-     * 
      * @param adresseLivraison is the address of the delivery that we want to remove 
+     * @return A Pair of Integer and Node representing the plan
      */
     public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
     	
@@ -399,24 +421,15 @@ public class LivraisonManager {
 		
 		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr ï¿½ supprimer 
 		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
-		
 		for(Livraison liv: livraisons) {
-			
 			String heurePassage = liv.getHeureLivraison();
-			
 			if(CalculesHoraires.firstBeforeSecond( tempsAvantString, heurePassage) ) {
-				
 				String heure = CalculesHoraires.sommeHeures(heurePassage, decalageString) ;
-				
 				liv.setHeureLivraison(heure);	
 			}			
 		}			
-		
-		
 		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
-		
 		adresseLivraison.setIsLivraison(false);
-    
     	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
     } 
     
