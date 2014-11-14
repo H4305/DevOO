@@ -23,13 +23,13 @@ import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.Noeud;
 import model.data.Troncon;
-import model.manager.LivraisonManagerTest;
 import model.manager.PlanManager;
 import util.Useful;
 import vue.widget.MainPanel;
 import vue.widget.PlanPanel;
 import vue.widget.PlanPanel.PointClickedListener;
 import controller.Controller;
+import devoo.LivraisonManagerTest;
 
 /**
  *	Gestionnaire de vue qui g�re les actions d�clench�e par les diff�rente vues

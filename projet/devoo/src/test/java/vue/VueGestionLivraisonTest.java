@@ -10,12 +10,12 @@ import java.util.Set;
 import model.data.Livraison;
 import model.data.Noeud;
 import model.data.Troncon;
-import model.manager.LivraisonManagerTest;
 import model.manager.PlanManager;
 
 import org.junit.Test;
 
 import controller.Controller;
+import devoo.LivraisonManagerTest;
 import vue.VueGestionLivraison;
 
 public class VueGestionLivraisonTest {

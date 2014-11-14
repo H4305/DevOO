@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import devoo.LivraisonManagerTest;
 import model.data.Chemin;
 import model.data.Itineraire;
 import model.data.Livraison;
@@ -14,7 +15,6 @@ import model.data.Noeud;
  * model import
  */
 import model.data.Livraison;
-import model.manager.LivraisonManagerTest;
 import model.manager.PlanManager;
 import model.data.PlageHoraire;
 import model.data.Noeud;

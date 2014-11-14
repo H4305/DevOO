@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import vue.VueGestionLivraison;
 import controller.Controller;
-import model.manager.LivraisonManagerTest;
+import devoo.LivraisonManagerTest;
 import model.manager.PlanManager;
 
 
