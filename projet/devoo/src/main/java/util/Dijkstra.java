@@ -14,17 +14,15 @@ public class Dijkstra {
         source.setMinTemps(0.);
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
       	vertexQueue.add(source);
-
 		while (!vertexQueue.isEmpty()) {
 		    Vertex u = vertexQueue.poll();
 		    //System.out.println("Je suis dans computePaths et le vertex u a " + u.getAdjacencies().size() + " troncons");
-		    
-	        for (Troncon t : u.getAdjacencies())
+		    for (Troncon t : u.getAdjacencies())
 	        {
-	            Vertex v = t.getTarget();
+	        	
+	        	Vertex v = t.getTarget();
 	            float temps = t.getDuree();
 	            float tempsThroughU = (float)(u.getMinTemps() + temps);
-	            
 	            if (tempsThroughU < v.getMinTemps()) {
 				    vertexQueue.remove(v);
 				    v.setMinTemps(tempsThroughU);

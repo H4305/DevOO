@@ -95,13 +95,15 @@ public class PlanManager {
      * @return Chemin 
      */
     public Chemin calculerPlusCourtChemin(Noeud source, Noeud cible) {
-        
+    	
     	Vertex vSource = null;
     	Vertex vCible = null;
     	float tempsParcours = 0;
-
+    	
 		for(Vertex v: this.listVertexs) {
-    		if(v.getPoint().equals(source)) {
+			v.setPrecedent(null);
+			v.setMinTemps(Double.POSITIVE_INFINITY);
+			if(v.getPoint().equals(source)) {
     			vSource = v;
     			//System.out.println("La source :" + v.getPoint().toString());
     		}
@@ -114,20 +116,23 @@ public class PlanManager {
     	
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
-    	//System.out.println(vSource);
     	Dijkstra.computePaths(vSource);
+    	
     	//System.out.println("Apres computePaths : ");
     	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
-    	//System.out.println("Apres Dijkstra : ");    	
+    	
+    	System.out.println("MERDE");
+    	for(Vertex v : vertexCourtChemin)
+    		System.out.println(v.getPoint().getId());
+    	
+    	//System.out.println("Apres Dijkstra : ");
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
     		//System.out.println(v.getPoint().toString());
     		pointsDuCourtChemin.add(v.getPoint());     		
     	}    	
-    	
         Chemin chemin = new Chemin(cible, source);  
-        //TODO faire set dureeTrajet tempsParcours
-    	
+        
         for(int i = 0; i < pointsDuCourtChemin.size()-1; i++)   //on parcourt la liste des points du plus court chemin
         {
         	for(Troncon t : pointsDuCourtChemin.get(i).getTronconsSortants())  //on parcourt la liste de troncons sortants des points du plus court chemin
@@ -142,7 +147,7 @@ public class PlanManager {
         } 
         
         chemin.setTempsParcours(tempsParcours);
-    		
+
         return chemin;
     }
 
@@ -152,8 +157,6 @@ public class PlanManager {
      * @return une liste des chemins à suivre pour la livraison
      */
     public List<Chemin> getChemins(List<Set<Noeud>> plages) {
-    	System.out.println("MERDE!");
-        System.out.println(plages);
     	List<Chemin> chemins = new ArrayList<Chemin>();
     	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
@@ -176,7 +179,10 @@ public class PlanManager {
     		}
     		plagePrecedente = plage;
     	}
-    	
+    	System.out.println("MERDE!");
+    	for(Chemin c : chemins) {
+    		System.out.println(c);
+    	}
     	CheminGraph graph = new CheminGraph(chemins);
     	
     	TSP tsp = new TSP(graph);

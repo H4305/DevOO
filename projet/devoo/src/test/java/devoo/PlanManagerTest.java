@@ -64,6 +64,8 @@ public class PlanManagerTest {
 		t6.setTarget(vf);
 		Troncon t7 = new Troncon("rue 7", 10, 50, c, f);
 		t7.setTarget(vf);
+		Troncon t8 = new Troncon("rue 8", 10, 30, f, d);
+		t8.setTarget(vd);
 		
 		a.addTronconSortant(t1);
 		a.addTronconSortant(t2);
@@ -72,6 +74,7 @@ public class PlanManagerTest {
 		c.addTronconSortant(t7);
 		d.addTronconSortant(t4);
 		e.addTronconSortant(t6);
+		f.addTronconSortant(t8);
 		
 		va.addTronconSortant(t1);
 		va.addTronconSortant(t2);
@@ -80,8 +83,9 @@ public class PlanManagerTest {
 		vc.addTronconSortant(t7);
 		vd.addTronconSortant(t4);
 		ve.addTronconSortant(t6);
+		vf.addTronconSortant(t8);
 
-		System.out.println(planManager.calculerPlusCourtChemin(a, f).toString());
+		System.out.println(planManager.calculerPlusCourtChemin(f, a).toString());
 		
 	}
 	
@@ -109,6 +113,65 @@ public class PlanManagerTest {
 	public void testgetChemins() {
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
+		
+		/*Noeud a = new Noeud(1, 5, 2);
+		Noeud b = new Noeud(2, 5, 7);
+		Noeud c = new Noeud(3, 4, 2);
+		Noeud d = new Noeud(4, 1, 2);
+		Noeud e = new Noeud(5, 9, 7);
+		Noeud f = new Noeud(6, 3, 1);
+		
+		List<Vertex> argVertexs = new ArrayList<Vertex>();
+		
+		Vertex va = new Vertex (a);
+		argVertexs.add(va);
+		Vertex vb = new Vertex (b);
+		argVertexs.add(vb);
+		Vertex vc = new Vertex (c);
+		argVertexs.add(vc);
+		Vertex vd = new Vertex (d);
+		argVertexs.add(vd);
+		Vertex ve = new Vertex (e);
+		argVertexs.add(ve);
+		Vertex vf = new Vertex (f);
+		argVertexs.add(vf);
+		
+		planManager.setVertexs(argVertexs);
+		
+		Troncon t1 = new Troncon("rue 1", 10, 20, a, c);
+		t1.setTarget(vc);
+		Troncon t2 = new Troncon("rue 2", 10, 20, a, b);
+		t2.setTarget(vb);
+		Troncon t3 = new Troncon("rue 3", 10, 10, a, d);
+		t3.setTarget(vd);
+		Troncon t4 = new Troncon("rue 4", 10, 80, d, c);
+		t4.setTarget(vc);
+		Troncon t5 = new Troncon("rue 5", 10, 10, b, e);
+		t5.setTarget(ve);
+		Troncon t6 = new Troncon("rue 6", 10, 10, e, f);
+		t6.setTarget(vf);
+		Troncon t7 = new Troncon("rue 7", 10, 50, c, f);
+		t7.setTarget(vf);
+		Troncon t8 = new Troncon("rue 7", 10, 30, f, d);
+		t8.setTarget(vd);
+		
+		a.addTronconSortant(t1);
+		a.addTronconSortant(t2);
+		a.addTronconSortant(t3);
+		b.addTronconSortant(t5);
+		c.addTronconSortant(t7);
+		d.addTronconSortant(t4);
+		e.addTronconSortant(t6);
+		f.addTronconSortant(t8);
+		
+		va.addTronconSortant(t1);
+		va.addTronconSortant(t2);
+		va.addTronconSortant(t3);
+		vb.addTronconSortant(t5);
+		vc.addTronconSortant(t7);
+		vd.addTronconSortant(t4);
+		ve.addTronconSortant(t6);
+		vf.addTronconSortant(t8);*/
 		Noeud a = new Noeud(1, 5, 2);
 		Noeud b = new Noeud(2, 5, 7);
 		Noeud c = new Noeud(3, 4, 2);
