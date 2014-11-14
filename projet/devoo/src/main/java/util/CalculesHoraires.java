@@ -22,17 +22,13 @@ public class CalculesHoraires {
     	
     	int heureAHH = Integer.parseInt(heureA.split("\\:")[0]);
     	int heureAMM = Integer.parseInt(heureA.substring(heureA.indexOf(":")+1, heureA.length()));
-    	//System.out.println("heureAMM: " + heureAMM);
     	
     	int heureBHH = Integer.parseInt(heureB.split("\\:")[0]);
     	int heureBMM = Integer.parseInt(heureB.substring(heureB.indexOf(":")+1, heureB.length()));
-    	//System.out.println("heureBMM: " + heureBMM);
     	
     	int minutesTemps = heureAMM + heureBMM;
-    	//System.out.println("Minutes: " + minutesTemps);
     	
     	int heuresAAjouter = (int) (minutesTemps/60);
-    	//System.out.println("Heures à ajouter: " + heuresAAjouter);
     	
     	int resMinutes = minutesTemps - 60*heuresAAjouter;
     	

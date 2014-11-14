@@ -183,7 +183,11 @@ public class LivraisonManager {
     }
        
     
-    
+    /**
+     * 
+     * @param address
+     * @return
+     */
     public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
     		if(livraison.getAdresse().equals(address)) 
