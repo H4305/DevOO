@@ -2,6 +2,8 @@ package util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,12 +21,15 @@ public class XMLVerification {
 	/**
 	 * XSD File to check the plan XML files
 	 */
-	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));
+	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));  
+     
+	//XMLVerification.class.getResourceAsStream("/initialization/Lifepaths.txt");
 	
 	/**
 	 * XSD File to check the livraison XML files
 	 */
 	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
+	
 	
 	/**
 	 * LOGGER to write with level, all the issues we want
@@ -38,11 +43,21 @@ public class XMLVerification {
 	 */
 	public static Boolean checkPlanXML(File file) {
 		
+		
+		
+		
+        InputStream inputStream = XMLVerification.class.getClass().getResourceAsStream("/plan.xsd");
+        StreamSource streamSource = new StreamSource(inputStream);
+
+		
+		
+		
+		
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		Schema schema = null;
 		try {
-			schema = schemaFactory.newSchema(XSD_PLAN);
+			schema = schemaFactory.newSchema(streamSource);
 			Validator validator = schema.newValidator();
 			validator.validate(xmlFile);
 			LOGGER.log(Level.FINE, "The " + xmlFile.getSystemId() + " is valid - XML complies with XSD");
@@ -62,11 +77,14 @@ public class XMLVerification {
 	 */
 	public static Boolean checkLivraisonXML(File file){
 
+        InputStream inputStream = XMLVerification.class.getClass().getResourceAsStream("/livraison.xsd");
+        StreamSource streamSource = new StreamSource(inputStream);
+		
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		Schema schema = null;
 		try {
-			schema = schemaFactory.newSchema(XSD_LIVRAISON);
+			schema = schemaFactory.newSchema(streamSource);
 			Validator validator = schema.newValidator();
 			validator.validate(xmlFile);
 			LOGGER.log(Level.FINE, "The " + xmlFile.getSystemId() + " is valid - XML complies with XSD");
