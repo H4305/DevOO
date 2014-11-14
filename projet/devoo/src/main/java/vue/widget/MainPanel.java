@@ -296,6 +296,9 @@ public class MainPanel extends JPanel {
 		lblInfoMessage.setText(message);
 	}
 	
+	/**
+	 * This method allows to 
+	 */
 	public void disablebtnAjouter() {
 		for(ActionListener listener : btnAjouter.getActionListeners()) {
 			btnAjouter.removeActionListener(listener);
