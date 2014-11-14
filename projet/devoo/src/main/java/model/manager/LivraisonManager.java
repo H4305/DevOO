@@ -151,7 +151,7 @@ public class LivraisonManager {
      * @param plagesHoraire liste ordonnée de plages horaires
      * @param chemins liste ordonnée des chemins
      */
-    private void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
+    public void updateLivraisonsTime(List<PlageHoraire> plagesHoraire, List<Chemin> chemins) {
     	PlageHoraire plageActuelle = null;
     	String horaire = "00:00";
         for(Chemin chemin : chemins) {

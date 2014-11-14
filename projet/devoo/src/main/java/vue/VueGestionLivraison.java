@@ -23,7 +23,7 @@ import model.data.Livraison;
 import model.data.PlageHoraire;
 import model.data.Noeud;
 import model.data.Troncon;
-import model.manager.LivraisonManager;
+import model.manager.LivraisonManagerTest;
 import model.manager.PlanManager;
 import util.Useful;
 import vue.widget.MainPanel;
@@ -39,7 +39,7 @@ import controller.Controller;
 public class VueGestionLivraison {
 	
 	private PlanManager mPlanManager;
-	private LivraisonManager mLivraisonManager;
+	private LivraisonManagerTest mLivraisonManager;
 	private Controller mController;
 	
 	private JFrame mainFrame;
@@ -53,7 +53,7 @@ public class VueGestionLivraison {
     * @param livraisonManager Manager des livraisons dans le mod�le
     * @param controller Controlleur du programme
     */
-    public VueGestionLivraison(PlanManager planManager, LivraisonManager livraisonManager, Controller controller) {
+    public VueGestionLivraison(PlanManager planManager, LivraisonManagerTest livraisonManager, Controller controller) {
     	mPlanManager = planManager;
     	mLivraisonManager = livraisonManager;
     	mController = controller;
