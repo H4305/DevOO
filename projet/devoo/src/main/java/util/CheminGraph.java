@@ -42,7 +42,6 @@ public class CheminGraph implements Graph {
 			noeudsKeys.put(n, key);
 			key++;
 		}
-		System.out.println(noeudsKeys);
 	}
 	
 	/**
@@ -89,7 +88,6 @@ public class CheminGraph implements Graph {
 			for(int r : l) {
 				System.out.print(r + " ");
 			}
-			System.out.println();
 		}
 		return costs;
 	}
@@ -119,11 +117,6 @@ public class CheminGraph implements Graph {
 			r[cpt] = (int) o;
 			cpt++;
 		}
-		for(int l : r) {
-			System.out.print(l + " ");
-		}
-		System.out.println();
-		System.out.println(r.length);
 		return r;
 	}
 
@@ -145,6 +138,10 @@ public class CheminGraph implements Graph {
 			}
 		}
 		return successors;
+	}
+	
+	public Noeud getNoeudFromIndex(int id) {
+		return noeudsMap.get(id);
 	}
 
 	public String toString() {
