@@ -39,23 +39,38 @@ public class RegularGraph implements Graph {
 			succ.add(i,l);
 		}
 	}
-
+	
+	/**
+	 * 
+	 */
 	public int getMaxArcCost() {
 		return maxArcCost;
 	}
 
+	/**
+	 * 
+	 */
 	public int getMinArcCost() {
 		return minArcCost;
 	}
 
+	/**
+	 * 
+	 */
 	public int getNbVertices() {
 		return nbVertices;
 	}
 
+	/**
+	 * 
+	 */
 	public int[][] getCost(){
 		return cost;
 	}
 
+	/**
+	 * 
+	 */
 	public int[] getSucc(int i) throws ArrayIndexOutOfBoundsException{
 		if ((i<0) || (i>=nbVertices))
 			throw new ArrayIndexOutOfBoundsException();
@@ -66,7 +81,9 @@ public class RegularGraph implements Graph {
 		return tab;
 	}
 
-
+	/**
+	 * 
+	 */
 	public int getNbSucc(int i) throws ArrayIndexOutOfBoundsException {
 		if ((i<0) || (i>=nbVertices))
 			throw new ArrayIndexOutOfBoundsException();

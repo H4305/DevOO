@@ -6,7 +6,6 @@ import java.util.Iterator;
 /**
  * This is a HashMap where values are indexed by two keys.
  * 
- * @author Vadim Caen
  *
  * @param <K1> The type of the first key.
  * @param <K2> The type of the second key.
@@ -26,6 +25,7 @@ public class TwoKeyMap<K1, K2, V> {
 	 * @return The object indexed by key1 and key2 or null if there is no object.
 	 */
 	public V get(K1 key1, K2 key2) {
+		
 		if(map1.containsKey(key1)) {
 			HashMap<K2, V> map2 = map1.get(key1);
 			if(map2.containsKey(key2)) {
@@ -42,6 +42,7 @@ public class TwoKeyMap<K1, K2, V> {
 	 * @param value The value to add.
 	 */
 	public void put(K1 key1, K2 key2, V value) {
+		
 		HashMap<K2, V> map2;
 		if(map1.containsKey(key1)) {
 			map2 = map1.get(key1);
@@ -58,10 +59,11 @@ public class TwoKeyMap<K1, K2, V> {
 	
 	/**
 	 * Remove the value a
-	 * @param key1
-	 * @param key2
+	 *@param key1 The first key.
+	 *@param key2 The second key.
 	 */
 	public void remove(K1 key1, K2 key2) {
+		
 		HashMap<K2, V> map2;
 		if(map1.containsKey(key1)) {
 			map2 = map1.get(key1);
@@ -75,40 +77,23 @@ public class TwoKeyMap<K1, K2, V> {
 		}
 	}
 	
+	/**
+	 * 
+	 *@param key1 The first key.
+	 *@param key2 The second key.
+	 *@return
+	 */
 	public boolean containsKeys(K1 key1, K2 key2) {
+		
 		if(!map1.containsKey(key1)) return false;
 		HashMap<K2, V> map2 = map1.get(key1);
 		return map2.containsKey(key2);
 	}
 	
-	public int getSize() { return size; }
-
-//	@Override
-//	public Iterator<V> iterator() {}
-
-//	private class TwoKeyMapIterator implements Iterator<V> {
-//		
-//		T
-//
-//		@Override
-//		public boolean hasNext() {
-//			// TODO Auto-generated method stub
-//			return false;
-//		}
-//
-//		@Override
-//		public V next() {
-//			// TODO Auto-generated method stub
-//			return null;
-//		}
-//
-//		@Override
-//		public void remove() {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//		
-//	}
+	public int getSize() { 
+		
+		return size; 
+	}
 
 	
 

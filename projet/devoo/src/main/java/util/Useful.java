@@ -23,6 +23,12 @@ public class Useful {
 
 	private static JFileChooser jFileChooserXML;
 	
+	/**
+	 * Method that allows to open a XML file
+	 *
+	 * @param mode (read or write)
+	 * @return File 
+	 */
 	public static File ouvrirFichier(char mode){
         jFileChooserXML = new JFileChooser();
         // Note: source for ExampleFileFilter can be found in FileChooserDemo,
@@ -42,6 +48,11 @@ public class Useful {
         return null;
 	}
 	
+	/**
+	 * This method allows reading a file XML that contains plan of the city
+	 * 
+	 * @return a set of troncons that represents the streets of the plan
+	 */
 	public static Set<Troncon> lirePlanDepuisFichierXML(){
 		File xml = ouvrirFichier('o');
 		if (xml != null) {
@@ -55,6 +66,11 @@ public class Useful {
 		return null;
 	}
 	
+	/**
+	 * This method allows reading a file XML that contains delivery requests
+	 * 
+	 * @return DemandeLivraison that corresponds to a list of delivery requests 
+	 */
 	public static DemandeLivraisons lireLivraisonDepuisFichierXML(){
 		File xml = ouvrirFichier('o');
 		if (xml != null) {
@@ -68,6 +84,9 @@ public class Useful {
 		return null;
 	}
 	
+	/**
+	 * This method allows reading a file XML that contains delivery requests
+	 */
 	public static void lireDepuisFichierXML(){
         File xml = ouvrirFichier('o');
         if (xml != null) {
@@ -112,6 +131,13 @@ public class Useful {
             }
         }  
 	}
+	
+	/**
+	 * Main
+	 * @param args
+	 * @throws IOException
+	 * @throws SAXException
+	 */
 	public static void main(String[] args) throws IOException, SAXException {
 		lireDepuisFichierXML();
 	}		

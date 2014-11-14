@@ -11,7 +11,9 @@ public class AppColors {
 	public static final Color clickedPoint = new Color(0xe67e22);
 	public static final Color entrepot = new Color(0xFFA330);
 
-	
+	/**
+	 * The colors for the plageHoraire
+	 */
 	public static final Color[] plageHoraire = {
 		new Color(0x16C085),
 		new Color(0xf1c40f),
@@ -20,7 +22,9 @@ public class AppColors {
 		new Color(0xd35400)
 	};
 	
-	
+	/**
+	 * The colors for the Itineraire
+	 */
 	public static final Color[] itineraire = { 
 		new Color(0xFF5559),
 		new Color(0x4EEBE5),
