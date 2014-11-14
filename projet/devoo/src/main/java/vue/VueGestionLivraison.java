@@ -1,11 +1,9 @@
  package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -15,14 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import org.omg.PortableServer.ID_ASSIGNMENT_POLICY_ID;
-
-import ch.qos.logback.core.joran.conditional.ThenAction;
 import model.data.DemandeLivraisons;
 import model.data.Livraison;
-import model.data.PlageHoraire;
 import model.data.Noeud;
-import model.data.Troncon;
+import model.data.PlageHoraire;
 import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import util.Useful;
@@ -73,7 +67,8 @@ public class VueGestionLivraison {
      */
 	public void afficherDemandeLivraisons() {
 		mainPanel.getVueLivraison().resetInfoLivraison();
-		mainPanel.setCalculItineraire(true);
+		mainPanel.setCalculItineraireEnabled(true);
+		mainPanel.getBtnExporter().setEnabled(true);
 		vuePlan.setDemandeLivraisons(mLivraisonManager.getDemandeLivraisons());
 		vuePlan.afficherDemandeLivraison();
 	}
@@ -98,7 +93,6 @@ public class VueGestionLivraison {
     public void afficherItineraire() {
     //    mLivraisonManager.getItineraire().getChemins();
         vuePlan.setItineraire(mLivraisonManager.getItineraire());
-        
         vuePlan.afficherItineraire();
     }
     
@@ -208,7 +202,7 @@ public class VueGestionLivraison {
     public void afficherDialogConfirmationSuppressionLivraison(Noeud p) {
     	JFrame frame = new JFrame("Supprimer une livraison");
     	JOptionPane removeLivraisonPanel = new JOptionPane();
-	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison ï¿½ l'adresse: " + p.toString() + "?", 
+	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison à l'adresse: " + p.toString() + "?", 
 	    		"Suppression", 
 	    		JOptionPane.YES_NO_OPTION, 
 	    		JOptionPane.QUESTION_MESSAGE,
@@ -216,8 +210,7 @@ public class VueGestionLivraison {
 	    		null, 
 	    		removeLivraisonPanel);
     	if(n==JOptionPane.YES_OPTION) {
-    		//this.removeLivraison(l);		
-    		//on supprime la livraison
+    		mLivraisonManager.supprimerLivraison(p);
     	}
     }
 

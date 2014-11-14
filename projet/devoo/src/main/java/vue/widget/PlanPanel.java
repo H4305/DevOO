@@ -159,7 +159,7 @@ public class PlanPanel extends JPanel {
 	 */
 	public void afficherItineraire() {
 		if(mItineraire == null) {
-			LOGGER.log(Level.WARNING, "Aucun itineraire n'a ï¿½tï¿½ ajoutï¿½ ï¿½ ce plan. "
+			LOGGER.log(Level.WARNING, "Aucun itineraire n'a été ajouté à ce plan. "
 					+ "Utilsez addItineraire pour en ajouter un.");
 			return;
 		}

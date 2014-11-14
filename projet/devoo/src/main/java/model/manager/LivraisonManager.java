@@ -270,7 +270,14 @@ public class LivraisonManager {
     	
     	Chemin plusCourCheminNouvelleSucc = mPlanManager.calculerPlusCourtChemin(adresseNouvelleLivraison, adresseLivraisonSuccessive);
     	
-    	String heureLivraisonPrevue = CalculesHoraires.sommeHeures( CalculesHoraires.sommeHeures(livraisonPrecedente.getHeureLivraison(), "00:10"), CalculesHoraires.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
+    	String heureLivraisonPrecedente = livraisonPrecedente.getHeureLivraison();
+    	if(heureLivraisonPrecedente.contains("pas")) { heureLivraisonPrecedente = "00:00";}
+    	String heureLivraisonPrevue = 
+    			CalculesHoraires.sommeHeures(
+    					CalculesHoraires.sommeHeures(
+    							heureLivraisonPrecedente, 
+    							"00:10"), 
+						CalculesHoraires.transformeEnHeureMin(plusCourtCheminPrecNouvelle.getTempsParcours()) ); 
     	
     	if(CalculesHoraires.firstBeforeSecond( heureLivraisonPrevue, plageHoraireLivPrecedente.getDateFin()) ) {
     		/*La livraison Prevue rentre dans la plage horaire -> ajout demandeLivraison,
@@ -287,7 +294,9 @@ public class LivraisonManager {
     		for(Livraison liv: livraisons) {
     			
     			String heurePassage = liv.getHeureLivraison();
-    			
+    			if(heurePassage.contains("pas")) {
+    				heurePassage = "00:00";
+    			}
     			if(CalculesHoraires.firstBeforeSecond( heureLivraisonPrevue, heurePassage) ) {
     				
     				String heure = CalculesHoraires.sommeHeures(heurePassage, decalage) ;
@@ -302,6 +311,8 @@ public class LivraisonManager {
     	}
     	
     	plageHoraireLivPrecedente.getLivraisons().add(nouvelleLivraison);
+    	mController.afficherDemandeLivraisons();
+    	mController.afficherItineraire();
     	
     }
 
@@ -437,8 +448,12 @@ public class LivraisonManager {
 		
 		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr � supprimer 
 		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
+		
 		for(Livraison liv: livraisons) {
 			String heurePassage = liv.getHeureLivraison();
+			if(heurePassage.contains("pas")) {
+				heurePassage = "00:00";
+			}
 			if(CalculesHoraires.firstBeforeSecond( tempsAvantString, heurePassage) ) {
 				String heure = CalculesHoraires.sommeHeures(heurePassage, decalageString) ;
 				liv.setHeureLivraison(heure);	
@@ -446,6 +461,8 @@ public class LivraisonManager {
 		}			
 		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
 		adresseLivraison.setIsLivraison(false);
+		mController.afficherDemandeLivraisons();
+		mController.afficherItineraire();
     	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
     } 
     

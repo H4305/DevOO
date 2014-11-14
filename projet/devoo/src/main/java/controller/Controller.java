@@ -164,12 +164,6 @@ public class Controller {
 		mLivraisonManager.calculItineraire();
 	}
 
-	/**
-	 * @param circuit
-	 */
-	public void afficherItineraire(Set<Troncon> circuit) {
-		// TODO implement here
-	}
 
 	public PlanManager getPlanManager()
 	{

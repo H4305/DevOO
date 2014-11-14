@@ -3,32 +3,865 @@
 
 Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le 14/11/14.
 
-Aujourd'hui vous avez à délivrer 3 clients.
+Aujourd'hui vous avez ï¿½ dï¿½livrer 61 clients.
 
 Suivez les instructions suivantes: 
 
 
-Départ du dépot : rue v0". Continuer 300.2 metrès tout droit. 
-Prendre la rue "v0". Continuer 408.7 metrès tout droit. 
+Dï¿½part du dï¿½pot : rue v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 240.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h7". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 279.8 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 354.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 221.8 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 139.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v4". Continuer 501.1 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
 
-Arrivée au point de livraison numéro 1!
+Arrivï¿½e au point de livraison numï¿½ro 1!
 Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
 
-Prendre la rue "v0". Continuer 291.2 metrès tout droit. 
-Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : 13.679999828338623km/h !
-Prendre la rue "v0". Continuer 338.3 metrès tout droit. 
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 425.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 409.9 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 152.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 442.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
 
-Arrivée au point de livraison numéro 2!
+Arrivï¿½e au point de livraison numï¿½ro 2!
 Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
 
-Prendre la rue "v0". Continuer 338.3 metrès tout droit. 
-Prendre la rue "v0". Continuer 291.2 metrès tout droit. 
-Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : 13.679999828338623km/h !
-Prendre la rue "v0". Continuer 408.7 metrès tout droit. 
-Prendre la rue "v0". Continuer 300.2 metrès tout droit. 
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 240.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v1". Continuer 324.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 222.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 489.0 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 296.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 264.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
 
-Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! 
-Bonne fin journée !
+Arrivï¿½e au point de livraison numï¿½ro 3!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 400.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 104.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 504.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+
+Arrivï¿½e au point de livraison numï¿½ro 4!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 400.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 104.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 504.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 5!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 281.8 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 368.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h11". Continuer 171.0 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 6!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 7!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 8!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 442.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 152.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 409.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 425.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 9!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v2". Continuer 425.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 301.2 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v3". Continuer 255.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 393.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 10!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 400.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 104.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 504.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 11!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "h9". Continuer 288.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 12!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 13!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "h16". Continuer 341.7 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 355.2 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 138.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 14!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "h16". Continuer 341.7 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 355.2 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 138.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 15!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 240.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v1". Continuer 324.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 222.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 489.0 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 296.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 264.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 16!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 281.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 17!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 281.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 18!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 19!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 20!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 21!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "h9". Continuer 288.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 22!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "h9". Continuer 288.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 23!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h14". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v3". Continuer 255.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 393.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 24!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 419.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 279.8 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 484.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 25!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 26!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 27!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 28!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 29!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 30!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 240.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h7". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 279.8 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 354.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 221.8 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 139.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v4". Continuer 501.1 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 31!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h2". Continuer 494.7 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 364.3 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 291.2 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 338.3 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 425.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 409.9 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 152.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 442.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 32!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 33!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 289.9 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 301.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 442.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 419.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 279.8 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 240.0 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 34!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "h16". Continuer 341.7 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 355.2 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 138.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 35!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 501.1 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 139.7 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 221.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 36!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 501.1 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 139.7 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 221.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 37!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h14". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v3". Continuer 255.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 393.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 38!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 39!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 40!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 41!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 42!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 43!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 425.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 409.9 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 152.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 442.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 44!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 45!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 281.8 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 368.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h11". Continuer 171.0 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 46!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "h17". Continuer 184.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "h17". Continuer 506.2 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 47!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 255.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 329.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 311.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 182.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 442.5 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 152.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 409.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 425.8 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 137.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 469.5 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 48!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 172.3 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 501.1 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 139.7 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 221.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 49!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "h16". Continuer 341.7 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 355.2 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 138.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 50!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v2". Continuer 425.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 301.2 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v3". Continuer 255.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 393.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 51!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h17". Continuer 430.8 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 243.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v2". Continuer 425.1 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 301.2 metrï¿½s tout droit. 
+Prendre la rue "h14". Continuer 144.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v3". Continuer 255.2 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 393.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 52!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 211.3 metrï¿½s tout droit. 
+Prendre la rue "h4". Continuer 343.6 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 240.6 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 400.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 104.0 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 504.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 394.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 284.0 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 204.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+
+Arrivï¿½e au point de livraison numï¿½ro 53!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v1". Continuer 399.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 366.3 metrï¿½s tout droit. 
+Prendre la rue "h12". Continuer 288.4 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 211.2 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 418.7 metrï¿½s tout droit. 
+Prendre la rue "v2". Continuer 204.4 metrï¿½s tout droit. 
+Prendre la rue "h9". Continuer 288.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 54!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 212.5 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 55!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 56!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 150.9 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 504.5 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 104.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v1". Continuer 429.6 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v1". Continuer 288.1 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 324.8 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 222.4 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 489.0 metrï¿½s tout droit. 
+Prendre la rue "v1". Continuer 296.4 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 171.0 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 370.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 272.1 metrï¿½s tout droit. 
+Prendre la rue "v0". Continuer 288.1 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 57!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v4". Continuer 508.4 metrï¿½s tout droit. 
+Prendre la rue "h16". Continuer 541.4 metrï¿½s tout droit. 
+Prendre la rue "h16". Continuer 221.8 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+
+Arrivï¿½e au point de livraison numï¿½ro 58!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h16". Continuer 259.1 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v7". Continuer 282.8 metrï¿½s tout droit. 
+Prendre la rue "v7". Continuer 448.0 metrï¿½s tout droit. 
+Prendre la rue "v7". Continuer 181.3 metrï¿½s tout droit. 
+Prendre la rue "v7". Continuer 248.1 metrï¿½s tout droit. 
+Prendre la rue "v7". Continuer 309.1 metrï¿½s tout droit. 
+Prendre la rue "h11". Continuer 313.7 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 14.040000343322754km/h !
+Prendre la rue "v6". Continuer 384.3 metrï¿½s tout droit. 
+Prendre la rue "h10". Continuer 280.9 metrï¿½s tout droit. 
+Prendre la rue "v5". Continuer 304.1 metrï¿½s tout droit. 
+Prendre la rue "v5". Continuer 348.5 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 235.2 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 59!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "h2". Continuer 292.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 264.1 metrï¿½s tout droit. 
+Prendre la rue "h3". Continuer 169.5 metrï¿½s tout droit. 
+Prendre la rue "v4". Continuer 160.0 metrï¿½s tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisï¿½e est de : 13.679999828338623km/h !
+Prendre la rue "v4". Continuer 347.3 metrï¿½s tout droit. 
+Prendre la rue "h5". Continuer 229.0 metrï¿½s tout droit. 
+Prendre la rue "v5". Continuer 243.7 metrï¿½s tout droit. 
+Prendre la rue "v5". Continuer 369.3 metrï¿½s tout droit. 
+Prendre la rue "h7". Continuer 369.3 metrï¿½s tout droit. 
+
+Arrivï¿½e au point de livraison numï¿½ro 60!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v6". Continuer 264.4 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 360.0 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 235.2 metrï¿½s tout droit. 
+Prendre la rue "h8". Continuer 410.5 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 241.1 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 203.9 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 402.3 metrï¿½s tout droit. 
+Prendre la rue "v3". Continuer 312.0 metrï¿½s tout droit. 
+
+Arrivï¿½e au dï¿½pot. Vous avez fini les livraisons pour aujourd'hui! 
+Bonne fin journï¿½e !
 
 
--------------------------------*****L'équipe LIVRAMAP*****-------------------------------
+-------------------------------*****L'ï¿½quipe LIVRAMAP*****-------------------------------

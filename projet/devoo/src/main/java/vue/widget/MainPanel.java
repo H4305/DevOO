@@ -327,7 +327,7 @@ public class MainPanel extends JPanel {
 	 * This method allows to set the Calcul Itineraire
 	 * @param b : The boolean
 	 */
-	public void setCalculItineraire(boolean b) {
+	public void setCalculItineraireEnabled(boolean b) {
 		btnCalculerTournee.setEnabled(b);
 	}
 	
