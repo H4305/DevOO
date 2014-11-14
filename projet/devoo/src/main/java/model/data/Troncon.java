@@ -33,7 +33,7 @@ public class Troncon {
     public Troncon() {
     }
     /**
-     * Classes constructor specifying its attributes 
+     * Classe constructor specifying its attributes 
      * 
      * @param nomRue is the name of the street.
      * @param vitesse is the velocity  
@@ -47,7 +47,7 @@ public class Troncon {
     	this.depart = pointDepart;
     }
     /**
-     * Classes constructor specifying its attributes 
+     * Classe constructor specifying its attributes 
      * 
      * @param nomRue is the name of the street.
      * @param vitesse is the velocity  
