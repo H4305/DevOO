@@ -17,6 +17,7 @@ import util.TSP;
 import util.Vertex;
 import util.XMLLoader;
 import model.data.Chemin;
+import model.data.Livraison;
 import model.data.Noeud;
 import model.data.Troncon;
 import model.exceptions.PlanXMLException;
@@ -275,4 +276,5 @@ public class PlanManager {
 	public void setVertexs(List<Vertex> argVertexs) {
 		this.listVertexs = argVertexs;
 	}
+	
 }

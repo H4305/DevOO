@@ -1,4 +1,4 @@
-package devoo;
+package vue;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.data.Livraison;
 import model.data.Noeud;
 import model.data.Troncon;
 import model.manager.LivraisonManager;
@@ -73,7 +74,17 @@ public class VueGestionLivraisonTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+
+	@Test
+	public void testAfficherLivraisonImpossible() throws Exception {
+		VueGestionLivraison vueGestionLivraison = new VueGestionLivraison(null, null, null);
+		//vueGestionLivraison.afficherFenetrePrincipale();
+		vueGestionLivraison.afficherLivraisonImpossible(Arrays.asList(new Livraison(1, 1, null),
+				new Livraison(1, 1, null),
+				new Livraison(1, 1, null),
+				new Livraison(1, 1, null),
+				new Livraison(1, 1, null)));
 	}
 
 }
