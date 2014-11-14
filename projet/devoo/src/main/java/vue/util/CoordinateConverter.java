@@ -21,5 +21,11 @@ public interface CoordinateConverter {
 		}
 	};
 
+	/**
+	 * This method allows to convert coordinate to an object Point
+	 * @param x : The x of the coordinate
+	 * @param y : The y of the coordinate
+	 * @return The Point
+	 */
 	public Point convert(int x, int y);
 }

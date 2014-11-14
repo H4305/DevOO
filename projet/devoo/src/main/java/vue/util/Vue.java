@@ -23,14 +23,26 @@ public abstract class  Vue {
 	 */
 	public abstract void draw(Graphics g, CoordinateConverter converter);
 	
+	/**
+	 * Method for the mouse down 
+	 * @param event MouseEvent
+	 */
 	public void mouseDown(MouseEvent event) {
 		statut = Statut.CLICKED;
 	}
 	
+	/**
+	 * Method for the mouse up 
+	 * @param event MouseEvent
+	 */
 	public void mouseUp(MouseEvent event) {
 		statut = Statut.NONE;
 	}
 	
+	/**
+	 * This method allows to get the status of the View
+	 * @return The Status
+	 */
 	public Statut getStatut() {
 		return statut;
 	}

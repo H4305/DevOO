@@ -9,10 +9,28 @@ import java.awt.geom.AffineTransform;
 public class ComplexDrawing {
 	private static final int ARR_SIZE = 5;
 	
+	/**
+	 * This method allows to draw an arrow
+	 * @param g1 : The Graphics object
+	 * @param x1 : The first coordinate (start) - x 
+	 * @param y1 : The first coordinate (start) - y 
+	 * @param x2 : The second coordinate (end) - x
+	 * @param y2 : The second coordinate (end) - y
+	 */
 	public static void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {
 		drawArrow(g1, x1, y1, x2, y2, -1, g1.getColor());
 	}
 
+	/**
+	 * This method allows to draw an arrow
+	 * @param g1 : The Graphics object
+	 * @param x1 : The first coordinate (start) - x 
+	 * @param y1 : The first coordinate (start) - y 
+	 * @param x2 : The second coordinate (end) - x
+	 * @param y2 : The second coordinate (end) - y
+	 * @param strokeWidth
+	 * @param color : The color of the Arrow
+	 */
     public static void drawArrow(Graphics g1, int x1, int y1, int x2, int y2, int strokeWidth, Color color) {
         Graphics2D g = (Graphics2D) g1.create();
         

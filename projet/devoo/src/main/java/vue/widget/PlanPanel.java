@@ -55,6 +55,10 @@ public class PlanPanel extends JPanel {
 
 	boolean displayItineraire = false;
 
+	/**
+	 * Constructor 
+	 * @param troncons : The collection of the troncon
+	 */
 	public PlanPanel(Collection<Troncon> troncons) {
 		mTronconsPlan = troncons;
 
@@ -67,6 +71,10 @@ public class PlanPanel extends JPanel {
 		setPlan(new HashSet<Troncon>(troncons));
 	}
 	
+	/**
+	 * This method allows to set the Plan with a set of troncons 
+	 * @param troncons : The set of Troncons
+	 */
 	public void setPlan(Set<Troncon> troncons) {
 		mTronconsPlan = troncons;
 		vuesPoints.clear();
@@ -98,11 +106,19 @@ public class PlanPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * This method allows to set the Itineraire
+	 * @param itineraire : The itineraire we want to set
+	 */
 	public void setItineraire(Itineraire itineraire) {
 		if (itineraire == null) return;
 		mItineraire = new VueItineraire(itineraire);
 	}
 	
+	/**
+	 * This methods allwos to set the demande of the Livraisons
+	 * @param demandeLivraisons : The demandeLivraison object
+	 */
 	public void setDemandeLivraisons(DemandeLivraisons demandeLivraisons) {
 		
 		for (VuePoint vuePoint : vuesPoints) {
@@ -129,11 +145,18 @@ public class PlanPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * This method allows to set the point clicked listenr
+	 * @param pointClickedListener
+	 */
 	public void setPointClickedListener(
 			PointClickedListener pointClickedListener) {
 		this.pointClickedListener = pointClickedListener;
 	}
-
+	
+	/**
+	 * This method allows to display the Itineraire
+	 */
 	public void afficherItineraire() {
 		if(mItineraire == null) {
 			LOGGER.log(Level.WARNING, "Aucun itineraire n'a �t� ajout� � ce plan. "
@@ -144,10 +167,16 @@ public class PlanPanel extends JPanel {
 		repaint();
 	}
 	
+	/**
+	 * This method allows to display the asking Livraison
+	 */
 	public void afficherDemandeLivraison() {
 		repaint();
 	}
 	
+	/**
+	 * This method allows to hide the Itineraire
+	 */
 	public void masquerItineraire() {
 		displayItineraire = false;
 		repaint();
@@ -164,6 +193,10 @@ public class PlanPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * This method allows to draw a Plan
+	 * @param g : The Graphics object
+	 */
 	private void drawPlan(Graphics g) {
 		// Affiche le plan
 		for (VueTroncon troncon : vuesTroncon) {
@@ -173,15 +206,25 @@ public class PlanPanel extends JPanel {
 			point.draw(g, new Converter());
 		}
 	}
-	
+	/**
+	 * This method allows to know if the panel has a plan
+	 * @return The boolean
+	 */
 	public boolean hasPlan() {
 		return !mTronconsPlan.isEmpty();
 	}
 	
+	/**
+	 * The method allows to know if the panel has an Itineraire
+	 * @return The boolean
+	 */
 	public boolean hasItienraire() {
 		return displayItineraire;
 	}
 	
+	/**
+	 * Internal class
+	 */
 	private class Converter implements CoordinateConverter {
 
 		@Override
@@ -197,10 +240,16 @@ public class PlanPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Interface
+	 */
 	public interface PointClickedListener {
 		public void pointClicked(Noeud point);
 	}
 	
+	/**
+	 * Internal class
+	 */
 	private class MouseActionListener implements MouseListener {
 		
 		boolean selectedPoint = false;

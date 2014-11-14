@@ -191,11 +191,14 @@ public class ExampleFileFilter extends FileFilter {
      * Note that the "." before the extension is not needed and will be ignored.
      */
     public void addExtension(String extension) {
+    	
 	if(filters == null) {
 	    filters = new Hashtable(5);
 	}
+	
 	filters.put(extension.toLowerCase(), this);
 	fullDescription = null;
+	
     }
 
 

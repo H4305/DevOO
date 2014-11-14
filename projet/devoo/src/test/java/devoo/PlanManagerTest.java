@@ -22,6 +22,9 @@ import controller.Controller;
 
 public class PlanManagerTest {
 
+	/**
+	 * Test the calculation of the shortest path between 2 points
+	 */
 	@Test
 	public void testCalculerPlusCourtChemin() {
 		Controller controller = new Controller();
@@ -64,6 +67,8 @@ public class PlanManagerTest {
 		t6.setTarget(vf);
 		Troncon t7 = new Troncon("rue 7", 10, 50, c, f);
 		t7.setTarget(vf);
+		Troncon t8 = new Troncon("rue 8", 10, 30, f, d);
+		t8.setTarget(vd);
 		
 		a.addTronconSortant(t1);
 		a.addTronconSortant(t2);
@@ -72,6 +77,7 @@ public class PlanManagerTest {
 		c.addTronconSortant(t7);
 		d.addTronconSortant(t4);
 		e.addTronconSortant(t6);
+		f.addTronconSortant(t8);
 		
 		va.addTronconSortant(t1);
 		va.addTronconSortant(t2);
@@ -80,8 +86,9 @@ public class PlanManagerTest {
 		vc.addTronconSortant(t7);
 		vd.addTronconSortant(t4);
 		ve.addTronconSortant(t6);
+		vf.addTronconSortant(t8);
 
-		System.out.println(planManager.calculerPlusCourtChemin(a, f).toString());
+		System.out.println(planManager.calculerPlusCourtChemin(f, a).toString());
 		
 	}
 	
@@ -96,24 +103,82 @@ public class PlanManagerTest {
 		controller.loadPlanXML();		
 		
 		List<Vertex> v = planManager.getVertexes();		
-		Noeud a = v.get(15).getPoint();
-		Noeud b = v.get(2).getPoint();
-		
-		System.out.println("Premier point :" + a.toString() + ". Il a " + a.getTronconsSortants().size());
-		System.out.println("Deuxieme point :" + b.toString() + ". Il a " + b.getTronconsSortants().size());
+		Noeud a = v.get(0).getPoint();
+		Noeud b = v.get(30).getPoint();
+				
 		chemin = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
 		System.out.println("Le plus court chemin est" + chemin.toString());
 	}
 	
 	@Test
 	public void testgetChemins() {
+		
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
-		Noeud a = new Noeud(1, 5, 2);
+		
+		/*Noeud a = new Noeud(1, 5, 2);
 		Noeud b = new Noeud(2, 5, 7);
 		Noeud c = new Noeud(3, 4, 2);
 		Noeud d = new Noeud(4, 1, 2);
 		Noeud e = new Noeud(5, 9, 7);
+		Noeud f = new Noeud(6, 3, 1);
+		
+		List<Vertex> argVertexs = new ArrayList<Vertex>();
+		
+		Vertex va = new Vertex (a);
+		argVertexs.add(va);
+		Vertex vb = new Vertex (b);
+		argVertexs.add(vb);
+		Vertex vc = new Vertex (c);
+		argVertexs.add(vc);
+		Vertex vd = new Vertex (d);
+		argVertexs.add(vd);
+		Vertex ve = new Vertex (e);
+		argVertexs.add(ve);
+		Vertex vf = new Vertex (f);
+		argVertexs.add(vf);
+		
+		planManager.setVertexs(argVertexs);
+		
+		Troncon t1 = new Troncon("rue 1", 10, 20, a, c);
+		t1.setTarget(vc);
+		Troncon t2 = new Troncon("rue 2", 10, 20, a, b);
+		t2.setTarget(vb);
+		Troncon t3 = new Troncon("rue 3", 10, 10, a, d);
+		t3.setTarget(vd);
+		Troncon t4 = new Troncon("rue 4", 10, 80, d, c);
+		t4.setTarget(vc);
+		Troncon t5 = new Troncon("rue 5", 10, 10, b, e);
+		t5.setTarget(ve);
+		Troncon t6 = new Troncon("rue 6", 10, 10, e, f);
+		t6.setTarget(vf);
+		Troncon t7 = new Troncon("rue 7", 10, 50, c, f);
+		t7.setTarget(vf);
+		Troncon t8 = new Troncon("rue 7", 10, 30, f, d);
+		t8.setTarget(vd);
+		
+		a.addTronconSortant(t1);
+		a.addTronconSortant(t2);
+		a.addTronconSortant(t3);
+		b.addTronconSortant(t5);
+		c.addTronconSortant(t7);
+		d.addTronconSortant(t4);
+		e.addTronconSortant(t6);
+		f.addTronconSortant(t8);
+		
+		va.addTronconSortant(t1);
+		va.addTronconSortant(t2);
+		va.addTronconSortant(t3);
+		vb.addTronconSortant(t5);
+		vc.addTronconSortant(t7);
+		vd.addTronconSortant(t4);
+		ve.addTronconSortant(t6);
+		vf.addTronconSortant(t8);*/
+		Noeud a = new Noeud(0, 5, 2);
+		Noeud b = new Noeud(1, 5, 7);
+		Noeud c = new Noeud(2, 4, 2);
+		Noeud d = new Noeud(3, 1, 2);
+		Noeud e = new Noeud(4, 9, 7);
 
 		List<Vertex> argVertexs = new ArrayList<Vertex>();
 		
@@ -131,21 +196,21 @@ public class PlanManagerTest {
 		planManager.setVertexs(argVertexs);
 		
 		Troncon t1 = new Troncon("rue 1", 10f, 10f, a, b);
-		t1.setTarget(vc);
+		t1.setTarget(vb);
 		Troncon t2 = new Troncon("rue 2", 10f, 20f, b, c);
-		t2.setTarget(vb);
+		t2.setTarget(vc);
 		Troncon t3 = new Troncon("rue 3", 10f, 20f, c, d);
 		t3.setTarget(vd);
 		Troncon t4 = new Troncon("rue 4", 10f, 30f, d, e);
-		t4.setTarget(vc);
+		t4.setTarget(ve);
 		Troncon t5 = new Troncon("rue 5", 10f, 10f, e, a);
-		t5.setTarget(ve);
+		t5.setTarget(va);
 		Troncon t6 = new Troncon("rue 6", 10f, 50f, b, d);
-		t6.setTarget(va);
+		t6.setTarget(vd);
 		Troncon t7 = new Troncon("rue 7", 10f, 40f, e, c);
-		t7.setTarget(vd);
+		t7.setTarget(vc);
 		Troncon t8 = new Troncon("rue 8", 10f, 100f, c, a);
-		t8.setTarget(vd);
+		t8.setTarget(va);
 		
 		a.addTronconSortant(t1);
 		b.addTronconSortant(t2);
@@ -186,5 +251,6 @@ public class PlanManagerTest {
 		System.out.println(planManager.getChemins(listePlages).toString());
 
 	}
+			
 	
 }

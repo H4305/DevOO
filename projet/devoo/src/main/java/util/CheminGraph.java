@@ -5,7 +5,8 @@ package util;
 
 
 import java.util.ArrayList;
-import java.util.List;
+import model.data.*;
+import java.util.*;
 
 import model.data.Chemin;
 
@@ -14,14 +15,20 @@ public class CheminGraph implements Graph {
 	private List<Chemin> mChemins;
 	private float maxArcCost = Float.NEGATIVE_INFINITY;
 	private float minArcCost = Float.POSITIVE_INFINITY;
+	Set<Noeud> noeudSet = new HashSet<Noeud>();
+	
+	HashMap<Integer, Noeud> noeudsMap = new HashMap<Integer, Noeud>();
+	HashMap<Noeud, Integer> noeudsKeys = new HashMap<Noeud, Integer>();
 	
 	/**
 	 * Constructor
 	 * @param chemins Liste des chemins 
 	 */
-	public CheminGraph(List<Chemin> chemins) {
+	public CheminGraph(List<Chemin> chemins) { 
 		mChemins = chemins;
 		for(Chemin chemin: mChemins) {
+			noeudSet.add(chemin.getArrivee());
+			noeudSet.add(chemin.getDepart());
 			if(chemin.getTempsParcours() > maxArcCost) {
 				maxArcCost = chemin.getTempsParcours();
 			}
@@ -29,6 +36,13 @@ public class CheminGraph implements Graph {
 				minArcCost = chemin.getTempsParcours();
 			}
 		}
+		Integer key = 0;
+		for(Noeud n : noeudSet) {
+			noeudsMap.put(key, n);
+			noeudsKeys.put(n, key);
+			key++;
+		}
+		System.out.println(noeudsKeys);
 	}
 	
 	/**
@@ -52,7 +66,7 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int getNbVertices() {
-		return mChemins.size();
+		return noeudSet.size();
 	}
 
 	/**
@@ -62,14 +76,20 @@ public class CheminGraph implements Graph {
 	 */
 	@Override
 	public int[][] getCost() {
-		int[][] costs = new int[mChemins.size()][mChemins.size()];
-		for(int i = 0; i<mChemins.size();i++) {
-			for(int j = 0; j < mChemins.size(); j++) {
+		int[][] costs = new int[noeudSet.size()][noeudSet.size()];
+		for(int i = 0; i < noeudSet.size();i++) {
+			for(int j = 0; j < noeudSet.size(); j++) {
 				costs[i][j] = this.getMaxArcCost()+1;
 			}
 		}
 		for(Chemin chemin : mChemins) {
-			costs[chemin.getDepart().getId()][chemin.getArrivee().getId()] = Math.round(chemin.getTempsParcours());
+			costs[noeudsKeys.get(chemin.getDepart())][noeudsKeys.get(chemin.getArrivee())] = Math.round(chemin.getTempsParcours());
+		}
+		for(int[] l : costs) {
+			for(int r : l) {
+				System.out.print(r + " ");
+			}
+			System.out.println();
 		}
 		return costs;
 	}
@@ -85,17 +105,25 @@ public class CheminGraph implements Graph {
 		   i >= this.getNbVertices()) {
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		ArrayList<Integer> successors = new ArrayList<Integer>();
+		List<Integer> successors = new ArrayList<Integer>();
+		
 		for(Chemin chemin : mChemins) {
-			if(chemin.getDepart().getId() == i) {
-				successors.add(chemin.getArrivee().getId());
+			if(noeudsKeys.get(chemin.getDepart()) == i) {
+				successors.add(noeudsKeys.get(chemin.getArrivee()));
 			}
 		}
 		int[] r = new int[successors.size()];
+		//System.out.println("Taille " + successors.size());
 		int cpt = 0;
 		for(Object o : successors.toArray()) {
 			r[cpt] = (int) o;
+			cpt++;
 		}
+		for(int l : r) {
+			System.out.print(l + " ");
+		}
+		System.out.println();
+		System.out.println(r.length);
 		return r;
 	}
 
@@ -112,7 +140,7 @@ public class CheminGraph implements Graph {
 		}
 		int successors = 0;
 		for(Chemin chemin : mChemins) {
-			if(chemin.getDepart().getId() == i) {
+			if(noeudsKeys.get(chemin.getDepart()) == i) {
 				successors++;
 			}
 		}
@@ -120,7 +148,7 @@ public class CheminGraph implements Graph {
 	}
 
 	public String toString() {
-		String s = "";
+		String s = "Graph:\n";
 		for(Chemin c : mChemins) {
 			s += c.toString() + "\n";
 		}

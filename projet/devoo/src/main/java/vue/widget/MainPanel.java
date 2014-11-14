@@ -140,7 +140,7 @@ public class MainPanel extends JPanel {
 		panel_3.add(panel_9, BorderLayout.SOUTH);
 		panel_9.setLayout(new BoxLayout(panel_9, BoxLayout.Y_AXIS));
 		
-		lblInfoMessage = new JLabel("dfsddfd");
+		lblInfoMessage = new JLabel("");
 		panel_9.add(lblInfoMessage);
 	
 		panel_8 = new JPanel();
@@ -149,7 +149,7 @@ public class MainPanel extends JPanel {
 		btnChargerPlan = new JButton("Charger Plan");
 		panel_8.add(btnChargerPlan);
 		
-		btnLoadLivraison = new JButton("ChargerLivraison");
+		btnLoadLivraison = new JButton("Charger Livraison");
 		panel_8.add(btnLoadLivraison);
 		btnLoadLivraison.setEnabled(false);
 		
@@ -232,8 +232,8 @@ public class MainPanel extends JPanel {
 	}
 	
 	/**
-	 * 
-	 * @param plan
+	 * This method allows to set The plan
+	 * @param plan : The plan we want to set
 	 */
 	public void setPlan(PlanPanel plan) {
 		Component component = ((BorderLayout)panelPrincipal.getLayout()).getLayoutComponent(BorderLayout.CENTER);
@@ -247,55 +247,101 @@ public class MainPanel extends JPanel {
 	}
 	
 	/**
-	 * 
-	 * @param message
+	 * This method allows to set the Error message 
+	 * @param message : The error message
 	 */
 	public void setErrorMessage(String message) {
 		lblErreur.setVisible(true);
 		lblErreurMessage.setText(message);
 	}
 	
+	/**
+	 * This method allows to set the Livraison selected
+	 * @param plageHoraire : The plageHoraire
+	 * @param livraison : The livraison selected
+	 */
 	public void setLivraisonSelected(PlageHoraire plageHoraire, Livraison livraison) {
 		vueLivraison.setLivraison(plageHoraire, livraison);
 		btnSupprimerLivraison.setEnabled(true);
 		//validate();
 	}
 	
+	/**
+	 * This method allows to reset the info livraison
+	 */
 	public void resetInfoLivraison() {
 		vueLivraison.resetInfoLivraison();
 		btnSupprimerLivraison.setEnabled(false);
 		//validate();
 	}
 	
+	/**
+	 * This method allows to get the panel of the livraison
+	 * @return The JPanel
+	 */
 	public JPanel getPanelLivraisonAdd() {
 		return panelLivraisonAdd_1;
 	}
+	
+	/**
+	 * This method allows to get the export button
+	 * @return The Jbutton
+	 */
 	public JButton getBtnExporter() {
 		return btnExporter;
 	}
+	
+	/**
+	 * This method allows to get the reset button
+	 * @return The Jbutton
+	 */
 	public JButton getBtnAnnuler() {
 		return btnAnnuler;
 	}
+	
+	/**
+	 * This method allows to get the retablir button
+	 * @return The Jbutton
+	 */
 	public JButton getBtnRetablir() {
 		return btnRetablir;
 	}
 	
+	/**
+	 * This method allows to get the add button
+	 * @return The Jbutton
+	 */
 	public JButton getBtnAjouter() {
 		return btnAjouter;
 	}
 	
+	/**
+	 * This method allows to get the vue Livraison
+	 * @return the VueLivraison object
+	 */
 	public VueLivraison getVueLivraison() {
 		return vueLivraison;
 	}
 
+	/**
+	 * This method allows to set the Calcul Itineraire
+	 * @param b : The boolean
+	 */
 	public void setCalculItineraire(boolean b) {
 		btnCalculerTournee.setEnabled(b);
 	}
 	
+	/**
+	 * This method allows to set the information messsage
+	 * @param message : The message we want to set
+	 */
 	public void setInformationMessage(String message) {
 		lblInfoMessage.setText(message);
 	}
 	
+	/**
+	 * This method allows to the disable the bouton add
+	 */
 	public void disablebtnAjouter() {
 		for(ActionListener listener : btnAjouter.getActionListeners()) {
 			btnAjouter.removeActionListener(listener);

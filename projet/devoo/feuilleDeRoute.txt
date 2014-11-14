@@ -1,0 +1,34 @@
+-------------------------------*****FEUILLE DE ROUTE*****-------------------------------
+
+
+Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le 14/11/14.
+
+Aujourd'hui vous avez à délivrer 3 clients.
+
+Suivez les instructions suivantes: 
+
+
+Départ du dépot : rue v0". Continuer 300.2 metrès tout droit. 
+Prendre la rue "v0". Continuer 408.7 metrès tout droit. 
+
+Arrivée au point de livraison numéro 1!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 291.2 metrès tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 338.3 metrès tout droit. 
+
+Arrivée au point de livraison numéro 2!
+Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! 
+
+Prendre la rue "v0". Continuer 338.3 metrès tout droit. 
+Prendre la rue "v0". Continuer 291.2 metrès tout droit. 
+Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : 13.679999828338623km/h !
+Prendre la rue "v0". Continuer 408.7 metrès tout droit. 
+Prendre la rue "v0". Continuer 300.2 metrès tout droit. 
+
+Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! 
+Bonne fin journée !
+
+
+-------------------------------*****L'équipe LIVRAMAP*****-------------------------------

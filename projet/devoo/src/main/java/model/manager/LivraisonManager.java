@@ -4,10 +4,10 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
-
-
 
 
 /*
@@ -93,20 +93,33 @@ public class LivraisonManager {
        }
     }
 
+    /**
+     * This method returns the object "DemandeLivraisons" from the LivraisonManager
+     * @return The object "DemandeLivraisons"
+     */
     public DemandeLivraisons getDemandeLivraisons() {
 		return mDemandeLivraisons;
 	}
+    
+    /**
+     * This method allows to set the Itineraire for the LivraisonManager
+     * @param it : The itineraire we want to set
+     */
     public void setItineraire(Itineraire it){
     	this.mItineraire = it;
     }
+    
+    /**
+     * This method returns the object Itineraire from the LivraisonManager
+     * @return The object "Itineraire"
+     */
     public Itineraire getItineraire(){
     	
     	return this.mItineraire;
     }
 
     /**
-     * Fait le calcul de l'itinÃ©raire a suivre
-     * @return l'itineraire Ã  suivre
+     * Fait le calcul de l'Itineraire a suivre
      */
     public void calculItineraire() {
     	List<Set<Noeud>> adresses = new ArrayList<Set<Noeud>>();
@@ -167,11 +180,19 @@ public class LivraisonManager {
         }
     }
 	
+    /**
+     * This method returns the "PlageHoraire's" list from the DemandeLivraison
+     * @return The PlageHoraire's list 
+     */
     public List<PlageHoraire> getPlagesHoraire() {
     	
     	return this.mDemandeLivraisons.getPlagesHoraire();
     }
     
+    /**
+     * This method returns the "Livraison's" list for the livraison management
+     * @return The Livraison's list
+     */
     public List<Livraison> getLivraisons(){
     	List<PlageHoraire> plagesHoraires = this.getPlagesHoraire();
     	if(plagesHoraires == null) return new ArrayList<>();
@@ -183,8 +204,12 @@ public class LivraisonManager {
     	return lesLivraisons;
     }
        
-    
-    
+
+    /**
+     * This method allows to return a livraison from an address    
+     * @param address : The Node representing the address
+     * @return The Livraison's object
+     */
     public Livraison findLivraisonByAddress(Noeud address) {
     	for(Livraison livraison : getLivraisons()) {
     		if(livraison.getAdresse().equals(address)) 
@@ -193,6 +218,11 @@ public class LivraisonManager {
     	return null;
     }
     
+    /**
+     * This method allows to return a plageHoraire from a Livraison
+     * @param livraison : The Livraison's object in order to get the PlageHoraire
+     * @return The PlageHoraire's object
+     */
     public PlageHoraire findPlageHoraireByLivraison(Livraison livraison) {
     	for(PlageHoraire horaire : getPlagesHoraire()) {
     		for(Livraison liv : horaire.getLivraisons()) {
@@ -274,61 +304,86 @@ public class LivraisonManager {
     	
     }
 
-    /**
-     * 
-     */
+	/**
+	 * This method allows to export the roadboard in a txt file
+	 */
     public void exporterFeuilleRoute()
     {
     	String format = "dd/MM/yy"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
-    	File file = new File("file.txt");
+    	File file = new File("./feuilleDeRoute.txt");
         PrintWriter printWriter = null;
         List<Chemin> chemins = this.mItineraire.getChemins();
 
         try
         {
             printWriter = new PrintWriter(file);
-            printWriter.println("------------------FEUILLE DE ROUTE------------------");
+            printWriter.println("-------------------------------*****FEUILLE DE ROUTE*****-------------------------------");
+            printWriter.println("");
+            printWriter.println("");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
-            printWriter.println("Aujourd'hui vous avez ï¿½ dï¿½poser " + chemins.size()+" clients.");
+            printWriter.println("");
+            printWriter.println("Aujourd'hui vous avez à délivrer " + chemins.size()+" clients.");
+            printWriter.println("");
             printWriter.println("Suivez les instructions suivantes: ");
-            printWriter.print("Dï¿½part du dï¿½pot : rue ");
+            printWriter.println("");
+            printWriter.println("");
+            printWriter.print("Départ du dépot : rue ");
+            int i = 0;
             for(Chemin c : chemins){
             	
-            	for(Troncon t : c.getTroncons())
-            	{
-            		printWriter.println(t.getNomRue());
-            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t))
-            		{
-            			printWriter.print("Prendre : rue ");
+            	i++; 
+            	if(i!=1){
+            		printWriter.print("Prendre la rue \"");
+        		}
+        		            	
+            	for(Troncon t : c.getTroncons()){
+            		printWriter.println(t.getNomRue() + "\". Continuer " + t.getLongueur() + " metrès tout droit. ");
+            		
+            		if(t.getVitesse() < 4){
+            			printWriter.println("Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : " +t.getVitesse()*3.6 +"km/h !");
             		}
-            		else
-            		{
-            			printWriter.print("Vous etes arrivï¿½ ï¿½ la livraison ....");
+            		
+            		if(!c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
+            			printWriter.print("Prendre la rue \"");
+            		}
+            		else{
+            			if(chemins.get(chemins.size()-1).equals(c) && c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
+            				printWriter.println("");
+            				printWriter.println("Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! ");
+            				printWriter.println("Bonne fin journée !");
+	        				printWriter.println("");
+	        				printWriter.println("");
+            				printWriter.println("-------------------------------*****L'équipe LIVRAMAP*****-------------------------------");
+            			}
+            			else{           			
+            				printWriter.println("");
+                			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
+                			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
+            				printWriter.println("");
+            			}
             		}
             	}
-            	
-            	
             }
         }
-        catch (FileNotFoundException e)
-        {
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        finally
-        {
-            if ( printWriter != null ) 
-            {
+        finally {
+            if ( printWriter != null ) {
                 printWriter.close();
             }
         }
-    	
+
     }
+
+
+    
     /**
      * This method return the object plageHoraire that contains the delivery at the address noeud
-     * 
      * @param noeud
+     * @return The PlageHoraire's object
      **/
     public PlageHoraire getPlageHoraireByAdress(Noeud noeud){
     	PlageHoraire plageHoraireFound = null; 
@@ -346,8 +401,8 @@ public class LivraisonManager {
     
     /**
      * This method remove a delivery.
-     * 
      * @param adresseLivraison is the address of the delivery that we want to remove 
+     * @return A Pair of Integer and Node representing the plan
      */
     public PairIdLivrPrec<Integer, Noeud> supprimerLivraison(Noeud adresseLivraison) {	
     	
@@ -381,24 +436,15 @@ public class LivraisonManager {
 		
 		//on decalle toutes les livraisons prevues apres la livraison a supprimer dans laPlageHoraire de la livr ï¿½ supprimer 
 		List <Livraison> livraisons = laPlageHoraire.getLivraisons();
-		
 		for(Livraison liv: livraisons) {
-			
 			String heurePassage = liv.getHeureLivraison();
-			
 			if(CalculesHoraires.firstBeforeSecond( tempsAvantString, heurePassage) ) {
-				
 				String heure = CalculesHoraires.sommeHeures(heurePassage, decalageString) ;
-				
 				liv.setHeureLivraison(heure);	
 			}			
 		}			
-		
-		
 		laPlageHoraire.getLivraisons().remove(livraisonASupprimer);
-		
 		adresseLivraison.setIsLivraison(false);
-    
     	return new PairIdLivrPrec<Integer, Noeud>(id_client, noeudAvant);
     } 
     
