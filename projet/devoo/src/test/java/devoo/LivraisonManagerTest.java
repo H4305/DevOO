@@ -158,7 +158,7 @@ public class LivraisonManagerTest {
 
 		Controller controller = new Controller();		
 		PlanManager planManager = controller.getPlanManager();
-		LivraisonManagerTest livraisonManager = controller.getLivraisonManager();
+		LivraisonManager livraisonManager = controller.getLivraisonManager();
 		Chemin chemin1;
 		Chemin chemin2;
 		Chemin chemin3;

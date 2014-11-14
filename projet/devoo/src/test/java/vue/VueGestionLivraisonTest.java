@@ -10,6 +10,7 @@ import java.util.Set;
 import model.data.Livraison;
 import model.data.Noeud;
 import model.data.Troncon;
+import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class VueGestionLivraisonTest {
 	public void testAfficherFenetrePrincipale() {
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
-		LivraisonManagerTest  livraisonManager = new LivraisonManagerTest(planManager, controller);
+		LivraisonManager  livraisonManager = new LivraisonManager(planManager, controller);
 		VueGestionLivraison gestionLivraison = new VueGestionLivraison(planManager, livraisonManager, controller);
 		gestionLivraison.afficherFenetrePrincipale();
 		try {
@@ -62,7 +63,7 @@ public class VueGestionLivraisonTest {
 		        new Troncon("rue", 50.0f, 50, p5, p1)));
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
-		LivraisonManagerTest  livraisonManager = new LivraisonManagerTest(planManager, controller);
+		LivraisonManager  livraisonManager = new LivraisonManager(planManager, controller);
 		VueGestionLivraison gestionLivraison = new VueGestionLivraison(planManager, livraisonManager, controller);
 		
 		planManager.setPlan(new HashSet<Troncon>(troncons));

@@ -15,6 +15,7 @@ import model.data.Noeud;
  * model import
  */
 import model.data.Livraison;
+import model.manager.LivraisonManager;
 import model.manager.PlanManager;
 import model.data.PlageHoraire;
 import model.data.Noeud;
@@ -43,7 +44,7 @@ import vue.widget.PlanPanel.PointClickedListener;
 public class Controller {
 
 	//model attributes
-	private LivraisonManagerTest mLivraisonManager;
+	private LivraisonManager mLivraisonManager;
 	private PlanManager mPlanManager;
 
 	//vue attributes
@@ -58,7 +59,7 @@ public class Controller {
 	 */
 	public Controller() {
 		this.mPlanManager = new PlanManager(this);
-		this.mLivraisonManager = new LivraisonManagerTest(this.mPlanManager, this);
+		this.mLivraisonManager = new LivraisonManager(this.mPlanManager, this);
 		this.mVueGestionLivraison = new VueGestionLivraison(mPlanManager, mLivraisonManager, this);
 		this.actions = new ArrayList<Action>();
 	}
@@ -176,7 +177,7 @@ public class Controller {
 		return this.mPlanManager;
 	}
     
-    public LivraisonManagerTest getLivraisonManager()
+    public LivraisonManager getLivraisonManager()
     {
     	return this.mLivraisonManager;
     }
