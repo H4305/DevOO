@@ -16,6 +16,7 @@ import model.manager.PlanManager;
 import org.junit.Test;
 
 import controller.Controller;
+import devoo.LivraisonManagerTest;
 import vue.VueGestionLivraison;
 
 public class VueGestionLivraisonTest {

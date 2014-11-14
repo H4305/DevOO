@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
 
 public class MainLogin extends JPanel {
 	private JTextField textField;
@@ -33,37 +34,19 @@ public class MainLogin extends JPanel {
 		
 		JPanel panel_4 = new JPanel();
 		add(panel_4, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[]{0, 0, 0, 0, 54, 86, 49, 0};
-		gbl_panel_4.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_4.setLayout(gbl_panel_4);
-		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 5;
-		gbc_textField.gridy = 3;
-		panel_4.add(textField, gbc_textField);
-		textField.setColumns(10);
+		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
 		
 		passwordField = new JPasswordField();
 		passwordField.setColumns(10);
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordField.fill = GridBagConstraints.VERTICAL;
-		gbc_passwordField.gridx = 5;
-		gbc_passwordField.gridy = 4;
-		panel_4.add(passwordField, gbc_passwordField);
+		panel_4.add(passwordField);
+		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_4.add(textField);
+		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Connexion");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 5;
-		gbc_btnNewButton.gridy = 5;
-		panel_4.add(btnNewButton, gbc_btnNewButton);
+		panel_4.add(btnNewButton);
 		
 		
 		BufferedImage myPicture = null;
