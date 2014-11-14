@@ -22,6 +22,9 @@ import controller.Controller;
 
 public class PlanManagerTest {
 
+	/**
+	 * Test the calculation of the shortest path between 2 points
+	 */
 	@Test
 	public void testCalculerPlusCourtChemin() {
 		Controller controller = new Controller();
