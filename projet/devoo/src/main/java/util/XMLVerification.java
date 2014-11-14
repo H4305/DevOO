@@ -17,18 +17,6 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 public class XMLVerification {
-
-	/**
-	 * XSD File to check the plan XML files
-	 */
-	private static final Source XSD_PLAN = new StreamSource(new File("src/main/resources/plan.xsd"));  
-     
-	//XMLVerification.class.getResourceAsStream("/initialization/Lifepaths.txt");
-	
-	/**
-	 * XSD File to check the livraison XML files
-	 */
-	private static final Source XSD_LIVRAISON = new StreamSource(new File("src/main/resources/livraison.xsd"));
 	
 	
 	/**
