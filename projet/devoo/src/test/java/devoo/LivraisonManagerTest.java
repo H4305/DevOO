@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import util.CalculesHoraires;
+import util.Vertex;
 import controller.Controller;
 
 public class LivraisonManagerTest {
@@ -68,18 +69,37 @@ public class LivraisonManagerTest {
 		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
 
 	}	
+	
 	@Test
 	public void exporterFeuilleRoute() {
+
+		Controller controller = new Controller();		
+		PlanManager planManager = controller.getPlanManager();
+		Chemin chemin1;
+		Chemin chemin2;
+		Chemin chemin3;
+		Chemin chemin4;
+
+		controller.loadPlanXML();		
 		
-		Controller controller = new Controller();
-		PlanManager planManager = new PlanManager(controller);
-		LivraisonManager livraisonManager = new LivraisonManager(planManager, controller);
-		//livraisonManager.exporterFeuilleRoute();
-		  System.out.println("Suivez les instructions suivantes: ");
-		  System.out.print("D�part du d�pot : rue");
-		  System.out.println("Lalal");
+		List<Vertex> v = planManager.getVertexes();		
+		Noeud a = v.get(0).getPoint();
+		Noeud b = v.get(2).getPoint();
+		Noeud c = v.get(4).getPoint();
+		
+				
+		chemin1 = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
+		System.out.println("Le plus court chemin est" + chemin1.toString());
+		
+		chemin2 = planManager.calculerPlusCourtChemin(b,c);   //entre le premier et le dernier noeuds de la liste
+		System.out.println("Le plus court chemin est" + chemin2.toString());
+		
+		chemin3 = planManager.calculerPlusCourtChemin(c,a);   //entre le premier et le dernier noeuds de la liste
+		System.out.println("Le plus court chemin est" + chemin3.toString());
+						
 		
 	}
+	
 	
 
 
