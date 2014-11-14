@@ -174,6 +174,11 @@ public class Controller {
     {
     	return this.mPlanManager;
     }
+    
+    public LivraisonManager getLivraisonManager()
+    {
+    	return this.mLivraisonManager;
+    }
 	
     /**
      * This method ask the livraison manager to add a new delivrery
