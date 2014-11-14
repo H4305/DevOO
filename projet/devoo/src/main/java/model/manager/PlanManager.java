@@ -121,7 +121,7 @@ public class PlanManager {
     	dijkstra.computePaths(vSource);
     	
     	//System.out.println("Apres computePaths : ");
-    	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
+    	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
     	
     	System.out.println("MERDE");
     	for(Vertex v : vertexCourtChemin)
