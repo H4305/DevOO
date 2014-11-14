@@ -2,6 +2,9 @@ package devoo;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,22 +74,22 @@ public class LivraisonManagerTest {
 	}	
 	
 	@Test
-	public void exporterFeuilleRoute() {
+	public void testExporterFeuilleRoute() {
 
 		Controller controller = new Controller();		
 		PlanManager planManager = controller.getPlanManager();
+		LivraisonManager livraisonManager = controller.getLivraisonManager();
 		Chemin chemin1;
 		Chemin chemin2;
 		Chemin chemin3;
-		Chemin chemin4;
+		List<Chemin> listChemins = new ArrayList<Chemin>();
 
 		controller.loadPlanXML();		
 		
 		List<Vertex> v = planManager.getVertexes();		
 		Noeud a = v.get(0).getPoint();
 		Noeud b = v.get(2).getPoint();
-		Noeud c = v.get(4).getPoint();
-		
+		Noeud c = v.get(4).getPoint();		
 				
 		chemin1 = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
 		System.out.println("Le plus court chemin est" + chemin1.toString());
@@ -96,11 +99,17 @@ public class LivraisonManagerTest {
 		
 		chemin3 = planManager.calculerPlusCourtChemin(c,a);   //entre le premier et le dernier noeuds de la liste
 		System.out.println("Le plus court chemin est" + chemin3.toString());
-						
 		
+		listChemins.add(chemin1);
+		listChemins.add(chemin2);
+		listChemins.add(chemin3);
+		
+		Itineraire itineraire = new Itineraire(listChemins);
+		livraisonManager.setItineraire(itineraire);
+						
+		livraisonManager.exporterFeuilleRoute();
 	}
-	
-	
+		
 
 
 }

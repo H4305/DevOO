@@ -4,10 +4,10 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
-
-
 
 
 /*
@@ -281,17 +281,23 @@ public class LivraisonManager {
     	String format = "dd/MM/yy"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
-    	File file = new File("feuilleDeRoute.txt");
+    	File file = new File("./feuilleDeRoute.txt");
         PrintWriter printWriter = null;
         List<Chemin> chemins = this.mItineraire.getChemins();
 
         try
         {
             printWriter = new PrintWriter(file);
-            printWriter.println("------------------FEUILLE DE ROUTE------------------");
+            printWriter.println("-------------------------------*****FEUILLE DE ROUTE*****-------------------------------");
+            printWriter.println("");
+            printWriter.println("");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
+            printWriter.println("");
             printWriter.println("Aujourd'hui vous avez à délivrer " + chemins.size()+" clients.");
+            printWriter.println("");
             printWriter.println("Suivez les instructions suivantes: ");
+            printWriter.println("");
+            printWriter.println("");
             printWriter.print("Départ du dépot : rue ");
             int i = 0;
             for(Chemin c : chemins){
@@ -302,7 +308,7 @@ public class LivraisonManager {
         		}
         		            	
             	for(Troncon t : c.getTroncons()){
-            		printWriter.println(t.getNomRue() + "\" et continuer " + t.getLongueur() + " metrès tout droit. ");
+            		printWriter.println(t.getNomRue() + "\". Continuer " + t.getLongueur() + " metrès tout droit. ");
             		
             		if(t.getVitesse() < 4){
             			printWriter.println("Attention, ne roulez pas trop vite ! La vitesse maximale autorisée est de : " +t.getVitesse()*3.6 +"km/h !");
@@ -313,14 +319,18 @@ public class LivraisonManager {
             		}
             		else{
             			if(chemins.get(chemins.size()-1).equals(c) && c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
+            				printWriter.println("");
             				printWriter.println("Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! ");
             				printWriter.println("Bonne fin journée !");
-            				printWriter.println("---------------------------*****L'équipe LIVRAMAP*****---------------------------");
+	        				printWriter.println("");
+	        				printWriter.println("");
+            				printWriter.println("-------------------------------*****L'équipe LIVRAMAP*****-------------------------------");
             			}
             			else{           			
             				printWriter.println("");
                 			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
                 			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
+            				printWriter.println("");
             			}
             			
             		}
@@ -341,8 +351,10 @@ public class LivraisonManager {
                 printWriter.close();
             }
         }
-    	
+               
     }
+     
+    
     /**
      * This method return the object plageHoraire that contains the delivery at the address noeud
      * 
