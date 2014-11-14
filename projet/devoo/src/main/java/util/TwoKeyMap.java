@@ -6,7 +6,6 @@ import java.util.Iterator;
 /**
  * This is a HashMap where values are indexed by two keys.
  * 
- * @author Vadim Caen
  *
  * @param <K1> The type of the first key.
  * @param <K2> The type of the second key.
