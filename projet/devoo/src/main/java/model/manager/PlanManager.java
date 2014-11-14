@@ -123,9 +123,9 @@ public class PlanManager {
     	//System.out.println("Apres computePaths : ");
     	vertexCourtChemin = dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
     	
-    	System.out.println("MERDE");
-    	for(Vertex v : vertexCourtChemin)
-    		System.out.println(v.getPoint().getId());
+    	//System.out.println("MERDE");
+    	//for(Vertex v : vertexCourtChemin)
+    	//	System.out.println(v.getPoint().getId());
     	
     	//System.out.println("Apres Dijkstra : ");
 
@@ -161,6 +161,7 @@ public class PlanManager {
      */
     public List<Chemin> getChemins(List<Set<Noeud>> plages) {
     	List<Chemin> chemins = new ArrayList<Chemin>();
+    	
     	Set<Noeud> plagePrecedente = null;
     	//Pour chaque plage
     	for(Set<Noeud> plage : plages) {
@@ -188,10 +189,12 @@ public class PlanManager {
     	}
     	CheminGraph graph = new CheminGraph(chemins);
     	
+    	System.out.println(graph);
     	TSP tsp = new TSP(graph);
     	
     	int bound = graph.getNbVertices()*graph.getMaxArcCost() + 1;
 		int[] next = null;
+		
 		for (int t = 10; (tsp.getSolutionState() != SolutionState.OPTIMAL_SOLUTION_FOUND) && 
 						 (tsp.getSolutionState() != SolutionState.INCONSISTENT); t*=2){
 			System.out.println("--> Search of a tour strictly lower than "+bound+" within a time limit of "+t+"s.");

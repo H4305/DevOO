@@ -26,7 +26,7 @@ public class Vertex implements Comparable<Vertex> {
     
     public int compareTo(Vertex autre)
     {
-        return Double.compare(minTemps, autre.minTemps);
+        return Double.compare(minTemps, autre.getMinTemps());
     }
     
     public Noeud getPoint()

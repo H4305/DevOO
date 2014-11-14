@@ -171,11 +171,11 @@ public class PlanManagerTest {
 		vd.addTronconSortant(t4);
 		ve.addTronconSortant(t6);
 		vf.addTronconSortant(t8);*/
-		Noeud a = new Noeud(1, 5, 2);
-		Noeud b = new Noeud(2, 5, 7);
-		Noeud c = new Noeud(3, 4, 2);
-		Noeud d = new Noeud(4, 1, 2);
-		Noeud e = new Noeud(5, 9, 7);
+		Noeud a = new Noeud(0, 5, 2);
+		Noeud b = new Noeud(1, 5, 7);
+		Noeud c = new Noeud(2, 4, 2);
+		Noeud d = new Noeud(3, 1, 2);
+		Noeud e = new Noeud(4, 9, 7);
 
 		List<Vertex> argVertexs = new ArrayList<Vertex>();
 		
@@ -193,21 +193,21 @@ public class PlanManagerTest {
 		planManager.setVertexs(argVertexs);
 		
 		Troncon t1 = new Troncon("rue 1", 10f, 10f, a, b);
-		t1.setTarget(vc);
+		t1.setTarget(vb);
 		Troncon t2 = new Troncon("rue 2", 10f, 20f, b, c);
-		t2.setTarget(vb);
+		t2.setTarget(vc);
 		Troncon t3 = new Troncon("rue 3", 10f, 20f, c, d);
 		t3.setTarget(vd);
 		Troncon t4 = new Troncon("rue 4", 10f, 30f, d, e);
-		t4.setTarget(vc);
+		t4.setTarget(ve);
 		Troncon t5 = new Troncon("rue 5", 10f, 10f, e, a);
-		t5.setTarget(ve);
+		t5.setTarget(va);
 		Troncon t6 = new Troncon("rue 6", 10f, 50f, b, d);
-		t6.setTarget(va);
+		t6.setTarget(vd);
 		Troncon t7 = new Troncon("rue 7", 10f, 40f, e, c);
-		t7.setTarget(vd);
+		t7.setTarget(vc);
 		Troncon t8 = new Troncon("rue 8", 10f, 100f, c, a);
-		t8.setTarget(vd);
+		t8.setTarget(va);
 		
 		a.addTronconSortant(t1);
 		b.addTronconSortant(t2);
