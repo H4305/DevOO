@@ -100,17 +100,16 @@ public class PlanManagerTest {
 		controller.loadPlanXML();		
 		
 		List<Vertex> v = planManager.getVertexes();		
-		Noeud a = v.get(15).getPoint();
-		Noeud b = v.get(2).getPoint();
-		
-		System.out.println("Premier point :" + a.toString() + ". Il a " + a.getTronconsSortants().size());
-		System.out.println("Deuxieme point :" + b.toString() + ". Il a " + b.getTronconsSortants().size());
+		Noeud a = v.get(0).getPoint();
+		Noeud b = v.get(30).getPoint();
+				
 		chemin = planManager.calculerPlusCourtChemin(a,b);   //entre le premier et le dernier noeuds de la liste
 		System.out.println("Le plus court chemin est" + chemin.toString());
 	}
 	
 	@Test
 	public void testgetChemins() {
+		
 		Controller controller = new Controller();
 		PlanManager planManager = new PlanManager(controller);
 		
@@ -249,5 +248,6 @@ public class PlanManagerTest {
 		System.out.println(planManager.getChemins(listePlages).toString());
 
 	}
+			
 	
 }

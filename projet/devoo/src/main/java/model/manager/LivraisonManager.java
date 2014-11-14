@@ -281,7 +281,7 @@ public class LivraisonManager {
     	String format = "dd/MM/yy"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
-    	File file = new File("file.txt");
+    	File file = new File("feuilleDeRoute.txt");
         PrintWriter printWriter = null;
         List<Chemin> chemins = this.mItineraire.getChemins();
 
@@ -290,7 +290,7 @@ public class LivraisonManager {
             printWriter = new PrintWriter(file);
             printWriter.println("------------------FEUILLE DE ROUTE------------------");
             printWriter.println("Cette feuille de route a pour but d'ennoncer le planning des livraisons des colis le " + formater.format( date )+".");
-            printWriter.println("Aujourd'hui vous avez à livrer " + chemins.size()+" clients.");
+            printWriter.println("Aujourd'hui vous avez à délivrer " + chemins.size()+" clients.");
             printWriter.println("Suivez les instructions suivantes: ");
             printWriter.print("Départ du dépot : rue ");
             int i = 0;
@@ -312,14 +312,15 @@ public class LivraisonManager {
             			printWriter.print("Prendre la rue \"");
             		}
             		else{
-            			if(!chemins.get(chemins.size()-1).equals(c)){
+            			if(chemins.get(chemins.size()-1).equals(c) && c.getTroncons().get(c.getTroncons().size()-1).equals(t)){
+            				printWriter.println("Arrivée au dépot. Vous avez fini les livraisons pour aujourd'hui! ");
+            				printWriter.println("Bonne fin journée !");
+            				printWriter.println("---------------------------*****L'équipe LIVRAMAP*****---------------------------");
+            			}
+            			else{           			
             				printWriter.println("");
                 			printWriter.println("Arrivée au point de livraison numéro " + i +  "!");
                 			printWriter.println("Vous avez 10 min pour remmetre le colis au client ! N'oubliez allumer les clignotants! ");
-            			}
-            			else{
-            				printWriter.println("");
-            				printWriter.println("");
             			}
             			
             		}

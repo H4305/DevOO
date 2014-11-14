@@ -117,7 +117,8 @@ public class PlanManager {
     	
     	ArrayList<Noeud> pointsDuCourtChemin = new ArrayList<Noeud>();
     	ArrayList<Vertex> vertexCourtChemin = new ArrayList<Vertex>();
-    	Dijkstra.computePaths(vSource);
+
+    	dijkstra.computePaths(vSource);
     	
     	//System.out.println("Apres computePaths : ");
     	vertexCourtChemin = Dijkstra.getShortestPathTo(vCible);  //on recupere la liste des vertex du plus court chemin
@@ -127,6 +128,7 @@ public class PlanManager {
     		System.out.println(v.getPoint().getId());
     	
     	//System.out.println("Apres Dijkstra : ");
+
     	for(Vertex v : vertexCourtChemin)    //on recupere la liste des points correspondants aux vertex
     	{
     		//System.out.println(v.getPoint().toString());
