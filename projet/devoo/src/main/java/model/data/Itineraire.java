@@ -71,4 +71,12 @@ public class Itineraire {
 		return mChemins;
 	}
 	
+	public String toString() {
+		String s = "Itineraire: ";
+		for(Chemin c : mChemins) {
+			s += c.toString();
+		}
+		return s;
+	}
+	
 }

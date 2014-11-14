@@ -84,11 +84,6 @@ public class CheminGraph implements Graph {
 		for(Chemin chemin : mChemins) {
 			costs[noeudsKeys.get(chemin.getDepart())][noeudsKeys.get(chemin.getArrivee())] = Math.round(chemin.getTempsParcours());
 		}
-		for(int[] l : costs) {
-			for(int r : l) {
-				System.out.print(r + " ");
-			}
-		}
 		return costs;
 	}
 

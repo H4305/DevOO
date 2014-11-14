@@ -83,7 +83,7 @@ public class Controller {
 	 * @param circuit
 	 */
 	public void afficherItineraire() {
-		// TODO implement here
+		mVueGestionLivraison.afficherItineraire();
 	}
 
 

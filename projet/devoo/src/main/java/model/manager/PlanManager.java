@@ -196,7 +196,9 @@ public class PlanManager {
 		}	
 		List<Chemin> cheminsItineraire = new ArrayList<Chemin>();
 		for(int i = 0; i < next.length-1; i++) {
+			System.out.println(next[i]);
 			Noeud origin = graph.getNoeudFromIndex(next[i]);
+			System.out.println(origin);
 			Noeud destination = graph.getNoeudFromIndex(next[i+1]);
 			for(Chemin c : chemins) {
 				if(c.getDepart().equals(origin) ||
@@ -235,7 +237,7 @@ public class PlanManager {
 
 		@Override
     	public String getMessage() {
-    		return "Le troncon demand� n'existe pas";
+    		return "Le troncon demandé n'existe pas";
     	}
     }
 

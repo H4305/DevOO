@@ -32,8 +32,8 @@ import vue.widget.PlanPanel.PointClickedListener;
 import controller.Controller;
 
 /**
- *	Gestionnaire de vue qui gère les actions déclenchée par les différente vues
- *	et gère l'affichage de celle ci.
+ *	Gestionnaire de vue qui gï¿½re les actions dï¿½clenchï¿½e par les diffï¿½rente vues
+ *	et gï¿½re l'affichage de celle ci.
  *
  */
 public class VueGestionLivraison {
@@ -49,8 +49,8 @@ public class VueGestionLivraison {
 	PlanPanel.PointClickedListener pointClickedListener;
 
    /**
-    * @param planManager Manager du plan dans le modèle
-    * @param livraisonManager Manager des livraisons dans le modèle
+    * @param planManager Manager du plan dans le modï¿½le
+    * @param livraisonManager Manager des livraisons dans le modï¿½le
     * @param controller Controlleur du programme
     */
     public VueGestionLivraison(PlanManager planManager, LivraisonManager livraisonManager, Controller controller) {
@@ -68,7 +68,7 @@ public class VueGestionLivraison {
 
     /**
      * Affiche sur le {@link PlanPanel} les points de livraison contenus
-     * dans le fichier de livraison chargé.
+     * dans le fichier de livraison chargï¿½.
      * @see VueGestionLivraison#chargerLivraison()
      */
 	public void afficherDemandeLivraisons() {
@@ -96,7 +96,8 @@ public class VueGestionLivraison {
      * @param circuit
      */
     public void afficherItineraire() {
-        mLivraisonManager.getItineraire().getChemins();
+    //    mLivraisonManager.getItineraire().getChemins();
+        vuePlan.setItineraire(mLivraisonManager.getItineraire());
         
         vuePlan.afficherItineraire();
     }
@@ -189,7 +190,7 @@ public class VueGestionLivraison {
     	
     	if (!id_client.getText().equals("")) {
     		int idClient = Integer.parseInt(id_client.getText());
-    		mainPanel.setInformationMessage("Selectionner après quelle livraison inserer la nouvelle.");
+    		mainPanel.setInformationMessage("Selectionner aprï¿½s quelle livraison inserer la nouvelle.");
     		waitForSecondPoint(point, idClient);
     	}
     	else {
@@ -207,7 +208,7 @@ public class VueGestionLivraison {
     public void afficherDialogConfirmationSuppressionLivraison(Noeud p) {
     	JFrame frame = new JFrame("Supprimer une livraison");
     	JOptionPane removeLivraisonPanel = new JOptionPane();
-	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison à l'adresse: " + p.toString() + "?", 
+	    int n = JOptionPane.showOptionDialog(frame, " Vous voulez supprimer la livraison ï¿½ l'adresse: " + p.toString() + "?", 
 	    		"Suppression", 
 	    		JOptionPane.YES_NO_OPTION, 
 	    		JOptionPane.QUESTION_MESSAGE,
@@ -259,8 +260,8 @@ public class VueGestionLivraison {
 	public void ajouterLivraison(Noeud nouveau, Noeud precedent, int idClient) {
 		mLivraisonManager.addNouvelleLivraison(nouveau, precedent, idClient);
 		JOptionPane.showMessageDialog(null, 
-				"Une nouvelle livraison pour le client " + idClient +  " a été ajoutée.",
-				"Livraison ajoutée", JOptionPane.PLAIN_MESSAGE);
+				"Une nouvelle livraison pour le client " + idClient +  " a ï¿½tï¿½ ajoutï¿½e.",
+				"Livraison ajoutï¿½e", JOptionPane.PLAIN_MESSAGE);
 		mainPanel.disablebtnAjouter();
 	}
 	
@@ -289,9 +290,9 @@ public class VueGestionLivraison {
 			builder.append(livraison.getId()).append(", ");
 		}
 		if(livraisons.size() > 1) {
-			builder.append("ne peuvent pas être livrées");
+			builder.append("ne peuvent pas ï¿½tre livrï¿½es");
 		} else {
-			builder.append("ne peut pas être livrée");
+			builder.append("ne peut pas ï¿½tre livrï¿½e");
 		}
 		builder.delete(builder.lastIndexOf(","), builder.lastIndexOf(",") +1).append(".");
 		JOptionPane.showMessageDialog(mainFrame, builder.toString());

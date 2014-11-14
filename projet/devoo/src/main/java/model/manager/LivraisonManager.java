@@ -139,9 +139,10 @@ public class LivraisonManager {
         
         adresses.add(setEntrepot);
         List<Chemin> chemins = mPlanManager.getChemins(adresses);
-        this.updateLivraisonsTime(plagesHoraire, chemins);
+        //this.updateLivraisonsTime(plagesHoraire, chemins);
         
         mItineraire = new Itineraire(chemins);
+        System.out.println(mItineraire);
         mController.afficherItineraire(); //pas de paramètre
     }
     
